@@ -1,0 +1,1 @@
+^openECSC\{how_did_you_escape_my_sanitization_[a-f0-9]{8}\}$

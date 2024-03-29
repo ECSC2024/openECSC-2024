@@ -1,0 +1,40 @@
+{
+  "title": "ProtolessWaf",
+  "description": "I found this cool parser for protobuf that does not require a .proto file. I'm using it in a WAF to prevent admin access to my server, I hope it works as expected.\n\nSite: [http://protolesswaf.challs.open.ecsc2024.it](http://protolesswaf.challs.open.ecsc2024.it)",
+  "authors": [
+    "Giovanni Minotti <@giotino>"
+  ],
+  "tags": [
+    "misc"
+  ],
+  "hiddenTags": [],
+  "order": 22,
+  "flags": [
+    "^openECSC\\{trust_the_proto_not_the_user\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "challenge.zip",
+      "type": "upload",
+      "path": "./attachments/challenge.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "http",
+    "url": "http://protolesswaf.challs.open.ecsc2024.it:80/"
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 10
+    }
+  }
+}

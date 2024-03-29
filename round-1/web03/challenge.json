@@ -1,0 +1,34 @@
+{
+  "title": "Life Quiz",
+  "description": "Try out our quiz to win a incredible prize!\n\nSite: [http://lifequiz.challs.open.ecsc2024.it](http://lifequiz.challs.open.ecsc2024.it)",
+  "authors": [
+    "Stefano Alberto <@Xato>"
+  ],
+  "tags": [
+    "web"
+  ],
+  "hiddenTags": [],
+  "order": 52,
+  "flags": [
+    "^openECSC\\{U_4re_4_Qu1z_m4s7er\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "lifequiz.zip",
+      "type": "upload",
+      "path": "./attachments/lifequiz.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "http",
+    "url": "http://lifequiz.challs.open.ecsc2024.it:80/"
+  }
+}

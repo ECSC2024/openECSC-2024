@@ -1,0 +1,29 @@
+
+<%- include('header') %>
+
+<h1>Edit product</h1>
+
+<br>
+
+<form method="post" class="form-group mx-auto col-md-6">
+    <div class="mb-3">
+        <label for="password" class="form-label">Admin password</label>
+        <input type="password" class="form-control" id="password" name="password">
+    </div>
+
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" value="<%- product.name %>">
+    </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <input type="text" class="form-control" id="description" name="description" value="<%- product.description %>">
+    </div>
+    <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input type="number" class="form-control" id="price" name="price" value="<%- product.price %>">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+    
+<%- include('footer') %>

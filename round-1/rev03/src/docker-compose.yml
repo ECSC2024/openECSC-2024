@@ -1,0 +1,12 @@
+services:
+  crackme:
+    image: cybersecnatlab/challenge-jail
+    restart: unless-stopped
+    init: true
+    privileged: true
+    volumes:
+      - './chall/chall:/home/user/chall:ro'
+    ports:
+      - '38008:1337'
+    environment:
+      - 'FLAG=openECSC{m4yb3_5ub57r1n65_5h0uld_h4v3_b33n_5h0r73r_[random 8]}'

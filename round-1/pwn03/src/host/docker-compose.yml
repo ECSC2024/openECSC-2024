@@ -1,0 +1,17 @@
+services:
+  rovermaster:
+    build: .
+    image: rovermaster
+    ports:
+      - "5555:5555"   # chall
+      - "2222:2222"   # to ssh into the qemu vm for emergencies
+
+# ================================= README =================================
+# the qemu vm spwned by docker is doing port forwarding to expose the chall.
+# the chall is running inside qemu on 5555.
+# so, do not change the internal port in this docker-compose file.
+# if you really need to (no???), then REMEMBER to change the qemu port
+# forwarding accordingly in run.sh
+
+# e.g. if you change this file like this:                5555:5555                ->                5555:6666
+# then change run.sh like this:             -net user,hostfwd=tcp::5555-:5555     ->      -net user,hostfwd=tcp::6666-:5555

@@ -1,0 +1,1 @@
+FLAG=openECSC{fake_flag}

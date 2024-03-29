@@ -1,0 +1,40 @@
+{
+  "title": "Perfect Shop",
+  "description": "Do you like perfect things? Check out my new online shop!\n\nSite: [http://perfectshop.challs.open.ecsc2024.it](http://perfectshop.challs.open.ecsc2024.it)",
+  "authors": [
+    "Stefano Alberto <@Xato>"
+  ],
+  "tags": [
+    "web"
+  ],
+  "hiddenTags": [],
+  "order": 50,
+  "flags": [
+    "^openECSC\\{4in't_s0_p3rfect_aft3r_4ll\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "perfectshop.zip",
+      "type": "upload",
+      "path": "./attachments/perfectshop.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "http",
+    "url": "http://perfectshop.challs.open.ecsc2024.it:80/"
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 120
+    }
+  }
+}

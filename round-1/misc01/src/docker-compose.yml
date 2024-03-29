@@ -1,0 +1,14 @@
+services:
+  cablefish:
+    build: .
+    container_name: CABLEFISH
+    # image: cybersecnatlab/socaz:python-3.11-alpine
+    restart: unless-stopped
+    # command: 'socaz --timeout 90 --flag-from-env FLAG --bind 1337 --cmd /home/user/chall'
+    # volumes:
+      # - './chall.py:/home/user/chall:ro'
+      # - './capture.pcapng:/home/user/capture.pcapng:ro'
+    ports:
+      - '38005:1337'
+    environment:
+      - 'FLAG=openECSC{how_did_you_escape_my_sanitization_[random 8]}'

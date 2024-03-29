@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "build": "src",
+      "environment": {
+        "FLAG": "openECSC{how_did_you_escape_my_sanitization_[random 8]}"
+      },
+      "expose": [
+        {
+          "type": "tcp",
+          "host": 38005,
+          "container": 1337
+        }
+      ]
+    }
+  }
+}

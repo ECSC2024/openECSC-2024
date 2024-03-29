@@ -1,0 +1,24 @@
+
+<%- include('header') %>
+
+<h1>Report an abuse</h1>
+<p>Please describe the problem, our team will take care of it</p>
+
+
+
+<form action="/report" method="post" class="form-group mx-auto col-md-6 my-3">
+
+    <select class="form-select my-2" name="id">
+        <option selected>Choose the product</option>
+        <% for (let i=0; i<products.length; i++) { %>
+            <option value="<%- products[i].id %>"><%- products[i].name %></option>
+        <% } %>
+    </select>
+    <div class="form-group my-2">
+        <label for="message">Message</label>
+        <textarea class="form-control" id="message" name="message"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary w-100 my-3">Submit</button>
+</form>
+
+<%- include('footer') %>

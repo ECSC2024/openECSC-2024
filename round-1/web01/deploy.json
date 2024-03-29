@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "build": "src",
+      "headless": true,
+      "expose": [
+        {
+          "type": "http",
+          "container": 3000,
+          "hostname": "perfectshop.challs.open.ecsc2024.it",
+          "secure": false
+        }
+      ],
+      "environment": {
+        "WEB_DOM": "perfectshop.challs.open.ecsc2024.it",
+        "FLAG": "openECSC{4in't_s0_p3rfect_aft3r_4ll}"
+      }
+    }
+  }
+}

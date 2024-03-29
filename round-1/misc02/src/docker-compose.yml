@@ -1,0 +1,14 @@
+services:
+  flagsdistributionservice:
+    build: chall
+    restart: unless-stopped
+    ports:
+      - '38000:1337'
+    environment:
+      - 'FLAG=openECSC{s0met1mes_1s_b3tter_t0_jus7_us3_c0mmon_l1brari3s_[random 8]}'
+
+  signingservice:
+    build: signingservice
+    restart: unless-stopped
+    ports:
+      - '38001:1337'

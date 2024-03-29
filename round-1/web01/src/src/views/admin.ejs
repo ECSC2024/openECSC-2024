@@ -1,0 +1,12 @@
+<%- include('header') %>
+
+    <h1>Admin</h1>
+    <p>Welcome to the admin panel, choose the product you need to edit</p>
+
+    <ul class="list-group col-md-6 mx-auto">
+        <% for (let i=0; i<products.length; i++) { %>
+            <a href="/admin/<%- i %>" class="list-group-item"><%- products[i].name %></a>
+        <% } %>
+    </ul>
+       
+<%- include('footer') %>

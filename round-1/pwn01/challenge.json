@@ -1,0 +1,41 @@
+{
+  "title": "No Headache",
+  "description": "All these complicated memory allocators only give me headaches, so I decided to go with a much simpler implementation. Simpler code = less bugs = no more getting pwned!\n\nThis is a remote challenge, you can connect to the service with:\n\n`nc noheadache.challs.open.ecsc2024.it 38004`",
+  "authors": [
+    "Marco Bonelli <@mebeim>"
+  ],
+  "tags": [
+    "pwn"
+  ],
+  "hiddenTags": [],
+  "order": 30,
+  "flags": [
+    "^openECSC\\{__minimal_malloc,__minimal_headache,[0-9a-f]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "no_headache.tar.gz",
+      "type": "upload",
+      "path": "./attachments/no_headache.tar.gz",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "noheadache.challs.open.ecsc2024.it",
+    "port": 38004
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 60
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "title": "back2basics",
+  "description": "What's better than a good old crackme to warm you up?\n\nThis is a remote challenge, you can connect with:\n\n`nc back2basics.challs.open.ecsc2024.it 38008`",
+  "authors": [
+    "Matteo Rossi <@mr96>"
+  ],
+  "tags": [
+    "rev"
+  ],
+  "hiddenTags": [],
+  "order": 42,
+  "flags": [
+    "^openECSC\\{m4yb3_5ub57r1n65_5h0uld_h4v3_b33n_5h0r73r_[0-9a-f]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "b2b",
+      "type": "upload",
+      "path": "./attachments/b2b",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "back2basics.challs.open.ecsc2024.it",
+    "port": 38008
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 30
+    }
+  }
+}

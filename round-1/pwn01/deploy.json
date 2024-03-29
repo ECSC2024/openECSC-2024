@@ -1,0 +1,34 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "image": "cybersecnatlab/challenge-jail@sha256:7bf77225063b039960f654307cf5d6f977f892ff548606357a2e8fe8067d0a88",
+      "expose": [
+        {
+          "type": "tcp",
+          "host": 38004,
+          "container": 1337
+        }
+      ],
+      "volumes": [
+        {
+          "type": "bind",
+          "host": "src/build/no_headache",
+          "container": "/home/user/chall",
+          "readonly": true
+        },
+        {
+          "type": "bind",
+          "host": "src/libs",
+          "container": "/home/user/libs",
+          "readonly": true
+        }
+      ],
+      "environment": {
+        "FLAG": "openECSC{__minimal_malloc,__minimal_headache,[random 8]}",
+        "LOADER": "/home/user/libs/ld-linux-x86-64.so.2",
+        "TIMEOUT": "60"
+      }
+    }
+  }
+}

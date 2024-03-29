@@ -1,0 +1,41 @@
+{
+  "title": "Stealing Seeds",
+  "description": "I found an interesting way to generate numbers with someone. Wanna try?\n\nThis is a remote challenge, you can connect with:\n\n`nc stealingseeds.challs.open.ecsc2024.it 38006`",
+  "authors": [
+    "Lorenzo Demeio <@Devrar>"
+  ],
+  "tags": [
+    "crypto"
+  ],
+  "hiddenTags": [],
+  "order": 12,
+  "flags": [
+    "^openECSC\\{I_just_w4nt3d_to_g3n3r4t3_s0me_numb3rs_t0geth3r_[0-9a-f]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "stealing-seeds.py",
+      "type": "upload",
+      "path": "./attachments/stealing-seeds.py",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "stealingseeds.challs.open.ecsc2024.it",
+    "port": 38006
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 60
+    }
+  }
+}

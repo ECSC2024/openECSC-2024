@@ -1,0 +1,37 @@
+{
+  "title": "Spiky Crypto",
+  "description": "There are so many weird groups you can use for a key exchange. I just took one with a funny name.",
+  "authors": [
+    "Lorenzo Demeio <@Devrar>",
+    "Matteo Rossi <@mr96>"
+  ],
+  "tags": [
+    "crypto"
+  ],
+  "hiddenTags": [],
+  "order": 10,
+  "flags": [
+    "^openECSC\\{m4ybe_4_funny_n4m3_1s_n0t_en0ugh_f0r_s3curity_:\\(_7401c1bc\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "public.txt",
+      "type": "upload",
+      "path": "./attachments/public.txt",
+      "dynamic": false
+    },
+    {
+      "name": "spiky_crypto.sage",
+      "type": "upload",
+      "path": "./attachments/spiky_crypto.sage",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

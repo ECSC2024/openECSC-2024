@@ -1,0 +1,16 @@
+
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <% for (const product of products) { %>
+    <div class="col">
+    <div class="card h-100">
+        <img src="https://picsum.photos/500?bust=<%- Math.random() %>" class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title"><a href="/product/<%- product.id %>"><%- product.name %></a></h5>
+        <p class="card-text"><%- product.description %></p>
+        </div>
+    </div>
+    </div>
+    <% } %>
+</div>
+

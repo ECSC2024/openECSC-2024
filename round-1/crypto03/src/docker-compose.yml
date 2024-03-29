@@ -1,0 +1,8 @@
+services:
+  stealing-seeds:
+    build: .
+    restart: unless-stopped
+    ports:
+      - '38006:1337'
+    environment:
+      - 'FLAG=openECSC{I_just_w4nt3d_to_g3n3r4t3_s0me_numb3rs_t0geth3r_[random 8]}'

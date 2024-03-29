@@ -1,0 +1,14 @@
+services:
+  waf:
+    build: ./waf
+    restart: unless-stopped
+    ports:
+      - '1337:80'
+    cpus: 2.0
+
+  server:
+    build: ./server
+    restart: unless-stopped
+    environment:
+      - FLAG=openECSC{trust_the_proto_not_the_user_RANDOMPART}
+    cpus: 2.0

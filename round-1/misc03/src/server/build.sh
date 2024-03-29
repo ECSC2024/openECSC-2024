@@ -1,0 +1,1 @@
+~/protoc/protoc --proto_path=./proto --python_out=./src ./proto/app.proto

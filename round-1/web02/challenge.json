@@ -1,0 +1,40 @@
+{
+  "title": "Fileshare",
+  "description": "You can now share your files for free thanks to our new disruptive technology!\n\nSite: [https://fileshare.challs.open.ecsc2024.it](https://fileshare.challs.open.ecsc2024.it)",
+  "authors": [
+    "Stefano Alberto <@Xato>"
+  ],
+  "tags": [
+    "web"
+  ],
+  "hiddenTags": [],
+  "order": 51,
+  "flags": [
+    "^openECSC\\{why_w0uld_u_sh4re_th1s\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "fileshare.zip",
+      "type": "upload",
+      "path": "./attachments/fileshare.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "http",
+    "url": "https://fileshare.challs.open.ecsc2024.it:443/"
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 60
+    }
+  }
+}

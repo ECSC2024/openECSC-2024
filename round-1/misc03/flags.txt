@@ -1,0 +1,1 @@
+^openECSC\{trust_the_proto_not_the_user\}$

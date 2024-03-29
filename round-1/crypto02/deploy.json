@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "build": "src",
+      "expose": [
+        {
+          "type": "tcp",
+          "host": 38009,
+          "container": 1337
+        }
+      ],
+      "environment": {
+        "FLAG": "openECSC{4nd_th1s_0n3_1s_br0k3n_too_[random 8]}"
+      }
+    }
+  }
+}

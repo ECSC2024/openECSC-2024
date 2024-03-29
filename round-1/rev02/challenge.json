@@ -1,0 +1,36 @@
+{
+  "title": "fsvm 2",
+  "description": "I wrote an improved version of my previous VM, but it's still not capable of printing good descriptions.",
+  "authors": [
+    "Matteo Protopapa <@matpro>"
+  ],
+  "tags": [
+    "rev"
+  ],
+  "hiddenTags": [],
+  "order": 41,
+  "flags": [
+    "^openECSC\\{1ts_jus7_4n0ther_vm_582e5a5\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "bytecode",
+      "type": "upload",
+      "path": "./attachments/bytecode",
+      "dynamic": false
+    },
+    {
+      "name": "vm",
+      "type": "upload",
+      "path": "./attachments/vm",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

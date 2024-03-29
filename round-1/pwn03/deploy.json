@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "build": "src/host",
+      "internet": true,
+      "limits": {
+        "memory": 4096
+      },
+      "expose": [
+        {
+          "type": "tcp",
+          "host": 38007,
+          "container": 5555
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,21 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:80
+    volumes:
+      - ./src:/var/www/html
+    environment:
+      - DB_HOST=db
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: db
+    volumes:
+      #- ./db_data:/var/lib/mysql
+      #- ./prizes:/prizes
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql

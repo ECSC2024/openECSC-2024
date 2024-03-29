@@ -1,0 +1,37 @@
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    environment:
+      HEADLESS_HOST: headless:5000
+      HEADLESS_AUTH: 5TUmBJUOx8Ke0BektVXE4EX9a2bFvWiY
+      WEB_DOM: web:3000
+      FLAG: openECSC{4in't_s0_p3rfect_aft3r_4ll}
+    ports:
+      - '3000:3000'
+
+  # Headless stuff below
+  headless:
+    image: cybersecnatlab/challenge-headless:latest-manager
+    restart: unless-stopped
+    environment:
+      AUTH_TOKEN: 5TUmBJUOx8Ke0BektVXE4EX9a2bFvWiY
+      RABBITMQ_HOST: headless-rabbitmq
+      RABBITMQ_QUEUE: headless-jobs
+    depends_on:
+      - headless-rabbitmq
+
+  headless-rabbitmq:
+    image: rabbitmq:3.11
+    restart: unless-stopped
+
+  headless-worker:
+    image: cybersecnatlab/challenge-headless:latest-worker
+    restart: unless-stopped
+    environment:
+      RABBITMQ_HOST: headless-rabbitmq
+      RABBITMQ_QUEUE: headless-jobs
+    deploy:
+      replicas: 1
+    depends_on:
+      - headless-rabbitmq

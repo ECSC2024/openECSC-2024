@@ -1,0 +1,36 @@
+{
+  "title": "fsvm",
+  "description": "I want this VM to generate a good description, but all I get is \"no\".",
+  "authors": [
+    "Matteo Protopapa <@matpro>"
+  ],
+  "tags": [
+    "rev"
+  ],
+  "hiddenTags": [],
+  "order": 40,
+  "flags": [
+    "^openECSC\\{supereasyvmc4e87c4d\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "bytecode",
+      "type": "upload",
+      "path": "./attachments/bytecode",
+      "dynamic": false
+    },
+    {
+      "name": "vm",
+      "type": "upload",
+      "path": "./attachments/vm",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

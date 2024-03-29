@@ -1,0 +1,41 @@
+{
+  "title": "Line crosser",
+  "description": "Check out this sick game with dark humour, will you be the first one to cross the line and go too far?\n\n`nc linecrosser.challs.open.ecsc2024.it 38002`\n\nThe docker image for this challenge is `cybersecnatlab/challenge-jail@sha256:7bf77225063b039960f654307cf5d6f977f892ff548606357a2e8fe8067d0a88`.",
+  "authors": [
+    "Fabio Zoratti <@orsobruno96>"
+  ],
+  "tags": [
+    "pwn"
+  ],
+  "hiddenTags": [],
+  "order": 31,
+  "flags": [
+    "^openECSC\\{d0_y0u_l1k3_pr0b4b1listic_st4ck_p1v0t1ng\\?_[a-f0-9]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "linecrosser.zip",
+      "type": "upload",
+      "path": "./attachments/linecrosser.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "linecrosser.challs.open.ecsc2024.it",
+    "port": 38002
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 90
+    }
+  }
+}

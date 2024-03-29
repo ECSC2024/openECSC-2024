@@ -1,0 +1,1 @@
+^openECSC\{4nd_th1s_0n3_1s_br0k3n_too_[0-9a-f]{8}\}$

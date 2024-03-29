@@ -1,0 +1,15 @@
+
+<%- include('header') %>
+
+<div class=" col-md-6 col-lg-4 mx-auto">
+    <div class="card h-100">
+        <img src="https://picsum.photos/500?bust=<%- Math.random() %>" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title"><%- product.name %></h5>
+            <p class="card-text"><%- product.description %></p>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted"><%- product.price %>$</small>
+        </div>
+    </div>
+</div>

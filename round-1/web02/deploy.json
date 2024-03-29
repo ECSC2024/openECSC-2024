@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "build": "src",
+      "headless": true,
+      "environment": {
+        "WEB_DOM": "fileshare.challs.open.ecsc2024.it",
+        "FLAG": "openECSC{why_w0uld_u_sh4re_th1s}"
+      },
+      "expose": [
+        {
+          "type": "http",
+          "container": 80,
+          "hostname": "fileshare.challs.open.ecsc2024.it",
+          "secure": true
+        }
+      ]
+    }
+  }
+}

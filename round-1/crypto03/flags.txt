@@ -1,0 +1,1 @@
+^openECSC\{I_just_w4nt3d_to_g3n3r4t3_s0me_numb3rs_t0geth3r_[0-9a-f]{8}\}$

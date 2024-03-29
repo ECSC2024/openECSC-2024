@@ -1,0 +1,26 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "image": "cybersecnatlab/challenge-jail:latest",
+      "expose": [
+        {
+          "type": "tcp",
+          "host": 38008,
+          "container": 1337
+        }
+      ],
+      "volumes": [
+        {
+          "type": "bind",
+          "host": "src/chall/chall",
+          "container": "/home/user/chall",
+          "readonly": true
+        }
+      ],
+      "environment": {
+        "FLAG": "openECSC{m4yb3_5ub57r1n65_5h0uld_h4v3_b33n_5h0r73r_[random 8]}"
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "title": "Flags distribution Inc.",
+  "description": "Finally Flags distribution Inc. made a false step! They accidentally exposed their client certificate signing endpoint to the internet... It doesn't seem to be able to sign admin certificates though...\n\nThis is a remote challenge, you can connect with:\n\n`openssl s_client -connect flagsdistribution.challs.open.ecsc2024.it:38000`\n\n`nc flagsdistribution.challs.open.ecsc2024.it 38001`",
+  "authors": [
+    "Alberto Carboneri <@Alberto247>"
+  ],
+  "tags": [
+    "misc"
+  ],
+  "hiddenTags": [],
+  "order": 21,
+  "flags": [
+    "^openECSC\\{s0met1mes_1s_b3tter_t0_jus7_us3_c0mmon_l1brari3s_[0-9a-f]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "attachments.zip",
+      "type": "upload",
+      "path": "./attachments/attachments.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "flagsdistribution.challs.open.ecsc2024.it",
+    "port": 38000
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 10
+    }
+  }
+}

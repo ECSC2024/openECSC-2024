@@ -1,0 +1,80 @@
+{
+    "events": [
+        {
+            "id": 1,
+            "name": "openECSC 2024",
+            "sections": [
+                {
+                    "id": 1,
+                    "name": "Round 1",
+                    "challenges": [
+                        {
+                            "id": 6,
+                            "title": "Who will win the branded swag bags? :D"
+                        },
+                        {
+                            "id": 1,
+                            "title": "Spiky Crypto"
+                        },
+                        {
+                            "id": 7,
+                            "title": "Another Matrix KE"
+                        },
+                        {
+                            "id": 12,
+                            "title": "Stealing Seeds"
+                        },
+                        {
+                            "id": 2,
+                            "title": "CableFish"
+                        },
+                        {
+                            "id": 8,
+                            "title": "Flags distribution Inc."
+                        },
+                        {
+                            "id": 13,
+                            "title": "ProtolessWaf"
+                        },
+                        {
+                            "id": 3,
+                            "title": "No Headache"
+                        },
+                        {
+                            "id": 9,
+                            "title": "Line crosser"
+                        },
+                        {
+                            "id": 14,
+                            "title": "🪐RoverMaster🪐"
+                        },
+                        {
+                            "id": 4,
+                            "title": "fsvm"
+                        },
+                        {
+                            "id": 10,
+                            "title": "fsvm 2"
+                        },
+                        {
+                            "id": 15,
+                            "title": "back2basics"
+                        },
+                        {
+                            "id": 5,
+                            "title": "Perfect Shop"
+                        },
+                        {
+                            "id": 11,
+                            "title": "Fileshare"
+                        },
+                        {
+                            "id": 16,
+                            "title": "Life Quiz"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

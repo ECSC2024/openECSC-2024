@@ -1,0 +1,35 @@
+{
+  "title": "\ud83e\ude90RoverMaster\ud83e\ude90",
+  "description": "\ud83e\ude90 I'm giving you the keys for the art of mastering rovers... \ud83e\ude90\n\nYou can download the challenge files [here](https://cloud.cybersecnatlab.it/s/Po7sJdYCDdtwLjy).\n\n`nc rovermaster.challs.open.ecsc2024.it 38007`",
+  "authors": [
+    "Giulia Martino <@Giulia>",
+    "Vincenzo Bonforte <@Bonfee>"
+  ],
+  "tags": [
+    "pwn"
+  ],
+  "hiddenTags": [],
+  "order": 32,
+  "flags": [
+    "^openECSC\\{r0pping_on_th3_rovers_l1ke_th3res_n0_t0morr0w_[a-f0-9]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "rovermaster.challs.open.ecsc2024.it",
+    "port": 38007
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 30
+    }
+  }
+}

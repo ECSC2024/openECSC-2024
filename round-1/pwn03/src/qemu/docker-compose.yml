@@ -1,0 +1,15 @@
+services:
+  rovercommander:
+    image: cybersecnatlab/challenge-jail@sha256:287622c06818af21f19e7d02af2f7ff47c9a549d0b0d700f43efd085ebfcad80
+    container_name: rovercommander
+    restart: unless-stopped
+    init: true
+    privileged: true
+    volumes:
+      - './main:/home/user/chall:ro'
+    ports:
+      - '5555:1337'
+    environment:
+      - 'TIMEOUT=60'
+    env_file:
+      - .env
