@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "build": "src",
+      "expose": [
+        {
+          "type": "http",
+          "container": 80,
+          "hostname": "easylogin.challs.olicyber.it",
+          "secure": false
+        }
+      ]
+    }
+  }
+}

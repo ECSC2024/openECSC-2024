@@ -1,0 +1,38 @@
+{
+  "title": "ToDO",
+  "description": "Volevo imparare Python e Flask, niente di meglio di una todo app, a quanto dice Reddit!\n\nWebsite: [http://todo.challs.olicyber.it](http://todo.challs.olicyber.it)",
+  "authors": [
+    "Aleandro Prudenzano <@drw0if>"
+  ],
+  "tags": [
+    "web"
+  ],
+  "hiddenTags": [],
+  "order": 1,
+  "flags": [
+    "^flag\\{t0d0_l3arn_pr3par3d_st4t3m3nts_c8574680\\}$"
+  ],
+  "scoring": {
+    "type": "static",
+    "score": 200
+  },
+  "files": [
+    {
+      "name": "todo-src.zip",
+      "type": "upload",
+      "path": "./attachments/todo-src.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "http",
+    "url": "http://todo.challs.olicyber.it:80/"
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 10
+    }
+  }
+}

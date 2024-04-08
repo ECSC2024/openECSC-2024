@@ -1,0 +1,31 @@
+{
+  "title": "Pretty please",
+  "description": "Sometimes you should just ask :)\n\nSito: [http://prettyplease.challs.olicyber.it](http://prettyplease.challs.olicyber.it)",
+  "authors": [
+    "Stefano Alberto <@Xato>"
+  ],
+  "tags": [
+    "web"
+  ],
+  "hiddenTags": [],
+  "order": 0,
+  "flags": [
+    "^flag\\{how_d1d_y0u_h4ck_m3\\?!_eaa8a0bd\\}$"
+  ],
+  "scoring": {
+    "type": "static",
+    "score": 100
+  },
+  "files": [],
+  "hints": [],
+  "endpoint": {
+    "type": "http",
+    "url": "http://prettyplease.challs.olicyber.it:80/"
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 10
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "build": "src",
+      "environment": {
+        "FLAG": "flag{t0d0_l3arn_pr3par3d_st4t3m3nts_c8574680}",
+        "SECRET_KEY": "c5736f3e35a3ee61d65f741b2d2a2a02"
+      },
+      "expose": [
+        {
+          "type": "http",
+          "container": 80,
+          "hostname": "todo.challs.olicyber.it",
+          "secure": false
+        }
+      ]
+    }
+  }
+}

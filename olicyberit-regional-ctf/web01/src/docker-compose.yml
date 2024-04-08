@@ -1,0 +1,9 @@
+services:
+  flask_example:
+    build: .
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    environment:
+      - FLAG=flag{how_d1d_y0u_h4ck_m3?!_eaa8a0bd}
+

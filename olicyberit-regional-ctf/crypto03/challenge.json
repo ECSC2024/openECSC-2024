@@ -1,0 +1,39 @@
+{
+  "title": "Random Cycles",
+  "description": "Knowing the key it's easy to decrypt. This time it will be harder.\n\n`nc random-cycles.challs.olicyber.it 38102`",
+  "authors": [
+    "Lorenzo Demeio <@Devrar>"
+  ],
+  "tags": [
+    "crypto"
+  ],
+  "hiddenTags": [],
+  "order": 2,
+  "flags": [
+    "^flag\\{m3rging_cycl3s_w1th_CRT_f0r_th3_w1n_218d6198\\}$"
+  ],
+  "scoring": {
+    "type": "static",
+    "score": 300
+  },
+  "files": [
+    {
+      "name": "random-cycles.py",
+      "type": "upload",
+      "path": "./attachments/random-cycles.py",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "random-cycles.challs.olicyber.it",
+    "port": 38102
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 10
+    }
+  }
+}

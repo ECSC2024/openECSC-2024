@@ -1,0 +1,34 @@
+{
+  "title": "Random Cycles Baby",
+  "description": "If you can invert it is an encryption function, otherwise is an hash function, right?",
+  "authors": [
+    "Lorenzo Demeio <@Devrar>"
+  ],
+  "tags": [
+    "crypto"
+  ],
+  "hiddenTags": [],
+  "order": 0,
+  "flags": [
+    "^flag\\{4pp4rently_1s_4n_encrypt1on_n0w_l3ts_s3e_1f_its_s3cure_651198a4\\}$"
+  ],
+  "scoring": {
+    "type": "static",
+    "score": 125
+  },
+  "files": [
+    {
+      "name": "output.txt",
+      "type": "upload",
+      "path": "./attachments/output.txt",
+      "dynamic": false
+    },
+    {
+      "name": "random-cycles-baby.py",
+      "type": "upload",
+      "path": "./attachments/random-cycles-baby.py",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

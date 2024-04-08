@@ -1,0 +1,8 @@
+services:
+  monty_hall_backend:
+    build: .
+    restart: unless-stopped
+    environment:
+      FLAG: flag{l3f7_r16h7_70p_r16h7_l3f7_70p_70p_l3f7_l3f7_222cc0d1}
+    ports:
+      - '5000:5000'

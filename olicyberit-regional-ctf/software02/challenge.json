@@ -1,0 +1,29 @@
+{
+  "title": "Ghost",
+  "description": "This binary seems scary, it has some ghosts in it.",
+  "authors": [
+    "Fabio Zoratti <@orsobruno96>"
+  ],
+  "tags": [
+    "binary",
+    "rev"
+  ],
+  "hiddenTags": [],
+  "order": 1,
+  "flags": [
+    "^flag\\{gdb_1s_4ctuall1_us3ful_8d93f6cc\\}$"
+  ],
+  "scoring": {
+    "type": "static",
+    "score": 175
+  },
+  "files": [
+    {
+      "name": "ghost",
+      "type": "upload",
+      "path": "./attachments/ghost",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

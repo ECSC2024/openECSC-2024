@@ -1,0 +1,82 @@
+{
+    "events": [
+        {
+            "id": 1,
+            "name": "OliCyber.IT - Regional CTF",
+            "sections": [
+                {
+                    "id": 1,
+                    "name": "Miscellaneous",
+                    "challenges": [
+                        {
+                            "id": 12,
+                            "title": "Sanity check"
+                        },
+                        {
+                            "id": 4,
+                            "title": "Secure Filemanager"
+                        },
+                        {
+                            "id": 5,
+                            "title": "Easy login"
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "name": "Web Security",
+                    "challenges": [
+                        {
+                            "id": 9,
+                            "title": "Pretty please"
+                        },
+                        {
+                            "id": 10,
+                            "title": "ToDO"
+                        },
+                        {
+                            "id": 11,
+                            "title": "Monty Hall"
+                        }
+                    ]
+                },
+                {
+                    "id": 3,
+                    "name": "Cryptography",
+                    "challenges": [
+                        {
+                            "id": 1,
+                            "title": "Random Cycles Baby"
+                        },
+                        {
+                            "id": 2,
+                            "title": "ARX designer"
+                        },
+                        {
+                            "id": 3,
+                            "title": "Random Cycles"
+                        }
+                    ]
+                },
+                {
+                    "id": 4,
+                    "name": "Software Security",
+                    "challenges": [
+                        {
+                            "id": 6,
+                            "title": "Section31"
+                        },
+                        {
+                            "id": 7,
+                            "title": "Ghost"
+                        },
+                        {
+                            "id": 8,
+                            "title": "Age Calculator Pro"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

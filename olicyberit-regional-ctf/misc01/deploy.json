@@ -1,0 +1,35 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "image": "cybersecnatlab/socaz:python-3.11-alpine",
+      "command": [
+        "socaz",
+        "--flag-from-env",
+        "FLAG",
+        "--bind",
+        "1337",
+        "--cmd",
+        "/home/user/chall"
+      ],
+      "volumes": [
+        {
+          "type": "bind",
+          "host": "src/chall.py",
+          "container": "/home/user/chall",
+          "readonly": true
+        }
+      ],
+      "environment": {
+        "FLAG": "flag{cleanup_is_broken_c06c4a2d}"
+      },
+      "expose": [
+        {
+          "type": "tcp",
+          "host": 38104,
+          "container": 1337
+        }
+      ]
+    }
+  }
+}

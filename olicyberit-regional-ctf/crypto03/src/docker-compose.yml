@@ -1,0 +1,8 @@
+services:
+  socaz_example:
+    build: .
+    restart: unless-stopped
+    ports:
+      - '38102:1337'
+    environment:
+      - 'FLAG=flag{m3rging_cycl3s_w1th_CRT_f0r_th3_w1n_218d6198}'

@@ -1,0 +1,32 @@
+{
+  "title": "Secure Filemanager",
+  "description": "Revolutionary file repositiory with sensitive file protection\n\n```\nbannedwords = ['flag', 'secret', 'password', 'key']\n\n# The user input is cleaned up from banned words\ndef cleanup(filename):\n  for word in bannedwords:\n    filename = filename.replace(word, '')\n  return filename\n```\n\n`nc secure-filemanager.challs.olicyber.it 38104`",
+  "authors": [
+    "Giovanni Minotti <@Giotino>"
+  ],
+  "tags": [
+    "misc"
+  ],
+  "hiddenTags": [],
+  "order": 1,
+  "flags": [
+    "^flag\\{cleanup_is_broken_c06c4a2d\\}$"
+  ],
+  "scoring": {
+    "type": "static",
+    "score": 125
+  },
+  "files": [],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "secure-filemanager.challs.olicyber.it",
+    "port": 38104
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 10
+    }
+  }
+}

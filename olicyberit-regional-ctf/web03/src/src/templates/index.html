@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monty Hall</title>
+
+    <style>
+        * {
+            font-family: "Pixelify Sans", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 100;
+            font-style: normal;
+        }
+
+        html,
+        body {
+            margin: 0px;
+            padding: 0px;
+            height: 100vh;
+        }
+
+        body {
+            background-image: url("/static/background.jpg");
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .row{
+            display: flex;
+            justify-content: space-between;
+            margin: 20px;
+        }
+
+        .door {
+            width: 495px;
+            height: 639px;
+            border: none;
+            background-color: inherit;
+            display: inline-block;
+            background-image: url('/static/closed_door.png');
+            cursor: pointer;
+            font-size: 0px;
+        }
+
+        .door:hover {
+            background-image: url('/static/open_door.png');
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="row">
+        <form action="/" method="POST">
+            <input type="submit" class="door" name="choice" value="1"></input>
+        </form>
+        <form action="/" method="POST">
+            <input type="submit" class="door" name="choice" value="2"></input>
+        </form>
+        <form action="/" method="POST">
+            <input type="submit" class="door" name="choice" value="3"></input>
+        </form>
+    </div>
+</body>
+
+</html>

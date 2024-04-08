@@ -1,0 +1,5877 @@
+[
+    {
+        "id": 842,
+        "displayedName": "magicfrank",
+        "score": 2000,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": true,
+                "score": 125,
+                "timestamp": 1712408682818
+            },
+            "2": {
+                "firstBlood": true,
+                "score": 200,
+                "timestamp": 1712409206037
+            },
+            "3": {
+                "firstBlood": false,
+                "score": 300,
+                "timestamp": 1712411376617
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712411434484
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712411664357
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712414331712
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712415016485
+            },
+            "8": {
+                "firstBlood": false,
+                "score": 275,
+                "timestamp": 1712415557461
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712411924641
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712414255976
+            },
+            "11": {
+                "firstBlood": false,
+                "score": 225,
+                "timestamp": 1712417177311
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712411403218
+            }
+        }
+    },
+    {
+        "id": 571,
+        "displayedName": "c0mm4nd_",
+        "score": 2000,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712409802160
+            },
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712410175726
+            },
+            "3": {
+                "firstBlood": false,
+                "score": 300,
+                "timestamp": 1712418191167
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712409477185
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712409576401
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712408995832
+            },
+            "7": {
+                "firstBlood": true,
+                "score": 175,
+                "timestamp": 1712408803883
+            },
+            "8": {
+                "firstBlood": true,
+                "score": 275,
+                "timestamp": 1712408622907
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409430797
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712411420342
+            },
+            "11": {
+                "firstBlood": false,
+                "score": 225,
+                "timestamp": 1712413338238
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712409369626
+            }
+        }
+    },
+    {
+        "id": 640,
+        "displayedName": "DevZero",
+        "score": 1700,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712412897070
+            },
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712419414495
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712410574097
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712410873375
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712408702230
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712409809669
+            },
+            "8": {
+                "firstBlood": false,
+                "score": 275,
+                "timestamp": 1712410486121
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712408550774
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712418139956
+            },
+            "11": {
+                "firstBlood": false,
+                "score": 225,
+                "timestamp": 1712417697775
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408405743
+            }
+        }
+    },
+    {
+        "id": 2003,
+        "displayedName": "akz",
+        "score": 1700,
+        "customFields": {
+            "Country": "EST 🇪🇪"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712413098656
+            },
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712416450107
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712411387560
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712411514089
+            },
+            "6": {
+                "firstBlood": true,
+                "score": 75,
+                "timestamp": 1712408502740
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712408886587
+            },
+            "8": {
+                "firstBlood": false,
+                "score": 275,
+                "timestamp": 1712410927987
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712411801500
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712420548924
+            },
+            "11": {
+                "firstBlood": false,
+                "score": 225,
+                "timestamp": 1712422454195
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712410950339
+            }
+        }
+    },
+    {
+        "id": 1031,
+        "displayedName": "minipif",
+        "score": 1500,
+        "customFields": {
+            "Country": "ROU 🇷🇴"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712409723938
+            },
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712413552968
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712409230246
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712409899251
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712408504355
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712410036090
+            },
+            "8": {
+                "firstBlood": false,
+                "score": 275,
+                "timestamp": 1712409058264
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409181645
+            },
+            "11": {
+                "firstBlood": false,
+                "score": 225,
+                "timestamp": 1712413138133
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408440185
+            }
+        }
+    },
+    {
+        "id": 1280,
+        "displayedName": "ImNotFanta",
+        "score": 1500,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712409692973
+            },
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712414726222
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712408705406
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712408802914
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712408946945
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712412697765
+            },
+            "8": {
+                "firstBlood": false,
+                "score": 275,
+                "timestamp": 1712413072901
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712408668648
+            },
+            "11": {
+                "firstBlood": false,
+                "score": 225,
+                "timestamp": 1712416650562
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408406457
+            }
+        }
+    },
+    {
+        "id": 193,
+        "displayedName": "Giak77",
+        "score": 1500,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712414346958
+            },
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712413902302
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712408670664
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712409044247
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712408613287
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712410685876
+            },
+            "8": {
+                "firstBlood": false,
+                "score": 275,
+                "timestamp": 1712410225815
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712408756785
+            },
+            "11": {
+                "firstBlood": false,
+                "score": 225,
+                "timestamp": 1712417904006
+            },
+            "12": {
+                "firstBlood": true,
+                "score": 50,
+                "timestamp": 1712408404827
+            }
+        }
+    },
+    {
+        "id": 46,
+        "displayedName": "elvar333",
+        "score": 1500,
+        "customFields": {
+            "Country": "ISL 🇮🇸"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712416018755
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712408568785
+            },
+            "5": {
+                "firstBlood": true,
+                "score": 150,
+                "timestamp": 1712408510263
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712409420972
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712409622862
+            },
+            "8": {
+                "firstBlood": false,
+                "score": 275,
+                "timestamp": 1712410356489
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712408631649
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712419839211
+            },
+            "11": {
+                "firstBlood": true,
+                "score": 225,
+                "timestamp": 1712411686484
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408573280
+            }
+        }
+    },
+    {
+        "id": 2084,
+        "displayedName": "fkania2",
+        "score": 1500,
+        "customFields": {
+            "Country": "POL 🇵🇱"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712419814091
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712413753833
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712413939661
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712414375698
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712415403205
+            },
+            "8": {
+                "firstBlood": false,
+                "score": 275,
+                "timestamp": 1712418802281
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712410548935
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712412031086
+            },
+            "11": {
+                "firstBlood": false,
+                "score": 225,
+                "timestamp": 1712422370691
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712418883179
+            }
+        }
+    },
+    {
+        "id": 1254,
+        "displayedName": "Gabrain24",
+        "score": 1475,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712412565020
+            },
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712420605773
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712412542646
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712412556028
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712412653238
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712412513639
+            },
+            "8": {
+                "firstBlood": false,
+                "score": 275,
+                "timestamp": 1712412523243
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712412530669
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712419957593
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408405781
+            }
+        }
+    },
+    {
+        "id": 41,
+        "displayedName": "Rafa10",
+        "score": 1475,
+        "customFields": {
+            "Country": "PRT 🇵🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712416119735
+            },
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712420709844
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712414451511
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712417516628
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712408644488
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712409025967
+            },
+            "8": {
+                "firstBlood": false,
+                "score": 275,
+                "timestamp": 1712411140922
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712414688506
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712418948208
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712414336174
+            }
+        }
+    },
+    {
+        "id": 65,
+        "displayedName": "0xMatte",
+        "score": 1350,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712417194784
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712410334122
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712410426403
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712415474297
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712418109240
+            },
+            "8": {
+                "firstBlood": false,
+                "score": 275,
+                "timestamp": 1712422099213
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712410506200
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712413621693
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712410277877
+            }
+        }
+    },
+    {
+        "id": 152,
+        "displayedName": "Edu_ard",
+        "score": 1300,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712418114805
+            },
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712422728507
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712409342946
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712410448726
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712409229537
+            },
+            "8": {
+                "firstBlood": false,
+                "score": 275,
+                "timestamp": 1712416841717
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712408885106
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712421778950
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408457049
+            }
+        }
+    },
+    {
+        "id": 1009,
+        "displayedName": "VPMachine",
+        "score": 1275,
+        "customFields": {
+            "Country": "CZE 🇨🇿"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712420537092
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712410965863
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712411596746
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712415131241
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712415877353
+            },
+            "8": {
+                "firstBlood": false,
+                "score": 275,
+                "timestamp": 1712419535333
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712411727189
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712413943862
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712410645674
+            }
+        }
+    },
+    {
+        "id": 1076,
+        "displayedName": "dome",
+        "score": 1275,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712411440306
+            },
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712422741917
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712408817426
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712411109041
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712409610285
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712414086262
+            },
+            "8": {
+                "firstBlood": false,
+                "score": 275,
+                "timestamp": 1712420970806
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409103922
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408730115
+            }
+        }
+    },
+    {
+        "id": 1029,
+        "displayedName": "mrdega",
+        "score": 1275,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712411030585
+            },
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712413537822
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712409459515
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712422418293
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712415529451
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712420241313
+            },
+            "8": {
+                "firstBlood": false,
+                "score": 275,
+                "timestamp": 1712422788835
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409204404
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408428366
+            }
+        }
+    },
+    {
+        "id": 871,
+        "displayedName": "uncavohdmi",
+        "score": 1225,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712420426031
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712418395713
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712416426841
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712418544493
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712419242651
+            },
+            "9": {
+                "firstBlood": true,
+                "score": 100,
+                "timestamp": 1712408457384
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712418156742
+            },
+            "11": {
+                "firstBlood": false,
+                "score": 225,
+                "timestamp": 1712416301990
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712413951015
+            }
+        }
+    },
+    {
+        "id": 2085,
+        "displayedName": "wblz",
+        "score": 1225,
+        "customFields": {
+            "Country": "POL 🇵🇱"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712414640745
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712415358543
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712416314802
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712416501498
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712421282503
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712411619815
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712418125380
+            },
+            "11": {
+                "firstBlood": false,
+                "score": 225,
+                "timestamp": 1712421026928
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712411472287
+            }
+        }
+    },
+    {
+        "id": 800,
+        "displayedName": "testtest123",
+        "score": 1200,
+        "customFields": {
+            "Country": "WORLD 🚩"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712412416086
+            },
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712418719435
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712408634543
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712409069716
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712412241026
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712419401264
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409244510
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712412066189
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408564982
+            }
+        }
+    },
+    {
+        "id": 759,
+        "displayedName": "Snerpz",
+        "score": 1150,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712413160485
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712413775646
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712414477346
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712414977330
+            },
+            "8": {
+                "firstBlood": false,
+                "score": 275,
+                "timestamp": 1712415848289
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712408964634
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712412970487
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408900372
+            }
+        }
+    },
+    {
+        "id": 2074,
+        "displayedName": "flag10",
+        "score": 1075,
+        "customFields": {
+            "Country": "WORLD 🚩"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712408971456
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712408829484
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712411630097
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712409096447
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712409510191
+            },
+            "8": {
+                "firstBlood": false,
+                "score": 275,
+                "timestamp": 1712411295083
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409607425
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408776780
+            }
+        }
+    },
+    {
+        "id": 1001,
+        "displayedName": "xDiste",
+        "score": 1075,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712416166252
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712408552908
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712408681283
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712409182308
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712409506760
+            },
+            "8": {
+                "firstBlood": false,
+                "score": 275,
+                "timestamp": 1712414971635
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712408742839
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408485965
+            }
+        }
+    },
+    {
+        "id": 699,
+        "displayedName": "LRalli",
+        "score": 1075,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712420641450
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712408555134
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712410934891
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712420895462
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712421686316
+            },
+            "8": {
+                "firstBlood": false,
+                "score": 275,
+                "timestamp": 1712418360488
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409101230
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408493601
+            }
+        }
+    },
+    {
+        "id": 2070,
+        "displayedName": "Gianetz",
+        "score": 1050,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712411203952
+            },
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712415365954
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712408525417
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712408983131
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712415604508
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409126859
+            },
+            "11": {
+                "firstBlood": false,
+                "score": 225,
+                "timestamp": 1712414116192
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408429143
+            }
+        }
+    },
+    {
+        "id": 184,
+        "displayedName": "Vereos",
+        "score": 1050,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712413614772
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712411241886
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712411404678
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712411596376
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712411455680
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712420159062
+            },
+            "11": {
+                "firstBlood": false,
+                "score": 225,
+                "timestamp": 1712417896035
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712411169503
+            }
+        }
+    },
+    {
+        "id": 2063,
+        "displayedName": "Artio",
+        "score": 1000,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712409958479
+            },
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712417978444
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712409243825
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712409332232
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712410853960
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712416822252
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409408124
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712409162693
+            }
+        }
+    },
+    {
+        "id": 740,
+        "displayedName": "M0streng0",
+        "score": 1000,
+        "customFields": {
+            "Country": "PRT 🇵🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712412478313
+            },
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712413390348
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712408734996
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712409200406
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712409680931
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712419509550
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409358400
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408553134
+            }
+        }
+    },
+    {
+        "id": 1739,
+        "displayedName": "snyder",
+        "score": 1000,
+        "customFields": {
+            "Country": "EST 🇪🇪"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712419805467
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712409166955
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712408957781
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712409530801
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712416698649
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409044404
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712418131085
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408864079
+            }
+        }
+    },
+    {
+        "id": 569,
+        "displayedName": "cryze",
+        "score": 1000,
+        "customFields": {
+            "Country": "AUT 🇦🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712413446402
+            },
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712415169432
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712418185412
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712418384668
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712418473133
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712420026391
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712417807984
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712412819070
+            }
+        }
+    },
+    {
+        "id": 1073,
+        "displayedName": "jux",
+        "score": 1000,
+        "customFields": {
+            "Country": "EST 🇪🇪"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712417620315
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712413069782
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712413201705
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712413400975
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712420852467
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712408565531
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712412323499
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408420739
+            }
+        }
+    },
+    {
+        "id": 1587,
+        "displayedName": "Mino",
+        "score": 950,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712409147947
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712410242321
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712414803905
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712415397028
+            },
+            "8": {
+                "firstBlood": false,
+                "score": 275,
+                "timestamp": 1712422358318
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712410681309
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408944987
+            }
+        }
+    },
+    {
+        "id": 2038,
+        "displayedName": "fbulychov",
+        "score": 925,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712417045249
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712418454094
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712408511998
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712414657445
+            },
+            "8": {
+                "firstBlood": false,
+                "score": 275,
+                "timestamp": 1712414442465
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712415966128
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712414769981
+            }
+        }
+    },
+    {
+        "id": 611,
+        "displayedName": "sick.nix",
+        "score": 925,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712409626897
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712409947919
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712412877040
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712410166291
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712418339046
+            },
+            "11": {
+                "firstBlood": false,
+                "score": 225,
+                "timestamp": 1712420246102
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712409459613
+            }
+        }
+    },
+    {
+        "id": 11,
+        "displayedName": "feasto",
+        "score": 925,
+        "customFields": {
+            "Country": "GRC 🇬🇷"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712421060376
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712421201676
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712421393024
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712412559539
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712416754089
+            },
+            "11": {
+                "firstBlood": false,
+                "score": 225,
+                "timestamp": 1712420533811
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712421011737
+            }
+        }
+    },
+    {
+        "id": 20,
+        "displayedName": "KLPP",
+        "score": 900,
+        "customFields": {
+            "Country": "PRT 🇵🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712410231979
+            },
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712411477336
+            },
+            "3": {
+                "firstBlood": true,
+                "score": 300,
+                "timestamp": 1712410051188
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712410314288
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712412280308
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712410266190
+            }
+        }
+    },
+    {
+        "id": 1477,
+        "displayedName": "gm_simo",
+        "score": 900,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712411149889
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712411389358
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712411880420
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712412627840
+            },
+            "8": {
+                "firstBlood": false,
+                "score": 275,
+                "timestamp": 1712410982340
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712412744871
+            }
+        }
+    },
+    {
+        "id": 576,
+        "displayedName": "carr",
+        "score": 875,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712422766615
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712408885809
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712418413155
+            },
+            "8": {
+                "firstBlood": false,
+                "score": 275,
+                "timestamp": 1712411014319
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712412220601
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712411646511
+            }
+        }
+    },
+    {
+        "id": 1584,
+        "displayedName": "dachef",
+        "score": 850,
+        "customFields": {
+            "Country": "AUT 🇦🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712412952704
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712409146985
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712413500275
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712413162335
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712410360837
+            },
+            "11": {
+                "firstBlood": false,
+                "score": 225,
+                "timestamp": 1712418999254
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408938086
+            }
+        }
+    },
+    {
+        "id": 187,
+        "displayedName": "Mazza",
+        "score": 825,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712413022870
+            },
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712409236573
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712413092933
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712413234517
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712413417957
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712412394353
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712412251305
+            }
+        }
+    },
+    {
+        "id": 332,
+        "displayedName": "Dandelion",
+        "score": 800,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712410432202
+            },
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712412434343
+            },
+            "3": {
+                "firstBlood": false,
+                "score": 300,
+                "timestamp": 1712416843137
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712417179809
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408814655
+            }
+        }
+    },
+    {
+        "id": 2025,
+        "displayedName": "ftw",
+        "score": 800,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712419654181
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712420091540
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712412924491
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712408891700
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712417413910
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712408482269
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408407555
+            }
+        }
+    },
+    {
+        "id": 1698,
+        "displayedName": "Fabiom",
+        "score": 750,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712418863784
+            },
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712420081309
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712421415142
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712422053199
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409047146
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408636371
+            }
+        }
+    },
+    {
+        "id": 578,
+        "displayedName": "lorenzobunaj",
+        "score": 750,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712414252091
+            },
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712419719881
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712421428147
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712422303076
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409234274
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408525740
+            }
+        }
+    },
+    {
+        "id": 1263,
+        "displayedName": "castilho",
+        "score": 700,
+        "customFields": {
+            "Country": "PRT 🇵🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712412241140
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712415568416
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712415422280
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712411775691
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712416661884
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712411970715
+            }
+        }
+    },
+    {
+        "id": 1113,
+        "displayedName": "meni",
+        "score": 700,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712415251297
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712420534093
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712421377945
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712416631080
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712419475425
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712415765226
+            }
+        }
+    },
+    {
+        "id": 845,
+        "displayedName": "manueee_13",
+        "score": 675,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712410332621
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712410556912
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712409866015
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712411321388
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712408589007
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408417469
+            }
+        }
+    },
+    {
+        "id": 1628,
+        "displayedName": "aturt13",
+        "score": 675,
+        "customFields": {
+            "Country": "CZE 🇨🇿"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712408826828
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712409338938
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712409525959
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712412516256
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712408627000
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408484900
+            }
+        }
+    },
+    {
+        "id": 704,
+        "displayedName": "Lucia",
+        "score": 675,
+        "customFields": {
+            "Country": "CHE 🇨🇭"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712412302916
+            },
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712416147017
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712409543292
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712412939707
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712410958118
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408422334
+            }
+        }
+    },
+    {
+        "id": 415,
+        "displayedName": "Finatt",
+        "score": 675,
+        "customFields": {
+            "Country": "LIE 🇱🇮"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712412428606
+            },
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712416186106
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712413098755
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712412919923
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712413267214
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712413025146
+            }
+        }
+    },
+    {
+        "id": 853,
+        "displayedName": "ddisp",
+        "score": 625,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712410876788
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712410935049
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712411114516
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712411325287
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712408491860
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408446253
+            }
+        }
+    },
+    {
+        "id": 27,
+        "displayedName": "andrei3213",
+        "score": 625,
+        "customFields": {
+            "Country": "ROU 🇷🇴"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712411982282
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712409110581
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712410921638
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712410159310
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712410416410
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408407248
+            }
+        }
+    },
+    {
+        "id": 1289,
+        "displayedName": "alessandro_storsillo",
+        "score": 625,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712412181759
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712411436045
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712410103390
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712410758536
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409190543
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408925545
+            }
+        }
+    },
+    {
+        "id": 256,
+        "displayedName": "justlel",
+        "score": 625,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712412273429
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712412424211
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712408492340
+            },
+            "10": {
+                "firstBlood": true,
+                "score": 200,
+                "timestamp": 1712410449106
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712412136377
+            }
+        }
+    },
+    {
+        "id": 298,
+        "displayedName": "Argh",
+        "score": 625,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712411688497
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712413939658
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712411401890
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712409331286
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712408635846
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408405626
+            }
+        }
+    },
+    {
+        "id": 822,
+        "displayedName": "pigeon",
+        "score": 625,
+        "customFields": {
+            "Country": "WORLD 🚩"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712414460390
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712408907815
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712410040865
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712408609332
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712408760895
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408414421
+            }
+        }
+    },
+    {
+        "id": 2077,
+        "displayedName": "Antostarwars",
+        "score": 625,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712416060415
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712412437545
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712413453738
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712414054736
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409833298
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712411077775
+            }
+        }
+    },
+    {
+        "id": 1021,
+        "displayedName": "Vic",
+        "score": 625,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712415749528
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712416457891
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712418099835
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712416957902
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712415954522
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712415789555
+            }
+        }
+    },
+    {
+        "id": 1154,
+        "displayedName": "stefan",
+        "score": 625,
+        "customFields": {
+            "Country": "AUT 🇦🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712420975448
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712410263425
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712419489372
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712411156933
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712410585819
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712410113884
+            }
+        }
+    },
+    {
+        "id": 1037,
+        "displayedName": "oaõis",
+        "score": 625,
+        "customFields": {
+            "Country": "EST 🇪🇪"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712421873537
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712408589023
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712416534750
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712409954277
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712408843482
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408436258
+            }
+        }
+    },
+    {
+        "id": 483,
+        "displayedName": "profiluefter",
+        "score": 625,
+        "customFields": {
+            "Country": "AUT 🇦🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712421374545
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712421444713
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712421528580
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712422768912
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712421306922
+            }
+        }
+    },
+    {
+        "id": 1186,
+        "displayedName": "floating_mouse",
+        "score": 575,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712408551854
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712409608266
+            },
+            "8": {
+                "firstBlood": false,
+                "score": 275,
+                "timestamp": 1712410822933
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408425302
+            }
+        }
+    },
+    {
+        "id": 1235,
+        "displayedName": "Simo",
+        "score": 550,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712413959294
+            },
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712413119900
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712416561766
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712413097558
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712410041370
+            }
+        }
+    },
+    {
+        "id": 2016,
+        "displayedName": "marcus19",
+        "score": 550,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712414498135
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712412333339
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712418279352
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712410820443
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712410097865
+            }
+        }
+    },
+    {
+        "id": 1438,
+        "displayedName": "capibara",
+        "score": 550,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712418715047
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712421289394
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712422704000
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712420118706
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712419746990
+            }
+        }
+    },
+    {
+        "id": 1676,
+        "displayedName": "SamuJordan23",
+        "score": 525,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712408826132
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712409364674
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712409738374
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712408882960
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408412427
+            }
+        }
+    },
+    {
+        "id": 890,
+        "displayedName": "LEOSCHUMY",
+        "score": 500,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712408603736
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712408801989
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712409740636
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409023871
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408406950
+            }
+        }
+    },
+    {
+        "id": 189,
+        "displayedName": "Titto",
+        "score": 500,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712409067729
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712409225223
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712409970082
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712408636380
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408563305
+            }
+        }
+    },
+    {
+        "id": 1101,
+        "displayedName": "Puschel",
+        "score": 500,
+        "customFields": {
+            "Country": "AUT 🇦🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712408631468
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712408812079
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712410372257
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712408538026
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408485935
+            }
+        }
+    },
+    {
+        "id": 491,
+        "displayedName": "Davideko",
+        "score": 500,
+        "customFields": {
+            "Country": "AUT 🇦🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712410275968
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712410937620
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712411057747
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712410031737
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712409808083
+            }
+        }
+    },
+    {
+        "id": 300,
+        "displayedName": "AkOs49",
+        "score": 500,
+        "customFields": {
+            "Country": "SVK 🇸🇰"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712408828985
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712411407007
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712409558686
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712410667065
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408410534
+            }
+        }
+    },
+    {
+        "id": 499,
+        "displayedName": "Davy",
+        "score": 500,
+        "customFields": {
+            "Country": "HUN 🇭🇺"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": true,
+                "score": 125,
+                "timestamp": 1712408506706
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712412703758
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712409436771
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409312855
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408413844
+            }
+        }
+    },
+    {
+        "id": 2037,
+        "displayedName": "tuzzo18",
+        "score": 500,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712409486559
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712410595284
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712412777496
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712408919988
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408441198
+            }
+        }
+    },
+    {
+        "id": 905,
+        "displayedName": "Brex12",
+        "score": 500,
+        "customFields": {
+            "Country": "AUT 🇦🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712414227847
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712413726785
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712415856655
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712412582436
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712412464617
+            }
+        }
+    },
+    {
+        "id": 1506,
+        "displayedName": "ICEbear",
+        "score": 500,
+        "customFields": {
+            "Country": "AUT 🇦🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712415413351
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712415425551
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712415911109
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409060070
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408740607
+            }
+        }
+    },
+    {
+        "id": 2079,
+        "displayedName": "Nico",
+        "score": 500,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712415135328
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712415868107
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712417406944
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712416394345
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712415069951
+            }
+        }
+    },
+    {
+        "id": 195,
+        "displayedName": "S-Mancl",
+        "score": 500,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712408750622
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712410552181
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712417864686
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712410820040
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408757670
+            }
+        }
+    },
+    {
+        "id": 2087,
+        "displayedName": "Mx05",
+        "score": 500,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712414126334
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712419193023
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712418673906
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712414791371
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712413980466
+            }
+        }
+    },
+    {
+        "id": 2040,
+        "displayedName": "manuel",
+        "score": 500,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712409111037
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712415763336
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712419356599
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712416165243
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408786469
+            }
+        }
+    },
+    {
+        "id": 925,
+        "displayedName": "fl3ch4",
+        "score": 500,
+        "customFields": {
+            "Country": "PRT 🇵🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712420421838
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712419846848
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712413527727
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712415460252
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712413034861
+            }
+        }
+    },
+    {
+        "id": 468,
+        "displayedName": "p4rr4",
+        "score": 500,
+        "customFields": {
+            "Country": "ESP 🇪🇸"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712421917133
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712421741769
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712421099003
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712421489850
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712409649617
+            }
+        }
+    },
+    {
+        "id": 37,
+        "displayedName": "Bekica",
+        "score": 475,
+        "customFields": {
+            "Country": "SRB 🇷🇸"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712412341919
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712410475865
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712411126244
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409379526
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712409430761
+            }
+        }
+    },
+    {
+        "id": 1940,
+        "displayedName": "Morton",
+        "score": 475,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712419801583
+            },
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712412000843
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712408849577
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712410597579
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408415153
+            }
+        }
+    },
+    {
+        "id": 2018,
+        "displayedName": "Cubetto",
+        "score": 425,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712408989341
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712409929564
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712410153638
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408440930
+            }
+        }
+    },
+    {
+        "id": 899,
+        "displayedName": "gi.pedroncelli@gmail.com",
+        "score": 425,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712411145440
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712411485279
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409820757
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408462561
+            }
+        }
+    },
+    {
+        "id": 2022,
+        "displayedName": "GreyHat",
+        "score": 425,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712411101166
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712411742643
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712411796302
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712410777092
+            }
+        }
+    },
+    {
+        "id": 192,
+        "displayedName": "Simozb",
+        "score": 425,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712411864678
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712412117757
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712412198094
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712411816552
+            }
+        }
+    },
+    {
+        "id": 616,
+        "displayedName": "H3r0F1r3",
+        "score": 425,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712410397525
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712412245847
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712412530936
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712410111326
+            }
+        }
+    },
+    {
+        "id": 1044,
+        "displayedName": "purechaos",
+        "score": 425,
+        "customFields": {
+            "Country": "AUT 🇦🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712412929194
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712412324931
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712411254869
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712411324155
+            }
+        }
+    },
+    {
+        "id": 1138,
+        "displayedName": "auernige",
+        "score": 425,
+        "customFields": {
+            "Country": "AUT 🇦🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712416671840
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712416798247
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712417019522
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712415713150
+            }
+        }
+    },
+    {
+        "id": 312,
+        "displayedName": "shirajuki",
+        "score": 425,
+        "customFields": {
+            "Country": "NOR 🇳🇴"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712417618438
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712417735032
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712417556913
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712417527334
+            }
+        }
+    },
+    {
+        "id": 929,
+        "displayedName": "padler",
+        "score": 425,
+        "customFields": {
+            "Country": "AUT 🇦🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712412265496
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712419019882
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712411129364
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712410380416
+            }
+        }
+    },
+    {
+        "id": 584,
+        "displayedName": "bluePrint",
+        "score": 425,
+        "customFields": {
+            "Country": "AUT 🇦🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712409059448
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712420083020
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409415378
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408950197
+            }
+        }
+    },
+    {
+        "id": 2057,
+        "displayedName": "dANGEL",
+        "score": 425,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712422430961
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712410853101
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712422315990
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712410878849
+            }
+        }
+    },
+    {
+        "id": 1638,
+        "displayedName": "Bu33le5Blast",
+        "score": 425,
+        "customFields": {
+            "Country": "EST 🇪🇪"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712418281059
+            },
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712422743587
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712418643465
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712417619430
+            }
+        }
+    },
+    {
+        "id": 573,
+        "displayedName": "h0lym4ntel",
+        "score": 400,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712410927821
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712419848272
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409960983
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408435287
+            }
+        }
+    },
+    {
+        "id": 2049,
+        "displayedName": "M4nu",
+        "score": 400,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712421267678
+            },
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712422520762
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712420209096
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712419421428
+            }
+        }
+    },
+    {
+        "id": 1453,
+        "displayedName": "RTootskie",
+        "score": 375,
+        "customFields": {
+            "Country": "EST 🇪🇪"
+        },
+        "solves": {
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712409776031
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712411342918
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409999646
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408562218
+            }
+        }
+    },
+    {
+        "id": 2050,
+        "displayedName": "KefzzY",
+        "score": 375,
+        "customFields": {
+            "Country": "EST 🇪🇪"
+        },
+        "solves": {
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712409889532
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712411477276
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712410404480
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408681456
+            }
+        }
+    },
+    {
+        "id": 725,
+        "displayedName": "1337",
+        "score": 375,
+        "customFields": {
+            "Country": "IRL 🇮🇪"
+        },
+        "solves": {
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712410076937
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712415282044
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712408519983
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408760214
+            }
+        }
+    },
+    {
+        "id": 44,
+        "displayedName": "DoNotSpamPls",
+        "score": 375,
+        "customFields": {
+            "Country": "BGR 🇧🇬"
+        },
+        "solves": {
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712409770341
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712418823611
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409672847
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712409402024
+            }
+        }
+    },
+    {
+        "id": 2065,
+        "displayedName": "rL0st",
+        "score": 375,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712408893152
+            },
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712413645080
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712422453095
+            }
+        }
+    },
+    {
+        "id": 548,
+        "displayedName": "Jee-Dee",
+        "score": 375,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712414823874
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712422678177
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712410559010
+            }
+        }
+    },
+    {
+        "id": 2004,
+        "displayedName": "notslippy",
+        "score": 350,
+        "customFields": {
+            "Country": "IRL 🇮🇪"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712409732509
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712409604842
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712408996404
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408614703
+            }
+        }
+    },
+    {
+        "id": 622,
+        "displayedName": "lorenzosmathis",
+        "score": 350,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712410534177
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712410200894
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409875632
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712409779502
+            }
+        }
+    },
+    {
+        "id": 768,
+        "displayedName": ".wb",
+        "score": 350,
+        "customFields": {
+            "Country": "AUT 🇦🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712410728060
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712410591186
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712408815935
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408535005
+            }
+        }
+    },
+    {
+        "id": 1706,
+        "displayedName": "calMn31",
+        "score": 350,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712408472726
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712410761852
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408409229
+            }
+        }
+    },
+    {
+        "id": 181,
+        "displayedName": "Valeryum999",
+        "score": 350,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712411649837
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712412457215
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712412066363
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712411612652
+            }
+        }
+    },
+    {
+        "id": 2042,
+        "displayedName": "remyroam",
+        "score": 350,
+        "customFields": {
+            "Country": "IRL 🇮🇪"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712410815294
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712414892389
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712414034089
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712410196043
+            }
+        }
+    },
+    {
+        "id": 1310,
+        "displayedName": "Smintal",
+        "score": 350,
+        "customFields": {
+            "Country": "AUT 🇦🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712417279494
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712415460445
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712414613766
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712414121235
+            }
+        }
+    },
+    {
+        "id": 2021,
+        "displayedName": "jojo_suga",
+        "score": 350,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712415864405
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712417892945
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712410957011
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712410636086
+            }
+        }
+    },
+    {
+        "id": 895,
+        "displayedName": "Zaff",
+        "score": 350,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712415359551
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712418449514
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712419420945
+            }
+        }
+    },
+    {
+        "id": 1026,
+        "displayedName": "Sarah_falco",
+        "score": 350,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712418171382
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712417588080
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712420621468
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712416789579
+            }
+        }
+    },
+    {
+        "id": 333,
+        "displayedName": "Xenia",
+        "score": 350,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712421452469
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712422014648
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712418292743
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712418140466
+            }
+        }
+    },
+    {
+        "id": 2068,
+        "displayedName": "trascendentaleh",
+        "score": 350,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712422412940
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712412903888
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712411886534
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408418731
+            }
+        }
+    },
+    {
+        "id": 884,
+        "displayedName": "Poli",
+        "score": 325,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712410730386
+            },
+            "2": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712412593643
+            }
+        }
+    },
+    {
+        "id": 2073,
+        "displayedName": "XMich49",
+        "score": 325,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "7": {
+                "firstBlood": false,
+                "score": 175,
+                "timestamp": 1712416304489
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712408584611
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408427271
+            }
+        }
+    },
+    {
+        "id": 2089,
+        "displayedName": "kallari",
+        "score": 325,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "8": {
+                "firstBlood": false,
+                "score": 275,
+                "timestamp": 1712419976969
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712417428861
+            }
+        }
+    },
+    {
+        "id": 149,
+        "displayedName": "lukasLUKCZ",
+        "score": 300,
+        "customFields": {
+            "Country": "CZE 🇨🇿"
+        },
+        "solves": {
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712409498691
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409604637
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712409519579
+            }
+        }
+    },
+    {
+        "id": 275,
+        "displayedName": "Ninus",
+        "score": 300,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712410335564
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712411072510
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408425006
+            }
+        }
+    },
+    {
+        "id": 1741,
+        "displayedName": "Patsipede",
+        "score": 300,
+        "customFields": {
+            "Country": "EST 🇪🇪"
+        },
+        "solves": {
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712415298929
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712411837298
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712411178277
+            }
+        }
+    },
+    {
+        "id": 75,
+        "displayedName": "Aidan",
+        "score": 300,
+        "customFields": {
+            "Country": "IRL 🇮🇪"
+        },
+        "solves": {
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712418043357
+            },
+            "10": {
+                "firstBlood": false,
+                "score": 200,
+                "timestamp": 1712419441637
+            }
+        }
+    },
+    {
+        "id": 1311,
+        "displayedName": "Dannie S.",
+        "score": 300,
+        "customFields": {
+            "Country": "NLD 🇳🇱"
+        },
+        "solves": {
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712420753043
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712419159612
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712412330021
+            }
+        }
+    },
+    {
+        "id": 124,
+        "displayedName": "x55xaa",
+        "score": 275,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712408649120
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712408758997
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408410075
+            }
+        }
+    },
+    {
+        "id": 2080,
+        "displayedName": "johan",
+        "score": 275,
+        "customFields": {
+            "Country": "EGY 🇪🇬"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712410836064
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712411094388
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712409954553
+            }
+        }
+    },
+    {
+        "id": 2056,
+        "displayedName": "Marsi",
+        "score": 275,
+        "customFields": {
+            "Country": "ALB 🇦🇱"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712411153192
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712410525997
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712409097560
+            }
+        }
+    },
+    {
+        "id": 1163,
+        "displayedName": "CyberDreamer",
+        "score": 275,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712417216810
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712417240499
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712417190327
+            }
+        }
+    },
+    {
+        "id": 2058,
+        "displayedName": "Kamelisa",
+        "score": 275,
+        "customFields": {
+            "Country": "ALB 🇦🇱"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712417840696
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712414559312
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712413778240
+            }
+        }
+    },
+    {
+        "id": 133,
+        "displayedName": "abcdef",
+        "score": 275,
+        "customFields": {
+            "Country": "KOR 🇰🇷"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712418613193
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712418727861
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712418520879
+            }
+        }
+    },
+    {
+        "id": 2082,
+        "displayedName": "Ace",
+        "score": 275,
+        "customFields": {
+            "Country": "ALB 🇦🇱"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712420697588
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712410705160
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712410237001
+            }
+        }
+    },
+    {
+        "id": 2030,
+        "displayedName": "Jojo123",
+        "score": 275,
+        "customFields": {
+            "Country": "ALB 🇦🇱"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712421007623
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712416279057
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408463040
+            }
+        }
+    },
+    {
+        "id": 931,
+        "displayedName": "LWLawman",
+        "score": 275,
+        "customFields": {
+            "Country": "WORLD 🚩"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712420311117
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712421150538
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712420129624
+            }
+        }
+    },
+    {
+        "id": 470,
+        "displayedName": "lucca",
+        "score": 275,
+        "customFields": {
+            "Country": "AUT 🇦🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712421248448
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712420036911
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712419929559
+            }
+        }
+    },
+    {
+        "id": 1418,
+        "displayedName": ".jov",
+        "score": 275,
+        "customFields": {
+            "Country": "SRB 🇷🇸"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712422497592
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712420933547
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712418923308
+            }
+        }
+    },
+    {
+        "id": 237,
+        "displayedName": "Dozerth",
+        "score": 275,
+        "customFields": {
+            "Country": "VEN 🇻🇪"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712422547062
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712421779093
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712421802044
+            }
+        }
+    },
+    {
+        "id": 379,
+        "displayedName": "ndk",
+        "score": 250,
+        "customFields": {
+            "Country": "AUT 🇦🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712410863284
+            },
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712413850930
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712410032760
+            }
+        }
+    },
+    {
+        "id": 12,
+        "displayedName": "crazyman",
+        "score": 225,
+        "customFields": {
+            "Country": "WORLD 🚩"
+        },
+        "solves": {
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712409218145
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409813665
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408756750
+            }
+        }
+    },
+    {
+        "id": 1752,
+        "displayedName": "Eoin",
+        "score": 225,
+        "customFields": {
+            "Country": "IRL 🇮🇪"
+        },
+        "solves": {
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712413133071
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712412954015
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712411776130
+            }
+        }
+    },
+    {
+        "id": 2041,
+        "displayedName": "skidam",
+        "score": 225,
+        "customFields": {
+            "Country": "IRL 🇮🇪"
+        },
+        "solves": {
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712417760597
+            },
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712413709779
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712409407850
+            }
+        }
+    },
+    {
+        "id": 582,
+        "displayedName": "bquanman",
+        "score": 200,
+        "customFields": {
+            "Country": "VNM 🇻🇳"
+        },
+        "solves": {
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712409711302
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712409723594
+            }
+        }
+    },
+    {
+        "id": 1164,
+        "displayedName": "jenycek2222",
+        "score": 200,
+        "customFields": {
+            "Country": "CZE 🇨🇿"
+        },
+        "solves": {
+            "5": {
+                "firstBlood": false,
+                "score": 150,
+                "timestamp": 1712409729946
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408590136
+            }
+        }
+    },
+    {
+        "id": 307,
+        "displayedName": "Frontinus",
+        "score": 175,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "1": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712409394922
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408685807
+            }
+        }
+    },
+    {
+        "id": 453,
+        "displayedName": "H4ckNet",
+        "score": 175,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "4": {
+                "firstBlood": false,
+                "score": 125,
+                "timestamp": 1712412624027
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712409061764
+            }
+        }
+    },
+    {
+        "id": 748,
+        "displayedName": "pvtkillswitch",
+        "score": 150,
+        "customFields": {
+            "Country": "AUT 🇦🇹"
+        },
+        "solves": {
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409588215
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408545589
+            }
+        }
+    },
+    {
+        "id": 1368,
+        "displayedName": "Mujtab4x01",
+        "score": 150,
+        "customFields": {
+            "Country": "IRQ 🇮🇶"
+        },
+        "solves": {
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409836722
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408420508
+            }
+        }
+    },
+    {
+        "id": 2053,
+        "displayedName": "Enn",
+        "score": 150,
+        "customFields": {
+            "Country": "ALB 🇦🇱"
+        },
+        "solves": {
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712411479031
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712409257631
+            }
+        }
+    },
+    {
+        "id": 211,
+        "displayedName": "Gabbro",
+        "score": 150,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712411745264
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408785578
+            }
+        }
+    },
+    {
+        "id": 2055,
+        "displayedName": "^someonenew^",
+        "score": 150,
+        "customFields": {
+            "Country": "ALB 🇦🇱"
+        },
+        "solves": {
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712412154682
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712410555960
+            }
+        }
+    },
+    {
+        "id": 595,
+        "displayedName": "zukw",
+        "score": 150,
+        "customFields": {
+            "Country": "AUT 🇦🇹"
+        },
+        "solves": {
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712412809387
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408961791
+            }
+        }
+    },
+    {
+        "id": 2059,
+        "displayedName": "Lejla",
+        "score": 150,
+        "customFields": {
+            "Country": "ALB 🇦🇱"
+        },
+        "solves": {
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712413829916
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712412526732
+            }
+        }
+    },
+    {
+        "id": 188,
+        "displayedName": "Hacker",
+        "score": 150,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712413869793
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712412827967
+            }
+        }
+    },
+    {
+        "id": 2088,
+        "displayedName": "hubbub",
+        "score": 150,
+        "customFields": {
+            "Country": "WORLD 🚩"
+        },
+        "solves": {
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712417617438
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712417474302
+            }
+        }
+    },
+    {
+        "id": 2052,
+        "displayedName": "Sinke",
+        "score": 125,
+        "customFields": {
+            "Country": "SLV 🇸🇻"
+        },
+        "solves": {
+            "6": {
+                "firstBlood": false,
+                "score": 75,
+                "timestamp": 1712409447596
+            },
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408919623
+            }
+        }
+    },
+    {
+        "id": 58,
+        "displayedName": "0xda568",
+        "score": 100,
+        "customFields": {
+            "Country": "AUT 🇦🇹"
+        },
+        "solves": {
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712409755529
+            }
+        }
+    },
+    {
+        "id": 1832,
+        "displayedName": "0xA1E",
+        "score": 100,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "9": {
+                "firstBlood": false,
+                "score": 100,
+                "timestamp": 1712421975546
+            }
+        }
+    },
+    {
+        "id": 2071,
+        "displayedName": "Mirko",
+        "score": 50,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408523923
+            }
+        }
+    },
+    {
+        "id": 2017,
+        "displayedName": "JohnS",
+        "score": 50,
+        "customFields": {
+            "Country": "IRL 🇮🇪"
+        },
+        "solves": {
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408675581
+            }
+        }
+    },
+    {
+        "id": 451,
+        "displayedName": "ganso",
+        "score": 50,
+        "customFields": {
+            "Country": "TUN 🇹🇳"
+        },
+        "solves": {
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712408677898
+            }
+        }
+    },
+    {
+        "id": 2060,
+        "displayedName": "Raina",
+        "score": 50,
+        "customFields": {
+            "Country": "ALB 🇦🇱"
+        },
+        "solves": {
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712409111751
+            }
+        }
+    },
+    {
+        "id": 930,
+        "displayedName": "Moon1e",
+        "score": 50,
+        "customFields": {
+            "Country": "IRL 🇮🇪"
+        },
+        "solves": {
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712409332562
+            }
+        }
+    },
+    {
+        "id": 2076,
+        "displayedName": "HackTh3Cat707",
+        "score": 50,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712409356796
+            }
+        }
+    },
+    {
+        "id": 128,
+        "displayedName": "John_X9",
+        "score": 50,
+        "customFields": {
+            "Country": "NAM 🇳🇦"
+        },
+        "solves": {
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712409499557
+            }
+        }
+    },
+    {
+        "id": 2054,
+        "displayedName": "Olta",
+        "score": 50,
+        "customFields": {
+            "Country": "ALB 🇦🇱"
+        },
+        "solves": {
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712409558392
+            }
+        }
+    },
+    {
+        "id": 2078,
+        "displayedName": "Francesco2025",
+        "score": 50,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712409734563
+            }
+        }
+    },
+    {
+        "id": 1996,
+        "displayedName": "Mhn422",
+        "score": 50,
+        "customFields": {
+            "Country": "ARE 🇦🇪"
+        },
+        "solves": {
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712410081803
+            }
+        }
+    },
+    {
+        "id": 1032,
+        "displayedName": "bonothecat",
+        "score": 50,
+        "customFields": {
+            "Country": "AUT 🇦🇹"
+        },
+        "solves": {
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712410402952
+            }
+        }
+    },
+    {
+        "id": 2061,
+        "displayedName": "Defalt",
+        "score": 50,
+        "customFields": {
+            "Country": "IRL 🇮🇪"
+        },
+        "solves": {
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712410938213
+            }
+        }
+    },
+    {
+        "id": 2024,
+        "displayedName": "L0wY0",
+        "score": 50,
+        "customFields": {
+            "Country": "GBR 🇬🇧"
+        },
+        "solves": {
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712411520826
+            }
+        }
+    },
+    {
+        "id": 1711,
+        "displayedName": "IXI",
+        "score": 50,
+        "customFields": {
+            "Country": "IRL 🇮🇪"
+        },
+        "solves": {
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712411615562
+            }
+        }
+    },
+    {
+        "id": 2027,
+        "displayedName": "VicFrost2099",
+        "score": 50,
+        "customFields": {
+            "Country": "IRL 🇮🇪"
+        },
+        "solves": {
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712411855822
+            }
+        }
+    },
+    {
+        "id": 2086,
+        "displayedName": "NightGaleWing",
+        "score": 50,
+        "customFields": {
+            "Country": "IRL 🇮🇪"
+        },
+        "solves": {
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712413462507
+            }
+        }
+    },
+    {
+        "id": 1069,
+        "displayedName": "Theo12",
+        "score": 50,
+        "customFields": {
+            "Country": "GRC 🇬🇷"
+        },
+        "solves": {
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712414706671
+            }
+        }
+    },
+    {
+        "id": 1038,
+        "displayedName": "LorenzoPapi",
+        "score": 50,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712415342656
+            }
+        }
+    },
+    {
+        "id": 1242,
+        "displayedName": "M4LLOC_X",
+        "score": 50,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712415360560
+            }
+        }
+    },
+    {
+        "id": 1409,
+        "displayedName": "ly4k",
+        "score": 50,
+        "customFields": {
+            "Country": "DNK 🇩🇰"
+        },
+        "solves": {
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712416700314
+            }
+        }
+    },
+    {
+        "id": 825,
+        "displayedName": "TopPlayer",
+        "score": 50,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712417565189
+            }
+        }
+    },
+    {
+        "id": 785,
+        "displayedName": "iKirbz",
+        "score": 50,
+        "customFields": {
+            "Country": "AUT 🇦🇹"
+        },
+        "solves": {
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712417913431
+            }
+        }
+    },
+    {
+        "id": 1486,
+        "displayedName": "fabulus",
+        "score": 50,
+        "customFields": {
+            "Country": "AUT 🇦🇹"
+        },
+        "solves": {
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712419298140
+            }
+        }
+    },
+    {
+        "id": 185,
+        "displayedName": "Stypox",
+        "score": 50,
+        "customFields": {
+            "Country": "ITA 🇮🇹"
+        },
+        "solves": {
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712421915959
+            }
+        }
+    },
+    {
+        "id": 443,
+        "displayedName": "think-and-type",
+        "score": 50,
+        "customFields": {
+            "Country": "AUT 🇦🇹"
+        },
+        "solves": {
+            "12": {
+                "firstBlood": false,
+                "score": 50,
+                "timestamp": 1712422438760
+            }
+        }
+    }
+]

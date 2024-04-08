@@ -1,0 +1,29 @@
+{
+  "title": "Section31",
+  "description": "To solve this challenge you need to watch the entire Star Trek series. GLHF",
+  "authors": [
+    "Fabio Zoratti <@orsobruno96>"
+  ],
+  "tags": [
+    "binary",
+    "rev"
+  ],
+  "hiddenTags": [],
+  "order": 0,
+  "flags": [
+    "^flag\\{f3d3r4t10n-0f-th3-pl4n3ts-8841be92\\}$"
+  ],
+  "scoring": {
+    "type": "static",
+    "score": 75
+  },
+  "files": [
+    {
+      "name": "section31",
+      "type": "upload",
+      "path": "./attachments/section31",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

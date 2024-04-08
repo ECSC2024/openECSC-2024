@@ -1,0 +1,11 @@
+services:
+  backlist:
+    image: cybersecnatlab/socaz:python-3.11-alpine
+    restart: unless-stopped
+    command: 'socaz --flag-from-env FLAG --bind 1337 --cmd /home/user/chall'
+    volumes:
+      - './chall.py:/home/user/chall:ro'
+    ports:
+      - '38104:1337'
+    environment:
+      - 'FLAG=flag{cleanup_is_broken_c06c4a2d}'

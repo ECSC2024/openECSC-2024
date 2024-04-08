@@ -1,0 +1,38 @@
+{
+  "title": "Easy login",
+  "description": "We managed to intercept a user logging into a website, try to find the flag.\n\nWebsite: [http://easylogin.challs.olicyber.it](http://easylogin.challs.olicyber.it)",
+  "authors": [
+    "Giovanni Minotti <@Giotino>"
+  ],
+  "tags": [
+    "misc"
+  ],
+  "hiddenTags": [],
+  "order": 2,
+  "flags": [
+    "^flag\\{y0u_see_th4t_w4s_3asy_e348db9c\\}$"
+  ],
+  "scoring": {
+    "type": "static",
+    "score": 150
+  },
+  "files": [
+    {
+      "name": "capture.pcapng",
+      "type": "upload",
+      "path": "./attachments/capture.pcapng",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "http",
+    "url": "http://easylogin.challs.olicyber.it:80/"
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 10
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "build": "src",
+      "expose": [
+        {
+          "type": "http",
+          "container": 5000,
+          "hostname": "monty-hall.challs.olicyber.it",
+          "secure": false
+        }
+      ],
+      "environment": {
+        "FLAG": "flag{l3f7_r16h7_70p_r16h7_l3f7_70p_70p_l3f7_l3f7_222cc0d1}"
+      }
+    }
+  }
+}

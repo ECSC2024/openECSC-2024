@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}
+    Register
+{% endblock %}
+
+{% block content %}
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-semibold mb-4">Todo List</h1>
+
+        <form class="mb-4" method="POST">
+            <div class="flex items-center">
+                <input type="text" name="description" id="todo" class="mr-2 p-2 block w-full rounded-md border-gray-300 focus:border-red-500 focus:ring focus:ring-red-200" placeholder="Scrivi cosa devi fare">
+                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:bg-red-600">Add</button>
+            </div>
+        </form>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {% for task in tasks %}
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <form action="/toggle/{{ task['id'] }}" method="POST">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="checkbox-{{ task['id'] }}" class="mr-2 form-checkbox" onchange="toggleCompleted(this)" {% if task['completed'] %} checked {% endif %}>
+                        <label for="checkbox-{{ task['id'] }}" class="text-xl font-semibold ">{{ task['description'] }}</label>
+                    </div>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        function toggleCompleted(e) {
+            e.parentElement.parentElement.submit();
+        }
+    </script>
+</body>
+{% endblock %}

@@ -1,0 +1,7 @@
+services:
+  challenge:
+    build: .
+    ports:
+      - 5000:80
+    restart: unless-stopped
+    cpus: 2.0

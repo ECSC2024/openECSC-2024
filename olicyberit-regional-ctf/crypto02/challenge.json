@@ -1,0 +1,34 @@
+{
+  "title": "ARX designer",
+  "description": "I just designed my new ARX cipher, but I guess it's just a matter of time before it gets broken.",
+  "authors": [
+    "Matteo Protopapa <@matpro>"
+  ],
+  "tags": [
+    "crypto"
+  ],
+  "hiddenTags": [],
+  "order": 1,
+  "flags": [
+    "^flag\\{a_m1llion_trie5_is_e4sily_doabl3_22461a10\\}$"
+  ],
+  "scoring": {
+    "type": "static",
+    "score": 200
+  },
+  "files": [
+    {
+      "name": "ARXdesigner.py",
+      "type": "upload",
+      "path": "./attachments/ARXdesigner.py",
+      "dynamic": false
+    },
+    {
+      "name": "ARXdesigner_output.txt",
+      "type": "upload",
+      "path": "./attachments/ARXdesigner_output.txt",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

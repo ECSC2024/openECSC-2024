@@ -1,0 +1,26 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "image": "cybersecnatlab/challenge-jail@sha256:7bf77225063b039960f654307cf5d6f977f892ff548606357a2e8fe8067d0a88",
+      "expose": [
+        {
+          "type": "tcp",
+          "host": 38103,
+          "container": 1337
+        }
+      ],
+      "volumes": [
+        {
+          "type": "bind",
+          "host": "src/build/age_calculator_pro",
+          "container": "/home/user/chall",
+          "readonly": true
+        }
+      ],
+      "environment": {
+        "FLAG": "flag{m4ybe_I_sh0uld_st1ck_t0_r3memb3r1ng_my_ag3_81000306}"
+      }
+    }
+  }
+}

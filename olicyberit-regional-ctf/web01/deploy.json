@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "build": "src",
+      "environment": {
+        "FLAG": "flag{how_d1d_y0u_h4ck_m3?!_eaa8a0bd}"
+      },
+      "expose": [
+        {
+          "type": "http",
+          "container": 80,
+          "hostname": "prettyplease.challs.olicyber.it",
+          "secure": false
+        }
+      ]
+    }
+  }
+}

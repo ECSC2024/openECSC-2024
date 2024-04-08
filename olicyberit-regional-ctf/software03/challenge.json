@@ -1,0 +1,40 @@
+{
+  "title": "Age Calculator Pro",
+  "description": "I no longer want to remember how old I am...\n\n`nc agecalculatorpro.challs.olicyber.it 38103`",
+  "authors": [
+    "Giulia Martino <@Giulia>"
+  ],
+  "tags": [
+    "binary",
+    "pwn"
+  ],
+  "hiddenTags": [],
+  "order": 2,
+  "flags": [
+    "^flag\\{m4ybe_I_sh0uld_st1ck_t0_r3memb3r1ng_my_ag3_81000306\\}$"
+  ],
+  "scoring": {
+    "type": "static",
+    "score": 275
+  },
+  "files": [
+    {
+      "name": "age_calculator_pro.zip",
+      "type": "upload",
+      "path": "./attachments/age_calculator_pro.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "agecalculatorpro.challs.olicyber.it",
+    "port": 38103
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 10
+    }
+  }
+}

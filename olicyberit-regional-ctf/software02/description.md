@@ -1,0 +1,1 @@
+This binary seems scary, it has some ghosts in it.

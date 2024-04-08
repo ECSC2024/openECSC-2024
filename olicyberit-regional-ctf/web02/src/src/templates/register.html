@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}
+    Register
+{% endblock %}
+
+{% block content %}
+<body class="bg-gray-100 h-screen flex items-center justify-center">
+    <div class="max-w-md w-full p-6 bg-white rounded-md shadow-md">
+        <h2 class="text-3xl font-semibold text-center mb-6">Register</h2>
+        <form method="POST">
+            <div class="mb-4">
+                <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                <input type="text" id="username" name="username" class="mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-red-500 focus:ring focus:ring-red-200">
+            </div>
+            <div class="mb-6">
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" id="password" name="password" class="mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-red-500 focus:ring focus:ring-red-200">
+            </div>
+            <div class="mb-6">
+                <label for="password" class="block text-sm font-medium text-gray-700">Password confirmation</label>
+                <input type="password" id="confirm_password" name="confirm_password" class="mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-red-500 focus:ring focus:ring-red-200">
+            </div>
+            <div class="flex items-center justify-between">
+                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:bg-red-600">Register</button>
+            </div>
+        </form>
+    </div>
+</body>
+{% endblock %}
