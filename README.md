@@ -28,6 +28,8 @@ Be aware that the target audience of these competitions varies a lot and may dif
 - OliCyber.IT - National Final: national finals of the Italian Olympiads in Cybersecurity. It is an individual, on-site, 7h long CTF, aimed to 14-19 years old high school students. Expect introductory to medium-level challenges.
 - TeamItaly - Preselection CTF: initial selection for the 2024 TeamItaly members, that will represent Italy at the ECSC. It is an individual, on-line, 24h long CTF aimed to 14-25 years old. Expect medium to hard-level challenges.
 
+### Mirrors calendar
+
 | # Round                            | Starting time           | Ending time             | Source                                              |
 | :--------------------------------- | :---------------------- | :---------------------- | :-------------------------------------------------- |
 | OliCyber.IT - Regional CTF         | 06 Apr. 2024, 13:00 UTC | 06 Apr. 2024, 17:00 UTC | [olicyberit-regional-ctf](olicyberit-regional-ctf/) |
