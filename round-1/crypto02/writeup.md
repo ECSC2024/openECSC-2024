@@ -15,30 +15,35 @@ Authors: Lorenzo Demeio <@Devrar>, Matteo Rossi <@mr96>
 The key exchange implemented in the challenge is a variant of Stickel's key exchange.
 
 ## Solution
+
 The [original attack](https://shpilrain.ccny.cuny.edu/stickel_attack.pdf) finds an invertible matrix $X$ and a matrix $Y$ that satisfy the system
-$$
+
+```math
 X \cdot A = A \cdot X\\
 Y\cdot B = B\cdot Y\\
 X\cdot U = W\cdot Y
-$$
+```
 
-by solving a linear system with $2\cdot dim^2$ unknowns. With $X$ and $Y$ we can compute the shared matrix
-$$
+by solving a linear system with $`2\cdot dim^2`$ unknowns. With $`X`$ and $`Y`$ we can compute the shared matrix
+
+```math
 key = X^{-1} \cdot V \cdot Y = X^{-1} \cdot R \cdot W \cdot S \cdot Y = R \cdot X^{-1} \cdot W \cdot Y \cdot S = R \cdot U \cdot S.
-$$
+```
 
-In our case, $A$ and $B$ are non-invertible, thus the system above will never have an invertible solution $X$. A cryptanalysis of the non-invertible case was presented by Mullan [here](https://www.researchgate.net/publication/267178269_Cryptanalysing_variants_of_Stickel's_key_agreement_scheme), where the main idea is to substitute the third equation of the above system with $X \cdot U = q(A)\cdot W \cdot Y$ where $q(x)$ is the gcd between the minimal polynomial of $A$ and $l(x)$, the secret polynomial such that $l(A) = L$.
+In our case, $`A`$ and $`B`$ are non-invertible, thus the system above will never have an invertible solution $`X`$. A cryptanalysis of the non-invertible case was presented by Mullan [here](https://www.researchgate.net/publication/267178269_Cryptanalysing_variants_of_Stickel's_key_agreement_scheme), where the main idea is to substitute the third equation of the above system with $`X \cdot U = q(A)\cdot W \cdot Y`$ where $`q(x)`$ is the gcd between the minimal polynomial of $`A`$ and $`l(x)`$, the secret polynomial such that $`l(A) = L`$.
 
-In the case described in the paper, the polynomial $q(x)$ has to be bruteforced, since they work on the original ring chosen by Stickel ($\mathbb{F}_q$ with $q = 2^k$) and $q(x)$ is likely to have factors different from $x$. But working on $Z_{2^k}$, $q(x)$ will be $x$ with very high probability, so there is no bruteforce to be done in our case.
+In the case described in the paper, the polynomial $q(x)$ has to be bruteforced, since they work on the original ring chosen by Stickel ($`\mathbb{F}_q`$ with $`q = 2^k`$) and $`q(x)`$ is likely to have factors different from $`x`$. But working on $`Z_{2^k}`$, $`q(x)`$ will be $`x`$ with very high probability, so there is no bruteforce to be done in our case.
 
-The last problem to solve is that solving the system on $Z_{2^k}$ is not easy. To overcome this, as suggested in Mullan's paper, it is possible to solve it bit by bit: we first consider it on $\mathbb{F}_2$ and find a solution $X_0$; we then write $X = 2\cdot X_1 + X_0$ and find the value of $X_1 \mod{2}$ and so on until we've found all the bits of $X$.
+The last problem to solve is that solving the system on $`Z_{2^k}`$ is not easy. To overcome this, as suggested in Mullan's paper, it is possible to solve it bit by bit: we first consider it on $`\mathbb{F}_2`$ and find a solution $`X_0`$; we then write $`X = 2\cdot X_1 + X_0`$ and find the value of $`X_1 \mod{2}`$ and so on until we've found all the bits of $`X`$.
 
-In some cases the matrix $X$ won't be invertible, but since this is determined only by $X \mod{2} = X_0$, we can stop at the first step and try with another instance.
+In some cases the matrix $`X`$ won't be invertible, but since this is determined only by $`X \mod{2} = X_0`$, we can stop at the first step and try with another instance.
 
-Once we've found a solution $X, Y$, similarly as before, we can find the shared key as 
-$$
+Once we've found a solution $`X, Y`$, similarly as before, we can find the shared key as 
+
+```math
 key = X^{-1} \cdot A \cdot V \cdot Y = R \cdot U \cdot S
-$$
+```
+
 and decrypt the flag.
 
 ## Exploit
