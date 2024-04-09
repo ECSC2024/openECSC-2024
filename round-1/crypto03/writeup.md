@@ -26,21 +26,28 @@ Now let's create two queries to obtain information on the $i$-th bit of `seed`. 
 ```
 seed = high_s * 2**(i + 1) + b * 2**i + low_s
 ```
+
 and `user_seed` as
+
 ```
 user_seed = high_us * 2**i + low_us
 ```
+
 where `b` is the bit we want to find.
 
 The first query we'll send will be
+
 ```
 high_us = 2**(256 - i) - 2
 low_us = 2**i - 2
 ```
+
 hence
-$$
+
+```math
 \texttt{user\_seed} = \underbrace{1\ldots 10}_{256 - i \texttt{ bits}}\underbrace{1\ldots 10}_{i \texttt{ bits}}
-$$
+```
+
 asking for the first expression. For how `low_us` is constructed we have `(low_s ^ low_us) + low_s = 2**i`. For the `high` part we have two cases:
 
 1. `b = 1` In this case, since we have the reminder from the first expression, we have `((2*high_s + b) ^ high_us) + (2*high_s + b) + 1 = 2**(256 - i) + 1`.
