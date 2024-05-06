@@ -1,0 +1,6 @@
+build/*.o
+build/*.d
+
+.gdb_history
+flag
+sde-log.txt

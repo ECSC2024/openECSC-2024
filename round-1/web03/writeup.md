@@ -18,7 +18,6 @@ The final prize consists of an image of a trophy with the username of the winner
 
 Finally, the flag is stored as one of the prizes, written in the image stored in `/prizes/flag.jpg`.
 
-
 ## Race condition
 
 The scoring system is vulnerable to race condition. We can submit multiple answers for the same question to get more tries and, on average, more than one pont for every question.
@@ -122,7 +121,6 @@ This is due to the fact that php locks the session id to avoid concurrency issue
 
 By submitting multiple answers to the same question, we get on average more than one point for every question.
 By repeating this process we can obtain the required score and get the prize.
-
 
 ## Image inclusion
 

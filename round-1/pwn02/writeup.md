@@ -11,10 +11,12 @@ The docker image for this challenge is `cybersecnatlab/challenge-jail@sha256:7bf
 Author: Fabio Zoratti <@orsobruno96>
 
 ## Overview
+
 The challenge is presented as a standard compiled C source file that has the classical "menu" of pwn challenges.
 
 The choices are not many
-```
+
+```text
 Welcome to Cards Against Hackers TM
 Who will be the first to cross the line and `buttarla di fuori`?
 1) Play
@@ -24,13 +26,16 @@ Who will be the first to cross the line and `buttarla di fuori`?
 ```
 
 You can play an incomplete version of Card Against Humanity with a very small deck, and create your own cards. There is no win function in this binary, so it seems to be necessary to completely hijack the execution flow of the program and `execve(/bin/sh)`. The binary is compiled with some, but not all protections:
+
 - no canary
 - ASLR is active
 - there are no rwx regions
 
 Dynamical memory allocations is done twice with `malloc`, but you cannot double free if you never free, so a heap exploitation seems not viable.
 However we can find at least two different vulnerabilities:
+
 - a read primitive in `show_custom_card`. No bound check is performed at all on the index of the card, and this means that we can use it to leak data.
+
 ```c
   switch (choice) {
   case 1:
@@ -40,10 +45,13 @@ However we can find at least two different vulnerabilities:
     printf("Prompt (%llu completions): '%s'\n", prompts[choice2].number_of_completions, prompts[choice2].content);
     break;
 ```
+
 we have to be careful, because it is really easy to dereference an invalid pointer and crash the program, using the '%s'.
+
 - a tiny buffer overflow in `create_custom_card`. The overflow can overwrite only the LSB of `old_rbp` on the stack, but this may be sufficient for a _probabilistic_ rop chain. If we overwrite with a null byte the LSB, the old rbp will go up in the stack, and if we exit two functions, with `leave; ret;`, we may find ourselves on the buffer that we can control.
 
 ## Strategy
+
 - leak libc_base and/or binary base with vulnerability number 1, reading data from the stack. Here in the writeup, also the canary is read, just in case.
   To simplify our exploit, we use the internal functions of pwntools to compute addresses. The libc binary always has ASLR active, so to compute the address of a symbol we can set the property `libc.address`, and the next time we access a symbol, like `libc.sym['printf']`, it will have the correct absolute address.
 

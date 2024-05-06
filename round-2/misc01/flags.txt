@@ -1,0 +1,1 @@
+^openECSC\{i_found_a_map_[0-9a-f]{8}\}$

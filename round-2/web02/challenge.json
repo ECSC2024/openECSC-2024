@@ -1,0 +1,40 @@
+{
+  "title": "GoSweeper",
+  "description": "Let's play a game :D\n\nSite: [https://gosweeper.challs.open.ecsc2024.it](https://gosweeper.challs.open.ecsc2024.it)",
+  "authors": [
+    "Stefano Alberto <@Xato>"
+  ],
+  "tags": [
+    "web"
+  ],
+  "hiddenTags": [],
+  "order": 51,
+  "flags": [
+    "^openECSC\\{st0p_l3ak1ng_pl34se_[a-f0-9]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "gosweeper.zip",
+      "type": "upload",
+      "path": "./attachments/gosweeper.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "http",
+    "url": "https://gosweeper.challs.open.ecsc2024.it:443/"
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 300
+    }
+  }
+}

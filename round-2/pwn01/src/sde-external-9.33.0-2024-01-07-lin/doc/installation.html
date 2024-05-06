@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installing Intel® SDE &mdash; Intel® SDE  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting Started" href="getting_started.html" />
+    <link rel="prev" title="Licensing" href="license.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Intel® SDE
+          </a>
+              <div class="version">
+                9.33.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Intel® SDE User's Manual:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licensing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installing Intel® SDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="emulation.html">Controlling the Emulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Analysis Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tracing.html">Record and Replay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app_debug.html">Application Debugging</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Intel® SDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Installing Intel® SDE</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installing-sde">
+<h1>Installing Intel® SDE<a class="headerlink" href="#installing-sde" title="Permalink to this heading"></a></h1>
+<p>Download and unpack the appropriate kit for your platform. Set your PATH variable to point to that directory.
+You can also refer to the tools in the kit using full or relative paths. Do not rearrange the files or
+subdirectories in the unpacked kit. If you want to move the kit directory, move everything to new location.</p>
+<section id="linux">
+<h2>Linux<a class="headerlink" href="#linux" title="Permalink to this heading"></a></h2>
+<p>On some distributions, you must disable “SE Linux” to allow Intel® SDE to work. On Ubuntu systems, you must disable yama.
+The yama feature disallows processes from using ptrace attach to their parent process. Intel® SDE is using this feature to
+inject itself into the process. To disable yama on the system run the following as root:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># echo 0 &gt; /proc/sys/kernel/yama/ptrace_scope</span>
+</pre></div>
+</div>
+<p>This change takes effect until the next reboot. To make this change permanent add it to the init scripts of the system.</p>
+</section>
+<section id="windows">
+<h2>Windows<a class="headerlink" href="#windows" title="Permalink to this heading"></a></h2>
+<p>If you are using Winzip, it puts the proper permissions on the unpacked files. However, if you are using
+Cygwin’s tar command to unpack the kit, you must execute a <cite>chmod -R +x path-to-kit</cite> on the unpacked kit
+(where “path-to-kit” is the unpacked kit directory name).</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="license.html" class="btn btn-neutral float-left" title="Licensing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="getting_started.html" class="btn btn-neutral float-right" title="Getting Started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Intel SDE.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

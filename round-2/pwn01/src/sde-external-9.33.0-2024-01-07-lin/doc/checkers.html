@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checking for Bad Pointers and Data Misalignment &mdash; Intel® SDE  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The Controller" href="controller.html" />
+    <link rel="prev" title="Chip Check Feature" href="chip_check.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Intel® SDE
+          </a>
+              <div class="version">
+                9.33.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Intel® SDE User's Manual:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Intel® SDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="emulation.html">Controlling the Emulation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="tools.html">Analysis Tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="filenames.html">Controlling Output File Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chip_check.html">Chip Check Feature</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Checking for Bad Pointers and Data Misalignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller.html">The Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="icount.html">Counting Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mix.html">The Histogram Analysis Tool - Mix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html">Measuring Memory Footprint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="itrace.html">Instruction Trace Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugtrace.html">The Debug ASCII Tracing Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mask_profile.html">Mask Profiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sparse.html">Sparse Instructions Analysis Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="avx_sse.html">Detecting AVX-SSE Transitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssc.html">Using SSC Marks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tracing.html">Record and Replay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app_debug.html">Application Debugging</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Intel® SDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="tools.html">Analysis Tools</a></li>
+      <li class="breadcrumb-item active">Checking for Bad Pointers and Data Misalignment</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/checkers.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="checking-for-bad-pointers-and-data-misalignment">
+<h1>Checking for Bad Pointers and Data Misalignment<a class="headerlink" href="#checking-for-bad-pointers-and-data-misalignment" title="Permalink to this heading"></a></h1>
+<p>Common application development errors are related to using pointers and memory references.
+Intel® SDE checks for two types of errors: data misalignment and bad memory pointers.</p>
+<p>Data misalignment happen when the executed instruction has alignment restrictions and
+the input memory operand is not properly aligned. In this case the execution of the
+native instruction will fault. In the instruction emulation, there is not fault, and
+Intel® SDE data misalignment checker will detect this issue and report it the user.</p>
+<p>Bad memory access is any memory load or store from inaccessible memory address.
+This can be load from a missing page, or store to a missing page or to a read-only
+page. When the bad access happen in the execution of native (i.e. not emulated)
+instruction, the application will fault like a normal application faults.
+When the bad access happen in an emulated instruction Intel® SDE will dump an error
+massage with minimal information.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-skx<span class="w"> </span>--<span class="w"> </span>myapp
+SDE<span class="w"> </span>ERROR:<span class="w"> </span>Could<span class="w"> </span>not<span class="w"> </span><span class="nb">read</span><span class="w"> </span>memory<span class="w"> </span>at<span class="w"> </span>location<span class="w"> </span>0x123440<span class="w"> </span><span class="nv">nbytes</span><span class="o">=</span><span class="w"> </span><span class="m">64</span>
+For<span class="w"> </span>more<span class="w"> </span>detailed<span class="w"> </span>error<span class="w"> </span>message<span class="w"> </span>please<span class="w"> </span>run<span class="w"> </span>with<span class="w"> </span>-ptr-check<span class="w"> </span>and<span class="w"> </span>compile<span class="w"> </span>application<span class="w"> </span>with<span class="w"> </span>debug<span class="w"> </span>information
+at<span class="w"> </span>...../sde-safecopy.cpp:37<span class="w"> </span>Function<span class="w"> </span>sde_safeload_fail
+</pre></div>
+</div>
+<p>Intel® SDE has a more comprehensive analysis tool to inspect memory accesses.
+When adding the <cite>-ptr-check</cite> knob the output will have more information.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-skx<span class="w"> </span>-ptr-check<span class="w"> </span>--<span class="w"> </span>myapp
+SDE<span class="w"> </span>ERROR:<span class="w"> </span>DEREFERENCING<span class="w"> </span>BAD<span class="w"> </span>MEMORY<span class="w"> </span>POINTER<span class="w"> </span><span class="nv">PC</span><span class="o">=</span>0x40124d<span class="w"> </span><span class="nv">MEMEA</span><span class="o">=</span>0x123440<span class="w"> </span>vmovapd<span class="w"> </span>zmm0,<span class="w"> </span>zmmword<span class="w"> </span>ptr<span class="w"> </span><span class="o">[</span>rax<span class="o">]</span>
+Image:<span class="w"> </span>myapp+0x124d<span class="w"> </span><span class="o">(</span><span class="k">in</span><span class="w"> </span>multi-region<span class="w"> </span>image,<span class="w"> </span>region#<span class="w"> </span><span class="m">1</span><span class="o">)</span>
+Function:<span class="w"> </span>main
+</pre></div>
+</div>
+<p>When the application is compiled with debug information, then the source file and line that
+has the code with the bad access will be in the report.</p>
+<section id="data-misalignment-options">
+<h2>Data Misalignment Options<a class="headerlink" href="#data-misalignment-options" title="Permalink to this heading"></a></h2>
+<p>Intel® SDE default behavior is to check for data misalignment only for emulated instructions
+(that has alignment requirements). When there is misaligned access in native executed
+instructions, a fault will happen and the process will crash. Intel® SDE provides an option
+to check for data misalignment for all instructions.</p>
+<dl class="option-list">
+<dt><kbd><span class="option">-a<var>lign_checker_action</var></span></kbd></dt>
+<dd><p>Check for unaligned memory accesses. Valid choices are:
+assert (default), warn, report or ignore. [default assert]</p>
+</dd>
+<dt><kbd><span class="option">-a<var>lign_checker_all</var></span></kbd></dt>
+<dd><p>Check for unaligned memory for all instructions.
+Instructions that do not require memory alignment will also be checked.
+Disabled by default. [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-a<var>lign_checker_emu_only</var></span></kbd></dt>
+<dd><p>Check for unaligned memory only for emulated instructions.
+If disabled, native instructions will also be checked [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-a<var>lign_checker_file</var></span></kbd></dt>
+<dd><p>File name for messages about unaligned memory accesses. [default sde-align-checker-out.txt]</p>
+</dd>
+<dt><kbd><span class="option">-a<var>lign_checker_image</var></span></kbd></dt>
+<dd><p>Only check instructions in the named image [default is off]</p>
+</dd>
+<dt><kbd><span class="option">-a<var>lign_checker_prefetch</var></span></kbd></dt>
+<dd><p>Check alignment for prefetch instructions 1=check prefetches, 0=ignore prefetches. [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-a<var>lign_checker_stderr</var></span></kbd></dt>
+<dd><p>Attempt writing messages about unaligned data accesses to stderr.  When disabled, then the output file is used.</p>
+</dd>
+</dl>
+</section>
+<section id="memory-checking-options">
+<h2>Memory Checking Options<a class="headerlink" href="#memory-checking-options" title="Permalink to this heading"></a></h2>
+<p>The default Intel® SDE behavior is to reduce overhead and not do the comprehensive memory checks.
+When memory checker is active, it has a few modes. The basic mode is that bad memory accesses
+are reported and the process execution is terminated. Another option is to raise memory
+access exception, then if the application can handle the exception, the execution will be
+resumed at the exception handler. The last option is available when using application
+debugging. In this case, Intel® SDE can cause debugger breakpoint.</p>
+<dl class="option-list">
+<dt><kbd><span class="option">-n<var>ull_check</var></span></kbd></dt>
+<dd><p>Check memory accesses for null references [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-n<var>ull_check_out</var></span></kbd></dt>
+<dd><p>Output file name for -null-check [default sde-null-check.out.txt]</p>
+</dd>
+<dt><kbd><span class="option">-p<var>tr_breakpoint</var></span></kbd></dt>
+<dd><p>Raise  application breakpoint on memory access errors [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-p<var>tr_check</var></span></kbd></dt>
+<dd><p>Check for bad memory accesses [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-p<var>tr_check_out</var></span></kbd></dt>
+<dd><p>Output file name for -ptr-check [default sde-ptr-check.out.txt]</p>
+</dd>
+<dt><kbd><span class="option">-p<var>tr_check_warn</var></span></kbd></dt>
+<dd><p>Make the memory checker warn on errors Default is to die on errors. [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-p<var>tr_raise</var></span></kbd></dt>
+<dd><p>Raise exception on memory access errors [default 0]</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="chip_check.html" class="btn btn-neutral float-left" title="Chip Check Feature" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="controller.html" class="btn btn-neutral float-right" title="The Controller" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Intel SDE.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

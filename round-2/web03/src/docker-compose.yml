@@ -1,0 +1,70 @@
+services:
+  auth:
+    build: ./auth/
+    restart: unless-stopped
+    environment:
+      DB_PATH: users.sqlite
+    networks:
+      - challenge
+    command: bash -c "python3 -m flask install && /usr/bin/supervisord"
+  
+  notes:
+    build: ./notes/
+    restart: unless-stopped
+    environment:
+      AUTH_SERVICE: http://auth
+      DB_PATH: notes.sqlite
+    networks:
+      - challenge
+    command: bash -c "python3 -m flask install && /usr/bin/supervisord"
+  
+  backend:
+    build: ./backend/
+    restart: unless-stopped
+    environment:
+      AUTH_SERVICE: http://auth
+      NOTES_SERVICE: http://notes
+      DB_PATH: users.sqlite
+      CHALL_URL: http://backend
+      HEADLESS_HOST: headless:5000
+      HEADLESS_AUTH: 8998199ab79560494889aab0485d7fc6
+      CHECKER_POW: redacted
+      FLAG: openECSC{b1f79ec5bfd0ec34a0ddb67466580dfd}
+    ports:
+      - '80:80'
+    networks:
+      - challenge
+      - default
+ 
+  # Headless stuff below
+  headless:
+   image: cybersecnatlab/challenge-headless:latest-manager
+   restart: unless-stopped
+   environment:
+     AUTH_TOKEN: 8998199ab79560494889aab0485d7fc6
+     RABBITMQ_HOST: headless-rabbitmq
+     RABBITMQ_QUEUE: headless-jobs
+   depends_on:
+     - headless-rabbitmq
+
+  headless-rabbitmq:
+   image: rabbitmq:3.11
+   restart: unless-stopped
+
+  headless-worker:
+   image: cybersecnatlab/challenge-headless:latest-worker
+   restart: unless-stopped
+   environment:
+     RABBITMQ_HOST: headless-rabbitmq
+     RABBITMQ_QUEUE: headless-jobs
+   deploy:
+     replicas: 4
+   depends_on:
+     - headless-rabbitmq
+
+
+networks:
+  
+  challenge:
+    name: challenge
+    driver: bridge

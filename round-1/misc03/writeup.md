@@ -1,13 +1,14 @@
 # openECSC 2024 - Round 1
 
 ## [misc] ProtolessWaf (146 solves)
+
 I found this cool parser for protobuf that does not require a .proto file. I'm using it in a WAF to prevent admin access to my server, I hope it works as expected.
 
 Site: [http://protolesswaf.challs.open.ecsc2024.it](http://protolesswaf.challs.open.ecsc2024.it)
 
 Author: Giovanni Minotti <@giotino>
 
-## Solution 
+## Solution
 
 We are presented with a web application that accept a protobuf payload and a WAF that shields it from gaining admin access to obtain the flag.
 
@@ -18,6 +19,7 @@ Protobuf considers the field type described in the `.proto` file, discarding any
 We can craft a payload that contains the field with a wrong type and the same field with the `.proto` type, in this order. The WAF will accept the field with the wrong type and use it to verify that the user is not admin, but the application will take the value of the field with the correct type.
 
 Payload (before serialization):
+
 ```python
 {"field_number": 1, "type": "varint", "value": 1337},
 {"field_number": 1, "type": "length-delimited", "value": b"admin"}

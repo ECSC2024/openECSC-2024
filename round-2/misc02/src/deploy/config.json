@@ -1,0 +1,9 @@
+{
+  "QueueSettings": {
+    "Workers": 10,
+    "Runtime": 30,
+    "QueueName": "DiagnosticsRunnerQueue"
+  },
+  "Docker": "C:\\RemoteDiagnostics\\docker\\docker.exe",
+  "CaptchaKey": "<private key>"
+}

@@ -19,11 +19,13 @@ The binary is stripped and, in the writeup, we will use decompiled code from IDA
 ## First steps
 
 The main function simply boils down to:
+
 - getting our input
 - calling `sub_4B86` with our input string
 - if `sub_4B86` returns true, opening a file containing the flag
 
 The first checks in `sub_4B86` are straightforward (only relevant parts of the decompiled code are listed here)
+
 ```c
 if ( std::__cxx11::basic_string<char,std::char_traits<char>,std::allocator<char>>::length(a1) == 725 ){
 ...
@@ -54,6 +56,7 @@ if ( std::__cxx11::basic_string<char,std::char_traits<char>,std::allocator<char>
 ```
 
 We need to pass the following checks:
+
 - our string must have a length of exactly 725 bytes
 - the function check `sub_4ABD` must return true
 - our string must contain a dash every 5 characters (so our input format is something like `ABCDE-FGHIJ-...`)
@@ -67,11 +70,13 @@ The function responsible for this transformation is `sub_3629`, that takes 5 upp
 So, we have a mapping that transforms an input of the form `VTJQO-DLQMW-TFHWC-...` into a processed string of the form `RLKDNAABNNMKAALCRSMAA...`. This resulting string is then passed to the function `sub_37D8`, and here the challenge begins.
 
 ## Understanding the data structure
+
 Function `sub_37D8` is (by far) the biggest function in the code. We can infer from `sub_8116` (that turns out being one of the constructors of the `std::vector` class, easily recognizable by the exception string inside) that the return type of this function is an `std::vector` of _something_ (a custom struct type), having length 2 times the size of our input string.
 
 The remaining part of the function iterates over the characters of our input and fills the vector.
 
 We can infer by the sizes that the struct looks something like this (notice that `sub_81DC` is just accessing elements of the struct):
+
 ```c
 struct something {
   int v1;
@@ -108,12 +113,14 @@ while ( v26 > (int)v33 )
 ```
 
 At this point we have two ways, we can:
+
 - continue reversing the function to reconstruct the exact algorithm
 - try to guess what kind of data structure we are facing
 
 As a non-rev player, I always try to go for the second one :)
 
 Recap:
+
 - we are dealing with strings
 - we are iterating through characters (so probably doing something with substrings)
 - our struct is very similar to what we usually find in standard (directed) graph-related data structures
@@ -135,6 +142,7 @@ struct node {
 ```
 
 With this new naming:
+
 - `len`, `link` and `next` are defined as in Wikipedia
 - `fp` is the first ending position of a string
 - `terminal` indicates if a node represents the end of a suffix of the original string
@@ -144,6 +152,7 @@ With this new naming:
 Ok, now that we know (more or less) what we are facing, we have a series of checks that are performed using this data structure. We have a boolean variable (let's call it `check`), that needs to stay true for the whole process to give us the flag.
 
 The checks can be splitted into:
+
 - three very similar for loops
 - function `sub_4422`
 - one last slightly different for loop
@@ -170,6 +179,7 @@ for ( j = 0; j < (unsigned __int64)sub_933A(&unk_1B2C0); ++j )
 The first for loop is quite easy to understand: it access an element of the alphabet of uppercase letters (the same used in `sub_4ABD`, except for the dash) and it passes it to `sub_3D41`. The rest of this for loop is just C++ being C++, but is not relevant for us.
 
 The fuction `sub_3D41` takes our graph, the 1-char long string `a2` and an integer value `v5`. Since the length of `a2` is 1 we don't really need to reverse a lot to understand that:
+
 - the function checks if `graph[0].next` contains (remember that we have already seen this contains method) `a2`, otherwise it returns false
 - returns if `graph[0].fp == v5`
 
@@ -190,6 +200,7 @@ The `sub_4422` function is probably the most straightforward one in terms of cod
 Easy, right? Turns out it is: by construction of the automaton you can reach a node with paths of length `graph[graph[i].link].len` to `graph[i].len`, and a path in the graph identifies a substring in an unique way. So here we are just counting unique substrings!
 
 This is equivalent (in Python, calling our input `s`) to:
+
 ```python
 len(set([s[i:j] for i in range(len(s)) for j in range(i+1, len(s)+1)])) == 353624
 ```
@@ -207,12 +218,14 @@ The rest of the function `sub_4731` uses these value to perform a lexicographica
 _NOTE:_ here substrings are (by construction) counted multiple times, not uniquely as in the previous function.
 
 This can be translated in Python to something like:
+
 ```python
 def sub_4731(s, target, k):
   return sorted([s[i:j] for i in range(len(s)) for j in range(i+1, len(s)+1)])[k] == target
 ```
 
 ## How to solve?
+
 Now that we have (more or less) understood what we need to do, how can we reconstruct the string? First of all let's extract the data from the binary. The following ones are all the data that we need to reconstruct the string
 
 ```python
@@ -263,6 +276,7 @@ def hash_string(s):
 ```
 
 ### Addressing the 3 "easy" loops
+
 The first three loops are decently easy to address: we extract the data from the binary and we carefully place the letters in the corresponding places.
 
 To do it we start with an empty string of length 121*7 (we have (725+1)/6 = 121 chunks of 5 chars that are mapped to 7-char chunks by the initial hashing) and we fill the places in order.
@@ -286,6 +300,7 @@ print(hashed_key)
 ```
 
 The code prints out something like this:
+
 ```
 RLKDNAABNNM_AA_C_S_AAFU_G_AAMM___AA_____AAP__X_AA_____AAJ_WV_AA_Q_T_AAO__I_AAMM___AA_____AA_____AAA__Y_AA_____AA_____AA_____AAH____AA_____AA_____AA_____AA_____AA_____AA_____AA_____AA_____AA_____AA_____AA_____AAMM___AA_____AA_NN__AA_____AA_____AA_____AAA____AA_____AA_____AA_____AA_____AA_____AA_____AAZ____AA_____AA_____AA_____AA_____AAMM___AA_____AA_____AA_____AA_____AA_____AA_____AA_____AA_____AA_____AA_____AA_____AA_NN__AAA____AA_____AA_____AA_____AA_____AA_____AA_____AA_____AA_____AA_____AAA____AA_____AA_____AAA____AA_____AA_____AA_____AA_____AA_____AA_____AA_____AAA____AA_____AA_____AA_____AA_____AA_____AA_NN__AA_____AA_____AA_____AA_____AA_____AA_NN__AA_____AA_____AA_____AA_____AAA____AA_____AA_____AA_____AAA____AA_____AAMM___AA_____AA_____AA_____AA_____AA_____AA_NN__AA_____AA_____AA_____AAMM___AA_____AA_____AA_____AA_____AA_____AA
 ```
@@ -364,6 +379,7 @@ print(gaps)
 ```
 
 This code prints `[841, 841, 841, 1690, 2527, 3353, 3360, 4196, 4197, 5863]`, meaning that we need to add, for example, `841` substrings that are lower than `check_array5[0]`. We can retrieve a set of constraints by simply looking at the starting letters of our substrings:
+
 - exactly one of the letters in the upper parts must be `< H` because of substrings 0, 1, 2
 - exactly one of the letters must be `= K` because of substring 3 (because the first occurrence of `J` is later)
 - the letter at position 18 must be `M` because of conditions 4, 5, 6

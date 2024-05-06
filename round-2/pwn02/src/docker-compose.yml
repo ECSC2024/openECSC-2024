@@ -1,0 +1,16 @@
+services:
+  yet-another-guessing-game:
+    image: cybersecnatlab/challenge-jail@sha256:2544634302f01d6ae8ee38446652dfbc9ec3cc5240c906e3e4adfdb6c2ce2a97
+    restart: unless-stopped
+    init: true
+    privileged: true
+    volumes:
+      - './build/yet_another_guessing_game:/home/user/chall:ro'
+      - './libs:/home/user/libs:ro'
+    ports:
+      - '38010:1337'
+    environment:
+      - 'FLAG=openECSC{y3t_an0th3r_br0ken_gu3ssing_g4me_[random 8]}'
+      - 'TIMEOUT=1200'
+      - 'SET_INTERPRETER=/home/user/libs/ld-linux-x86-64.so.2'
+      - 'SET_RPATH=/home/user/libs'

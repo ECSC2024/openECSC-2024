@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intel® Software Development Emulator (Intel® SDE) &mdash; Intel® SDE  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Licensing" href="license.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Intel® SDE
+          </a>
+              <div class="version">
+                9.33.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Intel® SDE User's Manual:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Intel® SDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="emulation.html">Controlling the Emulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Analysis Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tracing.html">Record and Replay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app_debug.html">Application Debugging</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Intel® SDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Intel® Software Development Emulator (Intel® SDE)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="intel-software-development-emulator-sde">
+<h1>Intel® Software Development Emulator (Intel® SDE)<a class="headerlink" href="#intel-software-development-emulator-sde" title="Permalink to this heading"></a></h1>
+<section id="product-overview">
+<h2>Product Overview<a class="headerlink" href="#product-overview" title="Permalink to this heading"></a></h2>
+<p>This emulator is called Intel® Software Development Emulator or Intel® SDE, for short.</p>
+<p>The current version is 9.33.0 and was released on Jan 07, 2024. This version corresponds to the Intel® Architecture
+Instruction Set Extensions Programming Reference revision 319433-046 and the Intel® AVX512-FP16 Architecture
+Specification available on the <a class="reference external" href="https://www.intel.com/content/www/us/en/developer/tools/isa-extensions/overview.html">Intel Instruction Set Architecture page</a>.
+The Intel® SDE release notes are <a class="reference external" href="https://www.intel.com/content/www/us/en/developer/articles/release-notes/intel-software-development-emulator-release-notes.html">here</a>.
+This is a minor update release.</p>
+<p>Intel® SDE supports the following features from previous releases:</p>
+<ul class="simple">
+<li><p>Capability to write binary instrumentation pin tools with Intel® SDE services.</p></li>
+<li><p>Emulation support for the Intel® Advanced Matrix Extensions (Intel® AMX) present on Intel® processors.</p></li>
+<li><p>Intel® Advanced Vector Extensions 512 (Intel® AVX-512) instructions present on Intel® processors.</p></li>
+<li><p>Support for the vector instructions for deep learning present on Intel® processors.</p></li>
+<li><p>Support for Intel® Advanced Vector Extensions (Intel® AVX), Intel® Streaming SIMD Extensions 4(Intel® SSE 4), AES and PCLMULQDQ.</p></li>
+<li><p>Intel® AVX2, RTM, BMI1, and BMI2 instructions, being introduced on the 4th Generation Intel® Core™ processor family.</p></li>
+<li><p>The ADOX/ADCX instructions, being introduced on the 5th Generation Intel® Core™ processor family.</p></li>
+<li><p>Support for the Intel® Secure Hash Algorithm (Intel® SHA) extensions present on the Intel® Atom™ processor family.</p></li>
+</ul>
+<p>Related useful materials:</p>
+<p>Intel is releasing this Intel® SDE so that developers can gain familiarity with our upcoming instruction set extensions.
+Intel® SDE can help ensure software is ready to take advantage of the opportunities created by these new instructions
+in our processors. We hope that developers will explore the new instructions using the currently available compilers and assemblers.</p>
+<p>Intel® SDE is built upon the Pin dynamic binary instrumentation system and the XED encoder decoder.
+Pin controls the execution of an application. Pin examines each static instruction in the application approximately once,
+as it builds traces for execution. During this process, which is called instrumentation, for each instruction encountered
+Pin asks Intel® SDE if this instruction should be emulated or not. If the instruction is to be emulated, then Intel® SDE
+tells Pin to skip over that instruction and instead branch to the appropriate emulation routine. It also tells Pin how
+to invoke that emulation function, what arguments to pass, etc.</p>
+<p>Intel® SDE queries CPUID to figure out what features to emulate. It also modifies the output of CPUID so that compiled
+applications that check for the emulated features are told that those features exist.</p>
+<p>Intel® SDE comes with several useful emulator-enabled Pin tools and the XED disassembler:</p>
+<ul class="simple">
+<li><p>The basic emulator capable of running workloads with new CPU features.</p></li>
+<li><p>Various binary instrumentation based analysis tools such as the mix histogramming tool, ASCII debug tracing
+analysis tool, and many more</p></li>
+<li><p>Transparent application debugging allows for debugging your emulated application on the system debugger.</p></li>
+<li><p>Recording and deterministic replaying of single threaded and multithreaded workloads.</p></li>
+<li><p>The XED command line tool which can disassemble PECOFF or ELF binary executables</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Intel® SDE User's Manual:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Intel® SDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="emulation.html">Controlling the Emulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpuid_emulation.html">CPUID Emulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cet.html">Control Flow Enforcement Technology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tsx.html">Running Applications with TSX</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Analysis Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="filenames.html">Controlling Output File Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chip_check.html">Chip Check Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checkers.html">Checking for Bad Pointers and Data Misalignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller.html">The Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="icount.html">Counting Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mix.html">The Histogram Analysis Tool - Mix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html">Measuring Memory Footprint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="itrace.html">Instruction Trace Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugtrace.html">The Debug ASCII Tracing Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mask_profile.html">Mask Profiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sparse.html">Sparse Instructions Analysis Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="avx_sse.html">Detecting AVX-SSE Transitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssc.html">Using SSC Marks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tracing.html">Record and Replay</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logger.html">Generating Pinballs with the Logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="replayer.html">Replaying Pinballs with the Replayer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="app_debug.html">Application Debugging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="adx_linux.html">Debugging Applications on Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adx_windows.html">Debugging Applications on Windows</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="license.html" class="btn btn-neutral float-right" title="Licensing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Intel SDE.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -38,10 +38,12 @@ The last problem to solve is that solving the system on $`Z_{2^k}`$ is not easy.
 
 In some cases the matrix $`X`$ won't be invertible, but since this is determined only by $`X \mod{2} = X_0`$, we can stop at the first step and try with another instance.
 
-Once we've found a solution $`X, Y`$, similarly as before, we can find the shared key as 
+Once we've found a solution $`X, Y`$, similarly as before, we can find the shared key as
 
-```math
+Once we've found a solution $X, Y$, similarly as before, we can find the shared key as
+$$
 key = X^{-1} \cdot A \cdot V \cdot Y = R \cdot U \cdot S
+
 ```
 
 and decrypt the flag.

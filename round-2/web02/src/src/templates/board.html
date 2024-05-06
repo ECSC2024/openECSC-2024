@@ -1,0 +1,201 @@
+{{template "header"}}
+
+<div id="noWinAlert" class="alert alert-danger d-none" role="alert">
+    Not a win yet :/
+</div>
+
+<div id="checkedBoardAlert" class="alert alert-success d-none" role="alert">
+    Board checked
+</div>
+
+<h3>Board</h3>
+
+<div id="board" class="col-xl-7 mx-auto">
+<div class="row">
+    {{range $i, $val := .Board}}
+    <div class="col">
+        <div class="card my-3 result-{{$val}}">
+            <div class="card-body">
+                <h5 class="card-title">{{if ne $val -1}}{{$val}}{{else}}&nbsp;{{end}}</h5>
+            </div>
+        </div>
+    </div>
+    {{if eq (mod $i 7) 6}}
+        </div>
+        <div id="board" class="row">
+    {{end}}
+    {{end}}
+</div>
+</div>
+
+<div class="my-3">
+    <button class="btn btn-primary mx-2" id="checkWinBtn">Check win</button>
+    <button class="btn btn-primary mx-2" id="checkBoardBtn">Admin check</button>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">You lose</h5>
+        </div>
+        <div class="modal-body">
+          You hit a bomb :(
+        </div>
+        <div class="modal-footer">
+          <a type="button" class="btn btn-primary" href="/">Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalWin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">You WIN!</h5>
+        </div>
+        <div class="modal-body">
+          Congratulations!
+        </div>
+        <div class="modal-footer">
+          <a type="button" class="btn btn-primary" href="/">Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <style>
+    .result-0 {
+        background-color: rgb(180, 255, 0);
+    }
+
+    .result-1 {
+        background-color: rgb(200, 255, 0);
+    }
+
+    .result-2 {
+        background-color: rgb(220, 255, 0);
+    }
+
+    .result-3 {
+        background-color: rgb(240, 255, 0);
+    }
+
+    .result-4 {
+        background-color: rgb(255, 250, 0);
+    }
+
+    .result-5 {
+        background-color: rgb(255, 230, 0);
+    }
+
+    .result-6 {
+        background-color: rgb(255, 210, 0);
+    }
+    
+    .result-7 {
+        background-color: rgb(255, 190, 0);
+    }
+
+    .result-8 {
+        background-color: rgb(255, 170, 0);
+    }
+
+    .result-9 {
+        background-color: rgb(255, 150, 0);
+    }
+
+
+
+    .result-100 {
+        background-color: red;
+    }
+    .flagged {
+        background-color: grey;
+    }
+  </style>
+
+<script>
+    const cards = document.getElementById('board').getElementsByClassName('card')
+    
+    for (let i = 0; i < cards.length; i++) {
+        cards[i].addEventListener('click', (e) => {
+            submitResponse(i)
+        })
+
+        cards[i].addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            cards[i].classList.toggle('flagged');
+            return false;
+        })
+    }
+
+    document.getElementById('checkWinBtn').addEventListener('click', (e) => {
+        checkWin()
+    })
+
+    document.getElementById('checkBoardBtn').addEventListener('click', (e) => {
+        checkBoard()
+    })
+
+    function submitResponse(index) {
+        fetch('/guess', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `guess=${index}`,
+        })
+            .then(response => response.text())
+            .then(data => {
+                let clickedCard = document.getElementById('board').getElementsByClassName('card')[index]
+                clickedCard.classList.add('result-' + data)
+
+
+                if (data === '100'){
+                    clickedCard.children[0].children[0].innerText = 'X'
+                    const myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {})
+                    myModal.show()
+                } else {
+                    clickedCard.children[0].children[0].innerText = data
+                }
+
+            });
+    }
+
+    function checkWin() {
+        fetch('/checkwin')
+            .then(response => response.text())
+            .then(data => {
+                if (data === 'true') {
+                    const myModal = new bootstrap.Modal(document.getElementById('modalWin'), {})
+                    myModal.show()
+                } else {
+                    const alert = document.getElementById('noWinAlert')
+                    alert.classList.remove('d-none')
+                }
+            });
+    }
+
+    function checkBoard() {
+
+        if (!confirm('Are you sure you want to check the board?')) {
+            return
+        }
+
+        fetch('/checkboard', {
+            method: 'POST',
+        })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data)
+                if (data === 'Ok') {
+                    const alert = document.getElementById('checkedBoardAlert')
+                    alert.classList.remove('d-none')
+                }
+            });
+    }
+</script>

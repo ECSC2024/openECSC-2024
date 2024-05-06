@@ -1,0 +1,1 @@
+^openECSC\{l1n34ar_c0mb1n4t10ns_l34d_t0_34sy_c0ll1s10ns_[0-9a-f]{8}\}$

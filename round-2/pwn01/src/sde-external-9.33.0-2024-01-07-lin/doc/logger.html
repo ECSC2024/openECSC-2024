@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generating Pinballs with the Logger &mdash; Intel® SDE  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Replaying Pinballs with the Replayer" href="replayer.html" />
+    <link rel="prev" title="Record and Replay" href="tracing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Intel® SDE
+          </a>
+              <div class="version">
+                9.33.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Intel® SDE User's Manual:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Intel® SDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="emulation.html">Controlling the Emulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Analysis Tools</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="tracing.html">Record and Replay</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Generating Pinballs with the Logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="replayer.html">Replaying Pinballs with the Replayer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="app_debug.html">Application Debugging</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Intel® SDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="tracing.html">Record and Replay</a></li>
+      <li class="breadcrumb-item active">Generating Pinballs with the Logger</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/logger.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="generating-pinballs-with-the-logger">
+<h1>Generating Pinballs with the Logger<a class="headerlink" href="#generating-pinballs-with-the-logger" title="Permalink to this heading"></a></h1>
+<p>The recording of a workload execution flow is called logging. This action is done in
+the <cite>logger</cite>. It can start the recording at the start of the application’s run or
+upon getting a start event from <a class="reference internal" href="controller.html#controller"><span class="std std-ref">The Controller</span></a>.</p>
+<p>At the start of the recording, the register state is captured and the logger switches
+to logging mode. In this mode every instruction is inspected and <cite>injections</cite> are
+emitted to guarantee a deterministic replay. There are two kinds of <cite>injections</cite>,
+register injections that can modify the value of a register and a memory injections
+that can modify the value of certain memory region.</p>
+<p>Like any other binary instrumentation tool, the <cite>logger</cite> is working only in user
+mode and has no visibility to ring0. This means that the recording is paused at
+the execution of system call or exception, and resumed when the kernel resumes
+the execution in user mode.</p>
+<p>The <cite>logger</cite> is using Intel® Pin system call and context change callbacks to handle these
+cases, and emits injections to the <cite>IP</cite> (i.e. the instruction pointer) to skip the
+execution of the system call, or jump to the exception/signal handler. The <cite>logger</cite>
+is also using <cite>shadow memory</cite> to detect memory regions which where modified by
+the kernel or by other external agent, thus emitting memory injections to ensure
+that the memory instruction (at <cite>replay</cite> time) will be executed with the same inputs
+as in the <cite>log</cite> time.</p>
+<p>Since <cite>pinball</cite> is a collection of files, the user specify the <cite>pinball</cite> base name.
+This name is used as prefix of the <cite>pinball</cite> files. Intel® SDE can create the directory
+in which the files will be created, freeing the user from creating empty directories
+for each and every <cite>pinball</cite>.</p>
+<p><strong>Examples for generating `pinball` for single threaded workloads</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-skx<span class="w"> </span>-log<span class="w"> </span>-log:basename<span class="w"> </span>pinballs/myapp<span class="w"> </span>--<span class="w"> </span>myapp
+</pre></div>
+</div>
+<p>In this example, the entire run of <cite>myapp</cite> is recorded in the <cite>pinballs</cite> directory.
+Each of the <cite>pinball</cite> files has the prefix ‘myapp’.</p>
+<p>You can specify analysis tools at the same run as the recording.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-skx<span class="w"> </span>-log<span class="w"> </span>-log:basename<span class="w"> </span>pinballs/myapp<span class="w"> </span>-mix<span class="w"> </span>--<span class="w"> </span>myapp
+</pre></div>
+</div>
+<p>In this example, a <cite>mix</cite> file will also be generated.</p>
+<p>You can specify start and stop events to define the region of interest.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-skx<span class="w"> </span>-log<span class="w"> </span>-log:basename<span class="w"> </span>pinballs/myapp<span class="w"> </span>-control<span class="w"> </span>start:address:myfunc,stop:icount:10000<span class="w"> </span>--<span class="w"> </span>myapp
+</pre></div>
+</div>
+<p>In this example, the recording starts at the entry to the function <cite>myfunc</cite> and stops after 10000 instructions.</p>
+<section id="multi-threading-support">
+<h2>Multi-Threading Support<a class="headerlink" href="#multi-threading-support" title="Permalink to this heading"></a></h2>
+<p>When capturing multi-threaded workload, it is not enough to record what happen in each
+thread. You must also capture the thread order when the same memory block is accessed by
+multiple threads. Intel® SDE is also needs to guarantee that the memory block that was checked
+with the shadow memory, was not changed by another thread in the time between inspecting
+the memory and the time the instruction really executed.</p>
+<p>This means, the <cite>logging</cite> multi-threaded workloads, adds significant overhead which is
+not needed for single threaded workloads. Therefore, the user must specify that the
+workload is multi-threaded to let <cite>PinPlay</cite> run in multi-threaded mode.</p>
+<p>Starting the recording in the middle of the run of multi-threaded workload, require stopping
+the application’s threads before the initial architectural state can be captured (for all
+the active threads). This means that Intel® SDE is using Intel® Pin API to stop all application’s
+threads which will cause a small delay between receiving the start event and the actual
+start of the recording.</p>
+<p>The <cite>pinball</cite> has global files and per-thread files. The per-thread files has the thread-id
+as part of the file name.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-skx<span class="w"> </span>-log<span class="w"> </span>-log:basename<span class="w"> </span>pinballs/myapp<span class="w"> </span>-log:mt<span class="w"> </span>--<span class="w"> </span>myapp
+</pre></div>
+</div>
+<p>In this example, a multi-threaded pinball will be created for myapp.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-skx<span class="w"> </span>-log<span class="w"> </span>-log:basename<span class="w"> </span>pp/myapp<span class="w"> </span>-control<span class="w"> </span>start:address:myfunc:tid2,stop:icount:10000:tid2<span class="w"> </span>--<span class="w"> </span>myapp
+</pre></div>
+</div>
+<p>In this example the start event will be fired when <cite>myfunc</cite> is called in thread number 2, and
+the stop event will be delivered after thread number 2 executes 10000 instructions. Since the
+recording is global, all the execution of the other threads will be captured in the <cite>pinball</cite>.</p>
+</section>
+<section id="focus-thread">
+<h2>Focus Thread<a class="headerlink" href="#focus-thread" title="Permalink to this heading"></a></h2>
+<p>Intel® SDE provides an option to record only one thread from the execution of multi-threaded workload.
+This is useful when the application is using symmetric programming model like <cite>openmp</cite>. Use the
+knob -log:focus-thread &lt;tid&gt; to tell which thread to capture. You must add the -log:mt knob to
+make sure that the <cite>logger</cite> is running in multi-threaded mode.</p>
+<p>Intel® SDE will use memory injections to apply the memory modifications that happen in other (i.e.
+other than the focus thread) threads, and where read by the focus thread.</p>
+<p>Sometime you don’t know which thread will execute the “interesting region”, you can use the dynamic
+focus option to tell the <cite>logger</cite> to capture the focus thread of the thread that delivered the
+start event. Use the knob -log:dynamic-focus instead of -log:focus-thread.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-skx<span class="w"> </span>-log<span class="w"> </span>-log:basename<span class="w"> </span>pinballs/myapp<span class="w"> </span>-log:mt<span class="w"> </span>-log:focus-thread<span class="w"> </span><span class="m">2</span><span class="w"> </span>--<span class="w"> </span>myapp
+</pre></div>
+</div>
+<p>In this example, a single-threaded pinball will be created for thread number 2  of myapp.</p>
+</section>
+<section id="multi-process-mode">
+<h2>Multi Process Mode<a class="headerlink" href="#multi-process-mode" title="Permalink to this heading"></a></h2>
+<p>Intel® SDE is working inside the process, and automatically injects itself into child processes.
+This means that when an application is calling <cite>fork</cite> on <cite>Linux</cite> or <cite>CreateProcess</cite> on Windows,
+Intel® SDE will trace also the newly created process. The collected <cite>pinball</cite> is still a recording
+of a single process. Therefore, Intel® SDE opens a subdirectory of the parent process <cite>pinball</cite>
+directory, and it will generate the <cite>pinball</cite> files for the child process at this directory.</p>
+<p>Intel® SDE has a special mechanism to handle memory accesses between multiple processes (using shared
+memory).</p>
+</section>
+<section id="logging-multiple-regions">
+<h2>Logging Multiple regions<a class="headerlink" href="#logging-multiple-regions" title="Permalink to this heading"></a></h2>
+<p>Tracing applications with Intel® SDE is often using the controller to define the region of
+interest. The controller supports defining multiple regions. This can happen with the
+<cite>uniform</cite> controller or when using the <cite>repeat</cite> modifier.</p>
+<p>Normally, the <cite>logger</cite> will trace only the first region that was reached. The user can
+add the knob -log:region_id and each region will be created separately, and its
+base name will get a suffix of the form &lt;basename&gt;_&lt;id&gt;.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-skx<span class="w"> </span>-log<span class="w"> </span>-log:basename<span class="w"> </span>pinballs/myapp<span class="w"> </span>-log:region_id<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-control<span class="w"> </span>start:enter_func:myfunc,stop:exit_func:myfunc,repeat<span class="w"> </span>--<span class="w"> </span>myapp
+</pre></div>
+</div>
+<p>In this example, the <cite>logger</cite> records each call to the function <cite>myfunc</cite> until
+it returns, in a separate region.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The controller stop event does not terminate the run. You can use the -early-out
+knob to tell the controller to terminate the process upon getting the stop event.</p>
+</div>
+</section>
+<section id="excluding-code">
+<h2>Excluding Code<a class="headerlink" href="#excluding-code" title="Permalink to this heading"></a></h2>
+<p>Intel® SDE provides a way to exclude code from the recording. This is useful when we want to
+skip code in spin-loops, or code in certain libraries (like system libraries). When
+excluding code, Intel® SDE will use injections to skip the code and memory injections to
+apply the memory modifications that happen when the code was excluded.</p>
+<p>Intel® SDE provides a an option to exclude entire image by using the -log:exclude-image knob.
+But, it also provides a flexible way to define the start and stop conditions for the
+code exclusion. Intel® SDE has an additional instance of the controller which service only
+the code-exclusion module. You need to specify -log:exclude-code to activate this mode,
+and use the controller with the -log:exclude:control to define this controller start
+and stop events.</p>
+<p>Similar to excluding code, Intel® SDE allow to exclude thread. In this mode the thread will
+not be captured in the <cite>pinball</cite>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-skx<span class="w"> </span>-log<span class="w"> </span>-log:basename<span class="w"> </span>pinballs/myapp<span class="w"> </span>-log:mt<span class="w"> </span>-log:exclude-code<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-control<span class="w"> </span>start:address:myfunc,stop:icount:100000000<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-log:exclude:control<span class="w"> </span>start:enter_func:spin_lock,stop:exit_func:spin_lock,repeat<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-log:exclude:control<span class="w"> </span>start:enter_func:spin_unlock,stop:exit_func:spin_unlock,repeat<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-log:exclude-thread<span class="w"> </span><span class="m">0</span><span class="w"> </span>--<span class="w"> </span>myapp
+</pre></div>
+</div>
+<p>In this example, thread 0 as well as the code in the functions spin_lock and spin_unlock
+is excluded from the <cite>pinball</cite>.</p>
+</section>
+<section id="the-pinball-files">
+<h2>The Pinball files<a class="headerlink" href="#the-pinball-files" title="Permalink to this heading"></a></h2>
+<p>The <cite>pinball</cite> format is a collection of text files that represent the recorded region.
+Some files are per thread, and in a single threaded pinball they get the <cite>.0</cite>
+addition to the base name.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" colspan="2"><p>Per-process</p></th>
+<th class="head" colspan="2"><p>Per-thread</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Type</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>.address</p></td>
+<td><p>recorded memory regions</p></td>
+<td><p>&lt;tid&gt;.dyn_text</p></td>
+<td><p>pages loaded dynamically</p></td>
+</tr>
+<tr class="row-even"><td><p>.cpuid.def</p></td>
+<td><p>emulated CPUID definition</p></td>
+<td><p>&lt;tid&gt;.race</p></td>
+<td><p>meta data for thread
+synchronization</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.log</p></td>
+<td><p>global data: SDE command,
+attributes, IPs tables,…</p></td>
+<td><p>&lt;tid&gt;.reg</p></td>
+<td><p>register injections</p></td>
+</tr>
+<tr class="row-even"><td><p>.log.txt</p></td>
+<td><p>debugging and information
+messages for the <cite>logger</cite></p></td>
+<td><p>&lt;tid&gt;.result</p></td>
+<td><p>attributes and other
+information</p></td>
+</tr>
+<tr class="row-odd"><td><p>.replay.txt</p></td>
+<td><p>debugging and information
+messages for the <cite>replayer</cite></p></td>
+<td><p>&lt;tid&gt;.sel</p></td>
+<td><p>memory injections</p></td>
+</tr>
+<tr class="row-even"><td><p>.procinfo.xml</p></td>
+<td><p>symbolic and image
+information</p></td>
+<td><p>&lt;tid&gt;.sync_text</p></td>
+<td><p>synchronization of page
+injections</p></td>
+</tr>
+<tr class="row-odd"><td><p>.text</p></td>
+<td><p>static code and data pages
+loaded at the start</p></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="the-logger-knobs">
+<h2>The Logger Knobs<a class="headerlink" href="#the-logger-knobs" title="Permalink to this heading"></a></h2>
+<p>The <cite>logger</cite> options have the ‘log:’ prefix.</p>
+<dl class="simple">
+<dt><cite>-log</cite></dt><dd><p>Activate the logger [default 0]</p>
+</dd>
+<dt><cite>-log:basename</cite></dt><dd><p>Specify base name for log files [default log]</p>
+</dd>
+<dt><cite>-log:compressed</cite></dt><dd><p>Compression method, “none”, “gzip” or “bzip2” [default none]</p>
+</dd>
+<dt><cite>-log:copy_cpuid_file</cite></dt><dd><p>Copy the chip CPUID file to the pinball even when attaching to the process [default 0]</p>
+</dd>
+<dt><cite>-log:dynamic_focus</cite></dt><dd><p>Log dynamic focus thread according to start event [default 0]</p>
+</dd>
+<dt><cite>-log:early_detach</cite></dt><dd><p>Detach after generating the log-files for the first region [default 0]</p>
+</dd>
+<dt><cite>-log:early_out</cite></dt><dd><p>Exit after generating the log-files for the first region [default 0]</p>
+</dd>
+<dt><cite>-log:exclude_code</cite></dt><dd><p>Enable code exclusion. (Range to exclude to be specified by ‘-log:exclude:…’ knobs) [default 0]</p>
+</dd>
+<dt><cite>-log:exclude_image</cite></dt><dd><p>Images to exclude from log [default “”]</p>
+</dd>
+<dt><cite>-log:exclude_thread</cite></dt><dd><p>Threads to exclude from relog [default -1]</p>
+</dd>
+<dt><cite>-log:fat</cite></dt><dd><p>Shortcut for ‘-log:whole_image’ and ‘-log:pages_early 1’ [default 0]</p>
+</dd>
+<dt><cite>-log:focus_thread</cite></dt><dd><p>Specifies which thread id to log (defaults to all) [default -1]</p>
+</dd>
+<dt><cite>-log:mp_mode</cite></dt><dd><p>Use atomic instrumentation to support cross-process memory accesses ( values: 0 - Disabled,
+1 - Enabled, 2 - to be determined according to other knobs) [default 2]</p>
+</dd>
+<dt><cite>-log:mt</cite></dt><dd><p>Trace multi-threaded program [default 0]</p>
+</dd>
+<dt><cite>-log:optimize_injections</cite></dt><dd><p>Optimize injections for single threaded relog [default 0]</p>
+</dd>
+<dt><cite>-log:optimize_rep_injections</cite></dt><dd><p>Optimize repeat string instructions injections [default 1]</p>
+</dd>
+<dt><cite>-log:optimize_syscall_mem_injections</cite></dt><dd><p>Support parsing system call to optimize and generate memory injections [default 1]</p>
+</dd>
+<dt><cite>-log:page_size</cite></dt><dd><p>Size of shadow memory page in bytes [default 4096]</p>
+</dd>
+<dt><cite>-log:pages_early</cite></dt><dd><p>Log pages of dynamically loaded libraries to the initial memory image [default 1]</p>
+</dd>
+<dt><cite>-log:pid</cite></dt><dd><p>Use PID for naming files [default 0]</p>
+</dd>
+<dt><cite>-log:race_data_size</cite></dt><dd><p>Size of data per race entry in bytes [default 128]</p>
+</dd>
+<dt><cite>-log:region_id</cite></dt><dd><p>Use region number for naming files [default 0]</p>
+</dd>
+<dt><cite>-log:stop_at_special_inst</cite></dt><dd><p>Stop logging when hit a special instruction which requires injection [default 0]</p>
+</dd>
+<dt><cite>-log:stop_at_syscall</cite></dt><dd><p>Stop log when hitting a system call instruction [default 0]</p>
+</dd>
+<dt><cite>-log:stop_at_vsyscall</cite></dt><dd><p>Stop log when hitting code at the VSYSCALL area [default 0]</p>
+</dd>
+<dt><cite>-log:syminfo</cite></dt><dd><p>Generate procinfo XML file [default 1]</p>
+</dd>
+<dt><cite>-log:whole_image</cite></dt><dd><p>Log all image pages loaded (even if not touched) [default 0]</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tracing.html" class="btn btn-neutral float-left" title="Record and Replay" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="replayer.html" class="btn btn-neutral float-right" title="Replaying Pinballs with the Replayer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Intel SDE.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

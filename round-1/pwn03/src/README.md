@@ -1,6 +1,8 @@
 README
 ======
 
+> IMPORTANT NOTE: one of the files needed to deploy this challenge is too big for GitHub. You can download it from [here](https://cloud.cybersecnatlab.it/s/CgsZsz8xoGtAypz) and place it inside the folder [host](host/) with the name `debian-12-generic-ppc64el-20240211-1654.qcow2.ready`.
+
 - the challenge runs inside a docker container in a powerpc64le virtual machine run with qemu.
 - the `host` folder contains all the deploy file.
 - change the vm root password with `virt-customize -a debian-12-generic-ppc64el-20240211-1654.qcow2.ready --root-password password:<new-password>` (from `guestfs-tools` package)

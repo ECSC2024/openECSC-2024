@@ -1,0 +1,41 @@
+{
+  "title": "Invention",
+  "description": "Inventing hash functions based on elliptic curves is not easy, but now I found out that with the quadratic twist I can lift any x! This should be enough to create a secure one.\n\nNote: the challenge is running with SageMath 10.2 on the remote server.\n\n`nc invention.challs.open.ecsc2024.it 38011`",
+  "authors": [
+    "Lorenzo Demeio <@Devrar>"
+  ],
+  "tags": [
+    "crypto"
+  ],
+  "hiddenTags": [],
+  "order": 10,
+  "flags": [
+    "^openECSC\\{l1n34ar_c0mb1n4t10ns_l34d_t0_34sy_c0ll1s10ns_[0-9a-f]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "invention.sage",
+      "type": "upload",
+      "path": "./attachments/invention.sage",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "invention.challs.open.ecsc2024.it",
+    "port": 38011
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 120
+    }
+  }
+}

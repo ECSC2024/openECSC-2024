@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Debug ASCII Tracing Tool &mdash; Intel® SDE  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Mask Profiler" href="mask_profile.html" />
+    <link rel="prev" title="Instruction Trace Tool" href="itrace.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Intel® SDE
+          </a>
+              <div class="version">
+                9.33.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Intel® SDE User's Manual:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Intel® SDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="emulation.html">Controlling the Emulation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="tools.html">Analysis Tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="filenames.html">Controlling Output File Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chip_check.html">Chip Check Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checkers.html">Checking for Bad Pointers and Data Misalignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller.html">The Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="icount.html">Counting Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mix.html">The Histogram Analysis Tool - Mix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html">Measuring Memory Footprint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="itrace.html">Instruction Trace Tool</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The Debug ASCII Tracing Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mask_profile.html">Mask Profiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sparse.html">Sparse Instructions Analysis Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="avx_sse.html">Detecting AVX-SSE Transitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssc.html">Using SSC Marks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tracing.html">Record and Replay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app_debug.html">Application Debugging</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Intel® SDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="tools.html">Analysis Tools</a></li>
+      <li class="breadcrumb-item active">The Debug ASCII Tracing Tool</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/debugtrace.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-debug-ascii-tracing-tool">
+<h1>The Debug ASCII Tracing Tool<a class="headerlink" href="#the-debug-ascii-tracing-tool" title="Permalink to this heading"></a></h1>
+<p>The debug trace analysis tool is the tool that provides basic debugging capabilities for
+small workloads. It dumps the executed instructions, memory accesses and modified registers
+values into a text file.</p>
+<p>The debug trace output file can grow to huge size, therefore it is recommended to use
+<a class="reference internal" href="controller.html#controller"><span class="std std-ref">The Controller</span></a> to define the region of interest.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-skx<span class="w"> </span>-debugtrace<span class="w"> </span>-control<span class="w"> </span>start:address:foo,stop:icount:1000<span class="w"> </span>--<span class="w"> </span>myapp
+</pre></div>
+</div>
+<p>In this example you can see instructions that modify registers (general purpose and vector),
+read from memory and write to memory.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INS</span> <span class="mh">0x401144</span>   <span class="n">BASE</span>         <span class="n">push</span> <span class="n">rbp</span>                          <span class="o">|</span> <span class="n">rsp</span> <span class="o">=</span> <span class="mh">0x7fffffffd220</span>
+<span class="n">Write</span> <span class="o">*</span><span class="p">(</span><span class="n">UINT64</span><span class="o">*</span><span class="p">)</span><span class="mh">0x7fffffffd220</span> <span class="o">=</span> <span class="mh">0x7fffffffd250</span>
+<span class="n">INS</span> <span class="mh">0x401145</span>   <span class="n">BASE</span>         <span class="n">mov</span> <span class="n">rbp</span><span class="p">,</span> <span class="n">rsp</span>                      <span class="o">|</span> <span class="n">rbp</span> <span class="o">=</span> <span class="mh">0x7fffffffd220</span>
+<span class="n">INS</span> <span class="mh">0x401148</span>   <span class="n">BASE</span>         <span class="n">sub</span> <span class="n">rsp</span><span class="p">,</span> <span class="mh">0x80</span>                     <span class="o">|</span> <span class="n">rsp</span> <span class="o">=</span> <span class="mh">0x7fffffffd1a0</span><span class="p">,</span> <span class="n">rflags</span> <span class="o">=</span> <span class="mh">0x206</span>
+<span class="n">Read</span> <span class="mi">7</span><span class="n">b5b5465_73745665_63746f72_5d53475d</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">UINT128</span><span class="o">*</span><span class="p">)</span><span class="mh">0x402010</span>
+<span class="n">INS</span> <span class="mh">0x40114f</span>   <span class="n">AVX</span>          <span class="n">vmovdqu</span> <span class="n">xmm0</span><span class="p">,</span> <span class="n">xmmword</span> <span class="n">ptr</span> <span class="p">[</span><span class="n">rip</span><span class="o">+</span><span class="mh">0xeb9</span><span class="p">]</span>
+    <span class="n">XMM0</span> <span class="o">:=</span> <span class="mi">7</span><span class="n">b5b5465_73745665_63746f72_5d53475d</span>
+    <span class="n">XMM0</span> <span class="o">:=</span>      <span class="mf">1.62559e+286</span>      <span class="mf">1.23396e+171</span>    <span class="p">(</span><span class="n">doubles</span><span class="p">)</span>
+    <span class="n">XMM0</span> <span class="o">:=</span> <span class="mf">1.13882e+36</span> <span class="mf">1.93584e+31</span> <span class="mf">4.50904e+21</span> <span class="mf">9.51515e+17</span>    <span class="p">(</span><span class="n">floats</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The debug trace analysis tool also dumps information on system calls and exceptions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Normally, the debug trace tool writes its output using a buffer, this means that when
+the application crash, it will not include the lines which are in the buffer. Use
+the <cite>-dt-flush</cite> knob to force flush after every instruction.</p>
+</div>
+<p>There are many options to control which data will be dumped into the output file. This includes
+the thread ID, symbol (function name), and line information (if exists). Alternatively, you can
+turn off some of the data dumped by default. This includes the instructions (disassembly and
+registers), system calls and memory accesses. See the knobs list below for more details.</p>
+<dl class="option-list">
+<dt><kbd><span class="option">-d<var>ebugtrace</var></span></kbd></dt>
+<dd><p>Activate the debugtrace feature [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>t_amx</var></span></kbd></dt>
+<dd><p>Format of tile data, use ‘-dt_amx LIST’ for dump options [default none]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>t_call</var></span></kbd></dt>
+<dd><p>Trace calls [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>t_circular_buffer</var></span></kbd></dt>
+<dd><p>Use a circular buffer, specifying the number of lines in the buffer [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>t_cmp_replay</var></span></kbd></dt>
+<dd><p>Special output format for comparing log with replay. Removes the following
+from output: flags register, prefetch instructions, translation memory
+strings and system calls information [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>t_color</var></span></kbd></dt>
+<dd><p>Add ANSI color codes to output for highlighting [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>t_filter_end</var></span></kbd></dt>
+<dd><p>End address of a code region to trace. [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>t_filter_no_shared_libs</var></span></kbd></dt>
+<dd><p>Do not instrument shared libraries [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>t_filter_rtn</var></span></kbd></dt>
+<dd><p>Routines to instrument [default none]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>t_filter_start</var></span></kbd></dt>
+<dd><p>Start address of a code region to trace [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>t_flush</var></span></kbd></dt>
+<dd><p>Flush output after every instruction [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>t_fp16</var></span></kbd></dt>
+<dd><p>Print vector values as an array of fp16 values [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>t_instruction</var></span></kbd></dt>
+<dd><p>Trace instructions [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>t_lines</var></span></kbd></dt>
+<dd><p>Include line number information [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>t_memory</var></span></kbd></dt>
+<dd><p>Trace memory accesses [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>t_mxcsr</var></span></kbd></dt>
+<dd><p>Emit MXCSR for each instruction [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>t_out</var></span></kbd></dt>
+<dd><p>Trace output file name [default sde-debugtrace-out.txt]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>t_print_tid</var></span></kbd></dt>
+<dd><p>Print TID for each line [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>t_rawinst</var></span></kbd></dt>
+<dd><p>Add raw instruction bytes to the disassembly [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>t_region_icount</var></span></kbd></dt>
+<dd><p>Print instruction count according to region [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>t_short_fn</var></span></kbd></dt>
+<dd><p>Limit the image file name to just the trailing path component [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>t_silent</var></span></kbd></dt>
+<dd><p>Do everything but write file (for debugging) [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>t_symbols</var></span></kbd></dt>
+<dd><p>Include symbol information [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>t_syscall</var></span></kbd></dt>
+<dd><p>Trace system calls [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>t_watch_thread</var></span></kbd></dt>
+<dd><p>Thread to watch, -1 for all [default -1]</p>
+</dd>
+</dl>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="itrace.html" class="btn btn-neutral float-left" title="Instruction Trace Tool" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mask_profile.html" class="btn btn-neutral float-right" title="Mask Profiler" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Intel SDE.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

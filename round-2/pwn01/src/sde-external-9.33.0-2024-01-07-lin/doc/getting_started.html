@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting Started &mdash; Intel® SDE  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Controlling the Emulation" href="emulation.html" />
+    <link rel="prev" title="Installing Intel® SDE" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Intel® SDE
+          </a>
+              <div class="version">
+                9.33.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Intel® SDE User's Manual:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Intel® SDE</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="emulation.html">Controlling the Emulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Analysis Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tracing.html">Record and Replay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app_debug.html">Application Debugging</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Intel® SDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Getting Started</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/getting_started.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading"></a></h1>
+<section id="running-sde">
+<h2>Running Intel® SDE<a class="headerlink" href="#running-sde" title="Permalink to this heading"></a></h2>
+<p>Intel® SDE is application level binary instrumentation based emulator.
+Running Intel® SDE on applications is of the following pattern:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>&lt;path-to-kit&gt;/sde<span class="w"> </span><span class="o">[</span>sde<span class="w"> </span>args<span class="o">]</span><span class="w"> </span>--<span class="w"> </span>user-application<span class="w"> </span><span class="o">[</span>app<span class="w"> </span>args<span class="o">]</span>
+</pre></div>
+</div>
+<p>The double dash (’–’) is important. Options to SDE go before the double dash.
+Square brackets denote optional arguments.
+Intel® SDE comes with short and long help messages. To see the short help message use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>&lt;path-to-kit&gt;/sde<span class="w"> </span>-help
+</pre></div>
+</div>
+<p>The long help message is very long</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>&lt;path-to-kit&gt;/sde<span class="w"> </span>-long-help
+</pre></div>
+</div>
+<p>In the help messages, the command line options are often displayed using underscores between words,
+but dashes may be used instead of underscores. Often the Intel® SDE help messages and this web page
+will refer to command line options as “knobs” for historical reasons.</p>
+<p>The short help message contains some top level analysis tools knobs as well as the list of supported CPUs.</p>
+<p>The ‘sde’ binary in the kit can run both 32 bits and 64 bits binaries. In Linux, the ‘sde’ binary is a 32 bits
+binary, and it can run only when the host supports running 32 bits applications. Intel® SDE kit has also the
+‘sde64’ binary, which can be used when the host supports only 64 bits applications.</p>
+<p>Intel® SDE provides many emulated CPUs to choose, both old and new CPUs. When choosing a CPU, you instruct Intel® SDE
+to verify that every executed instruction is legal (i.e. supported) by the given CPU, and to emulate the
+behavior of the CPUID instruction as if running on the emulated CPU. When not specifying the emulated CPU,
+then Intel® SDE takes the host as the executing CPU. More information on checking for legal instructions is
+available in the <a class="reference internal" href="chip_check.html#chip-check"><span class="std std-ref">Chip Check Feature</span></a> and the <a class="reference internal" href="cpuid_emulation.html#cpuid-emulation"><span class="std std-ref">CPUID Emulation</span></a> sections.</p>
+</section>
+<section id="emulate-everything-mode">
+<h2>Emulate Everything Mode<a class="headerlink" href="#emulate-everything-mode" title="Permalink to this heading"></a></h2>
+<p>Intel® SDE inject itself to sub-processes created during the run. Therefore, when you run Intel® SDE on a shell
+or command application, it will emulate all the processes launched in this session.
+On Linux you can run your favorite shell (e.g. tcsh) as with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>&lt;path-to-kit&gt;/sde<span class="w"> </span>-icl<span class="w"> </span>--<span class="w"> </span>/bin/tcsh
+</pre></div>
+</div>
+<p>This runs the shell and everything inside it as ICELAKE CPU.
+Similarly, on Windows you can use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>&lt;path-to-kit&gt;/sde<span class="w"> </span>-icl<span class="w"> </span>--<span class="w"> </span>cmd.exe
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You may experience a slow down even when the applications you are running do
+not need emulation, as in this mode, everything invoked is running under the control of Intel® SDE.</p>
+</div>
+</section>
+<section id="environment-variables">
+<h2>Environment Variables<a class="headerlink" href="#environment-variables" title="Permalink to this heading"></a></h2>
+<p>Normally, Intel® SDE pass the environment variables set in the current shell to the application to run.
+Intel® SDE also allow users to specify environment variables that will be set for the application.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>&lt;path-to-kit&gt;/sde<span class="w"> </span>-icl<span class="w"> </span>-env<span class="w"> </span>MY_ENV_VAR<span class="w"> </span><span class="s2">&quot;VALUE&quot;</span><span class="w"> </span>--<span class="w"> </span>myapp
+</pre></div>
+</div>
+</section>
+<section id="windows-installation">
+<h2>Windows Installation<a class="headerlink" href="#windows-installation" title="Permalink to this heading"></a></h2>
+<p>Whenever installing Intel® SDE on Windows without Visual Studio installed
+Make sure you have VC runtime 32 bit installation on your host.
+&lt;<a class="reference external" href="https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170">https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170</a>&gt;</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installing Intel® SDE" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="emulation.html" class="btn btn-neutral float-right" title="Controlling the Emulation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Intel SDE.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

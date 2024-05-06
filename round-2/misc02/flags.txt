@@ -1,0 +1,1 @@
+^openECSC\{i_cannot_find_a_fun_flag_and_chatgpt_is_not_helping_[a-f0-9]{8}\}$

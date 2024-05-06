@@ -1,0 +1,13 @@
+/*
+ * Copyright (C) 2015-2019 Intel Corporation.
+ * SPDX-License-Identifier: MIT
+ */
+
+Instructions for building libdwarf.so:
+o   <pin_root> is the root directory of the Pin kit.
+o   Create a directory for building the library and change to that directory.
+o   To build the library in 64 bit, run:
+    cmake -G Ninja -DARCH=intel64 -DBUILD_SHARED:BOOL=TRUE -DBUILD_NON_SHARED:BOOL=FALSE -DDO_TESTING:BOOL=FALSE -DPIN_ROOT=<pin_root> -DDWARF_WITH_LIBELF:BOOL=FALSE <pin_root>/extras/libdwarf/libdwarf-0.7.0 ;
+    ninja
+    The library will build into the src/lib/libdwarf/ directory.
+o   To build the library in 32 bit, replace -DARCH=intel64 with -DARCH=ia32 

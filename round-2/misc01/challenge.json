@@ -1,0 +1,40 @@
+{
+  "title": "Blind maze",
+  "description": "Welcome to the blind maze, you move without knowing the outcome and maybe you will reach the end, good luck.\n\nA previous winner left us a strange file. Maybe it will help you.\n\nSite: [http://blindmaze.challs.open.ecsc2024.it](http://blindmaze.challs.open.ecsc2024.it)",
+  "authors": [
+    "Giovanni Minotti <@giotino>"
+  ],
+  "tags": [
+    "misc"
+  ],
+  "hiddenTags": [],
+  "order": 20,
+  "flags": [
+    "^openECSC\\{i_found_a_map_[0-9a-f]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "capture.pcap",
+      "type": "upload",
+      "path": "./attachments/capture.pcap",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "http",
+    "url": "http://blindmaze.challs.open.ecsc2024.it:80/"
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 10
+    }
+  }
+}

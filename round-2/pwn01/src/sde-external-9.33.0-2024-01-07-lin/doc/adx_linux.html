@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Debugging Applications on Linux &mdash; Intel® SDE  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Debugging Applications on Windows" href="adx_windows.html" />
+    <link rel="prev" title="Application Debugging" href="app_debug.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Intel® SDE
+          </a>
+              <div class="version">
+                9.33.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Intel® SDE User's Manual:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Intel® SDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="emulation.html">Controlling the Emulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Analysis Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tracing.html">Record and Replay</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="app_debug.html">Application Debugging</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Debugging Applications on Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adx_windows.html">Debugging Applications on Windows</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Intel® SDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="app_debug.html">Application Debugging</a></li>
+      <li class="breadcrumb-item active">Debugging Applications on Linux</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/adx_linux.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="debugging-applications-on-linux">
+<h1>Debugging Applications on Linux<a class="headerlink" href="#debugging-applications-on-linux" title="Permalink to this heading"></a></h1>
+<p>On Linux, Intel® Pin provides application debugging capabilities utilizing GDB server protocol.
+This allows the user to use GDB to debug the emulated application. Intel® SDE extends this
+capability with disassembly and emulated registers support.</p>
+<p>You need two windows to debug your application. In the first window you launch Intel® SDE to run
+the application and in the second window you run GDB.</p>
+<p><em>Window number 1:</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-skx<span class="w"> </span>-debug<span class="w"> </span>--<span class="w"> </span>myapp
+</pre></div>
+</div>
+<p>The “-debug” knob sets several pin knobs. This will print out a port number you will
+need to connect-to from within gdb in the second window.</p>
+<p><em>Window number 2:</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>gdb<span class="w"> </span>myapp
+</pre></div>
+</div>
+<p>In GDB paste the target remote string that was provided when launching Intel® SDE and you can
+start your debugging session.</p>
+<p>Example:</p>
+<p><em>Window number 1:</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-skx<span class="w"> </span>-debug<span class="w"> </span>--<span class="w"> </span>avg512
+Application<span class="w"> </span>stopped<span class="w"> </span><span class="k">until</span><span class="w"> </span>continued<span class="w"> </span>from<span class="w"> </span>debugger.
+Start<span class="w"> </span>GDB,<span class="w"> </span><span class="k">then</span><span class="w"> </span>issue<span class="w"> </span>this<span class="w"> </span><span class="nb">command</span><span class="w"> </span>at<span class="w"> </span>the<span class="w"> </span><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>prompt:
+target<span class="w"> </span>remote<span class="w"> </span>:38049
+</pre></div>
+</div>
+<p><em>Window number 2:</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>gdb<span class="w"> </span>avg512
+GNU<span class="w"> </span>gdb<span class="w"> </span><span class="o">(</span>GDB<span class="o">)</span><span class="w"> </span><span class="m">9</span>.1
+Copyright<span class="w"> </span><span class="o">(</span>C<span class="o">)</span><span class="w"> </span><span class="m">2020</span><span class="w"> </span>Free<span class="w"> </span>Software<span class="w"> </span>Foundation,<span class="w"> </span>Inc.
+License<span class="w"> </span>GPLv3+:<span class="w"> </span>GNU<span class="w"> </span>GPL<span class="w"> </span>version<span class="w"> </span><span class="m">3</span><span class="w"> </span>or<span class="w"> </span>later<span class="w"> </span>&lt;http://gnu.org/licenses/gpl.html&gt;
+This<span class="w"> </span>is<span class="w"> </span>free<span class="w"> </span>software:<span class="w"> </span>you<span class="w"> </span>are<span class="w"> </span>free<span class="w"> </span>to<span class="w"> </span>change<span class="w"> </span>and<span class="w"> </span>redistribute<span class="w"> </span>it.
+There<span class="w"> </span>is<span class="w"> </span>NO<span class="w"> </span>WARRANTY,<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>extent<span class="w"> </span>permitted<span class="w"> </span>by<span class="w"> </span>law.
+Type<span class="w"> </span><span class="s2">&quot;show copying&quot;</span><span class="w"> </span>and<span class="w"> </span><span class="s2">&quot;show warranty&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>details.
+This<span class="w"> </span>GDB<span class="w"> </span>was<span class="w"> </span>configured<span class="w"> </span>as<span class="w"> </span><span class="s2">&quot;x86_64-pc-linux-gnu&quot;</span>.
+Type<span class="w"> </span><span class="s2">&quot;show configuration&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>configuration<span class="w"> </span>details.
+For<span class="w"> </span>bug<span class="w"> </span>reporting<span class="w"> </span>instructions,<span class="w"> </span>please<span class="w"> </span>see:
+&lt;http://www.gnu.org/software/gdb/bugs/&gt;.
+Find<span class="w"> </span>the<span class="w"> </span>GDB<span class="w"> </span>manual<span class="w"> </span>and<span class="w"> </span>other<span class="w"> </span>documentation<span class="w"> </span>resources<span class="w"> </span>online<span class="w"> </span>at:
+<span class="w">    </span>&lt;http://www.gnu.org/software/gdb/documentation/&gt;.
+
+For<span class="w"> </span>help,<span class="w"> </span><span class="nb">type</span><span class="w"> </span><span class="s2">&quot;help&quot;</span>.
+Type<span class="w"> </span><span class="s2">&quot;apropos word&quot;</span><span class="w"> </span>to<span class="w"> </span>search<span class="w"> </span><span class="k">for</span><span class="w"> </span>commands<span class="w"> </span>related<span class="w"> </span>to<span class="w"> </span><span class="s2">&quot;word&quot;</span>...
+Reading<span class="w"> </span>symbols<span class="w"> </span>from<span class="w"> </span>obj-intel64/avg_avx512.intel64.noopt.exe...
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>target<span class="w"> </span>remote<span class="w"> </span>:38049
+Remote<span class="w"> </span>debugging<span class="w"> </span>using<span class="w"> </span>:38049
+0x00002aaaaaaac1f0<span class="w"> </span><span class="k">in</span><span class="w"> </span>_start<span class="w"> </span><span class="o">()</span><span class="w"> </span>from<span class="w"> </span>/lib64/ld-linux-x86-64.so.2
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span><span class="k">break</span><span class="w"> </span>main
+Breakpoint<span class="w"> </span><span class="m">1</span><span class="w"> </span>at<span class="w"> </span>0x401666:<span class="w"> </span>file<span class="w"> </span>avg_avx512.c,<span class="w"> </span>line<span class="w"> </span><span class="m">138</span>.
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>cont
+Continuing.
+
+Breakpoint<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>main<span class="w"> </span><span class="o">(</span><span class="nv">argc</span><span class="o">=</span><span class="m">1</span>,<span class="w"> </span><span class="nv">argv</span><span class="o">=</span>0x7fffffffd3b8<span class="o">)</span><span class="w"> </span>at<span class="w"> </span>avg_avx512.c:138
+<span class="m">138</span><span class="w">         </span>work_mode_t<span class="w"> </span><span class="nv">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ALL<span class="p">;</span>
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>list
+<span class="m">135</span>
+<span class="m">136</span><span class="w">     </span>int<span class="w"> </span>main<span class="o">(</span>int<span class="w"> </span>argc,<span class="w"> </span>char<span class="w"> </span>*argv<span class="o">[])</span>
+<span class="m">137</span><span class="w">     </span><span class="o">{</span>
+<span class="m">138</span><span class="w">         </span>work_mode_t<span class="w"> </span><span class="nv">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ALL<span class="p">;</span>
+<span class="m">139</span><span class="w">         </span>unsigned<span class="w"> </span>int<span class="w"> </span><span class="nv">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>array_size<span class="p">;</span>
+<span class="m">140</span>
+<span class="m">141</span><span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="o">(</span>argc<span class="w"> </span>&gt;<span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="m">142</span><span class="w">             </span><span class="k">if</span><span class="w"> </span><span class="o">(</span>strcmp<span class="o">(</span>argv<span class="o">[</span><span class="m">1</span><span class="o">]</span>,<span class="w"> </span><span class="s2">&quot;scalar&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="o">)</span>
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span><span class="k">break</span><span class="w"> </span>calc_avg_vector
+Breakpoint<span class="w"> </span><span class="m">2</span><span class="w"> </span>at<span class="w"> </span>0x401285:<span class="w"> </span>file<span class="w"> </span>avg_avx512.c,<span class="w"> </span>line<span class="w"> </span><span class="m">87</span>.
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>c
+Continuing.
+
+Breakpoint<span class="w"> </span><span class="m">2</span>,<span class="w"> </span>calc_avg_vector<span class="w"> </span><span class="o">(</span><span class="k">in</span><span class="o">=</span>0x256,<span class="w"> </span><span class="nv">n</span><span class="o">=</span><span class="m">4061683432</span>,<span class="w"> </span><span class="nv">avg</span><span class="o">=</span>0x2aaaf1b5d9a0,<span class="w"> </span><span class="nv">stddev</span><span class="o">=</span>0x7fffffffd018<span class="o">)</span>
+<span class="w">    </span>at<span class="w"> </span>avg_avx512.c:87
+<span class="m">87</span><span class="w">      </span><span class="o">{</span>
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>next
+<span class="m">89</span><span class="w">          </span>unsigned<span class="w"> </span>int<span class="w"> </span><span class="nv">nn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">(</span>n/8<span class="o">)</span>*8<span class="p">;</span>
+...
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>x/10i<span class="w"> </span><span class="nv">$pc</span>
+<span class="o">=</span>&gt;<span class="w"> </span>0x4013b8<span class="w"> </span>&lt;calc_avg_vector+307&gt;:<span class="w">      </span>vmovups<span class="w"> </span>-0x290<span class="o">(</span>%rbp<span class="o">)</span>,%ymm0
+<span class="w">   </span>0x4013c0<span class="w"> </span>&lt;calc_avg_vector+315&gt;:<span class="w">      </span>vcvtps2pd<span class="w"> </span>%ymm0,%zmm0
+<span class="w">   </span>0x4013c6<span class="w"> </span>&lt;calc_avg_vector+321&gt;:<span class="w">      </span>vmovups<span class="w"> </span>%zmm0,-0x170<span class="o">(</span>%rbp<span class="o">)</span>
+<span class="w">   </span>0x4013d0<span class="w"> </span>&lt;calc_avg_vector+331&gt;:<span class="w">      </span>vmovups<span class="w"> </span>-0x170<span class="o">(</span>%rbp<span class="o">)</span>,%zmm0
+<span class="w">   </span>0x4013da<span class="w"> </span>&lt;calc_avg_vector+341&gt;:<span class="w">      </span>vmovups<span class="w"> </span>%zmm0,-0x130<span class="o">(</span>%rbp<span class="o">)</span>
+<span class="w">   </span>0x4013e4<span class="w"> </span>&lt;calc_avg_vector+351&gt;:<span class="w">      </span>vmovups<span class="w"> </span>-0x270<span class="o">(</span>%rbp<span class="o">)</span>,%zmm0
+<span class="w">   </span>0x4013ee<span class="w"> </span>&lt;calc_avg_vector+361&gt;:<span class="w">      </span>vmovups<span class="w"> </span>-0x130<span class="o">(</span>%rbp<span class="o">)</span>,%zmm1
+<span class="w">   </span>0x4013f8<span class="w"> </span>&lt;calc_avg_vector+371&gt;:<span class="w">      </span>vaddpd<span class="w"> </span>%zmm1,%zmm0,%zmm0
+<span class="w">   </span>0x4013fe<span class="w"> </span>&lt;calc_avg_vector+377&gt;:<span class="w">      </span>vmovupd<span class="w"> </span>%zmm0,-0xf0<span class="o">(</span>%rbp<span class="o">)</span>
+<span class="w">   </span>0x401408<span class="w"> </span>&lt;calc_avg_vector+387&gt;:<span class="w">      </span>vmovups<span class="w"> </span>-0xf0<span class="o">(</span>%rbp<span class="o">)</span>,%zmm0
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>p/x<span class="w"> </span><span class="nv">$zmm1</span>.v16_int32
+<span class="nv">$2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span>0xaacce4a0,<span class="w"> </span>0x2aaa,<span class="w"> </span>0x1,<span class="w"> </span>0x0,<span class="w"> </span>0xaacce148,<span class="w"> </span>0x2aaa,<span class="w"> </span>0xaaab4ccc,<span class="w"> </span>0x2aaa,<span class="w"> </span>0x0,<span class="w"> </span>0x0,<span class="w"> </span>0xf216a600,
+<span class="w">      </span>0x2aaa,<span class="w"> </span>0x1,<span class="w"> </span>0x2aaa,<span class="w"> </span>0x0,<span class="w"> </span>0x0<span class="o">}</span>
+...
+</pre></div>
+</div>
+<p>As you can see in this example, all GDB commands are available. You can set breakpoints,
+see the values of variables and registers, examine the code and memory, and use the debugging
+next, step and continue as in any debugging session.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can use GDB print command to dump also emulated registers. This means that you can print
+ZMM and mask registers even on machines that do not support Intel® AVX-512 Architecture.</p>
+</div>
+<section id="sde-gbd-custom-commands">
+<h2>Intel® SDE GBD Custom Commands<a class="headerlink" href="#sde-gbd-custom-commands" title="Permalink to this heading"></a></h2>
+<p>Intel® SDE extends GDB commands via the <cite>monitor</cite> GDB command. You can use the monitor <cite>help</cite> command to see
+these extended commands.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>monitor<span class="w"> </span><span class="nb">help</span>
+general<span class="w">                    </span>-<span class="w"> </span>General<span class="w"> </span>commands.
+breakpoints<span class="w">                </span>-<span class="w"> </span>Breakpoint<span class="w"> </span>commands.
+tracepoints<span class="w">                </span>-<span class="w"> </span>Tracepoint<span class="w"> </span>commands.
+registers<span class="w">                  </span>-<span class="w"> </span>Register<span class="w"> </span>names.
+sde<span class="w">                        </span>-<span class="w"> </span>Commands<span class="w"> </span>specific<span class="w"> </span>to<span class="w"> </span>Intel<span class="o">(</span>R<span class="o">)</span><span class="w"> </span>SDE.
+<span class="nb">type</span><span class="w"> </span><span class="s2">&quot;help &lt;category&gt;&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nb">help</span><span class="w"> </span>on<span class="w"> </span>commands<span class="w"> </span><span class="k">in</span><span class="w"> </span>that<span class="w"> </span>category.
+
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>monitor<span class="w"> </span><span class="nb">help</span><span class="w"> </span>sde
+xdis<span class="w"> </span>ADDRESS<span class="w"> </span>NBYTES<span class="w">        </span>-<span class="w"> </span>Disassemble<span class="w"> </span>NBYTES<span class="w"> </span>at<span class="w"> </span>ADDRESS
+xdis-xml<span class="w"> </span>ADDRESS<span class="w"> </span>NBYTES<span class="w">    </span>-<span class="w"> </span>Disassemble<span class="w"> </span>NBYTES<span class="w"> </span>at<span class="w"> </span>ADDRESS<span class="w"> </span>with<span class="w"> </span>XML<span class="w"> </span>formatting
+register-information<span class="w">       </span>-<span class="w"> </span>Description<span class="w"> </span>of<span class="w"> </span>supported<span class="w"> </span>registers
+tile-get-config<span class="w">            </span>-<span class="w"> </span>Dump<span class="w"> </span>the<span class="w"> </span>AMX<span class="w"> </span>state<span class="w"> </span>configurations
+tile-get-regs<span class="w"> </span>&lt;as<span class="w"> </span>type&gt;<span class="w">    </span>-<span class="w"> </span>Dump<span class="w"> </span>the<span class="w"> </span>TMM<span class="w"> </span>tiles.
+<span class="w">                            </span><span class="nb">type</span><span class="w"> </span>options:<span class="w"> </span>flat,<span class="w"> </span>int16,<span class="w"> </span>int16x2,<span class="w"> </span>int16x4,
+<span class="w">                            </span>int32,<span class="w"> </span>int8,<span class="w"> </span>int8x4,<span class="w"> </span>uint32.<span class="w"> </span>use<span class="w"> </span><span class="s2">&quot;dec&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>decimal<span class="w"> </span>base
+tile-get-reg<span class="w"> </span>N<span class="w"> </span>&lt;as<span class="w"> </span>type&gt;<span class="w">   </span>-<span class="w"> </span>Dump<span class="w"> </span>the<span class="w"> </span>TMM<span class="w"> </span>tile<span class="w"> </span>N.
+<span class="w">                            </span><span class="nb">type</span><span class="w"> </span>options:<span class="w"> </span>flat,<span class="w"> </span>int16,<span class="w"> </span>int16x2,<span class="w"> </span>int16x4,
+<span class="w">                            </span>int32,<span class="w"> </span>int8,<span class="w"> </span>int8x4,<span class="w"> </span>uint32.<span class="w"> </span>use<span class="w"> </span><span class="s2">&quot;dec&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>decimal<span class="w"> </span>base
+k-set-reg<span class="w"> </span>N<span class="w"> </span>VALUE<span class="w">          </span>-<span class="w"> </span>Set<span class="w"> </span>the<span class="w"> </span>mask<span class="w"> </span>register<span class="w"> </span>N<span class="w"> </span>to<span class="w"> </span>hex<span class="w"> </span>VALUE
+zmm-set-reg<span class="w"> </span>N<span class="w"> </span>VALUE<span class="w">        </span>-<span class="w"> </span>Set<span class="w"> </span>the<span class="w"> </span>ZMM<span class="w"> </span>register<span class="w"> </span>N<span class="w"> </span>to<span class="w"> </span>hex<span class="w"> </span>VALUE.
+k-get-regs<span class="w">                 </span>-<span class="w"> </span>Dump<span class="w"> </span>the<span class="w"> </span>mask<span class="w"> </span>registers
+k-get-reg<span class="w"> </span>N<span class="w">                </span>-<span class="w"> </span>Dump<span class="w"> </span>the<span class="w"> </span>mask<span class="w"> </span>register<span class="w"> </span>N
+zmm-get-reg<span class="w"> </span>N<span class="w">              </span>-<span class="w"> </span>Dump<span class="w"> </span>the<span class="w"> </span>ZMM<span class="w"> </span>register<span class="w"> </span>N<span class="w"> </span><span class="k">in</span><span class="w"> </span>various<span class="w"> </span>formats
+zmm-get-regs<span class="w">               </span>-<span class="w"> </span>Dump<span class="w"> </span>the<span class="w"> </span>ZMM<span class="w"> </span>registers<span class="w"> </span><span class="k">in</span><span class="w"> </span>hex
+</pre></div>
+</div>
+<p>With our example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>monitor<span class="w"> </span>xdis<span class="w"> </span>0x4013b8<span class="w"> </span><span class="m">40</span>
+XDIS<span class="w"> </span>00000000004013b8:<span class="w">  </span>AVX<span class="w"> </span>C5FC108570FDFFFF<span class="w">               </span>vmovups<span class="w"> </span>ymm0,<span class="w"> </span>ymmword<span class="w"> </span>ptr<span class="w"> </span><span class="o">[</span>rbp-0x290<span class="o">]</span>
+XDIS<span class="w"> </span>00000000004013c0:<span class="w"> </span>AVX512EVEX<span class="w"> </span>62F17C485AC0<span class="w">             </span>vcvtps2pd<span class="w"> </span>zmm0,<span class="w"> </span>ymm0
+XDIS<span class="w"> </span>00000000004013c6:<span class="w"> </span>AVX512EVEX<span class="w"> </span>62F17C48118590FEFFFF<span class="w">     </span>vmovups<span class="w"> </span>zmmword<span class="w"> </span>ptr<span class="w"> </span><span class="o">[</span>rbp-0x170<span class="o">]</span>,<span class="w"> </span>zmm0
+XDIS<span class="w"> </span>00000000004013d0:<span class="w"> </span>AVX512EVEX<span class="w"> </span>62F17C48108590FEFFFF<span class="w">     </span>vmovups<span class="w"> </span>zmm0,<span class="w"> </span>zmmword<span class="w"> </span>ptr<span class="w"> </span><span class="o">[</span>rbp-0x170<span class="o">]</span>
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>monitor<span class="w"> </span>zmm-get-reg<span class="w"> </span><span class="m">1</span>
+<span class="nv">zmm01</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nv">v16_float</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span>-3.63963e-13,<span class="w"> </span><span class="m">1</span>.5305e-41,<span class="w"> </span><span class="m">1</span>.4013e-45,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>-3.6394e-13,<span class="w"> </span><span class="m">1</span>.5305e-41,<span class="w"> </span>-3.0429e-13,
+<span class="w">                  </span><span class="m">1</span>.5305e-41,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>-2.9839e+30,<span class="w"> </span><span class="m">1</span>.5305e-41,<span class="w"> </span><span class="m">1</span>.4013e-45,<span class="w"> </span><span class="m">1</span>.5305e-41,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span><span class="o">}</span>,
+<span class="w">    </span><span class="nv">v8_double</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="m">2</span>.31779e-310,<span class="w"> </span><span class="m">4</span>.94066e-324,<span class="w"> </span><span class="m">2</span>.31779e-310,<span class="w"> </span><span class="m">2</span>.31779e-310,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">2</span>.31784e-310,<span class="w"> </span><span class="m">2</span>.31764e-310,<span class="w"> </span><span class="m">0</span><span class="o">}</span>,
+<span class="w">    </span><span class="nv">v64_int8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span>-96,<span class="w"> </span>-28,<span class="w"> </span>-52,<span class="w"> </span>-86,<span class="w"> </span>-86,<span class="w"> </span><span class="m">42</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">72</span>,<span class="w"> </span>-31,<span class="w"> </span>-52,<span class="w"> </span>-86,<span class="w"> </span>-86,<span class="w"> </span><span class="m">42</span>,
+<span class="w">                 </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>-52,<span class="w"> </span><span class="m">76</span>,<span class="w"> </span>-85,<span class="w"> </span>-86,<span class="w"> </span>-86,<span class="w"> </span><span class="m">42</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>-90,<span class="w"> </span><span class="m">22</span>,<span class="w"> </span>-14,<span class="w"> </span>-86,
+<span class="w">                 </span><span class="m">42</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>-86,<span class="w"> </span><span class="m">42</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span><span class="o">}</span>,
+<span class="w">    </span><span class="nv">v32_int16</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span>-7008,<span class="w"> </span>-21812,<span class="w"> </span><span class="m">10922</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>-7864,<span class="w"> </span>-21812,<span class="w"> </span><span class="m">10922</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">19660</span>,<span class="w"> </span>-21845,<span class="w"> </span><span class="m">10922</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,
+<span class="w">                 </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>-23040,<span class="w"> </span>-3562,<span class="w"> </span><span class="m">10922</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">10922</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span><span class="o">}</span>,
+<span class="w">    </span><span class="nv">v16_int32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span>-1429412704,<span class="w"> </span><span class="m">10922</span>,<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>-1429413560,<span class="w"> </span><span class="m">10922</span>,<span class="w"> </span>-1431614260,<span class="w"> </span><span class="m">10922</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>-233396736,<span class="w"> </span><span class="m">10922</span>,
+<span class="w">                 </span><span class="m">1</span>,<span class="w"> </span><span class="m">10922</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span><span class="o">}</span>,
+<span class="w">    </span><span class="nv">v8_int64</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="m">46912498361504</span>,<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="m">46912498360648</span>,<span class="w"> </span><span class="m">46912496159948</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">46913694377472</span>,<span class="w"> </span><span class="m">46909632806913</span>,<span class="w"> </span><span class="m">0</span><span class="o">}</span>,
+<span class="w">    </span><span class="nv">v64_uint8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="m">160</span>,<span class="w"> </span><span class="m">228</span>,<span class="w"> </span><span class="m">204</span>,<span class="w"> </span><span class="m">170</span>,<span class="w"> </span><span class="m">170</span>,<span class="w"> </span><span class="m">42</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">72</span>,<span class="w"> </span><span class="m">225</span>,<span class="w"> </span><span class="m">204</span>,<span class="w"> </span><span class="m">170</span>,<span class="w"> </span><span class="m">170</span>,<span class="w"> </span><span class="m">42</span>,<span class="w"> </span><span class="m">0</span>,
+<span class="w">                 </span><span class="m">0</span>,<span class="w"> </span><span class="m">204</span>,<span class="w"> </span><span class="m">76</span>,<span class="w"> </span><span class="m">171</span>,<span class="w"> </span><span class="m">170</span>,<span class="w"> </span><span class="m">170</span>,<span class="w"> </span><span class="m">42</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">166</span>,<span class="w"> </span><span class="m">22</span>,<span class="w"> </span><span class="m">242</span>,<span class="w"> </span><span class="m">170</span>,<span class="w"> </span><span class="m">42</span>,<span class="w"> </span><span class="m">0</span>
+<span class="w">                 </span><span class="m">0</span>,<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">170</span>,<span class="w"> </span><span class="m">42</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span><span class="o">}</span>,
+<span class="w">    </span><span class="nv">v32_uint16</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="m">58528</span>,<span class="w"> </span><span class="m">43724</span>,<span class="w"> </span><span class="m">10922</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">57672</span>,<span class="w"> </span><span class="m">43724</span>,<span class="w"> </span><span class="m">10922</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">19660</span>,<span class="w"> </span><span class="m">43691</span>,<span class="w"> </span><span class="m">10922</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,
+<span class="w">                  </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">42496</span>,<span class="w"> </span><span class="m">61974</span>,<span class="w"> </span><span class="m">10922</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">10922</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span><span class="o">}</span>,
+<span class="w">    </span><span class="nv">v16_uint32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="m">2865554592</span>,<span class="w"> </span><span class="m">10922</span>,<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">2865553736</span>,<span class="w"> </span><span class="m">10922</span>,<span class="w"> </span><span class="m">2863353036</span>,<span class="w"> </span><span class="m">10922</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">4061570560</span>,<span class="w"> </span><span class="m">10922</span>,
+<span class="w">                  </span><span class="m">1</span>,<span class="w"> </span><span class="m">10922</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span><span class="o">}</span>,
+<span class="w">    </span><span class="nv">v8_uint64</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="m">46912498361504</span>,<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="m">46912498360648</span>,<span class="w"> </span><span class="m">46912496159948</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">46913694377472</span>,<span class="w"> </span><span class="m">46909632806913</span>,<span class="w"> </span><span class="m">0</span><span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Intel® SDE application debugging provides an advanced breakpoints options that use binary instrumentation
+to detect the triggering event. More information is available in the <cite>monitor help breakpoints</cite> command.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="app_debug.html" class="btn btn-neutral float-left" title="Application Debugging" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="adx_windows.html" class="btn btn-neutral float-right" title="Debugging Applications on Windows" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Intel SDE.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

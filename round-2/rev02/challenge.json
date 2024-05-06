@@ -1,0 +1,36 @@
+{
+  "title": "arxelerated",
+  "description": "oh no, my device starts shredding everything I put in it...\n```bash\nqemu-system-arm -cpu cortex-m3 -machine lm3s6965evb -kernel arxelerated -semihosting -semihosting-config enable=on,target=native -serial mon:stdio\n```",
+  "authors": [
+    "Andrea Raineri <@Rising>"
+  ],
+  "tags": [
+    "rev"
+  ],
+  "hiddenTags": [],
+  "order": 41,
+  "flags": [
+    "^openECSC\\{1_l1k3_th1z_n3w_ins7ructi0n5_[a-f0-9]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "arxelerated",
+      "type": "upload",
+      "path": "./attachments/arxelerated",
+      "dynamic": false
+    },
+    {
+      "name": "out.enc",
+      "type": "upload",
+      "path": "./attachments/out.enc",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

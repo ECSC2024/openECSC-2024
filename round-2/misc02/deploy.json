@@ -1,0 +1,51 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "build": "src/docker",
+      "internet": true,
+      "kvm": true,
+      "limits": {
+        "memory": 4096,
+        "cpus": 4
+      },
+      "volumes": [
+        {
+          "type": "bind",
+          "host": "src/docker/run.sh",
+          "container": "/run.sh",
+          "readonly": true
+        },
+        {
+          "type": "bind",
+          "host": "src/docker/vm.qcow2",
+          "container": "/vm.qcow2",
+          "readonly": true
+        }
+      ],
+      "expose": [
+        {
+          "type": "http",
+          "container": 5000,
+          "hostname": "remotediagnostics.challs.open.ecsc2024.it",
+          "secure": false
+        },
+        {
+          "type": "tcp",
+          "host": 5985,
+          "container": 5985
+        },
+        {
+          "type": "tcp",
+          "host": 3389,
+          "container": 3389
+        },
+        {
+          "type": "tcp",
+          "host": 5900,
+          "container": 5900
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Controlling Output File Names &mdash; Intel® SDE  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chip Check Feature" href="chip_check.html" />
+    <link rel="prev" title="Analysis Tools" href="tools.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Intel® SDE
+          </a>
+              <div class="version">
+                9.33.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Intel® SDE User's Manual:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Intel® SDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="emulation.html">Controlling the Emulation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="tools.html">Analysis Tools</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Controlling Output File Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chip_check.html">Chip Check Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checkers.html">Checking for Bad Pointers and Data Misalignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller.html">The Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="icount.html">Counting Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mix.html">The Histogram Analysis Tool - Mix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html">Measuring Memory Footprint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="itrace.html">Instruction Trace Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugtrace.html">The Debug ASCII Tracing Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mask_profile.html">Mask Profiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sparse.html">Sparse Instructions Analysis Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="avx_sse.html">Detecting AVX-SSE Transitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssc.html">Using SSC Marks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tracing.html">Record and Replay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app_debug.html">Application Debugging</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Intel® SDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="tools.html">Analysis Tools</a></li>
+      <li class="breadcrumb-item active">Controlling Output File Names</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/filenames.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="controlling-output-file-names">
+<h1>Controlling Output File Names<a class="headerlink" href="#controlling-output-file-names" title="Permalink to this heading"></a></h1>
+<p>Intel® SDE includes many analysis tools. These tools normally dump their analysis results into output file.
+Intel® SDE provides a central mechanism for controlling output files. Additionally Intel® SDE and Intel® Pin might
+emit log files for indicating error conditions.</p>
+<p>By default the output files are created at the current working directory. Intel® SDE allows the user to
+specify a directory for all output files, use this option with the <cite>-odir</cite> knob. Alternatively, Intel® SDE
+allow the user to modify the working directory which ends with the same result. Use this option with
+the knobs <cite>-work-dir</cite>.</p>
+<p>Multi-process applications create child processes and by default Intel® SDE inject itself to these child
+process. Preventing the multiple process from writing to the same output file is critical to ensure
+that the output from each process is intact. Intel® SDE provides an option to attach the process ID for
+every output file and avoid these conflicts. Additionally, on Linux Intel® SDE preserves the process
+ID hierarchy. Intel® SDE default behavior is keep the output file of the main process as defined by the
+tool (or the user), and then attach the process ID (and on Linux the parent process ID) to the output
+files of the child processes.</p>
+<p>Here is the list of options available for controlling log files and output file names.</p>
+<dl class="option-list">
+<dt><kbd><span class="option">-c<var>hild_pid</var></span></kbd></dt>
+<dd><p>Add process id to child process output file name [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-f<var>ile_suffix</var></span></kbd></dt>
+<dd><p>Common suffix to add to output files (before .txt) [default ‘’]</p>
+</dd>
+<dt><kbd><span class="option">-i</span></kbd></dt>
+<dd><p>Add process id to all output file name [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-o<var>dir</var></span></kbd></dt>
+<dd><p>Add directory to output file name [default ‘’]</p>
+</dd>
+<dt><kbd><span class="option">-p<var>id_hierarchy</var></span></kbd></dt>
+<dd><p>Add parent process id with pid to output file name (Linux only) [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-w<var>ork_dir</var></span></kbd></dt>
+<dd><p>SDE working directory for files [default ‘’]</p>
+</dd>
+<dt><kbd><span class="option">-l<var>ogfile</var></span></kbd></dt>
+<dd><p>The log file path and file name [default pintool.log]</p>
+</dd>
+<dt><kbd><span class="option">-p<var>in_log_file</var></span></kbd></dt>
+<dd><p>Specify a pin log file [default pin-log.txt]</p>
+</dd>
+<dt><kbd><span class="option">-u<var>nique_logfile</var></span></kbd></dt>
+<dd><p>The pin/sde log file names will contain the pid [default 0]</p>
+</dd>
+</dl>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tools.html" class="btn btn-neutral float-left" title="Analysis Tools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="chip_check.html" class="btn btn-neutral float-right" title="Chip Check Feature" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Intel SDE.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

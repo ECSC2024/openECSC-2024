@@ -1,0 +1,41 @@
+{
+  "title": "Blind Writer",
+  "description": "Even though I'm blind, I have a dying passion for writing books!\nI have decided to create a book writing program to help me with my passion.\nTry it out and let me know what you think!\n\n`nc blindwriter.challs.open.ecsc2024.it 38003`",
+  "authors": [
+    "Nalin Dhingra <@Lotus>"
+  ],
+  "tags": [
+    "pwn"
+  ],
+  "hiddenTags": [],
+  "order": 32,
+  "flags": [
+    "^openECSC\\{H34p_F3ng_5hu1_t0_NU11_p0iS0n_w1tH_a_7ast3_0f_R0P_Ch41n_[0-9a-f]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "blindwriter.tar.gz",
+      "type": "upload",
+      "path": "./attachments/blindwriter.tar.gz",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "blindwriter.challs.open.ecsc2024.it",
+    "port": 38003
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 120
+    }
+  }
+}

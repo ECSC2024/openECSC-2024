@@ -1,0 +1,17 @@
+services:
+  blind_writer:
+    image: cybersecnatlab/challenge-jail@sha256:bb312ecc2c7f7fa41d0cc40d6d2a1e25f27b1a7c1517c902eb33d11b0420319c
+    restart: unless-stopped
+    init: true
+    privileged: true
+    volumes:
+      - './bin/blind_writer:/home/user/chall:ro'
+      - './glibc/ld-linux-x86-64.so.2:/home/user/ld-linux.so:ro'
+      - './glibc/:/home/user/libs:ro'
+    ports:
+      - '38003:1337'
+    environment:
+      - 'FLAG=openECSC{H34p_F3ng_5hu1_t0_NU11_p0iS0n_w1tH_a_7ast3_0f_R0P_Ch41n_[random 8]}'
+      - 'TIMEOUT=120'
+      - 'SET_INTERPRETER=/home/user/ld-linux.so'
+      - 'SET_RPATH=/home/user/libs'

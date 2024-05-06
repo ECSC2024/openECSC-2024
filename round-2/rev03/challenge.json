@@ -1,0 +1,30 @@
+{
+  "title": "Anti-rev",
+  "description": "Good luck finding the secret word for my super secure program!",
+  "authors": [
+    "Lorenzo Catoni <@lorenzcat>"
+  ],
+  "tags": [
+    "rev"
+  ],
+  "hiddenTags": [],
+  "order": 42,
+  "flags": [
+    "^openECSC\\{f4nCy_n0p5!_[0-9a-f]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "anti-rev",
+      "type": "upload",
+      "path": "./attachments/anti-rev",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

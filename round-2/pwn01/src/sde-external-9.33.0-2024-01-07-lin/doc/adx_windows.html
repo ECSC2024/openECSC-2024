@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Debugging Applications on Windows &mdash; Intel® SDE  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Debugging Applications on Linux" href="adx_linux.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Intel® SDE
+          </a>
+              <div class="version">
+                9.33.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Intel® SDE User's Manual:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Intel® SDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="emulation.html">Controlling the Emulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Analysis Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tracing.html">Record and Replay</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="app_debug.html">Application Debugging</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adx_linux.html">Debugging Applications on Linux</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Debugging Applications on Windows</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Intel® SDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="app_debug.html">Application Debugging</a></li>
+      <li class="breadcrumb-item active">Debugging Applications on Windows</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/adx_windows.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="debugging-applications-on-windows">
+<h1>Debugging Applications on Windows<a class="headerlink" href="#debugging-applications-on-windows" title="Permalink to this heading"></a></h1>
+<p>On Windows, Intel® Pin provides application debugging with a debugger extensions package
+that use the  GDB server protocal to communicate between the debugger and the
+emulated process. This mechanism provides the Microsoft Debugger the information it needs.</p>
+<p>This a very strong and significant feature on SDE. Users can debug applications
+that run under SDE on Windows using Visual Studio versions: 2015 &amp; 2017.</p>
+<p>The experience is just like debugging a native application in Visual Studio, except
+that the user is debugging an application as it is emulated by Intel® SDE.</p>
+<p>For Visual Studio versions: 2015 use the <cite>sde-msvs2015-3.0.3.msi</cite> package.
+For Visual Studio versions: 2017 use the <cite>SdeVS2017Plugin.vsix</cite> package.
+These packages can be download from the same place as the Intel® SDE kit.</p>
+<section id="capabilities">
+<h2>Capabilities<a class="headerlink" href="#capabilities" title="Permalink to this heading"></a></h2>
+<p>The Intel® SDE extensions to MSVS give you the following capabilities.</p>
+<ul class="simple">
+<li><p>The ability to launch a debug session under SDE.</p></li>
+<li><p>An extension to the standard MSVS disassembly window that knows about new instructions.</p></li>
+<li><p>Setting breakpoints and using single-step over new instructions.</p></li>
+<li><p>A new window for emulated register. This window displays the values of emulated registers.
+The values can be displayed in various formats.</p></li>
+<li><p>A new “SDE console” window which can be used to pass additional debugging commands.</p></li>
+</ul>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h2>
+<p>The host should be at least Windows 10 and Visual Studio 2015 or 2017. You can use any of the
+editions (Ultimate, Professional, etc.), except that the Express edition doesn’t work.
+The Intel® SDE VS installer contains the MSVS GUI integration feature. It is not paired to any
+particular Intel® SDE version or chip architecture. It contains no confidential information.
+You can upgrade SDE without changing the MSI. As new features become available in the MSVS
+integration, we will provide new packages.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Debugger extensions package to newer version of MSVS are not available yet.</p>
+</div>
+</section>
+<section id="instructions">
+<h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this heading"></a></h2>
+<p>First, install the prerequisites listed above. Then, do the following to enable debugging with SDE:</p>
+<p>If you do not already have an MSVS project file, you must create one.  I typically create an empty
+project and specify the executable that I want to debug in the “Application Command” property.
+Also set the “Application Command Arguments”, if you have any.
+At the top of the project properties there is a drop-down labeled “Debugger to launch”.
+Change this drop-down to “SDE Debugger”. Set the “SDE Kit Directory” property to point to
+the root of your SDE kit.  There is a &lt;Browse&gt; option that allows you to choose the directory
+with the file browser. Click OK to save your changes.</p>
+<p>Edit “SDE Kit Directory” under:  Debug -&gt; Options and Settings … -&gt; Intel(R) SDE debugger.</p>
+<a class="reference internal image-reference" href="_images/kit-specification.png"><img alt="_images/kit-specification.png" src="_images/kit-specification.png" style="width: 600px;" /></a>
+<p>Then set the “Application command” and relevant “SDE Command Arguments” fields in project properties.</p>
+<a class="reference internal image-reference" href="_images/vs-proj.jpg"><img alt="_images/vs-proj.jpg" src="_images/vs-proj.jpg" style="width: 600px;" /></a>
+<p>Before starting the debugger, you probably want to set some breakpoints in your application.
+Do this by opening a source file in MSVS, navigate to a line, and press F9.
+When you are ready, start debugging either by pressing F5 or start debugging option in the
+<cite>Debug</cite> menu.</p>
+<a class="with-border reference internal image-reference" href="_images/source-window.png"><img alt="_images/source-window.png" class="with-border" src="_images/source-window.png" style="width: 500px;" /></a>
+<p>Once a debugger session is started, you can view the emulated registers and see the emulated
+instructions. Open the Emulated Registers window by choosing “DEBUG-&gt;Windows-&gt;Emulated Registers”
+in the IDE. Open the disassembly window by choosing “DEBUG-&gt;Windows-&gt;Disassembly”.</p>
+<a class="reference internal image-reference" href="_images/regs-and-disasm.png"><img alt="_images/regs-and-disasm.png" src="_images/regs-and-disasm.png" style="width: 800px;" /></a>
+<p>By right clicking on a register, you can change its display format to various formats.
+This includes single and double precision, signed/unsigned integer widths in hex or decimal view.</p>
+<a class="reference internal image-reference" href="_images/emulated-regs.png"><img alt="_images/emulated-regs.png" src="_images/emulated-regs.png" style="width: 600px;" /></a>
+<p>In the Intel® SDE console window, you have various lower level options for talking to SDE using the
+same command syntax used with GDB on Linux. Open this window by choosing
+“DEBUG-&gt;Windows-&gt;Intel(R) SDE Console”.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="adx_linux.html" class="btn btn-neutral float-left" title="Debugging Applications on Linux" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Intel SDE.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

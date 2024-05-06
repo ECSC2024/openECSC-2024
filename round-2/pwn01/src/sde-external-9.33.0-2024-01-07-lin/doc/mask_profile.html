@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mask Profiler &mdash; Intel® SDE  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Sparse Instructions Analysis Tool" href="sparse.html" />
+    <link rel="prev" title="The Debug ASCII Tracing Tool" href="debugtrace.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Intel® SDE
+          </a>
+              <div class="version">
+                9.33.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Intel® SDE User's Manual:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Intel® SDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="emulation.html">Controlling the Emulation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="tools.html">Analysis Tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="filenames.html">Controlling Output File Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chip_check.html">Chip Check Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checkers.html">Checking for Bad Pointers and Data Misalignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller.html">The Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="icount.html">Counting Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mix.html">The Histogram Analysis Tool - Mix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html">Measuring Memory Footprint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="itrace.html">Instruction Trace Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugtrace.html">The Debug ASCII Tracing Tool</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Mask Profiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sparse.html">Sparse Instructions Analysis Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="avx_sse.html">Detecting AVX-SSE Transitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssc.html">Using SSC Marks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tracing.html">Record and Replay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app_debug.html">Application Debugging</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Intel® SDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="tools.html">Analysis Tools</a></li>
+      <li class="breadcrumb-item active">Mask Profiler</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/mask_profile.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mask-profiler">
+<h1>Mask Profiler<a class="headerlink" href="#mask-profiler" title="Permalink to this heading"></a></h1>
+<p>Intel® AVX-512 Architecture added mask registers. These registers control which elements in
+the vector register are written. Similarly they can be used to avoid memory faults when
+accessing beyond the page boundary.</p>
+<p>Intel® SDE provides two mask profiling features. The simple mask profiler and the dynamic mask
+profiler which has a richer analysis capabilities.</p>
+<section id="simple-mask-profiler">
+<h2>Simple Mask Profiler<a class="headerlink" href="#simple-mask-profiler" title="Permalink to this heading"></a></h2>
+<p>The simple mask profiler calculates mask usages across the entire thread. It provides the
+following mask usage information.</p>
+<ul class="simple">
+<li><p>Total number of executed instructions</p></li>
+<li><p>Total number of masked instructions</p></li>
+<li><p>How many times all the mask bits were set (all ones)</p></li>
+<li><p>How many times all the masked bits were off (all zeros)</p></li>
+<li><p>Instructions with exactly one bit set</p></li>
+<li><p>Instructions were only the low bit is set (like a scalar instruction)</p></li>
+<li><p>Usage of each mask register</p></li>
+<li><p>Breakdown per number of elements</p></li>
+</ul>
+<p>The output looks like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TID</span><span class="p">:</span> <span class="mi">0</span>
+<span class="o">----------------------------------------------------------------</span>
+<span class="n">icount</span><span class="p">:</span> <span class="mi">170734</span>
+
+<span class="n">uses</span><span class="p">:</span> <span class="mi">1920</span>
+<span class="n">all_ones</span><span class="p">:</span> <span class="mi">555</span>
+<span class="n">all_zeros</span><span class="p">:</span> <span class="mi">1365</span>
+<span class="n">one_hot</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">scalarish</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">mask_regs_used</span><span class="p">:</span> <span class="mi">2</span>
+<span class="n">regid_r</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="mi">555</span>
+<span class="n">regid_r</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="mi">1365</span>
+<span class="n">regid_w</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="mi">1365</span>
+<span class="n">popcnt</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="mi">1365</span>
+<span class="n">popcnt</span><span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="mi">555</span>
+
+<span class="n">VECTOR_ELEMENTS</span> <span class="p">:</span> <span class="mi">16</span>
+<span class="n">uses</span><span class="p">:</span> <span class="mi">1110</span>
+<span class="n">all_ones</span><span class="p">:</span> <span class="mi">555</span>
+<span class="n">all_zeros</span><span class="p">:</span> <span class="mi">555</span>
+<span class="n">one_hot</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">scalarish</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">popcnt</span><span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="mi">555</span>
+</pre></div>
+</div>
+<p>This tool provides the following  knobs:</p>
+<dl class="option-list">
+<dt><kbd><span class="option">-m<var>ask_profile</var></span></kbd></dt>
+<dd><p>Enable mask profiling [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-o<var>mask_profile</var></span></kbd></dt>
+<dd><p>Specify profile file output name [default sde-mask-profile.txt]</p>
+</dd>
+</dl>
+</section>
+<section id="dynamic-mask-profiler">
+<h2>Dynamic Mask Profiler<a class="headerlink" href="#dynamic-mask-profiler" title="Permalink to this heading"></a></h2>
+<p>The dynamic mask profiler provides detailed mask usage information per instruction.
+This information includes:</p>
+<ul class="simple">
+<li><p>The instruction address and disassembly</p></li>
+<li><p>Image and function names</p></li>
+<li><p>Execution count, how many times the instruction was executed</p></li>
+<li><p>Computation count, how many vector elements were executed based on the mask bits</p></li>
+<li><p>Utilization count, percentage of computation count divided by maximal count</p></li>
+<li><p>Specific analysis for sparse (gather and scatter) instructions, which includes
+an option to analyze converting gather to shuffle.</p></li>
+</ul>
+<p>Example for the dynamic mask profiler output:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;instruction-details&gt;</span>
+<span class="w">   </span><span class="nt">&lt;IP&gt;</span><span class="w"> </span>0x401546<span class="w"> </span><span class="nt">&lt;/IP&gt;</span>
+<span class="w">   </span><span class="nt">&lt;disassembly&gt;</span><span class="w"> </span>vgatherdps<span class="w"> </span>zmm0,<span class="w"> </span>k1,<span class="w"> </span>dword<span class="w"> </span>ptr<span class="w"> </span>[rax+zmm5*1]<span class="w"> </span><span class="nt">&lt;/disassembly&gt;</span>
+<span class="w">   </span><span class="nt">&lt;source-location&gt;</span>
+<span class="w">      </span><span class="nt">&lt;img&gt;</span><span class="w"> </span>myapp<span class="w"> </span><span class="nt">&lt;/img&gt;</span>
+<span class="w">      </span><span class="nt">&lt;routine&gt;</span><span class="w"> </span>foo<span class="w"> </span><span class="nt">&lt;/routine&gt;</span>
+<span class="w">   </span><span class="nt">&lt;/source-location&gt;</span>
+<span class="w">   </span><span class="nt">&lt;dynamic-stats&gt;</span>
+<span class="w">      </span><span class="nt">&lt;execution-counts&gt;</span><span class="w"> </span>60<span class="w"> </span><span class="nt">&lt;/execution-counts&gt;</span>
+<span class="w">      </span><span class="nt">&lt;computation-count&gt;</span><span class="w"> </span>120<span class="w"> </span><span class="nt">&lt;/computation-count&gt;</span>
+<span class="w">      </span><span class="nt">&lt;percent-of-max-computation&gt;</span><span class="w">  </span>12.500<span class="w"> </span><span class="nt">&lt;/percent-of-max-computation&gt;</span>
+<span class="w">      </span><span class="nt">&lt;popcount&gt;</span>
+<span class="w">         </span><span class="nt">&lt;popcount2&gt;</span><span class="w"> </span>60<span class="w"> </span><span class="nt">&lt;/popcount2&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/popcount&gt;</span>
+<span class="w">      </span><span class="nt">&lt;sparse-stats&gt;</span>
+<span class="w">         </span><span class="nt">&lt;touched-pages&gt;</span>
+<span class="w">            </span><span class="nt">&lt;pages&gt;</span><span class="w"> </span>1<span class="w"> </span><span class="nt">&lt;/pages&gt;</span>
+<span class="w">            </span><span class="nt">&lt;count&gt;</span><span class="w"> </span>60<span class="w"> </span><span class="nt">&lt;/count&gt;</span>
+<span class="w">         </span><span class="nt">&lt;/touched-pages&gt;</span>
+<span class="w">         </span><span class="nt">&lt;touched-cachelines&gt;</span>
+<span class="w">            </span><span class="nt">&lt;cachelines&gt;</span><span class="w"> </span>2<span class="w"> </span><span class="nt">&lt;/cachelines&gt;</span>
+<span class="w">            </span><span class="nt">&lt;count&gt;</span><span class="w"> </span>60<span class="w"> </span><span class="nt">&lt;/count&gt;</span>
+<span class="w">         </span><span class="nt">&lt;/touched-cachelines&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/sparse-stats&gt;</span>
+<span class="w">   </span><span class="nt">&lt;/dynamic-stats&gt;</span>
+<span class="nt">&lt;/instruction-details&gt;</span>
+</pre></div>
+</div>
+<p>The knobs for the dynamic mask profiler:</p>
+<dl class="option-list">
+<dt><kbd><span class="option">-d<var>yn_mask_detect_g2s</var></span></kbd></dt>
+<dd><p>Enable g2s (gather to shuffle) detection [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>yn_mask_page_bytes</var></span></kbd></dt>
+<dd><p>Define the page size for sparse stats [default 4096]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>yn_mask_profile</var></span></kbd></dt>
+<dd><p>Enable dynamic mask profiling [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-o<var>dyn_mask_detect_g2s</var></span></kbd></dt>
+<dd><p>Specify the g2s detection file output name [default sde-detect-g2s.txt]</p>
+</dd>
+<dt><kbd><span class="option">-o<var>dyn_mask_profile</var></span></kbd></dt>
+<dd><p>Specify profile file output name [default sde-dyn-mask-profile.txt]</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="debugtrace.html" class="btn btn-neutral float-left" title="The Debug ASCII Tracing Tool" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sparse.html" class="btn btn-neutral float-right" title="Sparse Instructions Analysis Tool" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Intel SDE.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -14,7 +14,6 @@ The application allows uploading arbitrary files with a Content-Type that doesn'
 
 Then, you can report the uploaded file to the admin bot to be visited, the flag is stored as a cookie in the admin browser.
 
-
 ## Solution
 
 To get the flag we need to force the admin bot to execute a script, there are multiple solution paths for this problem:
@@ -25,7 +24,6 @@ To get the flag we need to force the admin bot to execute a script, there are mu
 
 - Adding the "\r" character in the Content-Type, causing the PHP code to refuse setting the header. This causes the server to use the default `text/html` value as Content-Type
 
-
 Using the XSS we can easily leak the flag to a webhook with a payload similar to:
 
 ```html
@@ -35,6 +33,7 @@ Using the XSS we can easily leak the flag to a webhook with a payload similar to
 ```
 
 ## Exploit
+
 ```python
 import requests
 import re

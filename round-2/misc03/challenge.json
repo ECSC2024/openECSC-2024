@@ -1,0 +1,30 @@
+{
+  "title": "Random Noise",
+  "description": "While listening to my favourite radio station, the wonderful music has been interrupted by this weird radio signal.\nWe only know that the embedded message is generated using this driver:\n\n```python\ndef generate_packet(sequence_no, data):\n    packet = b'\\x13\\x37' + b'\\xbe\\xef' # SRC and DST\n    packet += sequence_no.to_bytes(1, 'big') # sequence number\n    packet += len(data).to_bytes(1, 'big') + data.encode() # len + data\n    packet += zlib.crc32(packet).to_bytes(4, 'big') # crc\n    return b'\\xaa\\xaa' + packet\n```",
+  "authors": [
+    "Aleandro Prudenzano <@drw0if>"
+  ],
+  "tags": [
+    "misc"
+  ],
+  "hiddenTags": [],
+  "order": 23,
+  "flags": [
+    "^openECSC\\{f5k_m0dul4710n_15_n07_50_h4rd_70_5p07_4nd_15_4l50_4n_3ff3c71v3_w4y_70_5h4r3_53cr375_f5756e7a\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "RF_48ksps_100bps.float",
+      "type": "upload",
+      "path": "./attachments/RF_48ksps_100bps.float",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

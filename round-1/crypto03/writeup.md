@@ -23,13 +23,14 @@ In the first expression, if we send the value `user_seed = 2**256 - 1` (thus 256
 Instead, in the second expression, if we send `user_seed = 0`, we will obviously have `(seed + user_seed) ^ seed = seed ^ seed = 0`.
 
 Now let's create two queries to obtain information on the $i$-th bit of `seed`. Since `seed` is a prime, we know that its least significant bit is 1. Let's write it as
-```
+
+```python
 seed = high_s * 2**(i + 1) + b * 2**i + low_s
 ```
 
 and `user_seed` as
 
-```
+```python
 user_seed = high_us * 2**i + low_us
 ```
 
@@ -37,7 +38,7 @@ where `b` is the bit we want to find.
 
 The first query we'll send will be
 
-```
+```python
 high_us = 2**(256 - i) - 2
 low_us = 2**i - 2
 ```
@@ -55,10 +56,12 @@ asking for the first expression. For how `low_us` is constructed we have `(low_s
 2. `b = 0` In this case, we have`((2*high_s + b) ^ high_us) + (2*high_s + b) + 1 = 2**(256 - i) - 1`.
 
 Our second query will be
-```
+
+```python
 high_us = 2**(256 - i) - 1
 low_us = 0
 ```
+
 asking for the second expression. Again, the `low` part is determined and is `(low_s + low_us) ^ low_s = 0`. For the `high` part we have the two cases
 
 1. `b = 1`. Here we obtain `((2*high_s + b) + high_us) ^ (2*high_s + b) = 2**(256 - i) + (2*high_s) ^ (2*high_s + b) = 2**(256 - i) + 1`.

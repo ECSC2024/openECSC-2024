@@ -1,0 +1,42 @@
+{
+  "title": "The Wilderness",
+  "description": "Hey I heard you are a wild one!\n\n`nc thewilderness.challs.open.ecsc2024.it 38012`",
+  "authors": [
+    "Giulia Martino <@Giulia>",
+    "Oliver Lyak <@ly4k>"
+  ],
+  "tags": [
+    "pwn"
+  ],
+  "hiddenTags": [],
+  "order": 30,
+  "flags": [
+    "^openECSC\\{h3r3_1n_th3_wild3rness_w3_l1ke_h1d1ng_1n_the_sh4dow_[0-9a-f]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "the_wilderness.zip",
+      "type": "upload",
+      "path": "./attachments/the_wilderness.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "thewilderness.challs.open.ecsc2024.it",
+    "port": 38012
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 15
+    }
+  }
+}

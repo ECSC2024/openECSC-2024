@@ -1,0 +1,40 @@
+{
+  "title": "Revenge of the Blind maze",
+  "description": "Welcome back to the blind maze, this time you'll have a harder time finding the flag, good luck.\n\nSite: [http://blindmazerevenge.challs.open.ecsc2024.it](http://blindmazerevenge.challs.open.ecsc2024.it)",
+  "authors": [
+    "Giovanni Minotti <@giotino>"
+  ],
+  "tags": [
+    "misc"
+  ],
+  "hiddenTags": [],
+  "order": 21,
+  "flags": [
+    "^openECSC\\{flag_inside_the_attachment_yes_we_like_it_[0-9a-f]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "capture.pcap",
+      "type": "upload",
+      "path": "./attachments/capture.pcap",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "http",
+    "url": "http://blindmazerevenge.challs.open.ecsc2024.it:80/"
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 10
+    }
+  }
+}

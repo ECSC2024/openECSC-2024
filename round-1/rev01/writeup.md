@@ -1,6 +1,7 @@
 # openECSC 2024 - Round 1
 
 ## [rev] fsvm (175 solves)
+
 I want this VM to generate a good description, but all I get is "no".
 
 Author: Matteo Protopapa <@matpro>

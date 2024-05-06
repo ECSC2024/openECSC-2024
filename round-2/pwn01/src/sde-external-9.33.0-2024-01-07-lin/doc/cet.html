@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Control Flow Enforcement Technology &mdash; Intel® SDE  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Running Applications with TSX" href="tsx.html" />
+    <link rel="prev" title="CPUID Emulation" href="cpuid_emulation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Intel® SDE
+          </a>
+              <div class="version">
+                9.33.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Intel® SDE User's Manual:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Intel® SDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="emulation.html">Controlling the Emulation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cpuid_emulation.html">CPUID Emulation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Control Flow Enforcement Technology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tsx.html">Running Applications with TSX</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Analysis Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tracing.html">Record and Replay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app_debug.html">Application Debugging</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Intel® SDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="emulation.html">Controlling the Emulation</a></li>
+      <li class="breadcrumb-item active">Control Flow Enforcement Technology</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/cet.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="control-flow-enforcement-technology">
+<h1>Control Flow Enforcement Technology<a class="headerlink" href="#control-flow-enforcement-technology" title="Permalink to this heading"></a></h1>
+<p>Control Flow Enforcement Technology (Intel® CET), is hardware extension to detect malware
+that try to gain control over software using return-oriented-programming (ROP), or using
+indirect jump-oriented-programming (JOP). This feature was introduced in Intel® Tiger Lake CPU.</p>
+<p>Intel® SDE provides emulation for Intel® CET technology for checking the readiness of software compiled
+with Intel® CET. This emulation requires some initialization and emulation work for existing (legacy)
+instructions and this adds performance overhead even when the emulation is not required.
+Therefore users need to tell Intel® SDE to activate Intel® CET emulation.</p>
+<p>Please note that Intel® Pin, the binary instrumentation system, violates Intel® CET checks in its normal
+work. Therefore, when running Intel® SDE with Intel® CET compiled application on host that supports Intel® CET,
+the hardware native checks are disabled by Intel® Pin.</p>
+<section id="running-sde-with-cet-application">
+<h2>Running Intel® SDE with Intel® CET application<a class="headerlink" href="#running-sde-with-cet-application" title="Permalink to this heading"></a></h2>
+<p>The basic command line invocation is:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>&lt;path-to-kit&gt;/sde<span class="w"> </span>-tgl<span class="w"> </span>-cet<span class="w"> </span>--<span class="w"> </span>&lt;app&gt;
+</pre></div>
+</div>
+<p>This enables only stack-checks and it is checks the correlation between call and return instructions
+across the entire process. This means that if there are issues in the system libraries, they will be
+reports. Intel® SDE provides a filtering mechanism to ignore and recover from failures. See below for OS
+specific considerations.</p>
+</section>
+<section id="stack-checks">
+<h2>Stack Checks<a class="headerlink" href="#stack-checks" title="Permalink to this heading"></a></h2>
+<p>Running Intel® SDE with the -cet knob turns on the stack checks. For each thread SDE allocates a shadow stack
+at the size of 1 page (4Kb) and sets the top of this page as the SSP (shadow stack pointer). If this size
+is not enough, then you can use the shadow stack size knob to change it, see the knobs below for the knob
+name.</p>
+<p>Intel® SDE reports the errors it detect to a file. You can instruct Intel® SDE to dump the errors to the standard
+error or to a file name other than the default.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-tgl<span class="w"> </span>-cet<span class="w"> </span>-cet-stderr<span class="w"> </span>--<span class="w"> </span>hello
+
+Control<span class="w"> </span>flow<span class="w"> </span>error:<span class="w"> </span>IP:<span class="w"> </span>0x400764<span class="w"> </span>expected<span class="w"> </span><span class="o">(</span>shadow<span class="w"> </span>stack<span class="o">)</span>:<span class="w"> </span>0x2aaac06d6c36<span class="w"> </span>got<span class="w"> </span><span class="o">(</span>actual<span class="w"> </span><span class="k">return</span><span class="w"> </span>address<span class="o">)</span>:<span class="w"> </span>0x2aaac06ea6d3
+INS:<span class="w"> </span>ret
+</pre></div>
+</div>
+<p>Intel® SDE also provides an option to dump the thread’s call stack at the time of the failure. This makes it easier
+to debug the problem. The default call stack depth is 10 entries, but you can control it with a knob.
+When the application is compiled with debug information, the call stack includes source file and source line
+for each entry in the stack.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-tgl<span class="w"> </span>-cet<span class="w"> </span>-cet-stderr<span class="w"> </span>-cet-call-stack<span class="w"> </span>--<span class="w"> </span>hello
+
+Control<span class="w"> </span>flow<span class="w"> </span>error:<span class="w"> </span>IP:<span class="w"> </span>0x0000000000400764<span class="w"> </span>expected<span class="w"> </span><span class="o">(</span>shadow<span class="w"> </span>stack<span class="o">)</span>:<span class="w"> </span>0x00002aaac064dc36<span class="w"> </span>got<span class="w"> </span><span class="o">(</span>actual<span class="w"> </span><span class="k">return</span><span class="w"> </span>address<span class="o">)</span>:<span class="w"> </span>0x00002aaac06616d3
+INS:<span class="w"> </span>ret
+
+Call<span class="w"> </span>stack:
+<span class="c1"># IP FUNCTION IMAGE NAME FILE NAME:LINE:COLUMN</span>
+<span class="m">0</span><span class="c1"># 0x00002aaac064db50 __libc_start_main /lib64/libc.so.6:0x00001eb50</span>
+<span class="m">1</span><span class="c1"># 0x0000000000400520 __libc_start_main@plt&lt;full-path-to-application&gt;/application.exe:0x000000520</span>
+<span class="m">2</span><span class="c1"># 0x0000000000400550 _start &lt;full-path-to-application&gt;/application.exe:0x000000550 at /usr/src/packages/BUILD/glibc-2.11.3/csu/../sysdeps/x86_64/elf/start.S:65</span>
+</pre></div>
+</div>
+<p>See below in the OS specific information for more details.</p>
+</section>
+<section id="indirect-branch-checks">
+<h2>Indirect Branch Checks<a class="headerlink" href="#indirect-branch-checks" title="Permalink to this heading"></a></h2>
+<p>Intel® CET indirect branch checks consists of a state machine and a special instruction ‘ENDBRANCH’. This instruction
+(encoded as a NOP instruction in older CPUs) marks the indirect branch target as safe. It is added by the
+compiler when compiling for indirect branch tracking (IBT). Since applications can load dynamic libraries which
+were not compiled with Indirect Branch Tracking (i.e. ‘ENDBRACH’), a special legacy compatibility mode was added.</p>
+<p>The ‘ENDBRACH’ legacy compatibility treatment allows a Intel® CET enabled program to check for indirect branches even in
+this case where not all the dynamic libraries have been compiled accordingly. This legacy compatibility support
+relies on the system loader and the OS to set the legacy code page bitmap. Intel® SDE provides indirect branch checks
+even when the system loader and runtime libraries are not enabled with Intel® CET IBT support.</p>
+<p>Intel® SDE provides two options to turn on indirect branch checks: include images or exclude images.
+When you include an image the checks happen only in the address range of the included images, when you exclude images,
+the checks happen on all the images except for the addresses in the excluded images. You should use the include image
+option when you compile your executable or dynamic libraries with IBT and you want to check these images.
+You should use the exclude images option when running with runtime libraries which are already compiled with IBT
+and you want to exclude only specific runtime libraries. You can use the -cet_endbr_exe knob as a shortcut to the
+-cet_endbr_include_image and the name of the executable.</p>
+<p>The ‘ENDBRANCH’ instruction emulation require setting the Intel® Tiger Lake chip knob (or newer).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>sde<span class="w"> </span>-tgl<span class="w"> </span>-cet<span class="w"> </span>-cet-stderr<span class="w"> </span>-cet-endbr-exe<span class="w"> </span>--<span class="w"> </span>hello
+
+Control<span class="w"> </span>flow<span class="w"> </span>ENDBRANCH<span class="w"> </span>error<span class="w"> </span>detected<span class="w"> </span>at<span class="w"> </span>IP:<span class="w"> </span>0x400550<span class="w"> </span>INS:<span class="w"> </span>xor<span class="w"> </span>ebp,<span class="w"> </span>ebp
+Last<span class="w"> </span>branch<span class="w"> </span>IP:<span class="w"> </span>0x2aaaaaaabb44<span class="w"> </span>INS:<span class="w"> </span>jmp<span class="w"> </span>r12
+
+Control<span class="w"> </span>flow<span class="w"> </span>ENDBRANCH<span class="w"> </span>error<span class="w"> </span>detected<span class="w"> </span>at<span class="w"> </span>IP:<span class="w"> </span>0x400780<span class="w"> </span>INS:<span class="w"> </span>mov<span class="w"> </span>qword<span class="w"> </span>ptr<span class="w"> </span><span class="o">[</span>rsp-0x28<span class="o">]</span>,<span class="w"> </span>rbp
+Last<span class="w"> </span>branch<span class="w"> </span>IP:<span class="w"> </span>0x2aabc0a2abc0<span class="w"> </span>INS:<span class="w"> </span>call<span class="w"> </span>rbx
+
+Control<span class="w"> </span>flow<span class="w"> </span>error:<span class="w"> </span>IP:<span class="w"> </span>0x400764<span class="w"> </span>expected<span class="w"> </span><span class="o">(</span>shadow<span class="w"> </span>stack<span class="o">)</span>:<span class="w"> </span>0x2aabc0a2ac36<span class="w"> </span>got<span class="w"> </span><span class="o">(</span>actual<span class="w"> </span><span class="k">return</span><span class="w"> </span>address<span class="o">)</span>:<span class="w"> </span>0x2aabc0a3e6d3
+
+INS:<span class="w"> </span>ret
+
+Control<span class="w"> </span>flow<span class="w"> </span>ENDBRANCH<span class="w"> </span>error<span class="w"> </span>detected<span class="w"> </span>at<span class="w"> </span>IP:<span class="w"> </span>0x400620<span class="w"> </span>INS:<span class="w"> </span>cmp<span class="w"> </span>byte<span class="w"> </span>ptr<span class="w"> </span><span class="o">[</span>rip+0x200659<span class="o">]</span>,<span class="w"> </span>0x0
+Last<span class="w"> </span>branch<span class="w"> </span>IP:<span class="w"> </span>0x2aaaaaab9865<span class="w"> </span>INS:<span class="w"> </span>call<span class="w"> </span>qword<span class="w"> </span>ptr<span class="w"> </span><span class="o">[</span>r12+rax*8<span class="o">]</span>
+
+Control<span class="w"> </span>flow<span class="w"> </span>ENDBRANCH<span class="w"> </span>error<span class="w"> </span>detected<span class="w"> </span>at<span class="w"> </span>IP:<span class="w"> </span>0x40080c<span class="w"> </span>INS:<span class="w"> </span>push<span class="w"> </span>rbp
+Last<span class="w"> </span>branch<span class="w"> </span>IP:<span class="w"> </span>0x2aaaaaab9882<span class="w"> </span>INS:<span class="w"> </span>call<span class="w"> </span>rax
+</pre></div>
+</div>
+<p>As you can see in the output in this case, Intel® SDE checks for both stack and indirect jumps. The indirect branch
+checks happen only to the executable, and it found a few places where the indirect jumps where from an external
+library to the executable. You can see in the report the indirect branch target address and the branch that cause
+this report.</p>
+</section>
+<section id="debugging-and-raising-exceptions">
+<h2>Debugging and Raising exceptions<a class="headerlink" href="#debugging-and-raising-exceptions" title="Permalink to this heading"></a></h2>
+<p>Intel® SDE emulation is focused on developing applications enabled with Intel® CET technology. Therefore, the default action
+when an issue is detected is to write it to the output file (or standard error), and continue or abort. Intel® SDE can
+provide a call-stack which can be handy to find the issue, but this is not the same as debugging the issues with
+a debugger.</p>
+<p>Intel® SDE provides transparent application debugging that allow the developer to debug the emulated application as if
+it is running in the native environment. In this case, when issue is detected, a debugger breakpoint can be triggered.
+This provides the developer full visibility to the issue.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>&lt;path-to-kit&gt;/sde<span class="w"> </span>-debug<span class="w"> </span>-tgl<span class="w"> </span>-cet<span class="w"> </span>-cet-breakpoint<span class="w"> </span>--<span class="w"> </span>&lt;app&gt;
+</pre></div>
+</div>
+<p>Some applications would like to handle the Intel® CET issues internally by interception the exception. For such applications
+Intel® SDE can raise exception or signal when detecting issues.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>&lt;path-to-kit&gt;/sde<span class="w"> </span>-tgl<span class="w"> </span>-cet<span class="w"> </span>-cet-raise<span class="w"> </span>--<span class="w"> </span>&lt;app&gt;
+</pre></div>
+</div>
+</section>
+<section id="cet-on-linux">
+<h2>Intel® CET on Linux<a class="headerlink" href="#cet-on-linux" title="Permalink to this heading"></a></h2>
+<p>There are two option of running Intel® CET application under Intel® SDE on Linux. Running on legacy host with legacy runtime
+libraries, or running on any host with runtime libraries compiled for CET.</p>
+</section>
+<section id="running-with-cet-enabled-runtime-libraries">
+<h2>Running with Intel® CET Enabled Runtime Libraries<a class="headerlink" href="#running-with-cet-enabled-runtime-libraries" title="Permalink to this heading"></a></h2>
+<p>GCC and binutils with support for Intel® CET have been upstream to the open source and now available on new Linux distributions
+like Fedora 34. You can use toolchain that support Intel® CET and build your application with CET support. The compiler command
+line switch is:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-fcf-protection<span class="o">=[</span>full<span class="p">|</span>branch<span class="p">|</span><span class="k">return</span><span class="p">|</span>none<span class="o">]</span>
+
+<span class="w">          </span>branch<span class="w"> </span>-<span class="w"> </span><span class="k">do</span><span class="w"> </span>control-flow<span class="w"> </span>instrumentation<span class="w"> </span><span class="k">for</span><span class="w"> </span>indirect<span class="w"> </span>branches
+
+<span class="w">          </span><span class="k">return</span><span class="w"> </span>-<span class="w"> </span><span class="k">do</span><span class="w"> </span>control-flow<span class="w"> </span>instrumentation<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">function</span><span class="w"> </span>returns
+
+<span class="w">          </span>full<span class="w"> </span>-<span class="w"> </span><span class="nb">alias</span><span class="w"> </span>to<span class="w"> </span>specify<span class="w"> </span>both<span class="w"> </span>branch<span class="w"> </span>+<span class="w"> </span><span class="k">return</span>
+
+<span class="w">          </span>none<span class="w"> </span>-<span class="w"> </span>turn<span class="w"> </span>off<span class="w"> </span>instrumentation
+
+-mcet/-mshstk/-mibt<span class="w"> </span>are<span class="w"> </span>Intel<span class="w"> </span>specific<span class="w"> </span>option<span class="w"> </span>to<span class="w"> </span>support<span class="w"> </span>CET<span class="w"> </span>generation
+</pre></div>
+</div>
+<p>To run Intel® SDE with the application and the native compiled runtime libraries use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>&lt;path-to-kit&gt;/sde<span class="w"> </span>-tgl<span class="w"> </span>-cet<span class="w"> </span>--<span class="w"> </span>&lt;app&gt;<span class="w"> </span>...
+</pre></div>
+</div>
+<p>This means that the loader is parsing the executable and the shared objects and see if they have been compiled with Intel® CET checks.
+It is using the data inside the ELF image (in the note section) to instruct Intel® SDE to do stack checks, indirect branch checks
+and set the legacy image information. The loader is calling the SYS_arch_prctl system call to check if the kernel is enabled
+with Intel® CET. Intel® SDE intercepts the system call and emulate it as if the kernel and the host support Intel® CET checks.
+Now the loader knows that it can run in Intel® CET enabled mode. In this mode Intel® CET compatible functionality in GLIBC is used.</p>
+</section>
+<section id="running-with-legacy-runtime">
+<h2>Running with Legacy Runtime<a class="headerlink" href="#running-with-legacy-runtime" title="Permalink to this heading"></a></h2>
+<p>Issues and considerations when running with legacy runtime on Linux:</p>
+<ul>
+<li><p>Running 64 bits applications with only stack checks has problems only with C++ exceptions and setjmp/longjmp use.</p></li>
+<li><p>Running 32 bits applications with only stack checks has problems with the way the dynamic loader resolves external
+symbols (i.e. calls between images). To bypass these problems you need to set the environment variable LD_BIND_NOW.
+As in (this does not resolve issues with C++ exceptions and setjmp/longjmp):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>&lt;path-to-kit&gt;/sde<span class="w"> </span>-env<span class="w"> </span>LD_BIND_NOW<span class="w"> </span><span class="m">1</span><span class="w"> </span>-cet<span class="w"> </span>--<span class="w"> </span>&lt;app&gt;<span class="w"> </span>...
+</pre></div>
+</div>
+</li>
+<li><p>Running applications with indirect branch checks (both 32 and 64 bits) suffers from a few issues that we detected,
+even when checking only the executable and it was compiled with Intel® CET checks. The main issues are calls from the
+CRT files (init and fini calls). Here is an example of running “hello world” applica</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>sde<span class="w"> </span>-cet<span class="w"> </span>-cet-stderr<span class="w"> </span>-cet-endbr-exe<span class="w"> </span>-cet-call-stack<span class="w"> </span>--<span class="w"> </span>hw64
+Control<span class="w"> </span>flow<span class="w"> </span>ENDBRANCH<span class="w"> </span>error<span class="w"> </span>detected<span class="w"> </span>at<span class="w"> </span>IP:<span class="w"> </span>0x0000000000400410<span class="w"> </span>INS:<span class="w"> </span>xor<span class="w"> </span>ebp,<span class="w"> </span>ebp
+Last<span class="w"> </span>branch<span class="w"> </span>IP:<span class="w"> </span>0x00002b27ba199c74<span class="w"> </span>INS:<span class="w"> </span>jmp<span class="w"> </span>r12
+Call<span class="w"> </span>stack:
+<span class="c1"># IP FUNCTION IMAGE NAME FILE NAME:LINE:COLUMN</span>
+<span class="m">0</span><span class="c1"># 0x0000000000400410 _start &lt;path-to-exe&gt;/hw64:0x000000410</span>
+
+
+Control<span class="w"> </span>flow<span class="w"> </span>ENDBRANCH<span class="w"> </span>error<span class="w"> </span>detected<span class="w"> </span>at<span class="w"> </span>IP:<span class="w"> </span>0x0000000000400500<span class="w"> </span>INS:<span class="w"> </span>push<span class="w"> </span>r15
+Last<span class="w"> </span>branch<span class="w"> </span>IP:<span class="w"> </span>0x00002b28cf74f7bd<span class="w"> </span>INS:<span class="w"> </span>call<span class="w"> </span>rbp
+Call<span class="w"> </span>stack:
+<span class="c1"># IP FUNCTION IMAGE NAME FILE NAME:LINE:COLUMN</span>
+<span class="m">0</span><span class="c1"># 0x0000000000400500 __libc_csu_init &lt;path-to-exe&gt;/hw64:0x000000500</span>
+<span class="m">1</span><span class="c1"># 0x00002b28cf74f7bf __libc_start_main /lib/x86_64-linux-gnu/libc.so.6:0x0000207bf</span>
+<span class="m">2</span><span class="c1"># 0x00002b28cf74f740 __libc_start_main /lib/x86_64-linux-gnu/libc.so.6:0x000020740</span>
+<span class="m">3</span><span class="c1"># 0x00000000004003f0 __libc_start_main@plt&lt;path-to-exe&gt;/hw64:0x0000003f0</span>
+<span class="m">4</span><span class="c1"># 0x0000000000400410 _start &lt;path-to-exe&gt;/hw64:0x000000410</span>
+
+
+Hello
+Control<span class="w"> </span>flow<span class="w"> </span>ENDBRANCH<span class="w"> </span>error<span class="w"> </span>detected<span class="w"> </span>at<span class="w"> </span>IP:<span class="w"> </span>0x0000000000400574<span class="w"> </span>INS:<span class="w"> </span>sub<span class="w"> </span>rsp,<span class="w"> </span>0x8
+Last<span class="w"> </span>branch<span class="w"> </span>IP:<span class="w"> </span>0x00002b27ba1a9e03<span class="w"> </span>INS:<span class="w"> </span>call<span class="w"> </span>rax
+Call<span class="w"> </span>stack:
+<span class="c1"># IP FUNCTION IMAGE NAME FILE NAME:LINE:COLUMN</span>
+<span class="m">0</span><span class="c1"># 0x0000000000400574 _fini &lt;path-to-exe&gt;/hw64:0x000000574</span>
+<span class="m">1</span><span class="c1"># 0x00002b27ba1a9e05 _dl_rtld_di_serinfo /lib64/ld-linux-x86-64.so.2:0x000010e05</span>
+<span class="m">2</span><span class="c1"># 0x00002b27ba1a9b00 _dl_rtld_di_serinfo /lib64/ld-linux-x86-64.so.2:0x000010b00</span>
+<span class="m">3</span><span class="c1"># 0x00002b27ba1a9ab0 _dl_rtld_di_serinfo /lib64/ld-linux-x86-64.so.2:0x000010ab0</span>
+<span class="m">4</span><span class="c1"># 0x00002b28cf768fd8 __libc_secure_getenv /lib/x86_64-linux-gnu/libc.so.6:0x000039fd8</span>
+<span class="m">5</span><span class="c1"># 0x00002b28cf768f10 __libc_secure_getenv /lib/x86_64-linux-gnu/libc.so.6:0x000039f10</span>
+<span class="m">6</span><span class="c1"># 0x00002b28cf769030 exit /lib/x86_64-linux-gnu/libc.so.6:0x00003a030</span>
+<span class="m">7</span><span class="c1"># 0x00002b28cf74f740 __libc_start_main /lib/x86_64-linux-gnu/libc.so.6:0x000020740</span>
+<span class="m">8</span><span class="c1"># 0x00000000004003f0 __libc_start_main@plt&lt;path-to-exe&gt;/hw64:0x0000003f0</span>
+<span class="m">9</span><span class="c1"># 0x0000000000400410 _start &lt;path-to-exe&gt;/hw64:0x000000410</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>See below for the Intel® CET special knobs.</p>
+</section>
+<section id="cet-on-windows">
+<h2>Intel® CET on Windows<a class="headerlink" href="#cet-on-windows" title="Permalink to this heading"></a></h2>
+<p>New version of Windows OS come with Intel® CET enabled runtime libraries. Intel® SDE was not enabled (yet) to run on Windows with
+enabled runtime libraries. Therefore, Intel® SDE only supports running on legacy mode with limiting the checks.
+Running small console application (on Win10) might result in multiple error messages even when only doing stack checks.
+For example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>sde<span class="w"> </span>-tgl<span class="w"> </span>-cet<span class="w"> </span>-cet-stderr<span class="w"> </span>-cet-call-stack<span class="w"> </span>--<span class="w"> </span>hello.exe
+
+Control<span class="w"> </span>flow<span class="w"> </span>error:<span class="w"> </span>IP:<span class="w"> </span>0x7ff92fff0523<span class="w"> </span>expected<span class="w"> </span><span class="o">(</span>shadow<span class="w"> </span>stack<span class="o">)</span>:<span class="w"> </span>0x7ff959039600<span class="w"> </span>got<span class="w"> </span><span class="o">(</span>actual<span class="w"> </span><span class="k">return</span><span class="w"> </span>address<span class="o">)</span>:<span class="w"> </span>0x7ff95900a052
+INS:<span class="w"> </span>ret
+Call<span class="w"> </span>stack:
+<span class="c1"># IP FUNCTION IMAGE NAME FILE NAME:LINE:COLUMN</span>
+<span class="m">0</span><span class="c1"># 0x7ff959039600 NtTestAlert C:\WINDOWS\SYSTEM32\ntdll.dll:0x0000a9600</span>
+
+Could<span class="w"> </span>not<span class="w"> </span>unwind<span class="w"> </span>to<span class="w"> </span>previous<span class="w"> </span>frame:<span class="w"> </span>IP:<span class="w"> </span>0x00007ff92fff0523<span class="w"> </span>INS:<span class="w"> </span>ret
+Call<span class="w"> </span>stack:
+<span class="c1"># IP FUNCTION IMAGE NAME FILE NAME:LINE:COLUMN</span>
+<span class="m">0</span><span class="c1"># 0x7ff959039600 NtTestAlert C:\WINDOWS\SYSTEM32\ntdll.dll:0x0000a9600</span>
+
+hello
+</pre></div>
+</div>
+<p>Intel® SDE can exclude images also from stack checks, this is useful when there are stack check violations in system libraries.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>&lt;path-to-kit&gt;/sde<span class="w"> </span>-tgl<span class="w"> </span>-cet<span class="w"> </span>-cet-stderr<span class="w"> </span>-cet-exclude-image<span class="w"> </span>ntdll.dll<span class="w"> </span>--<span class="w"> </span>&lt;app&gt;
+</pre></div>
+</div>
+<p>When building applications with Intel compiler and with full control flow protection (shadow stack and indirect branch
+tracking), the compiler adds the ‘ENDBRANCH’ instructions only to the code compiled from the sources. But when linking the
+object files into an executable or DLL, the linker brings  code from CRT files (init/fini code). Since this code has unsafe
+indirect jumps, you will get errors when running your application in this mode. Please note that you also need to disable
+incremental linking which also use unsafe indirect jumps.</p>
+<p>When running Intel® SDE with Intel® CET mode with checking the executable, you might get errors like the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>sde<span class="w"> </span>-tgl<span class="w"> </span>-cet<span class="w"> </span>-cet-call-stack<span class="w"> </span>-cet-stderr<span class="w"> </span>-cet-endbr-exe<span class="w"> </span>-cet-exclude-image<span class="w"> </span>ntdll.dll<span class="w"> </span>--<span class="w"> </span>app.exe
+
+Control<span class="w"> </span>flow<span class="w"> </span>ENDBRANCH<span class="w"> </span>error<span class="w"> </span>detected<span class="w"> </span>at<span class="w"> </span>IP:<span class="w"> </span>0x00007ff76e5014ac<span class="w"> </span>INS:<span class="w"> </span>sub<span class="w"> </span>rsp,<span class="w"> </span>0x28
+Last<span class="w"> </span>branch<span class="w"> </span>IP:<span class="w"> </span>0x00007ff956935290<span class="w"> </span>INS:<span class="w"> </span>jmp<span class="w"> </span>rax
+Call<span class="w"> </span>stack:
+<span class="c1"># IP FUNCTION IMAGE NAME FILE NAME:LINE:COLUMN</span>
+<span class="m">0</span><span class="c1"># 0x00007ff76e5014ac unnamedImageEntryPoint &lt;path&gt;\app.exe:0x0000014ac</span>
+<span class="m">1</span><span class="c1"># 0x00007ff95691836d BaseThreadInitThunk C:\WINDOWS\System32\KERNEL32.DLL:0x00000836d</span>
+<span class="m">2</span><span class="c1"># 0x00007ff956918350 BaseThreadInitThunk C:\WINDOWS\System32\KERNEL32.DLL:0x000008350</span>
+<span class="m">3</span><span class="c1"># 0x00007ff958ff7093 RtlUserThreadStart C:\WINDOWS\SYSTEM32\ntdll.dll:0x000067093</span>
+
+Control<span class="w"> </span>flow<span class="w"> </span>ENDBRANCH<span class="w"> </span>error<span class="w"> </span>detected<span class="w"> </span>at<span class="w"> </span>IP:<span class="w"> </span>0x00007ff76e501ff0<span class="w"> </span>INS:<span class="w"> </span>ret<span class="w"> </span>0x0
+Last<span class="w"> </span>branch<span class="w"> </span>IP:<span class="w"> </span>0x00007ff76e501e20<span class="w"> </span>INS:<span class="w"> </span>jmp<span class="w"> </span>qword<span class="w"> </span>ptr<span class="w"> </span><span class="o">[</span>rip+0x44479<span class="o">]</span>
+Call<span class="w"> </span>stack:
+<span class="c1"># IP FUNCTION IMAGE NAME FILE NAME:LINE:COLUMN</span>
+<span class="m">0</span><span class="c1"># 0x00007ff76e503480 unnamedImageEntryPoint &lt;path&gt;\app.exe:0x000003480</span>
+<span class="m">1</span><span class="c1"># 0x00007ff76e502ba4 unnamedImageEntryPoint &lt;path&gt;\app.exe:0x000002ba4</span>
+<span class="m">2</span><span class="c1"># 0x00007ff76e502290 unnamedImageEntryPoint &lt;path&gt;\app.exe:0x000002290</span>
+<span class="m">3</span><span class="c1"># 0x00007ff76e5016fc unnamedImageEntryPoint &lt;path&gt;\app.exe:0x0000016fc</span>
+<span class="m">4</span><span class="c1"># 0x00007ff76e50129c .text &lt;path&gt;\app.exe:0x00000129c</span>
+<span class="m">5</span><span class="c1"># 0x00007ff95691836d BaseThreadInitThunk C:\WINDOWS\System32\KERNEL32.DLL:0x00000836d</span>
+<span class="m">6</span><span class="c1"># 0x00007ff956918350 BaseThreadInitThunk C:\WINDOWS\System32\KERNEL32.DLL:0x000008350</span>
+<span class="m">7</span><span class="c1"># 0x00007ff958ff7093 RtlUserThreadStart C:\WINDOWS\SYSTEM32\ntdll.dll:0x000067093</span>
+...
+</pre></div>
+</div>
+<p>Intel® CET control knobs:</p>
+<dl class="option-list">
+<dt><kbd><span class="option">-c<var>et</var></span></kbd></dt>
+<dd><p>Enable=1 or Disable=0  Intel(R) Control-flow enforcement emulation [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-c<var>et_abort</var></span></kbd></dt>
+<dd><p>Abort the run on the first control-flow enforcements error [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-c<var>et_breakpoint</var></span></kbd></dt>
+<dd><p>Raise a break point when running under the debugger [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-c<var>et_call_next</var></span></kbd></dt>
+<dd><p>Ignore call to next instruction followed with pop instruction [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-c<var>et_call_stack</var></span></kbd></dt>
+<dd><p>Present call stack with control flow enforcement errors [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-c<var>et_call_stack_depth</var></span></kbd></dt>
+<dd><p>Specify control flow enforcement errors call-stack max depth [default 10]</p>
+</dd>
+<dt><kbd><span class="option">-c<var>et_endbr_exclude_image</var></span></kbd></dt>
+<dd><p>Repeatable knob to specify images to exclude from ENDBRANCH checking</p>
+</dd>
+<dt><kbd><span class="option">-c<var>et_endbr_exe</var></span></kbd></dt>
+<dd><p>Add the main executable to the ENDBRANCH checking [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-c<var>et_endbr_include_image</var></span></kbd></dt>
+<dd><p>Repeatable knob to specify images to enable ENDBRANCH checking</p>
+</dd>
+<dt><kbd><span class="option">-c<var>et_exclude_image</var></span></kbd></dt>
+<dd><p>Repeatable knob to specify images to exclude shadow stack checks</p>
+</dd>
+<dt><kbd><span class="option">-c<var>et_linux_mode</var></span></kbd></dt>
+<dd><p>Set the Linux CET kernel interface starting mode (new/old) [default unknown]</p>
+</dd>
+<dt><kbd><span class="option">-c<var>et_output_file</var></span></kbd></dt>
+<dd><p>File name for control flow enforcement errors [default sde-cet-checker-out.txt]</p>
+</dd>
+<dt><kbd><span class="option">-c<var>et_raise</var></span></kbd></dt>
+<dd><p>Raise an exception when CET error detected [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-c<var>et_shadow_stack_size</var></span></kbd></dt>
+<dd><p>Specify the size of the initial shadow stack [default 4096]</p>
+</dd>
+<dt><kbd><span class="option">-c<var>et_stderr</var></span></kbd></dt>
+<dd><p>Report control flow exception to standard error [default 0]</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cpuid_emulation.html" class="btn btn-neutral float-left" title="CPUID Emulation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tsx.html" class="btn btn-neutral float-right" title="Running Applications with TSX" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Intel SDE.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

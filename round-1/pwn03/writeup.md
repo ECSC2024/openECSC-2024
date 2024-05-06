@@ -19,6 +19,7 @@ The goal is to pwn the `main` binary, which lets the user interact and manage wi
 The binary is statically linked and not PIE.
 
 Rovers are implemented as structs:
+
 ```c
 struct __attribute__((packed)) rover {
     uint8_t weight;
@@ -30,9 +31,11 @@ struct __attribute__((packed)) rover {
     void (*action)(void);
 };
 ```
+
 and the binary already contains a list of 15 predefined rovers.  
 
 First of all, the challenge executes a `init` function which installs a seccomp filter. The challenge then starts asking for a joke to the user, and then presents a simple menu. The user can select a rover from the rovers list, send a command to the currently selected rover, or tell the rover to execute the selected command. The available commands for a rover are:
+
 - get planet: prints rover's planet
 - set planet: sets rover's planet
 - get name: prints rover's name
@@ -41,7 +44,9 @@ First of all, the challenge executes a `init` function which installs a seccomp 
 - full info: prints full information
 
 ## Vulnerability
+
 The function 'read_exactly` reads one byte more than it should, leading to a one-byte buffer overflow.
+
 ```c
 int read_exactly(int fd, void *buf, size_t size)
 {
@@ -57,6 +62,7 @@ int read_exactly(int fd, void *buf, size_t size)
 ```
 
 This function is used in three different ways:
+
 1. to read the joke at the start of `main`
 2. to read the planet when calling `set_planet`
 3. to read the name when calling `set_name`
@@ -64,9 +70,11 @@ This function is used in three different ways:
 The first two cases are not really interesting: the first one overflows over some padding bytes in main's stack, the second one overflows into a rover's name. The third one though lets the user overwrite the LSB of a rover's action function pointer. By overwriting the LSB to make the function pointer point to a juicy address, we can get to control flow hijacking the next time we execute the command on this rover.
 
 ## Exploitation
+
 When the off-by-one is triggered inside the `set_name` function, the action function pointer is set to `set_name` itself. This means that the only places we can make it point to are the addresses `0x10000eXX` where `XX` is arbitrary.  
 
 Right before the start of the `set_name` function there's a very interesing gadget, which is the epilogue of the `set_planet` function:
+
 ```
 0x10000e64 <+204>:   addi    r1,r31,160
 0x10000e68 <+208>:   ld      r0,16(r1)
@@ -85,7 +93,7 @@ The strategy is: write a ROP chain somewhere inside the binary and then pivot th
 
 Unfortunately, `seccomp-tools` doesn't support PowerPc, but reversing the filter by hand is quite straightforward with a bit of intuition. We can export the raw bytes for the filter (for example using Ghidra) and analyze the patterns in them to match bytes with syscall numbers; you can find the full list of PowerPC64 syscall numbers in many online databases (e.g. [this website](https://syscalls.mebeim.net/?table=powerpc/64/ppc64/latest)).
 
-```
+```text
 20 00  00 00  04 00  00 00
 15 00  01 00  15 00  00 c0
 06 00  00 00  00 00  00 00
@@ -115,75 +123,76 @@ There is no `ret` instruction here. Instead, the usual flow for returning is: pu
 
 This was our first time ROPping in PowerPC, so we were just exploring the disassembled binary to have a look around. One of the first gadgets we stumbled upon was this huge cool one, part of `_Unwind_Resume` function.
 
-```
-    100b859c:	78 fb ea 7f 	mr      r10,r31
-    100b85a0:	f9 08 a1 f6 	lxv     vs53,2288(r1)
-    100b85a4:	09 09 c1 f6 	lxv     vs54,2304(r1)
-    100b85a8:	19 09 e1 f6 	lxv     vs55,2320(r1)
-    100b85ac:	29 09 01 f7 	lxv     vs56,2336(r1)
-    100b85b0:	39 09 21 f7 	lxv     vs57,2352(r1)
-    100b85b4:	49 09 41 f7 	lxv     vs58,2368(r1)
-    100b85b8:	20 01 12 7c 	mtocrf  32,r0
-    100b85bc:	b0 08 01 80 	lwz     r0,2224(r1)
-    100b85c0:	59 09 61 f7 	lxv     vs59,2384(r1)
-    100b85c4:	d8 0a 41 e8 	ld      r2,2776(r1)
-    100b85c8:	69 09 81 f7 	lxv     vs60,2400(r1)
-    100b85cc:	79 09 a1 f7 	lxv     vs61,2416(r1)
-    100b85d0:	89 09 c1 f7 	lxv     vs62,2432(r1)
-    100b85d4:	99 09 e1 f7 	lxv     vs63,2448(r1)
-    100b85d8:	c0 08 61 e8 	ld      r3,2240(r1)
-    100b85dc:	c8 08 81 e8 	ld      r4,2248(r1)
-    100b85e0:	d0 08 a1 e8 	ld      r5,2256(r1)
-    100b85e4:	d8 08 c1 e8 	ld      r6,2264(r1)
-    100b85e8:	20 01 11 7c 	mtocrf  16,r0
-    100b85ec:	b8 08 01 80 	lwz     r0,2232(r1)
-    100b85f0:	a0 09 c1 e9 	ld      r14,2464(r1)
-    100b85f4:	a8 09 e1 e9 	ld      r15,2472(r1)
-    100b85f8:	b0 09 01 ea 	ld      r16,2480(r1)
-    100b85fc:	b8 09 21 ea 	ld      r17,2488(r1)
-    100b8600:	c0 09 41 ea 	ld      r18,2496(r1)
-    100b8604:	c8 09 61 ea 	ld      r19,2504(r1)
-    100b8608:	d0 09 81 ea 	ld      r20,2512(r1)
-    100b860c:	d8 09 a1 ea 	ld      r21,2520(r1)
-    100b8610:	e0 09 c1 ea 	ld      r22,2528(r1)
-    100b8614:	e8 09 e1 ea 	ld      r23,2536(r1)
-    100b8618:	20 81 10 7c 	mtocrf  8,r0
-    100b861c:	d0 0a 01 e8 	ld      r0,2768(r1)
-    100b8620:	f0 09 01 eb 	ld      r24,2544(r1)
-    100b8624:	f8 09 21 eb 	ld      r25,2552(r1)
-    100b8628:	00 0a 41 eb 	ld      r26,2560(r1)
-    100b862c:	08 0a 61 eb 	ld      r27,2568(r1)
-    100b8630:	10 0a 81 eb 	ld      r28,2576(r1)
-    100b8634:	18 0a a1 eb 	ld      r29,2584(r1)
-    100b8638:	20 0a c1 eb 	ld      r30,2592(r1)
-    100b863c:	28 0a e1 eb 	ld      r31,2600(r1)
-    100b8640:	30 0a c1 c9 	lfd     f14,2608(r1)
-    100b8644:	38 0a e1 c9 	lfd     f15,2616(r1)
-    100b8648:	40 0a 01 ca 	lfd     f16,2624(r1)
-    100b864c:	48 0a 21 ca 	lfd     f17,2632(r1)
-    100b8650:	50 0a 41 ca 	lfd     f18,2640(r1)
-    100b8654:	58 0a 61 ca 	lfd     f19,2648(r1)
-    100b8658:	60 0a 81 ca 	lfd     f20,2656(r1)
-    100b865c:	68 0a a1 ca 	lfd     f21,2664(r1)
-    100b8660:	70 0a c1 ca 	lfd     f22,2672(r1)
-    100b8664:	78 0a e1 ca 	lfd     f23,2680(r1)
-    100b8668:	80 0a 01 cb 	lfd     f24,2688(r1)
-    100b866c:	88 0a 21 cb 	lfd     f25,2696(r1)
-    100b8670:	90 0a 41 cb 	lfd     f26,2704(r1)
-    100b8674:	98 0a 61 cb 	lfd     f27,2712(r1)
-    100b8678:	a0 0a 81 cb 	lfd     f28,2720(r1)
-    100b867c:	a8 0a a1 cb 	lfd     f29,2728(r1)
-    100b8680:	b0 0a c1 cb 	lfd     f30,2736(r1)
-    100b8684:	b8 0a e1 cb 	lfd     f31,2744(r1)
-    100b8688:	c0 0a 21 38 	addi    r1,r1,2752
-    100b868c:	a6 03 08 7c 	mtlr    r0
-    100b8690:	14 52 21 7c 	add     r1,r1,r10
-    100b8694:	20 00 80 4e 	blr
+```text
+    100b859c: 78 fb ea 7f  mr      r10,r31
+    100b85a0: f9 08 a1 f6  lxv     vs53,2288(r1)
+    100b85a4: 09 09 c1 f6  lxv     vs54,2304(r1)
+    100b85a8: 19 09 e1 f6  lxv     vs55,2320(r1)
+    100b85ac: 29 09 01 f7  lxv     vs56,2336(r1)
+    100b85b0: 39 09 21 f7  lxv     vs57,2352(r1)
+    100b85b4: 49 09 41 f7  lxv     vs58,2368(r1)
+    100b85b8: 20 01 12 7c  mtocrf  32,r0
+    100b85bc: b0 08 01 80  lwz     r0,2224(r1)
+    100b85c0: 59 09 61 f7  lxv     vs59,2384(r1)
+    100b85c4: d8 0a 41 e8  ld      r2,2776(r1)
+    100b85c8: 69 09 81 f7  lxv     vs60,2400(r1)
+    100b85cc: 79 09 a1 f7  lxv     vs61,2416(r1)
+    100b85d0: 89 09 c1 f7  lxv     vs62,2432(r1)
+    100b85d4: 99 09 e1 f7  lxv     vs63,2448(r1)
+    100b85d8: c0 08 61 e8  ld      r3,2240(r1)
+    100b85dc: c8 08 81 e8  ld      r4,2248(r1)
+    100b85e0: d0 08 a1 e8  ld      r5,2256(r1)
+    100b85e4: d8 08 c1 e8  ld      r6,2264(r1)
+    100b85e8: 20 01 11 7c  mtocrf  16,r0
+    100b85ec: b8 08 01 80  lwz     r0,2232(r1)
+    100b85f0: a0 09 c1 e9  ld      r14,2464(r1)
+    100b85f4: a8 09 e1 e9  ld      r15,2472(r1)
+    100b85f8: b0 09 01 ea  ld      r16,2480(r1)
+    100b85fc: b8 09 21 ea  ld      r17,2488(r1)
+    100b8600: c0 09 41 ea  ld      r18,2496(r1)
+    100b8604: c8 09 61 ea  ld      r19,2504(r1)
+    100b8608: d0 09 81 ea  ld      r20,2512(r1)
+    100b860c: d8 09 a1 ea  ld      r21,2520(r1)
+    100b8610: e0 09 c1 ea  ld      r22,2528(r1)
+    100b8614: e8 09 e1 ea  ld      r23,2536(r1)
+    100b8618: 20 81 10 7c  mtocrf  8,r0
+    100b861c: d0 0a 01 e8  ld      r0,2768(r1)
+    100b8620: f0 09 01 eb  ld      r24,2544(r1)
+    100b8624: f8 09 21 eb  ld      r25,2552(r1)
+    100b8628: 00 0a 41 eb  ld      r26,2560(r1)
+    100b862c: 08 0a 61 eb  ld      r27,2568(r1)
+    100b8630: 10 0a 81 eb  ld      r28,2576(r1)
+    100b8634: 18 0a a1 eb  ld      r29,2584(r1)
+    100b8638: 20 0a c1 eb  ld      r30,2592(r1)
+    100b863c: 28 0a e1 eb  ld      r31,2600(r1)
+    100b8640: 30 0a c1 c9  lfd     f14,2608(r1)
+    100b8644: 38 0a e1 c9  lfd     f15,2616(r1)
+    100b8648: 40 0a 01 ca  lfd     f16,2624(r1)
+    100b864c: 48 0a 21 ca  lfd     f17,2632(r1)
+    100b8650: 50 0a 41 ca  lfd     f18,2640(r1)
+    100b8654: 58 0a 61 ca  lfd     f19,2648(r1)
+    100b8658: 60 0a 81 ca  lfd     f20,2656(r1)
+    100b865c: 68 0a a1 ca  lfd     f21,2664(r1)
+    100b8660: 70 0a c1 ca  lfd     f22,2672(r1)
+    100b8664: 78 0a e1 ca  lfd     f23,2680(r1)
+    100b8668: 80 0a 01 cb  lfd     f24,2688(r1)
+    100b866c: 88 0a 21 cb  lfd     f25,2696(r1)
+    100b8670: 90 0a 41 cb  lfd     f26,2704(r1)
+    100b8674: 98 0a 61 cb  lfd     f27,2712(r1)
+    100b8678: a0 0a 81 cb  lfd     f28,2720(r1)
+    100b867c: a8 0a a1 cb  lfd     f29,2728(r1)
+    100b8680: b0 0a c1 cb  lfd     f30,2736(r1)
+    100b8684: b8 0a e1 cb  lfd     f31,2744(r1)
+    100b8688: c0 0a 21 38  addi    r1,r1,2752
+    100b868c: a6 03 08 7c  mtlr    r0
+    100b8690: 14 52 21 7c  add     r1,r1,r10
+    100b8694: 20 00 80 4e  blr
 ```
 
-We settled for this one as it gives you control over many registers. In short, it loads a lot of registers from the stack, including `r0` (which is afterwards moved into `lr`) and `r3`, `r4`, `r5` which are the registers used for parameters. This can be used to set arbitrary arguments and call arbitrary functions; we can use it 3 times in our ROPchain: to prepare args for open + execute open; to prepare args for read + execute read; to prepare args for write + execute write. Since the gadget is loading the values from the stack at a large offset, we decided to first search for a gadget that could let us read an arbitrary amount of data to use as our fake stack and then pivot there.    
+We settled for this one as it gives you control over many registers. In short, it loads a lot of registers from the stack, including `r0` (which is afterwards moved into `lr`) and `r3`, `r4`, `r5` which are the registers used for parameters. This can be used to set arbitrary arguments and call arbitrary functions; we can use it 3 times in our ROPchain: to prepare args for open + execute open; to prepare args for read + execute read; to prepare args for write + execute write. Since the gadget is loading the values from the stack at a large offset, we decided to first search for a gadget that could let us read an arbitrary amount of data to use as our fake stack and then pivot there.
 
 This is where the function `cmd_set_name` comes in handy: its last instructions act as a perfect gadget for achieving what we need.
+
 ```
 0x10000f2c <+168>:   ld      r9,96(r31)
 0x10000f30 <+172>:   addi    r9,r9,262
@@ -236,7 +245,6 @@ Therefore, to optimize the space needed, we will be overlapping both the stack f
 ```
 
 All we have to do now is sending all the payloads and trigger the vulnerability. And a flag pops up :)
-
 
 ## Exploit
 

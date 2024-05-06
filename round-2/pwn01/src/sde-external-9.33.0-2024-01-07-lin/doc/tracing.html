@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Record and Replay &mdash; Intel® SDE  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Generating Pinballs with the Logger" href="logger.html" />
+    <link rel="prev" title="Using SSC Marks" href="ssc.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Intel® SDE
+          </a>
+              <div class="version">
+                9.33.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Intel® SDE User's Manual:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Intel® SDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="emulation.html">Controlling the Emulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Analysis Tools</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Record and Replay</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logger.html">Generating Pinballs with the Logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="replayer.html">Replaying Pinballs with the Replayer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="app_debug.html">Application Debugging</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Intel® SDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Record and Replay</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/tracing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="record-and-replay">
+<h1>Record and Replay<a class="headerlink" href="#record-and-replay" title="Permalink to this heading"></a></h1>
+<p>Intel® SDE provides a tracing component that enables recording of workload execution flow, and replaying
+this recording. Intel® SDE tracing based in the <cite>PinPlay</cite> technology which was presented in multiple
+conferences (e.g. <a class="reference external" href="https://dl.acm.org/doi/10.1145/1772954.1772958">CGO-2010</a>). It is capturing the execution of a program as a set of files, called a
+<cite>pinball</cite>, which can be are used to replay the same execution deterministically.</p>
+<p>Conceptually, there are two phases: capturing (also known as logging) and replaying. In the capturing
+phase, the program binary is executed with the desired input, in the program native environment or by
+using Intel® SDE emulation. <cite>PinPlay</cite>, which uses binary instrumentation, runs above the OS and observes
+the execution using Intel® Pin’s API, and collects the required information to replay it. Intel® SDE <cite>PinPlay</cite>
+supports recording of multi-threaded workloads and replay the execution deterministically, preserving
+the relative order between the threads.</p>
+<p>The logs, collectively called pinballs, contain all the information necessary to run the application,
+without the original binary or input. In the replay phase, <cite>PinPlay</cite> uses the <cite>pinballs</cite> previously
+collected and repeats the same execution exactly (each instruction sees the exact same input as they
+saw in the capturing run). Furthermore, Intel® SDE can activate any analysis tool while replaying the pinball.
+This guarantees that any analysis is performed at the same execution flow without the natural run to run
+variation.</p>
+<p>Since Intel® SDE <cite>PinPlay</cite> only replays user-level code, one can capture an execution of a Windows application,
+running on Windows operating system and replay it on Linux.</p>
+<a class="reference internal image-reference" href="_images/pinplay.jpg"><img alt="_images/pinplay.jpg" src="_images/pinplay.jpg" style="width: 800px;" /></a>
+<section id="terminology">
+<h2>Terminology<a class="headerlink" href="#terminology" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Pinball</strong> - A collection of files that represent a single execution flow captured by <cite>PinPlay</cite></p></li>
+<li><p><strong>Logger</strong> - Intel® SDE PinPlay component that record the execution flow</p></li>
+<li><p><strong>Replayer</strong> - Intel® SDE PinPlay component that replay <cite>pinballs</cite></p></li>
+<li><p><strong>Log</strong> - Capturing the application’s flow and generating <cite>pinball</cite></p></li>
+<li><p><strong>Replay</strong> - Replaying the application’s flow that was captured in a <cite>pinball</cite></p></li>
+<li><p><strong>Relog</strong> - Capturing the execution flow for <cite>replay</cite> of a <cite>pinball</cite></p></li>
+<li><p><strong>Injection</strong> - Metadata emitted to guarantee deterministic replay</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Tracing Additional information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="logger.html">Generating Pinballs with the Logger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="replayer.html">Replaying Pinballs with the Replayer</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ssc.html" class="btn btn-neutral float-left" title="Using SSC Marks" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="logger.html" class="btn btn-neutral float-right" title="Generating Pinballs with the Logger" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Intel SDE.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

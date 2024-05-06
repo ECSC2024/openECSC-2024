@@ -1,0 +1,1 @@
+^openECSC\{flag_inside_the_attachment_yes_we_like_it_[0-9a-f]{8}\}$

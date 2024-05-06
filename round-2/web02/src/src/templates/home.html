@@ -1,0 +1,30 @@
+{{template "header"}}
+
+{{if .Flag}}
+<div class="alert alert-success" role="alert">
+    Congratulations! Here is your flag: <code>{{.Flag}}</code>
+</div>
+{{end}}
+
+<h3 class="mb-3">Welcome to GoSweeper</h3>
+
+
+{{if .Userid}}
+    <p>User ID: {{.Userid}}</p>
+    <h5 class="mb-3">
+        Won games: {{.Points}} / {{.Tries}}
+    </h5>
+
+    <a class="btn btn-primary" href="/board">Play!</a>
+
+
+{{else}}
+
+    <a class="btn btn-primary" href="/login">Login</a>
+     &nbsp;or&nbsp 
+    <a class="btn btn-primary" href="/register">Register</a>
+
+{{end}}
+
+
+

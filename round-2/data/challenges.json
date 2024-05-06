@@ -1,0 +1,84 @@
+{
+    "events": [
+        {
+            "id": 1,
+            "name": "openECSC 2024",
+            "sections": [
+                {
+                    "id": 2,
+                    "name": "Round 2",
+                    "challenges": [
+                        {
+                            "id": 22,
+                            "title": "Another round, another sanity check"
+                        },
+                        {
+                            "id": 17,
+                            "title": "Invention"
+                        },
+                        {
+                            "id": 24,
+                            "title": "MathMAC"
+                        },
+                        {
+                            "id": 29,
+                            "title": "BabyFeistel"
+                        },
+                        {
+                            "id": 18,
+                            "title": "Blind maze"
+                        },
+                        {
+                            "id": 23,
+                            "title": "Revenge of the Blind maze"
+                        },
+                        {
+                            "id": 25,
+                            "title": "Remote Diagnostics"
+                        },
+                        {
+                            "id": 30,
+                            "title": "Random Noise"
+                        },
+                        {
+                            "id": 19,
+                            "title": "The Wilderness"
+                        },
+                        {
+                            "id": 26,
+                            "title": "Yet another guessing game"
+                        },
+                        {
+                            "id": 31,
+                            "title": "Blind Writer"
+                        },
+                        {
+                            "id": 20,
+                            "title": "FPFC"
+                        },
+                        {
+                            "id": 27,
+                            "title": "arxelerated"
+                        },
+                        {
+                            "id": 32,
+                            "title": "Anti-rev"
+                        },
+                        {
+                            "id": 21,
+                            "title": "WOauth a laundry!"
+                        },
+                        {
+                            "id": 28,
+                            "title": "GoSweeper"
+                        },
+                        {
+                            "id": 33,
+                            "title": "BabyNotes"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

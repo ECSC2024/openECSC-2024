@@ -1,0 +1,8 @@
+services:
+  invention:
+    build: .
+    restart: unless-stopped
+    ports:
+      - '1337:1337'
+    environment:
+      - 'FLAG=openECSC{l1n34ar_c0mb1n4t10ns_l34d_t0_34sy_c0ll1s10ns_[random 8]}'

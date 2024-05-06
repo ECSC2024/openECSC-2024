@@ -1,0 +1,43 @@
+volumes:
+  data:
+
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    environment:
+      FLAG: openECSC{st0p_l3ak1ng_pl34se}
+      CHALL_URL: https://read.the.readme
+      HEADLESS_HOST: headless:5000
+      HEADLESS_AUTH: supersecret
+    volumes:
+      - data:/data
+    ports:
+      - 8000:8000
+
+  headless:
+    image: cybersecnatlab/challenge-headless:latest-manager
+    restart: unless-stopped
+    environment:
+      AUTH_TOKEN: supersecret
+      RABBITMQ_HOST: headless-rabbitmq
+      RABBITMQ_QUEUE: headless-jobs
+    depends_on:
+      - headless-rabbitmq
+    ports:
+      - 5000:5000
+
+  headless-rabbitmq:
+    image: rabbitmq:3.11
+    restart: unless-stopped
+
+  headless-worker:
+    image: cybersecnatlab/challenge-headless:latest-worker
+    restart: unless-stopped
+    environment:
+      RABBITMQ_HOST: headless-rabbitmq
+      RABBITMQ_QUEUE: headless-jobs
+    deploy:
+      replicas: 4
+    depends_on:
+      - headless-rabbitmq

@@ -101,7 +101,6 @@ void play(struct Answer* answers, struct Prompt* prompts) {
   for (unsigned int i = 0; i < prompt->number_of_completions; i++) {
     if (scanf("%u", &choice) != 1) fatal("Scanf");
   }
-  // TODO questo è OOB In generale ma non dovrebbe essere utile
   score = compute_score(prompt, &default_answers[choice]);
 
   printf("That's an insane score of %d! Go on, everybody is laughing\n", score);

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chip Check Feature &mdash; Intel® SDE  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Checking for Bad Pointers and Data Misalignment" href="checkers.html" />
+    <link rel="prev" title="Controlling Output File Names" href="filenames.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Intel® SDE
+          </a>
+              <div class="version">
+                9.33.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Intel® SDE User's Manual:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Intel® SDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="emulation.html">Controlling the Emulation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="tools.html">Analysis Tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="filenames.html">Controlling Output File Names</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chip Check Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checkers.html">Checking for Bad Pointers and Data Misalignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller.html">The Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="icount.html">Counting Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mix.html">The Histogram Analysis Tool - Mix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html">Measuring Memory Footprint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="itrace.html">Instruction Trace Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugtrace.html">The Debug ASCII Tracing Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mask_profile.html">Mask Profiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sparse.html">Sparse Instructions Analysis Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="avx_sse.html">Detecting AVX-SSE Transitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssc.html">Using SSC Marks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tracing.html">Record and Replay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app_debug.html">Application Debugging</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Intel® SDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="tools.html">Analysis Tools</a></li>
+      <li class="breadcrumb-item active">Chip Check Feature</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/chip_check.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="chip-check-feature">
+<span id="chip-check"></span><h1>Chip Check Feature<a class="headerlink" href="#chip-check-feature" title="Permalink to this heading"></a></h1>
+<p>One of the main emulation services that Intel® SDE provides is the chip-check feature.
+This service checks that every dynamically executed instruction is legal for the
+input chip. When detecting an illegal instruction, the process will exit with an
+error message of the form:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-skl<span class="w"> </span>--<span class="w"> </span>myapp
+TID<span class="w"> </span><span class="m">0</span><span class="w"> </span>SDE-ERROR:<span class="w"> </span>Executed<span class="w"> </span>instruction<span class="w"> </span>not<span class="w"> </span>valid<span class="w"> </span><span class="k">for</span><span class="w"> </span>specified<span class="w"> </span>chip<span class="w"> </span><span class="o">(</span>SKYLAKE<span class="o">)</span>:<span class="w"> </span>0x40118c<span class="w"> </span>rdpid<span class="w"> </span>rax
+Image:<span class="w"> </span>myapp+0x118c
+Function:<span class="w"> </span>test1
+Instruction<span class="w"> </span>bytes<span class="w"> </span>are:<span class="w"> </span>f3<span class="w"> </span><span class="m">48</span><span class="w"> </span>0f<span class="w"> </span>c7<span class="w"> </span>f8
+</pre></div>
+</div>
+<p>Optionally, Intel® SDE can also emit a call-stack of the execution path that leads to the
+invalid instruction, or to only report the illegal instructions to an output file
+(and continue).</p>
+<p>Intel® SDE allows the user to define the chip from a long list of old and new CPUs.
+In certain cases this check is too strict, for example when the defined chip is
+older than the host CPU, and the system libraries execute instructions which are
+not legal for the input chip.</p>
+<p>Another usage model is to define which instructions are legal for this run based
+on an input CPUID definition. This means that the user defines its own CPUID behavior
+and chip-check will allow execution of only the instructions which are available
+(and legal) as defined for this CPU. More information is available in the <a class="reference internal" href="cpuid_emulation.html#cpuid-emulation"><span class="std std-ref">CPUID Emulation</span></a>
+section.</p>
+<p>The chip-check module can also dump the list of available chips, or to dump all
+the XED IFORMs legal for the input chip.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When specifying the chip knob in Intel® SDE command line, you actually define the
+CPUID behavior and the corresponding chip for the chip-check feature.</p>
+</div>
+<section id="checking-for-avx10-256-vector-register-length">
+<h2>Checking for AVX10/256 Vector Register Length<a class="headerlink" href="#checking-for-avx10-256-vector-register-length" title="Permalink to this heading"></a></h2>
+<p>Intel® AVX10 is a converged vector ISA for all future processors. This means that Intel®
+AVX10 instructions will be supported on both the Performance-cores and the Efficient-cores.
+The converged ISA will be limited to 256 bits vector register length.</p>
+<p>Intel® SDE provides a few options for checking that your software is ready for Intel® AVX10 256
+bits vector length mode:</p>
+<ul class="simple">
+<li><p>Use a special knob <cite>-chip-check-vl256</cite>, this knob checks that all executed instructions
+are legal for 256 bits vector length mode regardless of the emulated CPU. However, your
+CPU definition might provide the Intel® AVX-512 feature bits and dynamic code dispatch
+is free to choose code path with Intel® AVX-512 instructions. Therefore, either choose
+CPU without Intel® AVX-512 features or limit the checks to the executable by choosing
+<cite>-chip-check-exe-only</cite> knob.</p></li>
+<li><p>Use a custom CPUID definition file that has no Intel® AVX-512 feature bits but has
+the required settings for Intel® AVX10 limited to 256 bits vector length. Use chip
+checks against the CPUID mode as defined by using the knob <cite>-chip-check-cpuid</cite>.</p></li>
+<li><p>Use the <cite>-gnr256</cite> chip knob. This knob represents an artificial CPU definition that
+matches future processors based on <cite>Granite Rapids</cite> microarchitecture but without Intel®
+AVX-512 feature bits and limited to 256 bits vector length. This knob was added to make
+it easy to verify that your software is ready for future processors with Intel® AVX10
+ISA limited to 256 bits vector length.</p></li>
+</ul>
+<p><strong>Chip-check controls</strong></p>
+<dl class="option-list">
+<dt><kbd><span class="option">-c<var>hip_check</var></span></kbd></dt>
+<dd><p>Restrict to a specific XED chip [no default value]</p>
+</dd>
+<dt><kbd><span class="option">-c<var>hip_check_call_stack</var></span></kbd></dt>
+<dd><p>Emit the call stack on error [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-c<var>hip_check_call_stack_depth</var></span></kbd></dt>
+<dd><p>Specify chip-check call-stack max depth [default 10]</p>
+</dd>
+<dt><kbd><span class="option">-c<var>hip_check_cpuid</var></span></kbd></dt>
+<dd><p>Check against features in the active CPUID definition [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-c<var>hip_check_die</var></span></kbd></dt>
+<dd><p>Die on errors. 0=warn, 1=die [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-c<var>hip_check_disable</var></span></kbd></dt>
+<dd><p>Disable the chip checking mechanism [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-c<var>hip_check_emit_file</var></span></kbd></dt>
+<dd><p>Emit messages to a file. 0=no file, 1=file [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-c<var>hip_check_exe_only</var></span></kbd></dt>
+<dd><p>Check only the main executable [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-c<var>hip_check_file</var></span></kbd></dt>
+<dd><p>Output file chip-check errors [default sde-chip-check.txt]</p>
+</dd>
+<dt><kbd><span class="option">-c<var>hip_check_image</var></span></kbd></dt>
+<dd><p>Repeatable knob to specify which images to check [no default value]</p>
+</dd>
+<dt><kbd><span class="option">-c<var>hip_check_list</var></span></kbd></dt>
+<dd><p>List valid chip names and exit [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-c<var>hip_check_list_iforms</var></span></kbd></dt>
+<dd><p>List valid XED IFORMs for a specific chip and exit [default 0]</p>
+</dd>
+</dl>
+<dl class="option-list">
+<dt><kbd><span class="option">-c<var>hip_check_stderr</var></span></kbd></dt>
+<dd><p>Try to emit messages to stderr. 0=no stderr, 1=stderr [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-c<var>hip_check_vl256</var></span></kbd></dt>
+<dd><p>Check that instructions are supported in AVX10/256 vector length mode [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-c<var>hip_check_vsyscall</var></span></kbd></dt>
+<dd><p>Enable the chip checking checking in the VSYSCALL area (Linux only) [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-c<var>hip_check_win_sys_ignore</var></span></kbd></dt>
+<dd><p>Disable the chip checking in Windows NTDLL library (Windows only) [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-c<var>hip_check_zcnt</var></span></kbd></dt>
+<dd><p>The TSCNT/LZCNT has backward compatibility, check it explicitly anyway [default 0]</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="filenames.html" class="btn btn-neutral float-left" title="Controlling Output File Names" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="checkers.html" class="btn btn-neutral float-right" title="Checking for Bad Pointers and Data Misalignment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Intel SDE.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

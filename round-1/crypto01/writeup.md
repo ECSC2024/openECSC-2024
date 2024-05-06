@@ -7,13 +7,16 @@ There are so many weird groups you can use for a key exchange. I just took one w
 Authors: Lorenzo Demeio <@Devrar>, Matteo Rossi <@mr96>
 
 ## Overview
+
 The key exchange implemented is an adaptation of Anshel-Anshel-Goldfeld key exchange on Braid group to the Cactus group.
 
 ## Solution
-The public keys $`b_1`$ and $`a_1`$ are the conjugation of $`b`$ and $`a`$ with the secret keys $`A`$ and $`B`$. So, calling $`x = b[0]`$ and $`y = b_1[0]`$, we have $`y = A^{-1} \cdot x \cdot A`$. Moreover, $`A`$ is equal to the product of some random elements of $`a`$ (which we know): $`A = a[{sa_0}] \cdot a[sa_1] \cdot \ldots \cdot a[sa_{L-1}]`$. In the end we have:
 
-```math
+The public keys $b_1$ and $a_1$ are the conjugation of $b$ and $a$ with the secret keys $A$ and $B$. So, calling $x = b[0]$ and $y = b_1[0]$, we have $y = A^{-1} \cdot x \cdot A$. Moreover, $A$ is equal to the product of some random elements of $a$ (which we know): $A = a[{sa_0}] \cdot a[sa_1] \cdot \ldots \cdot a[sa_{L-1}]$. In the end we have:
+
+$$
 y = a[sa_{L-1}]^{-1} \cdot \ldots \cdot a[sa_1]^{-1} \cdot a[sa_0]^{-1} \cdot x \cdot a[{sa_0}] \cdot a[sa_1] \cdot \ldots \cdot a[sa_{L-1}].
+
 ```
 
 We can now try to guess each $`a[sa_i]`$ at a time, by conjugating $`y`$ for each element of $`a`$. Indeed, when we conjugate for the right element $`a[sa_{L-1}]`$ we get

@@ -1,0 +1,38 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "build": "src",
+      "environment": {
+        "FLAG": "openECSC{h3r3_1n_th3_wild3rness_w3_l1ke_h1d1ng_1n_the_sh4dow_[random 8]}"
+      },
+      "expose": [
+        {
+          "type": "tcp",
+          "host": 38012,
+          "container": 1337
+        }
+      ],
+      "volumes": [
+        {
+          "type": "bind",
+          "host": "src/run.sh",
+          "container": "/home/user/chall",
+          "readonly": true
+        },
+        {
+          "type": "bind",
+          "host": "src/sde-external-9.33.0-2024-01-07-lin",
+          "container": "/home/user/sde",
+          "readonly": true
+        },
+        {
+          "type": "bind",
+          "host": "src/build",
+          "container": "/home/user/build",
+          "readonly": true
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "image": "cybersecnatlab/challenge-jail@sha256:2544634302f01d6ae8ee38446652dfbc9ec3cc5240c906e3e4adfdb6c2ce2a97",
+      "volumes": [
+        {
+          "type": "bind",
+          "readonly": true,
+          "host": "src/build/yet_another_guessing_game",
+          "container": "/home/user/chall"
+        },
+        {
+          "type": "bind",
+          "readonly": true,
+          "host": "src/libs",
+          "container": "/home/user/libs"
+        }
+      ],
+      "expose": [
+        {
+          "type": "tcp",
+          "host": 38010,
+          "container": 1337
+        }
+      ],
+      "environment": {
+        "FLAG": "openECSC{y3t_an0th3r_br0ken_gu3ssing_g4me_[random 8]}",
+        "TIMEOUT": "1200",
+        "SET_INTERPRETER": "/home/user/libs/ld-linux-x86-64.so.2",
+        "SET_RPATH": "/home/user/libs"
+      }
+    }
+  }
+}

@@ -1,0 +1,1 @@
+^openECSC\{h3r3_1n_th3_wild3rness_w3_l1ke_h1d1ng_1n_the_sh4dow_[0-9a-f]{8}\}$

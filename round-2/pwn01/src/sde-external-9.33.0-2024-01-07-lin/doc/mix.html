@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Histogram Analysis Tool - Mix &mdash; Intel® SDE  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Measuring Memory Footprint" href="footprint.html" />
+    <link rel="prev" title="Counting Instructions" href="icount.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Intel® SDE
+          </a>
+              <div class="version">
+                9.33.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Intel® SDE User's Manual:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Intel® SDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="emulation.html">Controlling the Emulation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="tools.html">Analysis Tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="filenames.html">Controlling Output File Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chip_check.html">Chip Check Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checkers.html">Checking for Bad Pointers and Data Misalignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller.html">The Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="icount.html">Counting Instructions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The Histogram Analysis Tool - Mix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html">Measuring Memory Footprint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="itrace.html">Instruction Trace Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugtrace.html">The Debug ASCII Tracing Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mask_profile.html">Mask Profiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sparse.html">Sparse Instructions Analysis Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="avx_sse.html">Detecting AVX-SSE Transitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssc.html">Using SSC Marks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tracing.html">Record and Replay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app_debug.html">Application Debugging</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Intel® SDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="tools.html">Analysis Tools</a></li>
+      <li class="breadcrumb-item active">The Histogram Analysis Tool - Mix</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/mix.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-histogram-analysis-tool-mix">
+<span id="mix"></span><h1>The Histogram Analysis Tool - Mix<a class="headerlink" href="#the-histogram-analysis-tool-mix" title="Permalink to this heading"></a></h1>
+<p>Running profiling tool like Intel® VTune™ or Linux Perf will profile Intel® SDE and not the emulated application.
+Therefore, Intel® SDE provides a very useful instruction mix histograms for profiling the application.
+This analysis tool generates a few types of analysis information which is written into the output file in
+machine and human readable format. The file is divided to sections each contains specific data.</p>
+<p>The output file includes header, list of loaded images, data per thread and a global summary.
+Each per thread section has the top-basic-block section, the instructions’ histogram, function table, and
+histogram per function. The histogram can show the instructions by opcode (XED iclass, the default) or by
+the instruction form (XED iform). Additionally instruction groups are also shown in the histogram.
+The groups are marked with a star (‘*’) and include instructions category, instructions ISA-set, instruction
+length and more. Information about the various groups can be found below. Optionally, the mix analysis
+tool can collect dynamic control flow information. When specified, this data will be emitted in per thread
+sections in their own sub-sections.</p>
+<p>Intel® SDE activate the mix analysis tool when <cite>-mix</cite> or <cite>-omix</cite> knobs are specified in the command line.
+There are many options to control the collected data and the dump to the output file.</p>
+<p><strong>Mix Knobs</strong></p>
+<dl class="option-list">
+<dt><kbd><span class="option">-d</span></kbd></dt>
+<dd><p>Only collect dynamic profile [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>emangle</var></span></kbd></dt>
+<dd><p>Control for symbol demangling [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>ynamic_stats_per_block</var></span></kbd></dt>
+<dd><p>Print dynamic stats per block [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-d<var>ynamic_stats_per_loop</var></span></kbd></dt>
+<dd><p>Print dynamic stats per loop [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-f<var>unction_call_counts</var></span></kbd></dt>
+<dd><p>Collect number of times each function is called [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-g<var>lobal_functions</var></span></kbd></dt>
+<dd><p>Print global functions report [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-g<var>lobal_hot_blocks</var></span></kbd></dt>
+<dd><p>Print global hot blocks [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-h<var>ottest_threads_order</var></span></kbd></dt>
+<dd><p>thread stats prints are ordered by instruction count [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-i<var>form</var></span></kbd></dt>
+<dd><p>Compute ISA histogram per XED IFORM [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-l<var>ine_info</var></span></kbd></dt>
+<dd><p>Add line info to the top hot blocks [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-m<var>ap_all_blocks</var></span></kbd></dt>
+<dd><p>Map all the blocks instead of only top blocks [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-m<var>apaddr</var></span></kbd></dt>
+<dd><p>Emit mappings: Address -&gt; Source file and Line [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-m<var>apaddr_top_blocks</var></span></kbd></dt>
+<dd><p>Emit mappings for top blocks: Address -&gt; Source file and Line [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-m<var>ix</var></span></kbd></dt>
+<dd><p>Compute mix histogram analysis tool [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-m<var>ix_concat_bbls</var></span></kbd></dt>
+<dd><p>Concatenate consecutive blocks statistics [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-m<var>ix_count_rep_iterations</var></span></kbd></dt>
+<dd><p>Count each iteration of repeat string instructions, as a separate instruction [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-m<var>ix_filter_no_shared_libs</var></span></kbd></dt>
+<dd><p>Do not instrument shared libraries [default ]</p>
+</dd>
+<dt><kbd><span class="option">-m<var>ix_loops</var></span></kbd></dt>
+<dd><p>Supply loops statistics [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-m<var>ix_loops_threads</var></span></kbd></dt>
+<dd><p>Supply loops statistics per thread [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-m<var>ix_max_cumulative</var></span></kbd></dt>
+<dd><p>Specify maximum cumulative, stops printing functions when reached max cumulative [default 97]</p>
+</dd>
+<dt><kbd><span class="option">-m<var>ix_disable_per_function_stats</var></span></kbd></dt>
+<dd><p>Omit the per-function histograms, reduces the output file size [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-m<var>ix_disable_per_thread_stats</var></span></kbd></dt>
+<dd><p>Omit per-thread stats, reduces output file size [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-m<var>ix_opt_report</var></span></kbd></dt>
+<dd><p>Add optimization report messages to mix file [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-m<var>ix_top_functions</var></span></kbd></dt>
+<dd><p>Specify maximum number of top function to be printed (0 unlimited) [default 10]</p>
+</dd>
+<dt><kbd><span class="option">-m<var>ix_top_loops</var></span></kbd></dt>
+<dd><p>Specify maximum number of top loops for which statistics are printed, sorted by iteration count [default 10]</p>
+</dd>
+<dt><kbd><span class="option">-m<var>ix_vpconflict</var></span></kbd></dt>
+<dd><p>Add VCONFLICT stats to mix file [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-n<var>o_shared_libs</var></span></kbd></dt>
+<dd><p>Do not instrument shared libraries [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-o<var>mix</var></span></kbd></dt>
+<dd><p>Specify profile output file name [default sde-mix-out.txt]</p>
+</dd>
+<dt><kbd><span class="option">-s</span></kbd></dt>
+<dd><p>Terminate after collection of the static profile for the main image [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-t<var>op_blocks</var></span></kbd></dt>
+<dd><p>specify maximum number of top blocks for which instruction counts are printed [default 20]</p>
+</dd>
+</dl>
+<section id="mix-output-file-format">
+<h2>Mix Output File format<a class="headerlink" href="#mix-output-file-format" title="Permalink to this heading"></a></h2>
+<p>The Mix output file includes several sections. The first section is the header and it include multiple rows that start with # sign.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mix output version 10</span>
+<span class="c1"># Intel(R) SDE version: 9.15.0 external</span>
+<span class="c1"># Starting tid 0,  OS-TID 15891</span>
+<span class="c1"># FINI: end of program</span>
+</pre></div>
+</div>
+<p>This section has Intel® SDE version number, the kit type and the list of threads.</p>
+<p>Next section is the <cite>images</cite> section which is a list of all the images and their addresses in memory.
+This section has tags that mark the start and the end of this section.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># EMIT_IMAGE_ADDRESSES</span>
+<span class="c1">#</span>
+<span class="c1">#    IMAGE NAME                 LOW ADDRESS   HIGH ADDRESS</span>
+<span class="c1">#</span>
+<span class="n">loops</span>                           <span class="mi">000000400000</span>  <span class="mi">00000040</span><span class="n">a147</span>
+<span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">ld</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">x86</span><span class="o">-</span><span class="mf">64.</span><span class="n">so</span><span class="mf">.2</span>     <span class="mi">2</span><span class="n">aaaaaaab000</span>  <span class="mi">2</span><span class="n">aaaaaacbfeb</span>
+<span class="p">[</span><span class="n">vdso</span><span class="p">]</span>                          <span class="mi">2</span><span class="n">aaaaaacf000</span>  <span class="mi">2</span><span class="n">aaaaaacfdba</span>
+<span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">libm</span><span class="o">.</span><span class="n">so</span><span class="mf">.6</span>                <span class="mi">2</span><span class="n">aaaf1c5c000</span>  <span class="mi">2</span><span class="n">aaaf1f58147</span>
+<span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">libgcc_s</span><span class="o">.</span><span class="n">so</span><span class="mf">.1</span>            <span class="mi">2</span><span class="n">aaaf1fdc000</span>  <span class="mi">2</span><span class="n">aaaf21f344f</span>
+<span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">libc</span><span class="o">.</span><span class="n">so</span><span class="mf">.6</span>                <span class="mi">2</span><span class="n">aaaf21f5000</span>  <span class="mi">2</span><span class="n">aaaf25999df</span>
+<span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">libdl</span><span class="o">.</span><span class="n">so</span><span class="mf">.2</span>               <span class="mi">2</span><span class="n">aaaf25a2000</span>  <span class="mi">2</span><span class="n">aaaf27a50ef</span>
+<span class="c1"># END_IMAGE_ADDRESSES</span>
+</pre></div>
+</div>
+<p>The next sections are per thread data and include the top blocks stats, the dynamic stats histogram,
+the per function stats, the per function histogram.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ==============================================</span>
+<span class="c1"># STATS FOR TID 0  OS-TID  12005 EMIT# 1</span>
+<span class="c1"># ==============================================</span>
+<span class="c1"># EMIT_TOP_BLOCK_STATS FOR TID 0  OS-TID 12005 EMIT # 1 EVENT=ICOUNT</span>
+<span class="n">BLOCK</span><span class="p">:</span>     <span class="mi">0</span>   <span class="n">PC</span><span class="p">:</span> <span class="mi">0000000000401288</span>   <span class="n">ICOUNT</span><span class="p">:</span>   <span class="mi">3500000</span>   <span class="n">EXECUTIONS</span><span class="p">:</span> <span class="mi">250000</span> <span class="c1">#BYTES: 50  %: 21.7</span>
+               <span class="n">cumltv</span><span class="o">%</span><span class="p">:</span>  <span class="mf">21.7</span>  <span class="n">FN</span><span class="p">:</span> <span class="n">main</span>  <span class="n">IMG</span><span class="p">:</span> <span class="n">loops</span>  <span class="n">OFFSET</span><span class="p">:</span> <span class="mi">1288</span> <span class="n">Source</span><span class="p">:</span> <span class="n">loops</span><span class="o">.</span><span class="n">c</span> <span class="mi">39</span><span class="p">,</span><span class="mi">38</span>
+<span class="n">XDIS</span> <span class="mi">0000000000401288</span><span class="p">:</span> <span class="n">BASE</span> <span class="mi">89</span><span class="n">C7</span>                     <span class="n">mov</span> <span class="n">edi</span><span class="p">,</span> <span class="n">eax</span>
+<span class="n">XDIS</span> <span class="mi">000000000040128</span><span class="n">a</span><span class="p">:</span> <span class="n">BASE</span> <span class="n">B8D34D6210</span>               <span class="n">mov</span> <span class="n">eax</span><span class="p">,</span> <span class="mh">0x10624dd3</span>
+<span class="n">XDIS</span> <span class="mi">000000000040128</span><span class="n">f</span><span class="p">:</span> <span class="n">BASE</span> <span class="mi">89</span><span class="n">F9</span>                     <span class="n">mov</span> <span class="n">ecx</span><span class="p">,</span> <span class="n">edi</span>
+<span class="n">XDIS</span> <span class="mi">0000000000401291</span><span class="p">:</span> <span class="n">BASE</span> <span class="n">F7EF</span>                     <span class="n">imul</span> <span class="n">edi</span>
+<span class="n">XDIS</span> <span class="mi">0000000000401293</span><span class="p">:</span> <span class="n">BASE</span> <span class="n">C1F91F</span>                   <span class="n">sar</span> <span class="n">ecx</span><span class="p">,</span> <span class="mh">0x1f</span>
+<span class="n">XDIS</span> <span class="mi">0000000000401296</span><span class="p">:</span> <span class="n">BASE</span> <span class="mi">41</span><span class="n">FFC7</span>                   <span class="n">inc</span> <span class="n">r15d</span>
+<span class="n">XDIS</span> <span class="mi">0000000000401299</span><span class="p">:</span> <span class="n">BASE</span> <span class="n">C1FA06</span>                   <span class="n">sar</span> <span class="n">edx</span><span class="p">,</span> <span class="mh">0x6</span>
+<span class="n">XDIS</span> <span class="mi">000000000040129</span><span class="n">c</span><span class="p">:</span> <span class="n">BASE</span> <span class="mi">2</span><span class="n">BD1</span>                     <span class="n">sub</span> <span class="n">edx</span><span class="p">,</span> <span class="n">ecx</span>
+<span class="n">XDIS</span> <span class="mi">000000000040129</span><span class="n">e</span><span class="p">:</span> <span class="n">BASE</span> <span class="mi">69</span><span class="n">F218FCFFFF</span>             <span class="n">imul</span> <span class="n">esi</span><span class="p">,</span> <span class="n">edx</span><span class="p">,</span> <span class="mh">0xfffffc18</span>
+<span class="n">XDIS</span> <span class="mi">00000000004012</span><span class="n">a4</span><span class="p">:</span> <span class="n">BASE</span> <span class="mi">03</span><span class="n">FE</span>                     <span class="n">add</span> <span class="n">edi</span><span class="p">,</span> <span class="n">esi</span>
+<span class="n">XDIS</span> <span class="mi">00000000004012</span><span class="n">a6</span><span class="p">:</span> <span class="n">BASE</span> <span class="mi">4189</span><span class="n">BD00C94000</span>           <span class="n">mov</span> <span class="n">dword</span> <span class="n">ptr</span> <span class="p">[</span><span class="n">r13</span><span class="o">+</span><span class="mh">0x40c900</span><span class="p">],</span> <span class="n">edi</span>
+<span class="n">XDIS</span> <span class="mi">00000000004012</span><span class="n">ad</span><span class="p">:</span> <span class="n">BASE</span> <span class="mi">4983</span><span class="n">C504</span>                 <span class="n">add</span> <span class="n">r13</span><span class="p">,</span> <span class="mh">0x4</span>
+<span class="n">XDIS</span> <span class="mi">00000000004012</span><span class="n">b1</span><span class="p">:</span> <span class="n">BASE</span> <span class="mi">4181</span><span class="n">FFF4010000</span>           <span class="n">cmp</span> <span class="n">r15d</span><span class="p">,</span> <span class="mh">0x1f4</span>
+<span class="n">XDIS</span> <span class="mi">00000000004012</span><span class="n">b8</span><span class="p">:</span> <span class="n">BASE</span> <span class="mi">72</span><span class="n">C9</span>                     <span class="n">jb</span> <span class="mh">0x401283</span>
+<span class="o">...</span>
+<span class="c1"># END_TOP_BLOCK_STATS</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># EMIT_DYNAMIC_STATS FOR TID 0  OS-TID 12005 EMIT #1</span>
+<span class="c1">#</span>
+<span class="c1"># $dynamic-counts</span>
+<span class="c1">#</span>
+<span class="c1"># TID 0</span>
+<span class="c1">#       opcode                 count</span>
+<span class="c1">#</span>
+<span class="o">*</span><span class="n">stack</span><span class="o">-</span><span class="n">read</span>                    <span class="mi">1012276</span>
+<span class="o">*</span><span class="n">stack</span><span class="o">-</span><span class="n">write</span>                    <span class="mi">762328</span>
+<span class="o">*</span><span class="n">iprel</span><span class="o">-</span><span class="n">read</span>                    <span class="mi">1251592</span>
+<span class="o">*</span><span class="n">iprel</span><span class="o">-</span><span class="n">write</span>                    <span class="mi">500617</span>
+<span class="o">*</span><span class="n">mem</span><span class="o">-</span><span class="n">read</span><span class="o">-</span><span class="mi">1</span>                      <span class="mi">10875</span>
+<span class="o">*</span><span class="n">mem</span><span class="o">-</span><span class="n">read</span><span class="o">-</span><span class="mi">2</span>                        <span class="mi">820</span>
+<span class="o">*</span><span class="n">mem</span><span class="o">-</span><span class="n">read</span><span class="o">-</span><span class="mi">4</span>                    <span class="mi">2006936</span>
+<span class="o">*</span><span class="n">mem</span><span class="o">-</span><span class="n">read</span><span class="o">-</span><span class="mi">8</span>                    <span class="mi">2024321</span>
+<span class="o">*</span><span class="n">mem</span><span class="o">-</span><span class="n">read</span><span class="o">-</span><span class="mi">16</span>                     <span class="mi">62675</span>
+<span class="o">...</span>
+<span class="n">SUB</span>                             <span class="mi">759384</span>
+<span class="n">SYSCALL</span>                             <span class="mi">52</span>
+<span class="n">TEST</span>                            <span class="mi">763928</span>
+<span class="n">XGETBV</span>                               <span class="mi">3</span>
+<span class="n">XOR</span>                             <span class="mi">502198</span>
+<span class="o">*</span><span class="n">total</span>                        <span class="mi">16097397</span>
+<span class="c1"># END_DYNAMIC_STATS</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># FUNCTION TOTALS FOR TID 0  OS-TID 12005</span>
+<span class="c1">#rank total-icount    %  cumulative%   #times-called    address function-name    image-name</span>
+<span class="mi">0</span><span class="p">:</span>      <span class="mi">6491936</span>  <span class="mf">40.329</span>  <span class="mf">40.329</span>        <span class="mi">250000</span>      <span class="mi">2</span><span class="n">aaaf222d480</span> <span class="n">random_r</span>         <span class="n">IMG</span><span class="p">:</span> <span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">libc</span><span class="o">.</span><span class="n">so</span><span class="mf">.6</span>
+<span class="mi">1</span><span class="p">:</span>      <span class="mi">4250000</span>  <span class="mf">26.402</span>  <span class="mf">66.731</span>        <span class="mi">250000</span>      <span class="mi">2</span><span class="n">aaaf222d2f0</span> <span class="n">random</span>           <span class="n">IMG</span><span class="p">:</span> <span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">libc</span><span class="o">.</span><span class="n">so</span><span class="mf">.6</span>
+<span class="mi">2</span><span class="p">:</span>      <span class="mi">3754701</span>  <span class="mf">23.325</span>  <span class="mf">90.056</span>             <span class="mi">1</span>            <span class="mi">401230</span> <span class="n">main</span>             <span class="n">IMG</span><span class="p">:</span> <span class="n">loops</span>
+<span class="mi">3</span><span class="p">:</span>      <span class="mi">1000000</span>   <span class="mf">6.212</span>  <span class="mf">96.268</span>        <span class="mi">250000</span>      <span class="mi">2</span><span class="n">aaaf222d760</span> <span class="n">rand</span>             <span class="n">IMG</span><span class="p">:</span> <span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">libc</span><span class="o">.</span><span class="n">so</span><span class="mf">.6</span>
+<span class="mi">4</span><span class="p">:</span>       <span class="mi">250002</span>   <span class="mf">1.553</span>  <span class="mf">97.821</span>        <span class="mi">250000</span>            <span class="mi">401130</span> <span class="n">rand</span>             <span class="n">IMG</span><span class="p">:</span> <span class="n">loops</span>
+<span class="mi">5</span><span class="p">:</span>       <span class="mi">187533</span>   <span class="mf">1.165</span>  <span class="mf">98.986</span>             <span class="mi">1</span>            <span class="mi">4019</span><span class="n">d0</span> <span class="n">__intel_ssse3_rep_memcpy</span>  <span class="n">IMG</span><span class="p">:</span> <span class="n">loops</span>
+<span class="mi">6</span><span class="p">:</span>        <span class="mi">36379</span>   <span class="mf">0.226</span>  <span class="mf">99.212</span>           <span class="mi">122</span>      <span class="mi">2</span><span class="n">aaaaaab3f10</span> <span class="n">do_lookup_x</span>      <span class="n">IMG</span><span class="p">:</span> <span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">ld</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">x86</span><span class="o">-</span><span class="mf">64.</span><span class="n">so</span><span class="mf">.2</span>
+<span class="mi">7</span><span class="p">:</span>        <span class="mi">29750</span>   <span class="mf">0.185</span>  <span class="mf">99.397</span>             <span class="mi">6</span>      <span class="mi">2</span><span class="n">aaaaaab6390</span> <span class="n">_dl_relocate_object</span>  <span class="n">IMG</span><span class="p">:</span> <span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">ld</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">x86</span><span class="o">-</span><span class="mf">64.</span><span class="n">so</span><span class="mf">.2</span>
+<span class="mi">8</span><span class="p">:</span>        <span class="mi">24866</span>   <span class="mf">0.154</span>  <span class="mf">99.551</span>           <span class="mi">122</span>      <span class="mi">2</span><span class="n">aaaaaab4b70</span> <span class="n">_dl_lookup_symbol_x</span>  <span class="n">IMG</span><span class="p">:</span> <span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">ld</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">x86</span><span class="o">-</span><span class="mf">64.</span><span class="n">so</span><span class="mf">.2</span>
+<span class="mi">9</span><span class="p">:</span>        <span class="mi">18481</span>   <span class="mf">0.115</span>  <span class="mf">99.666</span>          <span class="mi">2595</span>      <span class="mi">2</span><span class="n">aaaaaac3cb0</span> <span class="n">strcmp</span>           <span class="n">IMG</span><span class="p">:</span> <span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">ld</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">x86</span><span class="o">-</span><span class="mf">64.</span><span class="n">so</span><span class="mf">.2</span>
+<span class="mi">10</span><span class="p">:</span>        <span class="mi">5490</span>   <span class="mf">0.034</span>  <span class="mf">99.700</span>           <span class="mi">104</span>      <span class="mi">2</span><span class="n">aaaaaab3d70</span> <span class="n">check_match</span>      <span class="n">IMG</span><span class="p">:</span> <span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">ld</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">x86</span><span class="o">-</span><span class="mf">64.</span><span class="n">so</span><span class="mf">.2</span>
+        <span class="mi">16097397</span> <span class="n">TOTAL</span>
+<span class="c1"># END FUNCTION TOTALS</span>
+</pre></div>
+</div>
+<p>The end of the file include global stats which have global top blocks stats (accumulated over all the threads)
+Additional information can be attached to the mix output.</p>
+</section>
+<section id="mix-histogram-accounting">
+<h2>Mix Histogram Accounting<a class="headerlink" href="#mix-histogram-accounting" title="Permalink to this heading"></a></h2>
+<p>Intel® SDE mix tool count how many times each basic block is executed and at the end of the run generates the
+detailed report. The histogram has counts per instruction opcode (XED ICLASS) or per instruction opcode
+and its specific operands (XED IFORM). Together with the accounting of the instructions the mix tool
+groups instructions into various groups and emit their total count in a row marked with a star (‘*’).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The same instruction might be counted multiple times in different groups.</p>
+</div>
+<p>Partial list of groups reported by the Mix tool</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Group</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>*sse-scalar</p></td>
+<td><p>Scalar SSE instructions (the lowest element in xmm) e.g. ADDSD</p></td>
+</tr>
+<tr class="row-odd"><td><p>*avx-scalar</p></td>
+<td><p>Scalar AVX instructions e.g. VADDSD</p></td>
+</tr>
+<tr class="row-even"><td><p>*scalar-simd</p></td>
+<td><p>Scalar instructions of any kind (some of all SSE, AVX and
+AVX-512 scalar instructions).</p></td>
+</tr>
+<tr class="row-odd"><td><p>*avx128</p></td>
+<td><p>AVX instructions which are not scalar and not AVX-256.</p></td>
+</tr>
+<tr class="row-even"><td><p>*avx256</p></td>
+<td><p>AVX instructions with vector length 32 bytes.</p></td>
+</tr>
+<tr class="row-odd"><td><p>*avx512</p></td>
+<td><p>AVX-512 instructions with vector length 64 bytes.</p></td>
+</tr>
+<tr class="row-even"><td><p>*isa-ext-&lt;E&gt;</p></td>
+<td><p>Instruction with XED ISA extension E.</p></td>
+</tr>
+<tr class="row-odd"><td><p>*isa-set-&lt;S&gt;</p></td>
+<td><p>Instruction with XED ISA set S.</p></td>
+</tr>
+<tr class="row-even"><td><p>*category-&lt;C&gt;</p></td>
+<td><p>Instruction with XED category C.</p></td>
+</tr>
+<tr class="row-odd"><td><p>*elements_fp_single_N</p></td>
+<td><p>Vector instruction (i.e. SSE, AVX or AVX-512) with a single
+precision operand and the operand length is N elements.</p></td>
+</tr>
+<tr class="row-even"><td><p>*elements_fp_double_N</p></td>
+<td><p>Vector instruction with double precision operand and the
+operand length is N elements.</p></td>
+</tr>
+<tr class="row-odd"><td><p>*elements_fp_single_N_masked</p></td>
+<td><p>Same with masked vector instruction (AVX-512).</p></td>
+</tr>
+<tr class="row-even"><td><p>*elements_fp_double_N_masked</p></td>
+<td><p>Same with masked vector instruction (AVX-512).</p></td>
+</tr>
+</tbody>
+</table>
+<p>The Intel® SDE kit has a text file called idata.txt that lists all the instructions supported by the kit.
+Each row in the file represents a single XED IFORM. This IFORM is the equivalent of an instruction and its operand.
+As a single instruction might have multiple flavors. (e.g. MOV has many flavors with GPRs, immediate, memory and more).
+This file is helpful in understanding which instructions belong to specific XED extension, XED category or XED ISA-set.</p>
+<p>If you would like to know how many AVX instructions were executed then the best way is to use the *isa-ext-AVX or the *isa-set-AVX.
+These two should be the same.</p>
+</section>
+<section id="mix-additional-information">
+<h2>Mix additional information<a class="headerlink" href="#mix-additional-information" title="Permalink to this heading"></a></h2>
+<p>Intel® SDE provides additional analysis tools and add their output inside the mix output file.</p>
+<p><strong>Loop Analysis</strong></p>
+<p>Intel® SDE can use the dynamic control flow graph analysis tool to provide additional information about loops.
+To activate the loop analysis use the <cite>-mix_loops</cite> knob. The loop information can be emitted per thread or globally.
+The loop output is in its own section. The section is marked with tags and looks like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ==============================================</span>
+<span class="c1"># LOOPS_STATS_FROM_DCFG_FOR_TID 0</span>
+<span class="c1"># ==============================================</span>
+<span class="n">LOOP</span><span class="p">:</span> <span class="mi">0</span>     <span class="n">NUM</span> <span class="n">BLOCKS</span><span class="p">:</span> <span class="mi">4</span>   <span class="n">HEAD</span> <span class="n">BLOCK_ID</span><span class="p">:</span> <span class="mi">28</span>   <span class="n">ENTRIES</span><span class="p">:</span> <span class="mi">1</span>   <span class="n">EXECUTIONS</span><span class="p">:</span> <span class="mi">500</span>
+<span class="n">EDGE</span> <span class="n">FROM</span> <span class="n">BLOCK_ID</span><span class="p">:</span> <span class="mi">30</span> <span class="n">TO</span> <span class="n">BLOCK_ID</span><span class="p">:</span> <span class="mi">29</span>   <span class="n">EXECUTIONS</span><span class="p">:</span> <span class="mi">249500</span>
+<span class="n">EDGE</span> <span class="n">FROM</span> <span class="n">BLOCK_ID</span><span class="p">:</span> <span class="mi">28</span> <span class="n">TO</span> <span class="n">BLOCK_ID</span><span class="p">:</span> <span class="mi">29</span>   <span class="n">EXECUTIONS</span><span class="p">:</span> <span class="mi">500</span>
+<span class="n">EDGE</span> <span class="n">FROM</span> <span class="n">BLOCK_ID</span><span class="p">:</span> <span class="mi">30</span> <span class="n">TO</span> <span class="n">BLOCK_ID</span><span class="p">:</span> <span class="mi">31</span>   <span class="n">EXECUTIONS</span><span class="p">:</span> <span class="mi">500</span>
+<span class="n">EDGE</span> <span class="n">FROM</span> <span class="n">BLOCK_ID</span><span class="p">:</span> <span class="mi">31</span> <span class="n">TO</span> <span class="n">BLOCK_ID</span><span class="p">:</span> <span class="mi">28</span>   <span class="n">EXECUTIONS</span><span class="p">:</span> <span class="mi">499</span>
+
+<span class="n">BLOCK_ID</span><span class="p">:</span> <span class="mi">28</span> <span class="n">PC</span><span class="p">:</span> <span class="mi">0040127</span><span class="n">d</span>   <span class="n">ICOUNT</span><span class="p">:</span>    <span class="mi">1000</span> <span class="n">EXECUTIONS</span><span class="p">:</span>    <span class="mi">500</span> <span class="c1">#BYTES:  6  FN: main  IMG: loops</span>
+<span class="n">XDIS</span> <span class="mi">000000000040127</span><span class="n">d</span><span class="p">:</span> <span class="n">BASE</span> <span class="mi">4533</span><span class="n">FF</span>       <span class="n">xor</span> <span class="n">r15d</span><span class="p">,</span> <span class="n">r15d</span>
+<span class="n">XDIS</span> <span class="mi">0000000000401280</span><span class="p">:</span> <span class="n">BASE</span> <span class="mi">4989</span><span class="n">DD</span>       <span class="n">mov</span> <span class="n">r13</span><span class="p">,</span> <span class="n">rbx</span>
+
+<span class="n">BLOCK_ID</span><span class="p">:</span> <span class="mi">29</span> <span class="n">PC</span><span class="p">:</span> <span class="mi">00401283</span>   <span class="n">ICOUNT</span><span class="p">:</span>  <span class="mi">250000</span> <span class="n">EXECUTIONS</span><span class="p">:</span> <span class="mi">250000</span> <span class="c1">#BYTES:  5  FN: main  IMG: loops</span>
+<span class="n">XDIS</span> <span class="mi">0000000000401283</span><span class="p">:</span> <span class="n">BASE</span> <span class="n">E8A8FEFFFF</span>   <span class="n">call</span> <span class="mh">0x401130</span>
+
+<span class="n">BLOCK_ID</span><span class="p">:</span> <span class="mi">30</span> <span class="n">PC</span><span class="p">:</span> <span class="mi">00401288</span>   <span class="n">ICOUNT</span><span class="p">:</span> <span class="mi">3500000</span> <span class="n">EXECUTIONS</span><span class="p">:</span> <span class="mi">250000</span> <span class="c1">#BYTES: 50  FN: main  IMG: loops</span>
+<span class="n">XDIS</span> <span class="mi">0000000000401288</span><span class="p">:</span> <span class="n">BASE</span> <span class="mi">89</span><span class="n">C7</span>         <span class="n">mov</span> <span class="n">edi</span><span class="p">,</span> <span class="n">eax</span>
+<span class="n">XDIS</span> <span class="mi">000000000040128</span><span class="n">a</span><span class="p">:</span> <span class="n">BASE</span> <span class="n">B8D34D6210</span>   <span class="n">mov</span> <span class="n">eax</span><span class="p">,</span> <span class="mh">0x10624dd3</span>
+<span class="o">...</span>
+<span class="n">END_LOOP</span><span class="p">:</span> <span class="mi">0</span>
+<span class="c1"># ==============================================</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="icount.html" class="btn btn-neutral float-left" title="Counting Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="footprint.html" class="btn btn-neutral float-right" title="Measuring Memory Footprint" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Intel SDE.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Measuring Memory Footprint &mdash; Intel® SDE  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Instruction Trace Tool" href="itrace.html" />
+    <link rel="prev" title="The Histogram Analysis Tool - Mix" href="mix.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Intel® SDE
+          </a>
+              <div class="version">
+                9.33.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Intel® SDE User's Manual:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Intel® SDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="emulation.html">Controlling the Emulation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="tools.html">Analysis Tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="filenames.html">Controlling Output File Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chip_check.html">Chip Check Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checkers.html">Checking for Bad Pointers and Data Misalignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller.html">The Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="icount.html">Counting Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mix.html">The Histogram Analysis Tool - Mix</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Measuring Memory Footprint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="itrace.html">Instruction Trace Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugtrace.html">The Debug ASCII Tracing Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mask_profile.html">Mask Profiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sparse.html">Sparse Instructions Analysis Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="avx_sse.html">Detecting AVX-SSE Transitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssc.html">Using SSC Marks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tracing.html">Record and Replay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app_debug.html">Application Debugging</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Intel® SDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="tools.html">Analysis Tools</a></li>
+      <li class="breadcrumb-item active">Measuring Memory Footprint</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/footprint.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="measuring-memory-footprint">
+<h1>Measuring Memory Footprint<a class="headerlink" href="#measuring-memory-footprint" title="Permalink to this heading"></a></h1>
+<p>The memory footprint analysis tool is an analysis tool that measures the amount of memory used during
+the application run. It measures the memory at the cache line granularity (each cache line is 64 bytes).
+Optionally, it can also measure the memory footprint at the page granularity and you need to specify
+the page size.</p>
+<p>Intel® SDE provides two types of memory footprint analysis, the default is throughout the region of interest
+(defined by the <a class="reference internal" href="controller.html#controller"><span class="std std-ref">The Controller</span></a>) or a periodic measurements. The period can be defined in time
+(wall-clock milliseconds) or by instruction count.</p>
+<p>The memory footprint analysis tool is useful for checking if the workload is resident in certain cache
+level and the developer can update the workload memory footprint size to match the analysis requirements.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-skx<span class="w"> </span>-footprint<span class="w"> </span>--<span class="w"> </span>myapp
+</pre></div>
+</div>
+<p>Will give an output of the form:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># LEGEND :</span>
+<span class="c1">#==========</span>
+<span class="c1"># ST = lines (or pages) with STORE only</span>
+<span class="c1"># LD = lines (or pages) with LOAD only</span>
+<span class="c1"># CD = lines (or pages) with CODE only</span>
+<span class="c1"># LD+ST = lines (or pages) with LOAD and SOTRE</span>
+<span class="c1"># CD+LD = lines (or pages) with CODE and LOAD</span>
+<span class="c1"># CD+ST = lines (or pages) with CODE and STORE</span>
+<span class="c1"># C+L+S = lines (or pages) with CODE, LOAD, and STORE</span>
+<span class="c1"># NEW = new accesses within interval</span>
+<span class="c1">#                   =========================== CACHE LINES ============================</span>
+<span class="c1">#  PERIOD[ms]       TID     LOAD   STORE   LD+ST    CODE   CD+LD   CD+ST   C+L+S     NEW</span>
+<span class="c1"># THREAD_START 0</span>
+        <span class="o">--</span>            <span class="mi">0</span>     <span class="mi">2745</span>     <span class="mi">478</span>     <span class="mi">853</span>    <span class="mi">1756</span>       <span class="mi">4</span>       <span class="mi">0</span>       <span class="mi">0</span>    <span class="mi">5836</span>
+        <span class="o">--</span>          <span class="nb">all</span>     <span class="mi">2745</span>     <span class="mi">478</span>     <span class="mi">853</span>    <span class="mi">1756</span>       <span class="mi">4</span>       <span class="mi">0</span>       <span class="mi">0</span>    <span class="mi">5836</span>
+<span class="c1"># EOF</span>
+</pre></div>
+</div>
+<p>Example for periodic footprint analysis:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-skx<span class="w"> </span>-footprint<span class="w"> </span>-fp_time<span class="w"> </span><span class="m">100</span><span class="w"> </span>--<span class="w"> </span>myapp
+</pre></div>
+</div>
+<p>Will give an output of the form:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="c1">#                   =========================== CACHE LINES ============================</span>
+<span class="c1">#  PERIOD[ms]       TID     LOAD   STORE   LD+ST    CODE   CD+LD   CD+ST   C+L+S     NEW</span>
+<span class="c1"># THREAD_START 0</span>
+<span class="c1"># TICK 1</span>
+        <span class="mi">100</span>           <span class="mi">0</span>       <span class="mi">16</span>       <span class="mi">6</span>      <span class="mi">17</span>      <span class="mi">21</span>       <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>      <span class="mi">60</span>
+<span class="c1"># TICK 2</span>
+        <span class="mi">200</span>           <span class="mi">0</span>       <span class="mi">79</span>       <span class="mi">8</span>      <span class="mi">13</span>      <span class="mi">26</span>       <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>     <span class="mi">119</span>
+<span class="c1"># TICK 3</span>
+        <span class="mi">300</span>           <span class="mi">0</span>       <span class="mi">10</span>      <span class="mi">13</span>       <span class="mi">5</span>      <span class="mi">30</span>       <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>      <span class="mi">43</span>
+<span class="c1"># TICK 4</span>
+        <span class="mi">400</span>           <span class="mi">0</span>       <span class="mi">27</span>      <span class="mi">10</span>      <span class="mi">12</span>      <span class="mi">25</span>       <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>      <span class="mi">52</span>
+</pre></div>
+</div>
+<p>The memory footprint analysis tool knobs:</p>
+<dl class="option-list">
+<dt><kbd><span class="option">-f<var>ootprint</var></span></kbd></dt>
+<dd><p>Compute a memory footprint for loads, stores and code references [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-f<var>ootprint_page_size</var></span></kbd></dt>
+<dd><p>Specify page size (0 means don’t collect pages) [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-f<var>p_icount</var></span></kbd></dt>
+<dd><p>Instructions between working set epochs. 0 means one epoch for whole program [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-f<var>p_time</var></span></kbd></dt>
+<dd><p>Milliseconds between working set epochs. 0 means one epoch for whole program. [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-o<var>footprint</var></span></kbd></dt>
+<dd><p>Specify output file name [default sde-footprint.txt]</p>
+</dd>
+</dl>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="mix.html" class="btn btn-neutral float-left" title="The Histogram Analysis Tool - Mix" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="itrace.html" class="btn btn-neutral float-right" title="Instruction Trace Tool" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Intel SDE.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

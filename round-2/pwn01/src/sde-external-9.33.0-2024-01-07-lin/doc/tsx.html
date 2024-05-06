@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Running Applications with TSX &mdash; Intel® SDE  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Running Royal SyMT Workloads" href="symt.html" />
+    <link rel="prev" title="Control Flow Enforcement Technology" href="cet.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Intel® SDE
+          </a>
+              <div class="version">
+                9.33.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Intel® SDE User's Manual:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Intel® SDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="emulation.html">Controlling the Emulation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cpuid_emulation.html">CPUID Emulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cet.html">Control Flow Enforcement Technology</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Running Applications with TSX</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Analysis Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tracing.html">Record and Replay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app_debug.html">Application Debugging</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Intel® SDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="emulation.html">Controlling the Emulation</a></li>
+      <li class="breadcrumb-item active">Running Applications with TSX</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/tsx.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="running-applications-with-tsx">
+<h1>Running Applications with TSX<a class="headerlink" href="#running-applications-with-tsx" title="Permalink to this heading"></a></h1>
+<p>Intel Transactional Synchronization Extensions known as Intel TSX is an extension to the x86 ISA that
+adds hardware transactional memory support. It enables optimistic execution of transactional code regions.
+The hardware monitors multiple threads for conflicting memory accesses, while aborting and rolling back
+transactions that cannot be successfully completed. Mechanisms are provided for software to detect and
+handle failed transactions.</p>
+<p>Restricted Transactional Memory (RTM) is an implementation of TSX which gives the programmer the flexibility
+to specify a fallback code path that is executed when a transaction cannot be successfully executed.</p>
+<p>Intel® SDE supports running applications with TSX. Intel® SDE emulation monitors the memory operations in all the
+threads and detects conflicts and other conditions that may abort transaction. Intel® SDE allow debugging
+applications with TSX with its transparent application debugging, and can provide detailed statistics.</p>
+<p>Intel® SDE TSX emulation adds significant runtime overhead, therefore users are required to instruct Intel® SDE
+to turn on TSX emulation with the -tsx knob and to specify the RTM emulation mode with the -rtm-mode knob.</p>
+<p>Here is the list of options available when running applications with TSX.</p>
+<dl class="option-list">
+<dt><kbd><span class="option">-t<var>sx</var></span></kbd></dt>
+<dd><p>Enable TSX (RTM) functionality [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-r<var>tm_mode</var></span></kbd></dt>
+<dd><p>Select RTM mode from (options: disabled, abort, full, nop) [default disabled]</p>
+</dd>
+<dt><kbd><span class="option">-r<var>tm_abort_reason</var></span></kbd></dt>
+<dd><p>Select RTM abort reason code, relevant only for RTM abort mode [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-r<var>tm_extended_abort_code</var></span></kbd></dt>
+<dd><p>Report extended abort cause codes [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-t<var>sx_bloom_filter_type</var></span></kbd></dt>
+<dd><p>Bloom filter CPU type : HSW, BDW, SNC  [default BDW]</p>
+</dd>
+<dt><kbd><span class="option">-t<var>sx_cache_set_size</var></span></kbd></dt>
+<dd><p>Number of cache lines in associative cache set [default 8]</p>
+</dd>
+<dt><kbd><span class="option">-t<var>sx_cache_sets_num</var></span></kbd></dt>
+<dd><p>Number of cache sets in cache [default 64]</p>
+</dd>
+<dt><kbd><span class="option">-t<var>sx_debug_log</var></span></kbd></dt>
+<dd><p>Debug log details level, printed to the the log file [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-t<var>sx_file_name</var></span></kbd></dt>
+<dd><p>TSX log file name [default sde-tsx-out.txt]</p>
+</dd>
+<dt><kbd><span class="option">-t<var>sx_log_file</var></span></kbd></dt>
+<dd><p>Create a log file (does not necessarily fill it) [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-t<var>sx_log_flush</var></span></kbd></dt>
+<dd><p>Flush data to the log file after each write [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-t<var>sx_log_inst</var></span></kbd></dt>
+<dd><p>Print the instructions to the log file [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-t<var>sx_ot_accuracy</var></span></kbd></dt>
+<dd><p>Ownership table accuracy level : (options: simple, moderate) [default moderate]</p>
+</dd>
+<dt><kbd><span class="option">-t<var>sx_ownership_size</var></span></kbd></dt>
+<dd><p>Ownership table size expressed in log2(ownership table number of entries) [default 16]</p>
+</dd>
+<dt><kbd><span class="option">-t<var>sx_speculation_depth</var></span></kbd></dt>
+<dd><p>Maximum speculation depth allowed [default 7]</p>
+</dd>
+<dt><kbd><span class="option">-t<var>sx_stats</var></span></kbd></dt>
+<dd><p>Collect TSX statistics [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-t<var>sx_stats_call_stack</var></span></kbd></dt>
+<dd><p>Add call stack information to TSX statistics [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-t<var>sx_stats_call_stack_size</var></span></kbd></dt>
+<dd><p>Call stack size in TSX statistics [default 10]</p>
+</dd>
+<dt><kbd><span class="option">-t<var>sx_stats_file</var></span></kbd></dt>
+<dd><p>TSX statistics file name [default sde-tsx-stats.txt]</p>
+</dd>
+<dt><kbd><span class="option">-t<var>sx_stats_max_abort</var></span></kbd></dt>
+<dd><p>Maximum number of TSX statistics abort list [default 1000000]</p>
+</dd>
+<dt><kbd><span class="option">-t<var>sx_stats_regs</var></span></kbd></dt>
+<dd><p>Create register information to TSX statistics [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-t<var>sx_stats_regs_file</var></span></kbd></dt>
+<dd><p>TSX registers statistics file name [default sde-tsx-stats-regs.txt]</p>
+</dd>
+<dt><kbd><span class="option">-t<var>sx_stats_top_most</var></span></kbd></dt>
+<dd><p>Number of most common aborts TSX statistics to display [default 10]</p>
+</dd>
+</dl>
+<section id="examples-for-running-tsx-applications">
+<h2>Examples for Running TSX Applications<a class="headerlink" href="#examples-for-running-tsx-applications" title="Permalink to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-bdw<span class="w"> </span>-rtm-mode<span class="w"> </span>full<span class="w"> </span>--<span class="w"> </span>&lt;application&gt;
+</pre></div>
+</div>
+<p>Running sde with full RTM support with the BDW CPU model.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-bdw<span class="w"> </span>-tsx<span class="w"> </span>-tsx-stats<span class="w"> </span>--<span class="w"> </span>&lt;application&gt;
+</pre></div>
+</div>
+<p>Running sde with TSX support and statistics.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-bdw<span class="w"> </span>-tsx<span class="w"> </span>-tsx-stats<span class="w"> </span>-tsx-stats-call-stack<span class="w"> </span>--<span class="w"> </span>&lt;application&gt;
+</pre></div>
+</div>
+<p>Running sde with TSX support and statistics and call stack information.</p>
+</section>
+<section id="tsx-statistics-output">
+<h2>TSX Statistics Output<a class="headerlink" href="#tsx-statistics-output" title="Permalink to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># LIST OF RTM COUNTERS DATA PER THREAD</span>
+<span class="c1">#------------------------------------------------------------------</span>
+<span class="c1"># TID   OS TID      XBEGIN        XEND      XABORT  GENERAL ABORTS  CONTENTION ABORTS</span>
+    <span class="mi">0</span>    <span class="mi">21051</span>           <span class="mi">0</span>           <span class="mi">0</span>           <span class="mi">0</span>               <span class="mi">0</span>                  <span class="mi">0</span>
+    <span class="mi">1</span>    <span class="mi">21442</span>           <span class="mi">5</span>           <span class="mi">4</span>           <span class="mi">0</span>               <span class="mi">0</span>                  <span class="mi">1</span>
+    <span class="mi">2</span>    <span class="mi">21447</span>         <span class="mi">497</span>         <span class="mi">497</span>           <span class="mi">0</span>               <span class="mi">0</span>                  <span class="mi">0</span>
+    <span class="mi">3</span>    <span class="mi">21448</span>           <span class="mi">1</span>           <span class="mi">1</span>           <span class="mi">0</span>               <span class="mi">0</span>                  <span class="mi">0</span>
+    <span class="mi">4</span>    <span class="mi">21449</span>           <span class="mi">1</span>           <span class="mi">1</span>           <span class="mi">0</span>               <span class="mi">0</span>                  <span class="mi">0</span>
+    <span class="mi">5</span>    <span class="mi">21450</span>         <span class="mi">317</span>         <span class="mi">316</span>           <span class="mi">0</span>               <span class="mi">0</span>                  <span class="mi">1</span>
+    <span class="mi">6</span>    <span class="mi">21451</span>         <span class="mi">185</span>         <span class="mi">185</span>           <span class="mi">0</span>               <span class="mi">0</span>                  <span class="mi">0</span>
+    <span class="mi">7</span>    <span class="mi">21452</span>           <span class="mi">1</span>           <span class="mi">1</span>           <span class="mi">0</span>               <span class="mi">0</span>                  <span class="mi">0</span>
+    <span class="mi">8</span>    <span class="mi">21453</span>           <span class="mi">1</span>           <span class="mi">1</span>           <span class="mi">0</span>               <span class="mi">0</span>                  <span class="mi">0</span>
+    <span class="mi">9</span>    <span class="mi">21454</span>         <span class="mi">187</span>         <span class="mi">186</span>           <span class="mi">0</span>               <span class="mi">0</span>                  <span class="mi">1</span>
+   <span class="mi">10</span>    <span class="mi">21455</span>         <span class="mi">314</span>         <span class="mi">314</span>           <span class="mi">0</span>               <span class="mi">0</span>                  <span class="mi">0</span>
+   <span class="mi">11</span>    <span class="mi">21456</span>           <span class="mi">3</span>           <span class="mi">2</span>           <span class="mi">0</span>               <span class="mi">0</span>                  <span class="mi">1</span>
+   <span class="mi">12</span>    <span class="mi">21457</span>           <span class="mi">1</span>           <span class="mi">1</span>           <span class="mi">0</span>               <span class="mi">0</span>                  <span class="mi">0</span>
+   <span class="n">TOTAL</span>              <span class="mi">1513</span>        <span class="mi">1509</span>           <span class="mi">0</span>               <span class="mi">0</span>                  <span class="mi">4</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># COUNTERS OF TSX ABORTS PER ABORT REASON</span>
+<span class="c1">#------------------------------------------------------------------</span>
+<span class="c1"># REASON                         RTM ABORTS   HLE ABORTS</span>
+<span class="n">ABORT_CONTENTION</span>                          <span class="mi">4</span>            <span class="mi">0</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># TOP 10 CONTENTION ABORTS</span>
+<span class="c1">#------------------------------------------------------------------</span>
+<span class="c1">#        IP   COUNT    INSTRUCTION DISASSEMBLY</span>
+<span class="mh">0x000401a60</span>       <span class="mi">3</span>    <span class="n">mov</span> <span class="n">eax</span><span class="p">,</span> <span class="n">dword</span> <span class="n">ptr</span> <span class="p">[</span><span class="n">rip</span><span class="o">+</span><span class="mh">0x2652</span><span class="p">]</span>
+<span class="mh">0x00401110</span>        <span class="mi">1</span>    <span class="n">jmp</span> <span class="n">qword</span> <span class="n">ptr</span> <span class="p">[</span><span class="n">rip</span><span class="o">+</span><span class="mh">0x2f72</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># STACK INFORMATION OF CONTENTION ABORT KILLER FOR IP: 0x00401a60</span>
+<span class="c1">#------------------------------------------------------------------</span>
+<span class="c1">#                IP           FUNCTION                                        IMAGE NAME</span>
+<span class="mi">0</span><span class="c1"># 0x00401a60      _ZNK19SharedSerialFibBodyIN8test_rtm9rtm_mutexEEclEm   fibonacci.exe:0x1a60</span>
+<span class="mi">1</span><span class="c1"># 0x00401a2c      _ZNK19SharedSerialFibBodyIN8test_rtm9rtm_mutexEEclEm   fibonacci.exe:0x1a2c</span>
+<span class="mi">2</span><span class="c1"># 0x00401ca4      _ZN21NativeParallelForTaskIi8test_rtm9rtm_mutexEEEEPv  fibonacci.exe:0x1ca4</span>
+<span class="mi">3</span><span class="c1"># 0x2aaaf279f955  start_thread                                           libpthread.so.0:0x8955</span>
+<span class="mi">4</span><span class="c1"># 0x2aaaf279f640  start_thread                                           libpthread.so.0:0x8640</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#LIST OF TSX CONTENTION ABORT EVENTS</span>
+<span class="c1">#------------------------------------------------------------------</span>
+<span class="c1"># TID  VICTIM IP  KILLER TID KILLER IP   KILLER DATA ADDRESS  INSIDE TSX  LOCK ADDRESS  TSX TYPE</span>
+    <span class="mi">1</span> <span class="mh">0x004012ae</span>           <span class="mi">2</span> <span class="mh">0x00401a60</span>           <span class="mh">0x004040b8</span>         <span class="n">YES</span>           <span class="n">N</span><span class="o">/</span><span class="n">A</span>       <span class="n">RTM</span>
+    <span class="mi">5</span> <span class="mh">0x004012ae</span>           <span class="mi">0</span> <span class="mh">0x00401110</span>           <span class="mh">0x00404088</span>          <span class="n">NO</span>           <span class="n">N</span><span class="o">/</span><span class="n">A</span>       <span class="n">RTM</span>
+    <span class="mi">9</span> <span class="mh">0x004012ae</span>          <span class="mi">10</span> <span class="mh">0x00401a60</span>           <span class="mh">0x004040b8</span>         <span class="n">YES</span>           <span class="n">N</span><span class="o">/</span><span class="n">A</span>       <span class="n">RTM</span>
+   <span class="mi">11</span> <span class="mh">0x004012ae</span>          <span class="mi">10</span> <span class="mh">0x00401a60</span>           <span class="mh">0x004040b8</span>         <span class="n">YES</span>           <span class="n">N</span><span class="o">/</span><span class="n">A</span>       <span class="n">RTM</span>
+</pre></div>
+</div>
+<p>Example of a simple C TSX Application (Windows)</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">volatile</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">winning_thread</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="k">volatile</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">aborts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="k">volatile</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">num_ends</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">unsigned</span><span class="w"> </span><span class="kr">__stdcall</span><span class="w"> </span><span class="n">thread_worker</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">arg</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">arg</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_xbegin</span><span class="p">();</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">_XBEGIN_STARTED</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="mi">10000000</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="n">winning_thread</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">        </span><span class="n">num_ends</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="n">_xend</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">aborts</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">HANDLE</span><span class="w"> </span><span class="n">threads</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="n">threads</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">HANDLE</span><span class="p">)</span><span class="w"> </span><span class="n">_beginthreadex</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">thread_worker</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="n">WaitForSingleObject</span><span class="p">(</span><span class="w"> </span><span class="n">threads</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">INFINITE</span><span class="w"> </span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w">  </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cet.html" class="btn btn-neutral float-left" title="Control Flow Enforcement Technology" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="symt.html" class="btn btn-neutral float-right" title="Running Royal SyMT Workloads" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Intel SDE.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

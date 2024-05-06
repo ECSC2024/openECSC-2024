@@ -1,0 +1,8 @@
+services:
+  crypto_mathmac:
+    build: .
+    restart: unless-stopped
+    ports:
+      - '38013:1337'
+    environment:
+      - 'FLAG=openECSC{l1n34r_4lg3br4_1n_7h3_3xp0n3n7!!_[random 8]}'

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Replaying Pinballs with the Replayer &mdash; Intel® SDE  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Generating LIT Traces" href="lit.html" />
+    <link rel="prev" title="Generating Pinballs with the Logger" href="logger.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Intel® SDE
+          </a>
+              <div class="version">
+                9.33.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Intel® SDE User's Manual:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Intel® SDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="emulation.html">Controlling the Emulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Analysis Tools</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="tracing.html">Record and Replay</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="logger.html">Generating Pinballs with the Logger</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Replaying Pinballs with the Replayer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="app_debug.html">Application Debugging</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Intel® SDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="tracing.html">Record and Replay</a></li>
+      <li class="breadcrumb-item active">Replaying Pinballs with the Replayer</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/replayer.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="replaying-pinballs-with-the-replayer">
+<h1>Replaying Pinballs with the Replayer<a class="headerlink" href="#replaying-pinballs-with-the-replayer" title="Permalink to this heading"></a></h1>
+<p>Replaying is the action of taking a recording (in <cite>pinball</cite> format) and
+reconstructing the same execution flow. This happens in the <cite>replayer</cite>.
+It replay the recorded region and allow for running the analysis tools
+the same way as can be used with applications.</p>
+<p>The <cite>replayer</cite> guarantees a deterministic reconstruction of the recorded region
+for both single-threaded and multi-threaded workloads. It eliminates run to
+run variations that comes from ASLR (address space layout randomizations),
+time based randomizations, thread order and instructions with non-deterministic
+behavior like RDTSC.</p>
+<p>On Linux, the <cite>replayer</cite> tries to reserve the captured memory regions in their
+original locations. This allow for faster replaying. When it fails to reserve
+the same memory regions, it reverts to using address translation.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-mix<span class="w"> </span>-replay<span class="w"> </span>-replay:basename<span class="w"> </span>pinballs/myapp<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span>-reserve-memory<span class="w"> </span>-p<span class="w"> </span>pinballs/myapp.address<span class="w"> </span>--<span class="w"> </span>&lt;path-to-kit&gt;/intel64/nullapp
+</pre></div>
+</div>
+<p>In this example we run <cite>mix</cite> analysis on a recording of <cite>myapp</cite>. This is done
+on Linux with reserve memory option. Alternatively, people can use the address
+translation mode.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-mix<span class="w"> </span>-replay<span class="w"> </span>-replay:basename<span class="w"> </span>pinballs/myapp<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-replay:addr_trans<span class="w"> </span>--<span class="w"> </span>&lt;path-to-kit&gt;/intel64/nullapp
+</pre></div>
+</div>
+<p>Intel® SDE provides a shortcut for replaying. Intel® Pin requires an application to run.
+In the <cite>replay</cite>, Intel® SDE loads the recorded memory regions immediately at the
+start of the run and follow the execution according to the recorded initial state.</p>
+<p>Since Intel® Pin must be run with application to run, and it cannot switch applications,
+the user needs to specify if the recorded application was a 64 bits or a 32 bits
+application (as can be seen in the example below).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-mix<span class="w"> </span>-pinlit2-replay64<span class="w"> </span>pinballs/myapp
+</pre></div>
+</div>
+<section id="capture-on-one-machine-replay-everywhere">
+<h2>Capture on One Machine Replay Everywhere<a class="headerlink" href="#capture-on-one-machine-replay-everywhere" title="Permalink to this heading"></a></h2>
+<p>The <cite>pinball</cite> recording capture the execution flow at the instruction level, and skips
+the activity in the kernel (ring0). This means that people can capture the workload on
+one machine and replay it on different machines. This is very useful when the application
+requires license, special devices (like GPU), or when the machine is a critical resource
+with low availability.</p>
+<p>Intel® SDE <cite>replayer</cite> also allows you to replay on different OS. This means <cite>log</cite> on Linux
+and <cite>replay</cite> on Windows or vice versa.</p>
+</section>
+<section id="replaying-cpu-definition">
+<h2>Replaying CPU Definition<a class="headerlink" href="#replaying-cpu-definition" title="Permalink to this heading"></a></h2>
+<p>As can be seen from the above examples, when running the <cite>replayer</cite>, there is no need
+to specify the chip knob which was used in the logging phase. The recording captured
+the behavior of the CPUID instruction as it was executed at the logging phase.</p>
+<p>This means that you cannot replay a recording with a different CPU and check the impact
+of this change. Intel® SDE <cite>replayer</cite> purpose is to reconstruct the same execution path as
+was recorded.</p>
+</section>
+<section id="replaying-standard-output">
+<h2>Replaying Standard Output<a class="headerlink" href="#replaying-standard-output" title="Permalink to this heading"></a></h2>
+<p>Intel® SDE <cite>replayer</cite> skips all the system calls and inject their side effects as recorded
+in the <cite>pinball</cite>. However, it is very useful to be able to get the output of the
+application that happen during the logging inside the captured region. Intel® SDE default
+behavior is to replay the standard output when the recording what done on Linux and
+the replay is also in Linux. You can turn off this capability by using the knob
+-replay:playout 0.</p>
+</section>
+<section id="using-the-controller">
+<h2>Using The Controller<a class="headerlink" href="#using-the-controller" title="Permalink to this heading"></a></h2>
+<p>Intel® SDE <cite>replayer</cite> is not subject to the controller, as it needs to run the entire recording.
+But when running the <cite>replayer</cite> with analysis tool like <cite>mix</cite>, the analysis tool is subject
+to the controller like when running directly on workloads.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-mix<span class="w"> </span>-pinlit2-replay64<span class="w"> </span>pinballs/myapp<span class="w"> </span>-control<span class="w"> </span>start:ssc:1234,stop:icount:100000
+</pre></div>
+</div>
+<p>In this example the <cite>mix</cite> output file will contains only the data collected from the start
+event to the stop event. The <cite>replay</cite> will continue until the end of the recording.
+You can tell the controller to end the <cite>replay</cite> at the stop event with the -early-out knob.</p>
+</section>
+<section id="relogging">
+<h2>Relogging<a class="headerlink" href="#relogging" title="Permalink to this heading"></a></h2>
+<p>Intel® SDE <cite>replayer</cite> can launch any analysis tool during the <cite>replay</cite>. Using the <cite>logger</cite> to
+capture a new recording during <cite>replay</cite> is called <cite>relog</cite>. It is very useful to capture
+the entire workload, run analysis tools on the recorded <cite>pinball</cite> and then <cite>relog</cite> a
+smaller portion of the records <cite>pinball</cite> with the exact region of interest.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-pinlit2-replay64<span class="w"> </span>pinballs/myapp<span class="w"> </span>-log<span class="w"> </span>-log:basename<span class="w"> </span>pinball/myroi<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-control<span class="w"> </span>start:address:foo:count5,stop:icount:10000000
+</pre></div>
+</div>
+<p>In this example, the user <cite>relog</cite> a region after the 5th invocation of the function <cite>foo</cite>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-pinlit2-replay64<span class="w"> </span>pinballs/myapp<span class="w"> </span>-log<span class="w"> </span>-log:mt<span class="w"> </span>-log:basename<span class="w"> </span>pinball/myroi<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-log:focus-thread<span class="w"> </span><span class="m">4</span><span class="w"> </span>-control<span class="w"> </span>start:icount:10000:tid4,stop:icount:100000:tid4
+</pre></div>
+</div>
+<p>In this example, the user found that thread number 4 is the most interesting to capture
+and it is using the focus-thread and the controller <cite>tidN</cite> option to create a new
+recording.</p>
+</section>
+<section id="the-replayer-knobs">
+<h2>The Replayer Knobs<a class="headerlink" href="#the-replayer-knobs" title="Permalink to this heading"></a></h2>
+<p>The <cite>replayer</cite> options have the ‘replay:’ prefix.</p>
+<dl class="simple">
+<dt><cite>-replay</cite></dt><dd><p>Activate the logger [default 0]</p>
+</dd>
+<dt><cite>-replay:addr_trans</cite></dt><dd><p>Replayer: Relocate address ranges and translate addresses [default 0]</p>
+</dd>
+<dt><cite>-replay:addr_trans_hash_size</cite></dt><dd><p>Replayer: Set number of buckets in address translation hash table [default 262144]</p>
+</dd>
+<dt><cite>-replay:app_debug</cite></dt><dd><p>Replayer: Enable application debug [default 0]</p>
+</dd>
+<dt><cite>-replay:basename</cite></dt><dd><p>Replayer: name of the log files [default log]</p>
+</dd>
+<dt><cite>-replay:exit_on_syscall</cite></dt><dd><p>Replayer: exit thread on seeing a system call (Works only with ‘-replay:injection 0’ )
+[default 0]</p>
+</dd>
+<dt><cite>-replay:forced_exit</cite></dt><dd><p>Replayer: exit thread on reaching logged instruction count [default 1]</p>
+</dd>
+<dt><cite>-replay:image_ops</cite></dt><dd><p>Replayer: Replay image load and unload callbacks [default 1]</p>
+</dd>
+<dt><cite>-replay:injection</cite></dt><dd><p>Replayer: Instrument for register/memory injection and thread synchronization [default 1]</p>
+</dd>
+<dt><cite>-replay:pause</cite></dt><dd><p>Replayer: Pause the replay before first instruction until debugger is attached [default 0]</p>
+</dd>
+<dt><cite>-replay:pid</cite></dt><dd><p>Replayer: Use PID for naming the message file [default 0]</p>
+</dd>
+<dt><cite>-replay:playout</cite></dt><dd><p>Replayer: Replay writes to stdout and stderr (Linux only) [default 1]</p>
+</dd>
+<dt><cite>-replay:result</cite></dt><dd><p>Flag if to create replay result file. [default 0]</p>
+</dd>
+<dt><cite>-replay:resultfile</cite></dt><dd><p>Base name of the replay result file. Any directory name embedded must exist.
+The base name of the pinball is used as the default</p>
+</dd>
+<dt><cite>-replay:strace</cite></dt><dd><p>Replayer: Generate a system call trace [default 0]</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="logger.html" class="btn btn-neutral float-left" title="Generating Pinballs with the Logger" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lit.html" class="btn btn-neutral float-right" title="Generating LIT Traces" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Intel SDE.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

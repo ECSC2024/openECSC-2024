@@ -1,0 +1,13 @@
+services:
+  the-wilderness:
+    build: .
+    image: the-wilderness
+    restart: unless-stopped
+    volumes:
+      - './run.sh:/home/user/chall:ro'
+      - './sde-external-9.33.0-2024-01-07-lin:/home/user/sde:ro'
+      - './build:/home/user/build:ro'
+    ports:
+      - '38012:1337'
+    environment:
+      - 'FLAG=openECSC{h3r3_1n_th3_wild3rness_w3_l1ke_h1d1ng_1n_the_sh4dow_[random 8]}'

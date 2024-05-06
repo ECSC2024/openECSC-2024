@@ -1,0 +1,16 @@
+{{template "header"}}
+
+{{if .Error}}
+    <div class="alert alert-danger" role="alert">
+        {{.Error}}
+    </div>
+{{end}}
+
+<h3>Login</h3>
+
+<form class="col-6 col-lg-4 mx-auto mt-4" action="/login" method="post">
+    <div class="mb-3">
+        <input type="text" class="form-control" id="userid" name="userid" placeholder="User ID"> 
+    </div>
+    <button id="submitbtn" type="submit" class="btn btn-primary w-100">Login</button>
+</form>

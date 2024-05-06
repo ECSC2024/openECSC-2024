@@ -15,7 +15,7 @@ Author: Alberto Carboneri <@Alberto247>
 ## Overview
 
 In this challenge we are given an application which makes use of [TLSe](https://github.com/eduardsui/tlse), a single-file TLS implementation written in C.
-The challenge consists of a simple C program making use of such library to expose a service wrapped with TLS. 
+The challenge consists of a simple C program making use of such library to expose a service wrapped with TLS.
 It makes use of client certificates to authenticate the connecting users, providing the flag only to the user `FlagsDistributionAdministrator`, if its certificate has been issued by `Flags distribution Inc.`.
 
 Another endpoint, available as a separate service, provides user certificates for any user, except `FlagsDistributionAdministrator`.
@@ -33,17 +33,17 @@ However, not all certificates should be used for every scope and there should be
 ## The bug
 
 While the basic constraints section of a certificate limits its scopes, nothing prevents their use outside of those limits. It is up to the chain verification code to limit their use and reject invalid chains.
-The challenge doesn't properly check this section and this poses a security risk. In fact an attacker can use a client certificate as a certification authority and use it to sign other certificates. 
+The challenge doesn't properly check this section and this poses a security risk. In fact an attacker can use a client certificate as a certification authority and use it to sign other certificates.
 The intended solution for the challenge was to request a certificate from the signing endpoint and use that to sign other certificates. Since the server was also verifying the issuer, the solution requires using the provided certificate to sign a new certificate having the correct issuer, and then use that certificate to sign a final certificate having the correct user.
 Finally, one should package all three certificates into a chain, and provide such chain to the server.
 This challenge was heavily inspired by a bug present in the TLS library of the Nintendo DS. You can find more information [here](https://github.com/KaeruTeam/nds-constraint).
-
 
 ## Openssl interface
 
 Many players had trouble using the openssl client to communicate with the remote server.
 Unfortunately, this client appears to have a not-so-clear error handling, providing confusing or wrong information on the reason of the failure.
 The proper way to solve this challenge using such client was to:
+
 1. Use the IP instead of the domain when connecting to the remote server, as using the domain causes error when validating the server certificate
 2. Configure the client to use tls1.2 as tls1.3 is not supported by the server. This is achieved by pasing the "-tls1_2" parameter
 3. Split the obtained chain to have a single certificate, called `fakeadmin_cert.pem` in this example, containing the outer certificate, and a file, called `chain.pem` in this example, containing the two certificates composing the rest of the chain

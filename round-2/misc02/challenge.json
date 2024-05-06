@@ -1,0 +1,41 @@
+{
+  "title": "Remote Diagnostics",
+  "description": "We've developed Remote Diagnostics, a tool tailored for IT supporters to efficiently troubleshoot employee workstations remotely. The server component already passed a penetration test with no issues. Now, we need your expertise to assess the security of the client component.\n\nFlag is located at `C:\\flag\\flag.txt`.\n\nRefer to the `README.md` file in the attachments for detailed instructions.\n\nSite: [http://remotediagnostics.challs.open.ecsc2024.it](http://remotediagnostics.challs.open.ecsc2024.it)",
+  "authors": [
+    "Oliver Lyak <@ly4k>"
+  ],
+  "tags": [
+    "misc",
+    "windows"
+  ],
+  "hiddenTags": [],
+  "order": 22,
+  "flags": [
+    "^openECSC\\{i_cannot_find_a_fun_flag_and_chatgpt_is_not_helping_[a-f0-9]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "remote_diagnostics.zip",
+      "type": "upload",
+      "path": "./attachments/remote_diagnostics.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "http",
+    "url": "http://remotediagnostics.challs.open.ecsc2024.it:80/"
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 10
+    }
+  }
+}

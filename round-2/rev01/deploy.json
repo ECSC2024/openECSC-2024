@@ -1,0 +1,37 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "image": "cybersecnatlab/socaz:ubuntu-jammy",
+      "command": [
+        "socaz",
+        "--timeout",
+        "30",
+        "--flag-from-env",
+        "FLAG",
+        "--bind",
+        "1337",
+        "--cmd",
+        "/home/user/chall"
+      ],
+      "volumes": [
+        {
+          "type": "bind",
+          "host": "src/FPFC/FPFC",
+          "container": "/home/user/chall",
+          "readonly": true
+        }
+      ],
+      "expose": [
+        {
+          "type": "tcp",
+          "host": 38015,
+          "container": 1337
+        }
+      ],
+      "environment": {
+        "FLAG": "openECSC{4lm0s7_l1k3_p1ng_pwng_0n_th3_w4llz_[random 8]}"
+      }
+    }
+  }
+}

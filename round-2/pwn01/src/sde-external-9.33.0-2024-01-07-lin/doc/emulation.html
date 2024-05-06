@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Controlling the Emulation &mdash; Intel® SDE  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="CPUID Emulation" href="cpuid_emulation.html" />
+    <link rel="prev" title="Getting Started" href="getting_started.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Intel® SDE
+          </a>
+              <div class="version">
+                9.33.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Intel® SDE User's Manual:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Intel® SDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Controlling the Emulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpuid_emulation.html">CPUID Emulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cet.html">Control Flow Enforcement Technology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tsx.html">Running Applications with TSX</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Analysis Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tracing.html">Record and Replay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app_debug.html">Application Debugging</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Intel® SDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Controlling the Emulation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/emulation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="controlling-the-emulation">
+<h1>Controlling the Emulation<a class="headerlink" href="#controlling-the-emulation" title="Permalink to this heading"></a></h1>
+<p>Intel® SDE is emulating the instructions that are not supported by the host CPU or instructions
+that behave differently on the emulated CPU than on the host CPU, for example CPUID or XSAVE
+instructions.</p>
+<p>This means that if the instruction is supported by the host, then in most cases the native
+instruction will be executed.</p>
+<p>There are certain cases where the user would like to control the way Intel® SDE emulate the
+instructions. For example, tell Intel® SDE to use slower but more accurate emulation (this is
+available for the emulation of FP16 instructions), to compare between the emulation and
+the native behavior, or to force certain behavior.</p>
+<p>Here is a list of options to control the emulation:</p>
+<dl class="option-list">
+<dt><kbd><span class="option">-e<var>mit_illegal_insts</var></span></kbd></dt>
+<dd><p>Emit information about illegal instructions [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-e<var>mit_ud_insts</var></span></kbd></dt>
+<dd><p>Raise illegal exception for UD instructions [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-f<var>ma_style</var></span></kbd></dt>
+<dd><p>Control the way FMA is emulated, precise: precise emulation,
+sloppy: sloppy emulation (fast but less accurate),
+native: native FMA (only when supported by the host, available on HSW and beyond)
+[default native]</p>
+</dd>
+<dt><kbd><span class="option">-f<var>p16_fast</var></span></kbd></dt>
+<dd><p>Use fast FP16 emulation (accurate calculation, less accurate
+update of MXCSR) [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-p<var>ause_delay</var></span></kbd></dt>
+<dd><p>Insert delay (milliseconds) when executing the pause instruction
+[default 0]</p>
+</dd>
+<dt><kbd><span class="option">-r<var>aise_int3</var></span></kbd></dt>
+<dd><p>Raise breakpoint signal/exception on int3 [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-s<var>de_skip_int3</var></span></kbd></dt>
+<dd><p>Skip (i.e ignore) INT3 instructions [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-e<var>mu_fast</var></span></kbd></dt>
+<dd><p>Emulate Intel AVX-512 instructions with Intel AVX instructions [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-e<var>mu_fast_amx</var></span></kbd></dt>
+<dd><p>Emulate Intel AMX instructions with Intel AVX-512 [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-e<var>mu_trap</var></span></kbd></dt>
+<dd><p>Emulates the effects of the TF flag (only when set by popf) [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-f<var>orce_emulate</var></span></kbd></dt>
+<dd><p>Force emulation of specified chip instructions. Can be used multiple times.
+Use option ‘list’ for list of valid chips for this knob.</p>
+</dd>
+<dt><kbd><span class="option">-x<var>save_by_host</var></span></kbd></dt>
+<dd><p>Enable XSAVE if supported by the host, use only when emulated CPU does not
+support XSAVE and XSAVE instructions might exists in the system libraries
+[default 0]</p>
+</dd>
+<dt><kbd><span class="option">-x<var>save_default</var></span></kbd></dt>
+<dd><p>Default value for the XCR0 register. Dynamic indicates that the emulator
+determines the XCR0 value based on configured features [default dynamic]</p>
+</dd>
+<dt><kbd><span class="option">-e<var>mu_xinuse</var></span></kbd></dt>
+<dd><p>Emulate XINUSE for more accurate XSAVE emulation [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-e<var>mu_xinuse_fast</var></span></kbd></dt>
+<dd><p>Faster emulation of XINUSE assume XMMs are always used [default 1]</p>
+</dd>
+</dl>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Additional Emulation Control:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cpuid_emulation.html">CPUID Emulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cet.html">Control Flow Enforcement Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tsx.html">Running Applications with TSX</a></li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="getting_started.html" class="btn btn-neutral float-left" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cpuid_emulation.html" class="btn btn-neutral float-right" title="CPUID Emulation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Intel SDE.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

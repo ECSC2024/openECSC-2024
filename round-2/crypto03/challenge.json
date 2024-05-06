@@ -1,0 +1,41 @@
+{
+  "title": "BabyFeistel",
+  "description": "I was told that we have [too much crypto](https://eprint.iacr.org/2019/1492.pdf) nowadays, so I tried to stay as low as possible with the number of rounds. Will this be enough?\n\n`nc babyfeistel.challs.open.ecsc2024.it 38017`",
+  "authors": [
+    "Matteo Rossi <@mr96>"
+  ],
+  "tags": [
+    "crypto"
+  ],
+  "hiddenTags": [],
+  "order": 12,
+  "flags": [
+    "^openECSC\\{h0w_m4ny_m0r3_r0und5_c4n_y0u_r34ch\\?_[0-9a-f]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "babyfeistel.py",
+      "type": "upload",
+      "path": "./attachments/babyfeistel.py",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "babyfeistel.challs.open.ecsc2024.it",
+    "port": 38017
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 300
+    }
+  }
+}

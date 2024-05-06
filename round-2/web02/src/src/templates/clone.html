@@ -1,0 +1,24 @@
+{{template "header"}}
+
+{{if .Error}}
+    <div class="alert alert-danger" role="alert">
+        {{.Error}}
+    </div>
+{{end}}
+
+{{if eq .Success true}}
+    <div class="alert alert-success" role="alert">
+        We cloned the board successfully! Play the game <a href="/board">here</a>.
+    </div>
+{{end}}
+
+<h3>Clone</h3>
+
+<p>Using this feature you can clone the board of another user playing!</p>
+
+<form class="col-6 col-lg-4 mx-auto mt-4" action="/clone" method="get">
+    <div class="mb-3">
+        <input type="text" class="form-control" id="cloneid" name="cloneid" placeholder="User ID"> 
+    </div>
+    <button id="submitbtn" type="submit" class="btn btn-primary w-100">Clone</button>
+</form>

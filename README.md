@@ -13,7 +13,7 @@ The 2024 edition of the [openECSC](https://open.ecsc2024.it) competition is orga
 | # Round     | Starting time           | Ending time             | Source              |
 | :---------- | :---------------------- | :---------------------- | :------------------ |
 | Round 1     | 18 Mar. 2024, 10:00 UTC | 24 Mar. 2024, 22:00 UTC | [Round 1](round-1/) |
-| Round 2     | 22 Apr. 2024, 10:00 UTC | 28 Apr. 2024, 22:00 UTC |                     |
+| Round 2     | 22 Apr. 2024, 10:00 UTC | 28 Apr. 2024, 22:00 UTC | [Round 2](round-2/) |
 | Round 3     | 13 May 2024, 10:00 UTC  | 19 May 2024, 22:00 UTC  |                     |
 | Final Round | 21 Set. 2024, 10:00 UTC | 22 Set. 2024, 10:00 UTC |                     |
 

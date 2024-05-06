@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instruction Trace Tool &mdash; Intel® SDE  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The Debug ASCII Tracing Tool" href="debugtrace.html" />
+    <link rel="prev" title="Measuring Memory Footprint" href="footprint.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Intel® SDE
+          </a>
+              <div class="version">
+                9.33.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Intel® SDE User's Manual:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Intel® SDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="emulation.html">Controlling the Emulation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="tools.html">Analysis Tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="filenames.html">Controlling Output File Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chip_check.html">Chip Check Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checkers.html">Checking for Bad Pointers and Data Misalignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller.html">The Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="icount.html">Counting Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mix.html">The Histogram Analysis Tool - Mix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html">Measuring Memory Footprint</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Instruction Trace Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugtrace.html">The Debug ASCII Tracing Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mask_profile.html">Mask Profiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sparse.html">Sparse Instructions Analysis Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="avx_sse.html">Detecting AVX-SSE Transitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssc.html">Using SSC Marks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tracing.html">Record and Replay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app_debug.html">Application Debugging</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Intel® SDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="tools.html">Analysis Tools</a></li>
+      <li class="breadcrumb-item active">Instruction Trace Tool</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/itrace.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="instruction-trace-tool">
+<h1>Instruction Trace Tool<a class="headerlink" href="#instruction-trace-tool" title="Permalink to this heading"></a></h1>
+<p>The instruction trace analysis tool is a tool that dumps the executed instructions into
+a text file. This tool is useful for checking which instructions has been executed in the
+region of interest (as defined by <a class="reference internal" href="controller.html#controller"><span class="std std-ref">The Controller</span></a>).</p>
+<p>The output file include a line for each instruction and in this line the information
+includes the thread ID, the address and the full disassembly.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-skx<span class="w"> </span>-itrace-execute<span class="w"> </span>--<span class="w"> </span>myapp
+</pre></div>
+</div>
+<p>For example, this multi-threaded application will have a dump of the form</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TID0</span><span class="p">:</span> <span class="n">ITRACE</span> <span class="n">PC</span><span class="o">=</span><span class="mi">2</span><span class="n">aaaf21d3b54</span> <span class="n">vmovdqa</span> <span class="n">ymmword</span> <span class="n">ptr</span> <span class="p">[</span><span class="n">rdi</span><span class="o">+</span><span class="mh">0x60</span><span class="p">],</span> <span class="n">ymm3</span>
+<span class="n">TID1</span><span class="p">:</span> <span class="n">ITRACE</span> <span class="n">PC</span><span class="o">=</span><span class="mi">2</span><span class="n">aaaaaac3cb2</span> <span class="n">cmp</span> <span class="n">al</span><span class="p">,</span> <span class="n">byte</span> <span class="n">ptr</span> <span class="p">[</span><span class="n">rsi</span><span class="p">]</span>
+<span class="n">TID2</span><span class="p">:</span> <span class="n">ITRACE</span> <span class="n">PC</span><span class="o">=</span><span class="mi">2</span><span class="n">aaaf2193f31</span> <span class="n">test</span> <span class="n">rax</span><span class="p">,</span> <span class="n">rax</span>
+<span class="n">TID0</span><span class="p">:</span> <span class="n">ITRACE</span> <span class="n">PC</span><span class="o">=</span><span class="mi">2</span><span class="n">aaaf21d3b59</span> <span class="n">add</span> <span class="n">rdi</span><span class="p">,</span> <span class="n">rax</span>
+<span class="n">TID2</span><span class="p">:</span> <span class="n">ITRACE</span> <span class="n">PC</span><span class="o">=</span><span class="mi">2</span><span class="n">aaaf2193f34</span> <span class="n">jl</span> <span class="mh">0x2aaaf2193f75</span>
+<span class="n">TID1</span><span class="p">:</span> <span class="n">ITRACE</span> <span class="n">PC</span><span class="o">=</span><span class="mi">2</span><span class="n">aaaaaac3cb4</span> <span class="n">jnz</span> <span class="mh">0x2aaaaaac3cc3</span>
+</pre></div>
+</div>
+<p>There are a few options to control the output of the instruction trace.
+One of the options is to dump an histogram of the instruction counts per
+executed IP (instruction address).</p>
+<p>Here are the instruction trace analysis knobs.</p>
+<dl class="option-list">
+<dt><kbd><span class="option">-i<var>trace_count</var></span></kbd></dt>
+<dd><p>Generate histogram with instruction count per IP [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-i<var>trace_disasm</var></span></kbd></dt>
+<dd><p>Add disassembly to the instruction trace [default 1]</p>
+</dd>
+<dt><kbd><span class="option">-i<var>trace_execute</var></span></kbd></dt>
+<dd><p>Debug/Trace execution [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-i<var>trace_execute_emulate</var></span></kbd></dt>
+<dd><p>Debug/Trace execution of emulation [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-i<var>trace_file</var></span></kbd></dt>
+<dd><p>Output file for execution/instrumentation tracing [default sde-itrace-out.txt]</p>
+</dd>
+<dt><kbd><span class="option">-i<var>trace_flush</var></span></kbd></dt>
+<dd><p>Flush the output buffer after writing [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-i<var>trace_instrument</var></span></kbd></dt>
+<dd><p>Debug/Trace instrumentation [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-i<var>trace_instrument_emulate</var></span></kbd></dt>
+<dd><p>Debug/Trace instrumentation of emulated instructions only [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-i<var>trace_lines</var></span></kbd></dt>
+<dd><p>Number of lines for circular buffer. 0=no circular buffer [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-i<var>trace_only_isa</var></span></kbd></dt>
+<dd><p>Print only ISA set types in the trace [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-i<var>trace_rawinst</var></span></kbd></dt>
+<dd><p>Add instruction’s raw bytes to the trace [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-i<var>trace_thread_count</var></span></kbd></dt>
+<dd><p>Maximal number of counters per thread to allocate for each instruction [default 10]</p>
+</dd>
+</dl>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="footprint.html" class="btn btn-neutral float-left" title="Measuring Memory Footprint" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="debugtrace.html" class="btn btn-neutral float-right" title="The Debug ASCII Tracing Tool" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Intel SDE.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

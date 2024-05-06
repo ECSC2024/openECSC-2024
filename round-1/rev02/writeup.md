@@ -1,6 +1,7 @@
 # openECSC 2024 - Round 1
 
 ## [rev] fsvm 2 (66 solves)
+
 I wrote an improved version of my previous VM, but it's still not capable of printing good descriptions.
 
 Author: Matteo Protopapa <@matpro>
@@ -11,7 +12,7 @@ The challenge consists of two files: an ELF that implements a virtual machine an
 
 ## Solution
 
-The VM implements some more instructions with respect to the previous challenge `fsvm`, again with the peculiarity that the "registers" are text files. 
+The VM implements some more instructions with respect to the previous challenge `fsvm`, again with the peculiarity that the "registers" are text files.
 
 In this case, the programs builds the string "flag.txt" and tries to read that file. If it success, then it computes the length of the string contained in the file and checks if it's 37.
 
@@ -20,7 +21,6 @@ Then, the program multiply each character of the flag by a different number, and
 The `37x37` matrix has rank 37, so we can recover the flag from the retrieved values.
 
 In the proposed solution, we add 0.5 to the recovered values to compensate precision issues. Implementing the same solution with SageMath does not require this.
-
 
 ## Exploit
 

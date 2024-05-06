@@ -1,0 +1,34 @@
+{
+  "title": "WOauth a laundry!",
+  "description": "Welcome to our innovative business, the only ONE Laundry capable of completely sanitize your clothing by removing 100% of bacteria and viruses.\n\nFlag is in `/flag.txt`.\n\nSite: [http://woauthalaundry.challs.open.ecsc2024.it](http://woauthalaundry.challs.open.ecsc2024.it)",
+  "authors": [
+    "Vittorio Mignini <@M1gnus>",
+    "Simone Cimarelli <@Aquilairreale>"
+  ],
+  "tags": [
+    "web"
+  ],
+  "hiddenTags": [],
+  "order": 50,
+  "flags": [
+    "^openECSC\\{On3_l4uNdrY_70_ruL3_7h3m_4l1!_d208a530\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [],
+  "hints": [],
+  "endpoint": {
+    "type": "http",
+    "url": "http://woauthalaundry.challs.open.ecsc2024.it:80/"
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 20
+    }
+  }
+}

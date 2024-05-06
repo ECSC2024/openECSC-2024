@@ -1,0 +1,41 @@
+{
+  "title": "BabyNotes",
+  "description": "Have a nice and simple note application.\n\nSite: [https://babynotes.challs.open.ecsc2024.it](https://babynotes.challs.open.ecsc2024.it)",
+  "authors": [
+    "Riccardo Bonafede <@bonaff>",
+    "Stefano Alberto <@xatophi>"
+  ],
+  "tags": [
+    "web"
+  ],
+  "hiddenTags": [],
+  "order": 52,
+  "flags": [
+    "^openECSC\\{b1f79ec5bfd0ec34a0ddb67466580dfd\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "babynotes.zip",
+      "type": "upload",
+      "path": "./attachments/babynotes.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "http",
+    "url": "https://babynotes.challs.open.ecsc2024.it:443/"
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 90
+    }
+  }
+}

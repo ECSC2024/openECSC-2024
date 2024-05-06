@@ -1,0 +1,17 @@
+.idea
+*.iml
+
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+!gen/Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
+**/cmake-build-arm-debug
+**/cmake-build-debug

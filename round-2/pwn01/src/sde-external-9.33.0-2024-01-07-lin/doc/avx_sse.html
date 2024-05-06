@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detecting AVX-SSE Transitions &mdash; Intel® SDE  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Prefetch Analysis Tool" href="prefetch.html" />
+    <link rel="prev" title="Sparse Instructions Analysis Tool" href="sparse.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Intel® SDE
+          </a>
+              <div class="version">
+                9.33.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Intel® SDE User's Manual:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Intel® SDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="emulation.html">Controlling the Emulation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="tools.html">Analysis Tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="filenames.html">Controlling Output File Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chip_check.html">Chip Check Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checkers.html">Checking for Bad Pointers and Data Misalignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller.html">The Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="icount.html">Counting Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mix.html">The Histogram Analysis Tool - Mix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html">Measuring Memory Footprint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="itrace.html">Instruction Trace Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugtrace.html">The Debug ASCII Tracing Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mask_profile.html">Mask Profiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sparse.html">Sparse Instructions Analysis Tool</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Detecting AVX-SSE Transitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssc.html">Using SSC Marks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tracing.html">Record and Replay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app_debug.html">Application Debugging</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Intel® SDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="tools.html">Analysis Tools</a></li>
+      <li class="breadcrumb-item active">Detecting AVX-SSE Transitions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/avx_sse.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="detecting-avx-sse-transitions">
+<h1>Detecting AVX-SSE Transitions<a class="headerlink" href="#detecting-avx-sse-transitions" title="Permalink to this heading"></a></h1>
+<p>Intel® AVX instructions are using the YMM registers, while the Intel® SSE instructions
+access the XMM registers which are the low 128 bits of the YMM registers.</p>
+<p>Since, Intel® SSE instruction preserve the upper bits of the destination register upper
+bits, a transition between AVX instructions and SSE instruction involves huge state transition
+penalty.</p>
+<p>The best way to avoid this penalty is to make sure all the code is written in AVX and this way
+avoid the transitions. The <cite>VZEROUPPER</cite> instruction can be used to avoid the penalty when
+calling an external library function that might use SSE.</p>
+<p>Detecting these transitions in a real world application is not easy. The CPU has
+performance monitoring counters to detect that your application has such transitions,
+but this doesn’t help finding where are these transitions in the code.</p>
+<p>Intel® SDE provides an analysis tool to detect these transitions. It tracks all the execution
+flow and collects the transitions locations. At the end, it reports in which basic block the
+transition happend, the dynamic count of transitions and the dynamic count of instructions
+within the block.</p>
+<p>The following C function with inline assembly has AVX-SSE transition:</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kr">__asm</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">vmovaps</span><span class="w"> </span><span class="n">ymm1</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="w">       </span><span class="c1">// avx</span>
+<span class="w">            </span><span class="n">vmovaps</span><span class="w"> </span><span class="n">ymm2</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="w">       </span><span class="c1">// avx</span>
+<span class="w">            </span><span class="n">addps</span><span class="w"> </span><span class="n">xmm2</span><span class="p">,</span><span class="w"> </span><span class="n">xmm1</span><span class="w">        </span><span class="c1">// sse</span>
+<span class="w">            </span><span class="n">vmovaps</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">ymm2</span><span class="w">       </span><span class="c1">// avx</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run Intel® SDE on the application with this code.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>sde<span class="w"> </span>-hsw<span class="w"> </span>-ast<span class="w"> </span>--<span class="w"> </span>foo.exe
+</pre></div>
+</div>
+<p>The output file has header with explaination and the analysis results.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ===================================================</span>
+<span class="c1"># AVX/SSE transition checker</span>
+<span class="c1">#</span>
+<span class="c1"># &#39;Penalty in Block&#39; provides the address (rIP) of the code basic block with</span>
+<span class="c1">#       the penaties.</span>
+<span class="c1">#</span>
+<span class="c1"># &#39;Dynamic AVX to SSE Transition&#39; counts the number of potentially</span>
+<span class="c1">#       costly AVX-to-SSE sequences</span>
+<span class="c1">#</span>
+<span class="c1"># &#39;Dynamic SSE to AVX  Transition&#39; counts the number of potentially</span>
+<span class="c1">#       costly SSE-to-AVX sequences</span>
+<span class="c1">#</span>
+<span class="c1"># &#39;Static Icount&#39; is the static number instructions in the block</span>
+<span class="c1">#</span>
+<span class="c1"># &#39;Executions&#39; is the dynamic number of times the block was executed</span>
+<span class="c1">#</span>
+<span class="c1"># &#39;Dynamic Icount&#39; is the product of the static icount and executions columns</span>
+<span class="c1">#</span>
+<span class="c1"># &#39;Previous Block&#39; is an attempt to find the  previous control flow block</span>
+<span class="c1">#</span>
+<span class="c1"># &#39;State Change Block&#39; is an attempt to find the block that put the</span>
+<span class="c1">#       state machine in a state that conflicted with this block, causing a</span>
+<span class="c1">#       transition in this block</span>
+<span class="c1">#</span>
+<span class="c1"># ===================================================</span>
+    <span class="n">Penalty</span>    <span class="n">Dynamic</span>      <span class="n">Dynamic</span>                                            <span class="n">State</span>
+      <span class="ow">in</span>     <span class="n">AVX</span> <span class="n">to</span> <span class="n">SSE</span>   <span class="n">SSE</span> <span class="n">to</span> <span class="n">AVX</span>   <span class="n">Static</span>             <span class="n">Dynamic</span>   <span class="n">Previous</span>   <span class="n">Change</span>
+     <span class="n">Block</span>   <span class="n">Transition</span>   <span class="n">Transition</span>   <span class="n">Icount</span> <span class="n">Executions</span>   <span class="n">Icount</span>     <span class="n">Block</span>    <span class="n">Block</span>
+<span class="o">============</span> <span class="o">===========</span> <span class="o">============</span> <span class="o">========</span> <span class="o">==========</span> <span class="o">========</span> <span class="o">=========</span> <span class="o">=========</span>
+    <span class="mh">0x40115a</span>     <span class="mi">100</span>          <span class="mi">100</span>        <span class="mi">5</span>        <span class="mi">100</span>       <span class="mi">500</span>        <span class="n">N</span><span class="o">/</span><span class="n">A</span>      <span class="n">N</span><span class="o">/</span><span class="n">A</span>
+<span class="c1">#Initial state from routine:  not-found @ 0</span>
+<span class="c1">#Previous block in routine:   not-found @ 0</span>
+<span class="c1">#Penalty detected in routine: foo @ 0x40115a</span>
+
+    <span class="mh">0x40124e</span>       <span class="mi">1</span>            <span class="mi">0</span>       <span class="mi">13</span>         <span class="mi">12</span>       <span class="mi">156</span>     <span class="mh">0x40123e</span>   <span class="mh">0x40115a</span>
+<span class="c1">#Initial state from routine:  foo @ 0x40115a</span>
+<span class="c1">#Previous block in routine:   dump @ 0x40123e</span>
+<span class="c1">#Penalty detected in routine: dump @ 0x40124e</span>
+
+<span class="c1"># SUMMARY</span>
+<span class="c1"># AVX_to_SSE_transition_instances:        101</span>
+<span class="c1"># SSE_to_AVX_transition_instances:        100</span>
+<span class="c1"># Dynamic_insts:                          187111</span>
+<span class="c1"># AVX_to_SSE_instances/instruction:       0.0005</span>
+<span class="c1"># SSE_to_AVX_instances/instruction:       0.0005</span>
+<span class="c1"># AVX_to_SSE_instances/100instructions:   0.0540</span>
+<span class="c1"># SSE_to_AVX_instances/100instructions:   0.0534</span>
+</pre></div>
+</div>
+<p>The knobs for this analisys tool.</p>
+<dl class="option-list">
+<dt><kbd><span class="option">-a<var>st</var></span></kbd></dt>
+<dd><p>Identify slow Intel AVX-to-SSE and SSE-to-Intel AVX transitions [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-a<var>st_trace</var></span></kbd></dt>
+<dd><p>Trace Intel AVX-to-SSE and SSE-to-Intel AVX transitions, may result in a
+large output file [default 0]</p>
+</dd>
+<dt><kbd><span class="option">-o<var>ast</var></span></kbd></dt>
+<dd><p>Specify Intel-AVX/SSE transition file name [default sde-avx-sse-transition-out.txt]</p>
+</dd>
+</dl>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sparse.html" class="btn btn-neutral float-left" title="Sparse Instructions Analysis Tool" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="prefetch.html" class="btn btn-neutral float-right" title="Prefetch Analysis Tool" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Intel SDE.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

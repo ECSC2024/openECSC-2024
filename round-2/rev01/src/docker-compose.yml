@@ -1,0 +1,11 @@
+services:
+  FPFC:
+    image: cybersecnatlab/socaz:ubuntu-jammy
+    restart: unless-stopped
+    command: 'socaz --timeout 30 --flag-from-env FLAG --bind 1337 --cmd /home/user/chall'
+    volumes:
+      - './FPFC/FPFC:/home/user/chall'
+    ports:
+      - '38015:1337'
+    environment:
+      - 'FLAG=openECSC{4lm0s7_l1k3_p1ng_pwng_0n_th3_w4llz_[random 8]}'

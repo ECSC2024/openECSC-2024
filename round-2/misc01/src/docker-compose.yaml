@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  challenge:
+    build: ./server
+    ports:
+      - 5000:80
+    restart: unless-stopped
+    cpus: 2.0
+    command: bash -c "/usr/bin/supervisord"
