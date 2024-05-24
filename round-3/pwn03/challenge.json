@@ -1,0 +1,41 @@
+{
+  "title": "Baby Array.xor",
+  "description": "In case you need to xor doubles...\n\n`nc arrayxor.challs.open.ecsc2024.it 38020`",
+  "authors": [
+    "Vincenzo Bonforte <@Bonfee>"
+  ],
+  "tags": [
+    "pwn"
+  ],
+  "hiddenTags": [],
+  "order": 32,
+  "flags": [
+    "^openECSC\\{t00_e5zy_w1th0ut_s4nb0x_gg_wp_[0-9a-f]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "array.xor.zip",
+      "type": "upload",
+      "path": "./attachments/array.xor.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "arrayxor.challs.open.ecsc2024.it",
+    "port": 38020
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 10
+    }
+  }
+}

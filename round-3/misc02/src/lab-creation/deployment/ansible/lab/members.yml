@@ -1,0 +1,100 @@
+---
+# Load data
+- import_playbook: data.yml
+
+- name: Ensure manager exists and is a local administrator
+  hosts: members
+  gather_facts: no
+  vars:
+    manager: "{{lab.hosts[dict_key].manager}}"
+    manager_password: "{{lab.domains[lab.hosts[dict_key].domain].users[manager].password}}"
+  tasks:
+      - name: "Ensure {{manager}} is present with a valid password"
+        win_user:
+          name: "{{manager}}"
+          password: "{{manager_password}}"
+          password_never_expires: yes
+          account_disabled: false
+          state: present
+      
+      - name: "Ensure {{manager}} is part of Administrators group"
+        win_group_membership:
+          name: Administrators
+          members: "{{manager}}"
+          state: present
+
+      - name: "Create {{manager}} home directory"
+        win_command: whoami
+        vars:
+          ansible_become: yes
+          ansible_become_method: runas
+          ansible_become_user: "{{manager}}"
+          ansible_become_password: "{{manager_password}}"
+
+- name: Join servers
+  hosts: members
+  vars:
+    domain: "{{lab.hosts[dict_key].domain}}"
+    site: "{{lab.hosts[dict_key].site}}"
+    dc: "{{lab.hosts[lab.hosts[dict_key].dc].hostname}}"
+    password: "{{lab.domains[domain].computers[dict_key].computer_password}}"
+
+    manager: "{{lab.hosts[dict_key].manager}}"
+    manager_password: "{{lab.domains[lab.hosts[dict_key].domain].users[manager].password}}"
+
+    ansible_user: "{{manager}}"
+    ansible_password: "{{manager_password}}"
+  tasks:
+    - name: "Set configure dns to {{dns_domain}}"
+      win_dns_client:
+        adapter_names: "{{domain_adapter}}"
+        ipv4_addresses:
+          - "{{hostvars[dns_domain].ansible_host}}"
+        log_path: C:\dns_log.txt
+
+    - name: Assign static site
+      win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters
+        name: SiteName
+        data: "{{site}}"
+
+    - name: Join domain
+      ansible.windows.win_powershell:
+        error_action: stop
+        script: |
+          [CmdletBinding()]
+          param (
+              [String]
+              $Password,
+
+              [String]
+              $Domain,
+
+              [String]
+              $Dc
+          )
+            $Domain = $Domain
+            $Rodc = "$Dc.$Domain"
+
+            $Credentials = New-Object pscredential -ArgumentList ([pscustomobject]@{
+                UserName = $null
+                Password = (ConvertTo-SecureString -String $Password -AsPlainText -Force)[0]
+            })
+
+            $Options = 'UnsecuredJoin,PasswordPass,JoinReadOnly'
+
+            Add-Computer -Domain $Domain -Options $Options -Credential $Credentials -Server $Rodc
+        parameters:
+          Password: "{{ password }}"
+          Domain: "{{ domain }}"
+          Dc: "{{ dc }}"
+      register: computerjoin
+      until: "computerjoin is not failed"
+      retries: 3
+      delay: 60
+
+    - name: Reboot
+      win_reboot:
+        reboot_timeout: 1500
+        post_reboot_delay: 200
+      ignore_errors: yes

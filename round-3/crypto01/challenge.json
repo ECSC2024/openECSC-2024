@@ -1,0 +1,41 @@
+{
+  "title": "LWE2048",
+  "description": "Larger moduli are more secure, right?\n\nThe timeout on the challenge is 10 minutes.\n\n`nc lwe2048.challs.open.ecsc2024.it 38018`",
+  "authors": [
+    "Riccardo Zanotto <@Drago>"
+  ],
+  "tags": [
+    "crypto"
+  ],
+  "hiddenTags": [],
+  "order": 10,
+  "flags": [
+    "^openECSC\\{4d4p71v3_LW3_n07_s0_53cur3!_[0-9a-f]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "lwe2048.py",
+      "type": "upload",
+      "path": "./attachments/lwe2048.py",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "lwe2048.challs.open.ecsc2024.it",
+    "port": 38018
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 30
+    }
+  }
+}

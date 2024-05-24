@@ -1,0 +1,18 @@
+---
+# Load data
+- import_playbook: data.yml
+
+- name: Store a password in Credential Manager
+  hosts: domain
+  vars:
+    autologons: "{{ lab.hosts[dict_key].autologons | default([]) }}"
+    domain: "{{lab.hosts[dict_key].domain}}"
+    ansible_user: "{{lab.domains[domain].domain_username}}@{{domain | upper}}"
+    ansible_password: "{{lab.domains[domain].domain_password}}"
+    ansible_winrm_transport: kerberos
+  tasks:
+    - name: Add windows autologon
+      community.windows.win_auto_logon:
+        username: "{{item.value.username}}"
+        password: "{{item.value.password}}"
+      with_dict: "{{ autologons }}"

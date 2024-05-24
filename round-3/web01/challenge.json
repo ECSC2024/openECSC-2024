@@ -1,0 +1,42 @@
+{
+  "title": "Grand Resort for Pwning Cats",
+  "description": "Welcome to the Grand Resort for Pwning Cats. Are you ready to become the cutest pwner kitten at our establishment?\n\nThe flag is stored in `/flag.txt`\n\nSite: [http://grandresort.challs.open.ecsc2024.it](http://grandresort.challs.open.ecsc2024.it)",
+  "authors": [
+    "Vittorio Mignini <@M1gnus>",
+    "Simone Cimarelli <@Aquilairreale>"
+  ],
+  "tags": [
+    "web"
+  ],
+  "hiddenTags": [],
+  "order": 50,
+  "flags": [
+    "^openECSC\\{UWu_r3fl3ktIng_K17T3n5_uWU_[a-f0-9]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "backend.zip",
+      "type": "upload",
+      "path": "./attachments/backend.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "grandresort.challs.open.ecsc2024.it",
+    "port": 38010
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 10
+    }
+  }
+}

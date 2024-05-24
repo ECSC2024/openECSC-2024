@@ -1,0 +1,41 @@
+{
+  "title": "Log4x86",
+  "description": "Logging data from your application is very important. This is why we are logging ABSOLUTELY EVERYTHING in this small calculator app.\n\n`nc log4x86.challs.open.ecsc2024.it 38019`",
+  "authors": [
+    "Fabio Zoratti <@orsobruno96>"
+  ],
+  "tags": [
+    "pwn"
+  ],
+  "hiddenTags": [],
+  "order": 31,
+  "flags": [
+    "^openECSC\\{m4yb3_w3_sh0ldnt_l0g_us3r_1nput_[0-9a-z]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "log4x86.zip",
+      "type": "upload",
+      "path": "./attachments/log4x86.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "log4x86.challs.open.ecsc2024.it",
+    "port": 38019
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 15
+    }
+  }
+}

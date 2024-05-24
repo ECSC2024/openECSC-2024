@@ -1,0 +1,23 @@
+services:
+  arrayxor:
+    image: arrayxor
+    build: .
+    restart: unless-stopped
+    init: true
+    privileged: true
+    volumes:
+      - './dist/d8:/home/user/d8:ro'
+      - './dist/snapshot_blob.bin:/home/user/snapshot_blob.bin:ro'
+      - './wrapper.py:/home/user/chall:ro'
+    ports:
+      - '38020:1337'
+    mem_limit: '2048M'
+    environment:
+      - 'FLAG=openECSC{t00_e5zy_w1th0ut_s4nb0x_gg_wp_[random 8]}'
+      - 'FORWARD_STDERR=true'
+      - 'TEMPDIRS=/tmp'
+      - 'RLIMIT_AS=32768'
+      - 'TIMEOUT=60'
+      - 'POW_BITS=26'
+      - 'POW_BYPASS_HASH=redacted'
+

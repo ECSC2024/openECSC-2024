@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "wireguardPrivateKey": {
+      "value": "<WG_PRIVATE_KEY>"
+    },
+    "routerSshRsaPub": {
+      "value": "<ROUTER_SSH_RSA_PUB>"
+    },
+    "factwsAdminUsername": { "value": "<ADMIN_USERNAME>" },
+    "factwsAdminPassword": { "value": "<FACT_WS_ADMIN_PASSWORD>" },
+    "factwsDeployUsername": { "value": "<DEPLOY_USERNAME>" },
+    "factwsDeployPassword": { "value": "<FACT_WS_DEPLOY_PASSWORD>" },
+    "factrodcAdminUsername": { "value": "<ADMIN_USERNAME>" },
+    "factrodcAdminPassword": { "value": "<FACT_RODC_ADMIN_PASSWORD>" },
+    "factrodcDeployUsername": { "value": "<DEPLOY_USERNAME>" },
+    "factrodcDeployPassword": { "value": "<FACT_RODC_DEPLOY_PASSWORD>" },
+    "mgmtdcAdminUsername": { "value": "<ADMIN_USERNAME>" },
+    "mgmtdcAdminPassword": { "value": "<MGMT_DC_ADMIN_PASSWORD>" },
+    "mgmtdcDeployUsername": { "value": "<DEPLOY_USERNAME>" },
+    "mgmtdcDeployPassword": { "value": "<MGMT_DC_DEPLOY_PASSWORD>" },
+    "hqdcAdminUsername": { "value": "<ADMIN_USERNAME>" },
+    "hqdcAdminPassword": { "value": "<HQDC_ADMIN_PASSWORD>" },
+    "hqdcDeployUsername": { "value": "<DEPLOY_USERNAME>" },
+    "hqdcDeployPassword": { "value": "<HQDC_DEPLOY_PASSWORD>" }
+  }
+}

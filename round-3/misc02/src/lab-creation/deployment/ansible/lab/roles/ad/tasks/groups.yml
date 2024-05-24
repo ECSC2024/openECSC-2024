@@ -1,0 +1,9 @@
+# https://clintboessen.blogspot.com/2010/04/group-scopes.html
+# https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc755692(v=ws.10)
+- name: Create groups
+  microsoft.ad.group:
+    name: "{{ item.key }}"
+    scope: global
+    path: "{{item.value.path}}"
+    state: present
+  with_dict: "{{ ad_groups }}"

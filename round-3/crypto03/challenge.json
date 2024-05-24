@@ -1,0 +1,36 @@
+{
+  "title": "LazyDH",
+  "description": "I'm too lazy to generate my DH exponents from zero. I've saved some secure ones and just modify those.",
+  "authors": [
+    "Lorenzo Demeio <@Devrar>"
+  ],
+  "tags": [
+    "crypto"
+  ],
+  "hiddenTags": [],
+  "order": 12,
+  "flags": [
+    "^openECSC\\{kn0wn_d1ff3r3nc3_0f_a_m34ns_kn0wn_d1ff3r3nc3_0f_sh4r3d_[0-9a-f]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "lazydh.py",
+      "type": "upload",
+      "path": "./attachments/lazydh.py",
+      "dynamic": false
+    },
+    {
+      "name": "lazydh.txt",
+      "type": "upload",
+      "path": "./attachments/lazydh.txt",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

@@ -1,0 +1,1 @@
+^openECSC\{kn0wn_d1ff3r3nc3_0f_a_m34ns_kn0wn_d1ff3r3nc3_0f_sh4r3d_[0-9a-f]{8}\}$

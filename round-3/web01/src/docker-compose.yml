@@ -1,0 +1,17 @@
+services:
+  backend:
+    build: backend
+    restart: unless-stopped
+    environment:
+      FLAG: 'openECSC{UWu_r3fl3ktIng_K17T3n5_uWU_%s}'
+    ports:
+      - '38010:38010'
+
+  frontend:
+    build: frontend
+    restart: unless-stopped
+    environment:
+      BACKEND_HOST: 'backend'
+      BACKEND_PORT: '38010'
+    ports:
+      - '3000:3000'

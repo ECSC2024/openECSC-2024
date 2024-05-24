@@ -1,0 +1,34 @@
+---
+# Load data
+- import_playbook: data.yml
+
+- name: Force replicate and sync
+  hosts: dc
+  gather_facts: no
+  vars:
+    domain: "{{lab.hosts[dict_key].domain}}"
+    domain_username: "{{lab.domains[domain].domain_username}}"
+    domain_password: "{{lab.domains[domain].domain_password}}"
+    ansible_become: yes
+    ansible_become_method: runas
+    ansible_become_user: "{{domain_username}}"
+    ansible_become_password: "{{domain_password}}"
+    ansible_become_winrm_transport: kerberos
+  tasks:
+    - name: Force replicate and sync
+      win_command: repadmin /kcc
+      register: kcc_output
+
+    - name: Force replicate and sync
+      win_command: repadmin /kcc factrodc.factories.mammamia.local
+      register: kcc_output
+      until: kcc_output is not failed
+      retries: 3
+      delay: 30
+
+    - name: Sync all AD objects
+      win_command: repadmin /syncall factrodc.factories.mammamia.local /APed
+      register: sync_output
+      until: sync_output is not failed
+      retries: 3
+      delay: 30

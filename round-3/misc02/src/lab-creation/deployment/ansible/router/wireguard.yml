@@ -1,0 +1,18 @@
+---
+- name: Setup Wireguard
+  hosts: all
+  become: yes
+  tasks:
+    - name: Create Wireguard server config
+      copy:
+        src: "{{ playbook_dir }}/files/wg.conf"
+        dest: /etc/wireguard/wg0.conf
+        owner: root
+        group: root
+        mode: 0750
+
+    - name: Enable and start Wireguard service
+      systemd:
+        name: wg-quick@wg0
+        enabled: yes
+        state: started

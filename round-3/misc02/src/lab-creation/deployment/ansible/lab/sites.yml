@@ -1,0 +1,88 @@
+---
+# Load data
+- import_playbook: data.yml
+
+- name: Create sites
+  hosts: dc
+  vars:
+    domain: "{{lab.hosts[dict_key].domain}}"
+    parent_domain: "{{lab.domains[domain].parent_domain}}"
+    parent_domain_username: "{{lab.domains[parent_domain].domain_username}}"
+    parent_domain_password: "{{lab.domains[parent_domain].domain_password}}"
+    sites: "{{lab.domains[domain].sites | default({}) }}"
+  tasks:
+    - name: Create sites
+      ansible.windows.win_powershell:
+        error_action: stop
+        script: |
+          [CmdletBinding()]
+          param (
+              [String]
+              $Password,
+
+              [String]
+              $DomainAdmin,
+
+              [String]
+              $DomainName,
+
+              [String]
+              $SiteName,
+
+              [String]
+              $Subnet
+          )
+            $Ansible.Changed = $false
+            $pass = ConvertTo-SecureString $Password -AsPlainText -Force
+            $Cred = New-Object System.Management.Automation.PSCredential ("$DomainAdmin@$DomainName", $pass)
+
+            try {
+              Get-ADReplicationSite -Identity $SiteName -Credential $Cred
+              $siteExists=$true
+            } catch {
+              $siteExists=$false
+            }
+
+            if (-not $siteExists) {
+              $Ansible.Changed = $true
+              New-ADReplicationSite -Name $SiteName -Credential $Cred
+            }
+
+            try {
+              Get-ADReplicationSubnet -Identity $Subnet -Credential $Cred
+              $subnetExists=$true
+            } catch {
+              $subnetExists=$false
+            }
+
+            if (-not $subnetExists) {
+              $Ansible.Changed = $true
+              New-ADReplicationSubnet -Name $Subnet -Site $SiteName -Credential $Cred
+            }
+
+            try {
+              Get-ADReplicationSiteLink -Identity "DefaultTo$SiteName" -Credential $Cred
+              $siteLinkExists=$true
+            } catch {
+              $siteLinkExists=$false
+            }
+
+            if (-not $siteLinkExists) {
+              $Ansible.Changed = $true
+              New-ADReplicationSiteLink -Name "DefaultTo$SiteName" -SitesIncluded $SiteName,Default-First-Site-Name -Credential $Cred
+            }
+        parameters:
+          Password: "{{ parent_domain_password }}"
+          DomainAdmin: "{{ parent_domain_username }}"
+          DomainName: "{{ parent_domain }}"
+          SiteName: "{{ item.key }}"
+          Subnet: "{{ item.value.subnet }}"
+      with_dict: "{{ sites }}"
+      when: sites is defined
+      register: site_output
+
+    - name: Show site output
+      debug:
+        var: site_output
+
+- import_playbook: replicate_and_sync.yml

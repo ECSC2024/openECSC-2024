@@ -1,0 +1,41 @@
+{
+  "title": "Notes",
+  "description": "Great news! BabyNotes is not a baby anymore!\n\nRead the changelog [here](https://notes.challs.open.ecsc2024.it/view.php?id=changelog)",
+  "authors": [
+    "Riccardo Bonafede <@bonaff>",
+    "Stefano Alberto <@xatophi>"
+  ],
+  "tags": [
+    "web"
+  ],
+  "hiddenTags": [],
+  "order": 52,
+  "flags": [
+    "^openECSC\\{fcbfb9f66a187421cc1965aaf502b517\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "src.zip",
+      "type": "upload",
+      "path": "./attachments/src.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "http",
+    "url": "https://notes.challs.open.ecsc2024.it:443/"
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 60
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "title": "Deleted file",
+  "description": "Oh no, I deleted a file. I need to get it back.",
+  "authors": [
+    "Giovanni Minotti <@Giotino>"
+  ],
+  "tags": [
+    "misc"
+  ],
+  "hiddenTags": [],
+  "order": 20,
+  "flags": [
+    "^openECSC\\{thank_you_for_recovering_my_file\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "disk.img",
+      "type": "upload",
+      "path": "./attachments/disk.img",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

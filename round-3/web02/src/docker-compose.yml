@@ -1,0 +1,8 @@
+services:
+  app:
+    build: app
+    restart: unless-stopped
+    environment:
+      FLAG: "openECSC{F_3Xpr3Ff10Nf_4r3_1n_mY_n1ghtM4r3f_~8,'0X}"
+    ports:
+      - '8080:8080'

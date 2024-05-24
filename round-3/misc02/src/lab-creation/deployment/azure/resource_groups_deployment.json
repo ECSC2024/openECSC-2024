@@ -1,0 +1,17 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "variables": {
+        "location": "[deployment().location]"
+    },
+    "resources": [
+        {
+          "type": "Microsoft.Resources/resourceGroups",
+          "apiVersion": "2021-04-01",
+          "location": "[variables('location')]",
+          "name": "lab-deployment",
+          "properties": {}
+        }
+    ],
+    "outputs": {}
+  }

@@ -1,0 +1,41 @@
+{
+  "title": "Xv6 Homework",
+  "description": "My operating systems professor is teaching us using xv6. At the end of the\nlecture, he pointed us to section 6.10 exercise 1 of the book, which states:\n\n> Comment out the calls to `acquire` and `release` in `kalloc`\n> (`kernel/kalloc.c:69`). This seems like it should cause problems for kernel\n> code that calls `kalloc`; what symptoms do you expect to see? When you run\n> xv6, do you see these symptoms? How about when running `usertests`? If you\n> don\u2019t see a problem, why not? See if you can provoke a problem by inserting\n> dummy loops into the critical section of `kalloc`.\n\nCan you help me write a decent answer before the next lecture?\n\n`nc xv6homework.challs.open.ecsc2024.it 38016`",
+  "authors": [
+    "Marco Bonelli <@mebeim>"
+  ],
+  "tags": [
+    "pwn"
+  ],
+  "hiddenTags": [],
+  "order": 30,
+  "flags": [
+    "^openECSC\\{gg_wp_[0-9a-f]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "xv6_homework.tar.gz",
+      "type": "upload",
+      "path": "./attachments/xv6_homework.tar.gz",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "xv6homework.challs.open.ecsc2024.it",
+    "port": 38016
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 60
+    }
+  }
+}

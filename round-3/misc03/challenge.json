@@ -1,0 +1,30 @@
+{
+  "title": "eotp",
+  "description": "I have read something about Erlang/OTP, i guess that's when you encrypt with xor right?",
+  "authors": [
+    "Lorenzo Catoni <@lorenzcat>"
+  ],
+  "tags": [
+    "misc"
+  ],
+  "hiddenTags": [],
+  "order": 22,
+  "flags": [
+    "^openECSC\\{can_U_im4g1ne_c0d1ng_a_fulL_m3ssag1n9_app_1n_erl4ng_03828eea\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "eotp.zip",
+      "type": "upload",
+      "path": "./attachments/eotp.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

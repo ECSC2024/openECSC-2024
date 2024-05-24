@@ -1,0 +1,29 @@
+---
+- name: Force replicate and sync
+  hosts: dc
+  gather_facts: no
+  vars:
+    domain: "{{lab.hosts[dict_key].domain}}"
+    domain_username: "{{lab.domains[domain].domain_username}}"
+    domain_password: "{{lab.domains[domain].domain_password}}"
+    ansible_become: yes
+    ansible_become_method: runas
+    ansible_become_user: "{{domain_username}}"
+    ansible_become_password: "{{domain_password}}"
+    ansible_become_winrm_transport: kerberos
+  tasks:
+    - name: Force replicate and sync
+      win_command: repadmin /kcc
+      register: kcc_output
+
+    - name: Show output
+      debug:
+        var: kcc_output
+    
+    - name: Sync all AD objects
+      win_command: repadmin /syncall /APed
+      register: sync_output
+
+    - name: Show output
+      debug:
+        var: sync_output

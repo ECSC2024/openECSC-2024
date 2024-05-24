@@ -1,0 +1,1 @@
+The given shared library libpcre.so.1 is not supposed to be reversed or to be exploited in any way. It is a standard build from the open source code without any modification and is given to the participants only to ensure full reproducibility of the remote environment.

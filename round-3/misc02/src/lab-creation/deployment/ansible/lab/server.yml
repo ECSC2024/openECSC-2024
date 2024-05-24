@@ -1,0 +1,74 @@
+---
+# Load data
+- import_playbook: data.yml
+
+- name: Set hostname and local administrator password 
+  hosts: all
+  vars:
+    admin_username: "{{lab.hosts[dict_key].admin_user}}"
+    admin_password: "{{lab.hosts[dict_key].admin_password}}"
+    hostname: "{{lab.hosts[dict_key].hostname}}"
+  tasks:
+    - name: "Ensure {{admin_username}} is present with a valid password"
+      win_user:
+        name: "{{admin_username}}"
+        password: "{{admin_password}}"
+        password_never_expires: yes
+        account_disabled: false
+        state: present
+    
+    - name: "Ensure {{admin_username}} is part of Administrators group"
+      win_group_membership:
+        name: Administrators
+        members: "{{admin_username}}"
+        state: present
+
+    - name: "Create {{admin_username}} home directory"
+      win_command: whoami
+      vars:
+        ansible_become: yes
+        ansible_become_method: runas
+        ansible_become_user: "{{admin_username}}"
+        ansible_become_password: "{{admin_password}}"
+
+    - name: Change the hostname
+      win_hostname:
+        name: "{{hostname}}"
+      register: win_hostname
+
+    - name: Disable Windows update
+      script: no_update.ps1
+
+    - name: Disable firewall
+      community.windows.win_firewall:
+        state: disabled
+        profiles:
+        - Domain
+        - Private
+        - Public
+
+    - name: Reboot if needed
+      win_reboot:
+        reboot_timeout: 600
+        post_reboot_delay: 30
+      when: win_hostname.reboot_required
+
+    - name: Upgrade module PowerShellGet to fix accept license issue on last windows ansible version
+      win_shell: |
+        [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+        Install-PackageProvider -Name NuGet -Force -MinimumVersion 2.8.5.201
+        Install-Module PowerShellGet -Force
+
+    - name: Check for ComputerManagementDsc Powershell module
+      win_psmodule:
+        name: ComputerManagementDsc
+        state: present
+      retries: 10
+      delay: 10
+
+    - name: Enable Remote Desktop
+      win_dsc:
+        resource_name: RemoteDesktopAdmin
+        IsSingleInstance : 'yes'
+        Ensure: present
+        UserAuthentication: Secure

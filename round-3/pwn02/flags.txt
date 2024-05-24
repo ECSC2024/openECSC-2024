@@ -1,0 +1,1 @@
+^openECSC\{m4yb3_w3_sh0ldnt_l0g_us3r_1nput_[0-9a-z]{8}\}$

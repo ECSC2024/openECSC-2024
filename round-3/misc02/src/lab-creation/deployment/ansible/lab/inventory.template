@@ -1,0 +1,49 @@
+[default]
+factws ansible_host=10.200.0.40 dns_domain=factrodc dict_key=factws ansible_user=<DEPLOY_USERNAME> ansible_password=<FACT_WS_DEPLOY_PASSWORD>
+factrodc ansible_host=10.200.0.10 dns_domain=mgmtdc dict_key=factrodc ansible_user=<DEPLOY_USERNAME> ansible_password=<FACT_RODC_DEPLOY_PASSWORD>
+mgmtdc ansible_host=10.50.0.10 dns_domain=hqdc dict_key=mgmtdc ansible_user=<DEPLOY_USERNAME> ansible_password=<MGMT_DC_DEPLOY_PASSWORD>
+hqdc ansible_host=10.10.0.10 dns_domain=hqdc dict_key=hqdc ansible_user=<DEPLOY_USERNAME> ansible_password=<HQDC_DEPLOY_PASSWORD>
+
+[all:vars]
+two_adapters=no
+nat_adapter=Ethernet
+domain_adapter=Ethernet
+; winrm connection (windows)
+ansible_user=<DEPLOY_USERNAME>
+ansible_password=******
+ansible_connection=winrm
+ansible_winrm_server_cert_validation=ignore
+ansible_winrm_operation_timeout_sec=400
+ansible_winrm_read_timeout_sec=500
+ansible_winrm_kerberos_delegation=true
+
+[ps_module]
+hqdc
+mgmtdc
+factrodc
+
+[parent_dc]
+hqdc
+
+[child_dc]
+mgmtdc
+
+[ro_dc]
+factrodc
+
+[members]
+factws
+
+[delayed]
+factrodc
+factws
+
+[dc]
+hqdc
+mgmtdc
+
+[domain]
+hqdc
+mgmtdc
+factrodc
+factws

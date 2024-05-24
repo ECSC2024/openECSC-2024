@@ -1,0 +1,6 @@
+{
+    "require": {
+        "firebase/php-jwt": "6.10.*",
+        "voku/html-min": "^4.5"
+    }
+}

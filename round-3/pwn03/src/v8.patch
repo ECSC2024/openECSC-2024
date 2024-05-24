@@ -1,0 +1,129 @@
+diff --git a/src/builtins/builtins-array.cc b/src/builtins/builtins-array.cc
+index 61e1c36b830..c9bfb0f28f8 100644
+--- a/src/builtins/builtins-array.cc
++++ b/src/builtins/builtins-array.cc
+@@ -407,6 +407,55 @@ BUILTIN(ArrayPush) {
+   return *isolate->factory()->NewNumberFromUint((new_length));
+ }
+ 
++/*
++  Array.xor()
++
++  let x = [0.1, 0.2, 0.3];
++  x.xor(5);
++*/
++BUILTIN(ArrayXor) {
++  HandleScope scope(isolate);
++  Factory *factory = isolate->factory();
++  Handle<Object> receiver = args.receiver();
++
++  if (!IsJSArray(*receiver) || !HasOnlySimpleReceiverElements(isolate, JSArray::cast(*receiver))) {
++    THROW_NEW_ERROR_RETURN_FAILURE(isolate, NewTypeError(MessageTemplate::kPlaceholderOnly,
++      factory->NewStringFromAsciiChecked("Nope")));
++  }
++
++  Handle<JSArray> array = Handle<JSArray>::cast(receiver);
++  ElementsKind kind = array->GetElementsKind();
++
++  if (kind != PACKED_DOUBLE_ELEMENTS) {
++    THROW_NEW_ERROR_RETURN_FAILURE(isolate, NewTypeError(MessageTemplate::kPlaceholderOnly,
++      factory->NewStringFromAsciiChecked("Array.xor needs array of double numbers")));
++  }
++
++  // Array.xor() needs exactly 1 argument
++  if (args.length() != 2) {
++    THROW_NEW_ERROR_RETURN_FAILURE(isolate, NewTypeError(MessageTemplate::kPlaceholderOnly,
++      factory->NewStringFromAsciiChecked("Array.xor needs exactly one argument")));
++  }
++
++  // Get array len
++  uint32_t length = static_cast<uint32_t>(Object::Number(array->length()));
++
++  // Get xor value
++  Handle<Object> xor_val_obj;
++  ASSIGN_RETURN_FAILURE_ON_EXCEPTION(isolate, xor_val_obj, Object::ToNumber(isolate, args.at(1)));
++  uint64_t xor_val = static_cast<uint64_t>(Object::Number(*xor_val_obj));
++
++  // Ah yes, xoring doubles..
++  Handle<FixedDoubleArray> elements(FixedDoubleArray::cast(array->elements()), isolate);
++  FOR_WITH_HANDLE_SCOPE(isolate, uint32_t, i = 0, i, i < length, i++, {
++    double x = elements->get_scalar(i);
++    uint64_t result = (*(uint64_t*)&x) ^ xor_val;
++    elements->set(i, *(double*)&result);
++  });
++  
++  return ReadOnlyRoots(isolate).undefined_value();
++}
++
+ namespace {
+ 
+ V8_WARN_UNUSED_RESULT Tagged<Object> GenericArrayPop(Isolate* isolate,
+diff --git a/src/builtins/builtins-definitions.h b/src/builtins/builtins-definitions.h
+index a522d377569..30fb1922bfa 100644
+--- a/src/builtins/builtins-definitions.h
++++ b/src/builtins/builtins-definitions.h
+@@ -423,6 +423,7 @@ namespace internal {
+   TFJ(ArrayPrototypePush, kDontAdaptArgumentsSentinel)                         \
+   /* ES6 #sec-array.prototype.shift */                                         \
+   CPP(ArrayShift)                                                              \
++  CPP(ArrayXor)                                                             \
+   /* ES6 #sec-array.prototype.unshift */                                       \
+   CPP(ArrayUnshift)                                                            \
+   /* Support for Array.from and other array-copying idioms */                  \
+diff --git a/src/compiler/typer.cc b/src/compiler/typer.cc
+index 9a346d134b9..024a2c6c199 100644
+--- a/src/compiler/typer.cc
++++ b/src/compiler/typer.cc
+@@ -1937,6 +1937,8 @@ Type Typer::Visitor::JSCallTyper(Type fun, Typer* t) {
+       return Type::Receiver();
+     case Builtin::kArrayUnshift:
+       return t->cache_->kPositiveSafeInteger;
++    case Builtin::kArrayXor:
++      return Type::Undefined();
+ 
+     // ArrayBuffer functions.
+     case Builtin::kArrayBufferIsView:
+diff --git a/src/d8/d8.cc b/src/d8/d8.cc
+index 4d363e33ca6..56422dec880 100644
+--- a/src/d8/d8.cc
++++ b/src/d8/d8.cc
+@@ -3337,6 +3337,7 @@ Local<FunctionTemplate> Shell::CreateNodeTemplates(
+ 
+ Local<ObjectTemplate> Shell::CreateGlobalTemplate(Isolate* isolate) {
+   Local<ObjectTemplate> global_template = ObjectTemplate::New(isolate);
++  if (/* DISABLES CODE */ (false)) {
+   global_template->Set(Symbol::GetToStringTag(isolate),
+                        String::NewFromUtf8Literal(isolate, "global"));
+   global_template->Set(isolate, "version",
+@@ -3359,8 +3360,10 @@ Local<ObjectTemplate> Shell::CreateGlobalTemplate(Isolate* isolate) {
+                        FunctionTemplate::New(isolate, ReadLine));
+   global_template->Set(isolate, "load",
+                        FunctionTemplate::New(isolate, ExecuteFile));
++  }
+   global_template->Set(isolate, "setTimeout",
+                        FunctionTemplate::New(isolate, SetTimeout));
++  if (/* DISABLES CODE */ (false)) {
+   // Some Emscripten-generated code tries to call 'quit', which in turn would
+   // call C's exit(). This would lead to memory leaks, because there is no way
+   // we can terminate cleanly then, so we need a way to hide 'quit'.
+@@ -3384,6 +3387,7 @@ Local<ObjectTemplate> Shell::CreateGlobalTemplate(Isolate* isolate) {
+     global_template->Set(isolate, "async_hooks",
+                          Shell::CreateAsyncHookTemplate(isolate));
+   }
++  }
+ 
+   return global_template;
+ }
+diff --git a/src/init/bootstrapper.cc b/src/init/bootstrapper.cc
+index de0b6df336b..0ab9fde150b 100644
+--- a/src/init/bootstrapper.cc
++++ b/src/init/bootstrapper.cc
+@@ -2532,6 +2532,8 @@ void Genesis::InitializeGlobal(Handle<JSGlobalObject> global_object,
+                           Builtin::kArrayPrototypeConcat, 1, false);
+     SimpleInstallFunction(isolate_, proto, "copyWithin",
+                           Builtin::kArrayPrototypeCopyWithin, 2, false);
++    SimpleInstallFunction(isolate_, proto, "xor", Builtin::kArrayXor,
++                          1, false);
+     SimpleInstallFunction(isolate_, proto, "fill", Builtin::kArrayPrototypeFill,
+                           1, false);
+     SimpleInstallFunction(isolate_, proto, "find", Builtin::kArrayPrototypeFind,

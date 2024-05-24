@@ -1,0 +1,140 @@
+---
+# Load data
+- import_playbook: data.yml
+
+- name: Setup child domain controller
+  hosts: child_dc
+  vars:
+    domain: "{{lab.hosts[dict_key].domain}}"
+    domain_username: "{{lab.domains[domain].domain_username}}"
+    domain_password: "{{lab.domains[domain].domain_password}}"
+    netbios_name: "{{lab.domains[domain].netbios_name}}"
+    parent_domain: "{{lab.domains[domain].parent_domain}}"
+    parent_domain_username: "{{lab.domains[parent_domain].domain_username}}"
+    parent_domain_password: "{{lab.domains[parent_domain].domain_password}}"
+    zone_name: "{{parent_domain}}"
+    parent_dc: "{{lab.domains[parent_domain].dc}}"
+    source_dc: "{{lab.hosts[parent_dc].hostname}}.{{parent_domain}}"
+    master_server: "{{hostvars[parent_dc].ansible_host}}"
+    replication: "none"
+  tasks:
+    - name: "Set configure dns to {{dns_domain}}"
+      win_dns_client:
+        adapter_names: "{{domain_adapter}}"
+        ipv4_addresses:
+          - "{{hostvars[dns_domain].ansible_host}}"
+        log_path: C:\dns_log.txt
+
+    - name: Install windows features - AD Domain Services
+      win_feature:
+        name: AD-Domain-Services
+        state: present
+        include_management_tools: true
+      register: features
+
+    - name: Install windows features - RSAT-ADDS
+      win_feature:
+        name: RSAT-ADDS
+        state: present
+        include_management_tools: true
+      register: features
+
+    - name: Add child domain to parent domain
+      ansible.windows.win_powershell:
+        error_action: stop
+        script: |
+          [CmdletBinding()]
+          param (
+              [String]
+              $Password,
+
+              [String]
+              $DomainAdmin,
+
+              [String]
+              $ParentDomainName,
+
+              [String]
+              $NewDomainNetbiosName,
+
+              [String]
+              $ReplicationSourceDC,
+
+              [String]
+              $NewDomainName,
+
+              [String]
+              $DomSafePassword
+          )
+          try {
+              $child_domain = Get-ADDomain -Identity $NewDomainNetbiosName
+              $domainExist=$true
+          } catch {
+              $domainExist=$false
+          }
+          if (-not $domainExist) {
+            $Ansible.Changed = $true
+            $pass = ConvertTo-SecureString $Password -AsPlainText -Force
+            $Cred = New-Object System.Management.Automation.PSCredential ($DomainAdmin, $pass)
+            $safePassword = ConvertTo-SecureString $DomSafePassword -AsPlainText -Force
+            Install-ADDSDomain -Credential $Cred -NewDomainName $NewDomainName -NewDomainNetbiosName $NewDomainNetbiosName -ParentDomainName $ParentDomainName -ReplicationSourceDC $ReplicationSourceDC -DatabasePath "C:\Windows\NTDS" -SYSVOLPath "C:\Windows\SYSVOL" -LogPath "C:\Windows\Logs" -SafeModeAdministratorPassword $safePassword -Force -NoRebootOnCompletion -InstallDns -CreateDnsDelegation -DnsDelegationCredential $Cred
+          } else {
+            $Ansible.Changed = $false
+          }
+        parameters:
+          Password: "{{parent_domain_password}}"
+          DomSafePassword: "{{domain_password}}"
+          DomainAdmin: "{{parent_domain_username}}@{{parent_domain}}"
+          ParentDomainName: "{{parent_domain}}"
+          ReplicationSourceDC: "{{source_dc}}"
+          NewDomainNetbiosName: "{{netbios_name}}"
+          NewDomainName: "{{domain.split('.')[0]}}"
+      register: pwsh_output
+
+    - name: Reboot to complete domain creation
+      win_reboot:
+        reboot_timeout: 900
+        post_reboot_delay: 100
+      when: pwsh_output.changed
+
+    - name: Enable the Active Directory Web Services if not enabled
+      ansible.windows.win_shell: Set-Service -Name adws -StartupType Automatic
+
+    - name: Install DnsServerDsc
+      win_psmodule:
+        name: DnsServerDsc
+        state: present
+
+    - name: Add DNS server zone
+      community.windows.win_dns_zone:
+        name: "{{zone_name}}"
+        type: forwarder
+        replication: "{{replication}}"
+        dns_servers:
+          - "{{master_server}}"
+
+    - name: Add static A record for child domain
+      community.windows.win_dns_record:
+        name: "{{item.key}}"
+        zone: "{{domain}}"
+        type: A
+        values: "{{item.value}}"
+        state: present
+      with_dict: "{{lab.domains[domain].static_dns_records}}"
+
+    - name: Install ActiveDirectoryDSC
+      win_psmodule:
+        name: ActiveDirectoryDSC
+        state: present
+
+    - name: "Ensure {{domain_username}} is in Domain Admins"
+      microsoft.ad.group:
+        name: "Domain Admins"
+        members:
+          add:
+            - "{{domain_username}}"
+        state: present
+      retries: 10
+      delay: 60
+
+- import_playbook: sync_runner.yml

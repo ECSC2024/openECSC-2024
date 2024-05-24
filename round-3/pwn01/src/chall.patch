@@ -1,0 +1,82 @@
+diff --git a/Makefile b/Makefile
+index 39a99d7..59eca3b 100644
+--- a/Makefile
++++ b/Makefile
+@@ -160,6 +160,7 @@ QEMUOPTS = -machine virt -bios none -kernel $K/kernel -m 128M -smp $(CPUS) -nogr
+ QEMUOPTS += -global virtio-mmio.force-legacy=false
+ QEMUOPTS += -drive file=fs.img,if=none,format=raw,id=x0
+ QEMUOPTS += -device virtio-blk-device,drive=x0,bus=virtio-mmio-bus.0
++QEMUOPTS += -semihosting
+ 
+ qemu: $K/kernel fs.img
+ 	$(QEMU) $(QEMUOPTS)
+diff --git a/kernel/kalloc.c b/kernel/kalloc.c
+index 0699e7e..4fd9012 100644
+--- a/kernel/kalloc.c
++++ b/kernel/kalloc.c
+@@ -70,11 +70,9 @@ kalloc(void)
+ {
+   struct run *r;
+ 
+-  acquire(&kmem.lock);
+   r = kmem.freelist;
+   if(r)
+     kmem.freelist = r->next;
+-  release(&kmem.lock);
+ 
+   if(r)
+     memset((char*)r, 5, PGSIZE); // fill with junk
+diff --git a/kernel/memlayout.h b/kernel/memlayout.h
+index 776f98c..88d2dd0 100644
+--- a/kernel/memlayout.h
++++ b/kernel/memlayout.h
+@@ -4,6 +4,7 @@
+ // based on qemu's hw/riscv/virt.c:
+ //
+ // 00001000 -- boot ROM, provided by qemu
++// 00100000 -- syscon
+ // 02000000 -- CLINT
+ // 0C000000 -- PLIC
+ // 10000000 -- uart0 
+@@ -17,6 +18,10 @@
+ // end -- start of kernel page allocation area
+ // PHYSTOP -- end RAM used by the kernel
+ 
++// syscon interface (for poweroff, only used in case of panic)
++#define SYSCON 0x100000L
++#define SYSCON_POWEROFF 0x5555
++
+ // qemu puts UART registers here in physical memory.
+ #define UART0 0x10000000L
+ #define UART0_IRQ 10
+diff --git a/kernel/printf.c b/kernel/printf.c
+index 1a50203..60f6987 100644
+--- a/kernel/printf.c
++++ b/kernel/printf.c
+@@ -123,6 +123,12 @@ panic(char *s)
+   printf(s);
+   printf("\n");
+   panicked = 1; // freeze uart output from other CPUs
++
++  // Hack: instead of jumping into an infinite loop just poweroff through QEMU
++  // virt board syscon interface. Saves time and money!
++  // See: https://wiki.osdev.org/RISC-V_Meaty_Skeleton_with_QEMU_virt_board.
++  (*(volatile uint32 *)SYSCON) = SYSCON_POWEROFF;
++
+   for(;;)
+     ;
+ }
+diff --git a/kernel/vm.c b/kernel/vm.c
+index 9f69783..4b74f1b 100644
+--- a/kernel/vm.c
++++ b/kernel/vm.c
+@@ -24,6 +24,9 @@ kvmmake(void)
+   kpgtbl = (pagetable_t) kalloc();
+   memset(kpgtbl, 0, PGSIZE);
+ 
++  // syscon interface (for poweroff, only used in case of panic)
++  kvmmap(kpgtbl, SYSCON, SYSCON, PGSIZE, PTE_R | PTE_W);
++
+   // uart registers
+   kvmmap(kpgtbl, UART0, UART0, PGSIZE, PTE_R | PTE_W);
+ 

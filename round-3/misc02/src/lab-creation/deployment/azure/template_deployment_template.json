@@ -1,0 +1,1270 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "wireguardPrivateKey": {
+      "type": "securestring",
+      "metadata": {
+        "description": "Private key"
+      }
+    },
+
+    "virtualMachines_router_vmSize": {
+      "defaultValue": "Standard_B2ls_v2",
+      "type": "string"
+    },
+    "virtualMachines_factws_vmSize": {
+      "defaultValue": "Standard_B2ls_v2",
+      "type": "string"
+    },
+    "virtualMachines_factrodc_vmSize": {
+      "defaultValue": "Standard_B2ls_v2",
+      "type": "string"
+    },
+    "virtualMachines_mgmtdc_vmSize": {
+      "defaultValue": "Standard_B2ls_v2",
+      "type": "string"
+    },
+    "virtualMachines_hqdc_vmSize": {
+      "defaultValue": "Standard_B2ls_v2",
+      "type": "string"
+    },
+    "routerSshRsaPub": {
+      "type": "string",
+      "metadata": {
+        "description": "Router RSA public key for SSH"
+      }
+    },
+    "factwsAdminUsername": {
+      "type": "string",
+      "metadata": {
+        "description": "FactWS local admin username"
+      }
+    },
+    "factwsAdminPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "FactWS local admin password"
+      }
+    },
+    "factwsDeployUsername": {
+      "type": "string",
+      "metadata": {
+        "description": "FactWS deploy username"
+      }
+    },
+    "factwsDeployPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "FactWS deploy password"
+      }
+    },
+    "factrodcAdminUsername": {
+      "type": "string",
+      "metadata": {
+        "description": "FactRODC local admin username"
+      }
+    },
+    "factrodcAdminPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "FactRODC local admin password"
+      }
+    },
+    "factrodcDeployUsername": {
+      "type": "string",
+      "metadata": {
+        "description": "FactRODC deploy username"
+      }
+    },
+    "factrodcDeployPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "FactRODC deploy password"
+      }
+    },
+    "mgmtdcAdminUsername": {
+      "type": "string",
+      "metadata": {
+        "description": "MgmtDC local admin username"
+      }
+    },
+    "mgmtdcAdminPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "MgmtDC local admin password"
+      }
+    },
+    "mgmtdcDeployUsername": {
+      "type": "string",
+      "metadata": {
+        "description": "MgmtDC deploy username"
+      }
+    },
+    "mgmtdcDeployPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "MgmtDC deploy password"
+      }
+    },
+    "hqdcAdminUsername": {
+      "type": "string",
+      "metadata": {
+        "description": "HQDC local admin username"
+      }
+    },
+    "hqdcAdminPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "HQDC local admin password"
+      }
+    },
+    "hqdcDeployUsername": {
+      "type": "string",
+      "metadata": {
+        "description": "HQDC deploy username"
+      }
+    },
+    "hqdcDeployPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "HQDC deploy password"
+      }
+    },
+
+    "networkSecurityGroups_block_metadata_name": {
+      "defaultValue": "block-metadata",
+      "type": "string"
+    },
+    "publicIPAddresses_lab_ip_name": {
+      "defaultValue": "lab-ip",
+      "type": "string"
+    },
+    "virtualNetworks_vnet_name": {
+      "defaultValue": "vnet",
+      "type": "string"
+    },
+    "virtualMachines_router_name": {
+      "defaultValue": "router",
+      "type": "string"
+    },
+    "virtualMachines_factws_name": {
+      "defaultValue": "factws",
+      "type": "string"
+    },
+    "virtualMachines_factrodc_name": {
+      "defaultValue": "factrodc",
+      "type": "string"
+    },
+    "virtualMachines_mgmtdc_name": {
+      "defaultValue": "mgmtdc",
+      "type": "string"
+    },
+    "virtualMachines_hqdc_name": {
+      "defaultValue": "hqdc",
+      "type": "string"
+    },
+    "disks_router_name": {
+      "defaultValue": "router-disk",
+      "type": "string"
+    },
+    "disks_factws_name": {
+      "defaultValue": "factws-disk",
+      "type": "string"
+    },
+    "disks_factrodc_name": {
+      "defaultValue": "factrodc-disk",
+      "type": "string"
+    },
+    "disks_mgmtdc_name": {
+      "defaultValue": "mgmtdc-disk",
+      "type": "string"
+    },
+    "disks_hqdc_name": {
+      "defaultValue": "hqdc-disk",
+      "type": "string"
+    },
+    "routeTables_route_table_name": {
+      "defaultValue": "route-table",
+      "type": "string"
+    },
+    "networkInterfaces_nic_hqdc_name": {
+      "defaultValue": "nic-hqdc",
+      "type": "string"
+    },
+    "networkInterfaces_nic_factws_name": {
+      "defaultValue": "nic-factws",
+      "type": "string"
+    },
+    "networkInterfaces_nic_mgmtdc_name": {
+      "defaultValue": "nic-mgmtdc",
+      "type": "string"
+    },
+    "networkInterfaces_nic_router_name": {
+      "defaultValue": "nic-router",
+      "type": "string"
+    },
+    "networkInterfaces_nic_factrodc_name": {
+      "defaultValue": "nic-factrodc",
+      "type": "string"
+    }
+  },
+  "variables": {
+    "location": "[resourceGroup().location]",
+    "userData": {
+      "wireguardPrivateKey": "[parameters('wireguardPrivateKey')]"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "apiVersion": "2023-09-01",
+      "name": "[parameters('networkSecurityGroups_block_metadata_name')]",
+      "location": "[variables('location')]",
+      "properties": {
+        "securityRules": [
+          {
+            "name": "AllowAnyInbound",
+            "id": "[resourceId('Microsoft.Network/networkSecurityGroups/securityRules', parameters('networkSecurityGroups_block_metadata_name'), 'AllowAnyInbound')]",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "properties": {
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "destinationPortRange": "*",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 100,
+              "direction": "Inbound",
+              "sourcePortRanges": [],
+              "destinationPortRanges": [],
+              "sourceAddressPrefixes": [],
+              "destinationAddressPrefixes": []
+            }
+          },
+          {
+            "name": "DenyIMDS",
+            "id": "[resourceId('Microsoft.Network/networkSecurityGroups/securityRules', parameters('networkSecurityGroups_block_metadata_name'), 'DenyIMDS')]",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "properties": {
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "destinationPortRange": "*",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "AzurePlatformIMDS",
+              "access": "Deny",
+              "priority": 110,
+              "direction": "Outbound",
+              "sourcePortRanges": [],
+              "destinationPortRanges": [],
+              "sourceAddressPrefixes": [],
+              "destinationAddressPrefixes": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "Microsoft.Network/publicIPAddresses",
+      "apiVersion": "2023-09-01",
+      "name": "[parameters('publicIPAddresses_lab_ip_name')]",
+      "location": "[variables('location')]",
+      "sku": {
+        "name": "Basic",
+        "tier": "Regional"
+      },
+      "properties": {
+        "publicIPAddressVersion": "IPv4",
+        "publicIPAllocationMethod": "Static"
+      }
+    },
+
+    {
+      "type": "Microsoft.Network/routeTables",
+      "apiVersion": "2023-09-01",
+      "name": "[parameters('routeTables_route_table_name')]",
+      "location": "[variables('location')]",
+      "properties": {
+        "disableBgpRoutePropagation": true,
+        "routes": [
+          {
+            "name": "default-override-0",
+            "id": "[resourceId('Microsoft.Network/routeTables/routes', parameters('routeTables_route_table_name'), 'default-override-0')]",
+            "properties": {
+              "addressPrefix": "0.0.0.0/0",
+              "nextHopType": "VirtualAppliance",
+              "nextHopIpAddress": "192.168.0.10",
+              "hasBgpOverride": false
+            },
+            "type": "Microsoft.Network/routeTables/routes"
+          },
+          {
+            "name": "default-override-1",
+            "id": "[resourceId('Microsoft.Network/routeTables/routes', parameters('routeTables_route_table_name'), 'default-override-1')]",
+            "properties": {
+              "addressPrefix": "10.0.0.0/8",
+              "nextHopType": "VirtualAppliance",
+              "nextHopIpAddress": "192.168.0.10",
+              "hasBgpOverride": false
+            },
+            "type": "Microsoft.Network/routeTables/routes"
+          },
+          {
+            "name": "default-override-2",
+            "id": "[resourceId('Microsoft.Network/routeTables/routes', parameters('routeTables_route_table_name'), 'default-override-2')]",
+            "properties": {
+              "addressPrefix": "172.16.0.0/12",
+              "nextHopType": "VirtualAppliance",
+              "nextHopIpAddress": "192.168.0.10",
+              "hasBgpOverride": false
+            },
+            "type": "Microsoft.Network/routeTables/routes"
+          },
+          {
+            "name": "default-override-3",
+            "id": "[resourceId('Microsoft.Network/routeTables/routes', parameters('routeTables_route_table_name'), 'default-override-3')]",
+            "properties": {
+              "addressPrefix": "192.168.0.0/16",
+              "nextHopType": "VirtualAppliance",
+              "nextHopIpAddress": "192.168.0.10",
+              "hasBgpOverride": false
+            },
+            "type": "Microsoft.Network/routeTables/routes"
+          },
+          {
+            "name": "default-override-4",
+            "id": "[resourceId('Microsoft.Network/routeTables/routes', parameters('routeTables_route_table_name'), 'default-override-4')]",
+            "properties": {
+              "addressPrefix": "100.64.0.0/10",
+              "nextHopType": "VirtualAppliance",
+              "nextHopIpAddress": "192.168.0.10",
+              "hasBgpOverride": false
+            },
+            "type": "Microsoft.Network/routeTables/routes"
+          }
+        ]
+      }
+    },
+
+    {
+      "type": "Microsoft.Network/routeTables/routes",
+      "apiVersion": "2023-09-01",
+      "name": "[concat(parameters('routeTables_route_table_name'), '/default-override-0')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_route_table_name'))]"
+      ],
+      "properties": {
+        "addressPrefix": "0.0.0.0/0",
+        "nextHopType": "VirtualAppliance",
+        "nextHopIpAddress": "192.168.0.10",
+        "hasBgpOverride": false
+      }
+    },
+    {
+      "type": "Microsoft.Network/routeTables/routes",
+      "apiVersion": "2023-09-01",
+      "name": "[concat(parameters('routeTables_route_table_name'), '/default-override-1')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_route_table_name'))]"
+      ],
+      "properties": {
+        "addressPrefix": "10.0.0.0/8",
+        "nextHopType": "VirtualAppliance",
+        "nextHopIpAddress": "192.168.0.10",
+        "hasBgpOverride": false
+      }
+    },
+    {
+      "type": "Microsoft.Network/routeTables/routes",
+      "apiVersion": "2023-09-01",
+      "name": "[concat(parameters('routeTables_route_table_name'), '/default-override-2')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_route_table_name'))]"
+      ],
+      "properties": {
+        "addressPrefix": "172.16.0.0/12",
+        "nextHopType": "VirtualAppliance",
+        "nextHopIpAddress": "192.168.0.10",
+        "hasBgpOverride": false
+      }
+    },
+    {
+      "type": "Microsoft.Network/routeTables/routes",
+      "apiVersion": "2023-09-01",
+      "name": "[concat(parameters('routeTables_route_table_name'), '/default-override-3')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_route_table_name'))]"
+      ],
+      "properties": {
+        "addressPrefix": "192.168.0.0/16",
+        "nextHopType": "VirtualAppliance",
+        "nextHopIpAddress": "192.168.0.10",
+        "hasBgpOverride": false
+      }
+    },
+    {
+      "type": "Microsoft.Network/routeTables/routes",
+      "apiVersion": "2023-09-01",
+      "name": "[concat(parameters('routeTables_route_table_name'), '/default-override-4')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_route_table_name'))]"
+      ],
+      "properties": {
+        "addressPrefix": "100.64.0.0/10",
+        "nextHopType": "VirtualAppliance",
+        "nextHopIpAddress": "192.168.0.10",
+        "hasBgpOverride": false
+      }
+    },
+
+    {
+      "type": "Microsoft.Network/virtualNetworks",
+      "apiVersion": "2023-09-01",
+      "name": "[parameters('virtualNetworks_vnet_name')]",
+      "location": "[variables('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_block_metadata_name'))]",
+        "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_route_table_name'))]"
+      ],
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": ["10.0.0.0/8", "192.168.0.0/24"]
+        },
+        "dhcpOptions": {
+          "dnsServers": []
+        },
+        "subnets": [
+          {
+            "name": "subnet-gateway",
+            "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_vnet_name'), 'subnet-gateway')]",
+            "properties": {
+              "addressPrefix": "192.168.0.0/24",
+              "serviceEndpoints": [],
+              "delegations": [],
+              "privateEndpointNetworkPolicies": "Enabled",
+              "privateLinkServiceNetworkPolicies": "Enabled"
+            },
+            "type": "Microsoft.Network/virtualNetworks/subnets"
+          },
+          {
+            "name": "subnet-fact",
+            "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_vnet_name'), 'subnet-fact')]",
+            "properties": {
+              "addressPrefix": "10.200.0.0/24",
+              "networkSecurityGroup": {
+                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_block_metadata_name'))]"
+              },
+              "routeTable": {
+                "id": "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_route_table_name'))]"
+              },
+              "serviceEndpoints": [],
+              "delegations": [],
+              "privateEndpointNetworkPolicies": "Enabled",
+              "privateLinkServiceNetworkPolicies": "Enabled"
+            },
+            "type": "Microsoft.Network/virtualNetworks/subnets"
+          },
+          {
+            "name": "subnet-mgmt",
+            "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_vnet_name'), 'subnet-mgmt')]",
+            "properties": {
+              "addressPrefix": "10.50.0.0/24",
+              "networkSecurityGroup": {
+                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_block_metadata_name'))]"
+              },
+              "routeTable": {
+                "id": "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_route_table_name'))]"
+              },
+              "serviceEndpoints": [],
+              "delegations": [],
+              "privateEndpointNetworkPolicies": "Enabled",
+              "privateLinkServiceNetworkPolicies": "Enabled"
+            },
+            "type": "Microsoft.Network/virtualNetworks/subnets"
+          },
+          {
+            "name": "subnet-hq",
+            "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_vnet_name'), 'subnet-hq')]",
+            "properties": {
+              "addressPrefix": "10.10.0.0/24",
+              "networkSecurityGroup": {
+                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_block_metadata_name'))]"
+              },
+              "routeTable": {
+                "id": "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_route_table_name'))]"
+              },
+              "serviceEndpoints": [],
+              "delegations": [],
+              "privateEndpointNetworkPolicies": "Enabled",
+              "privateLinkServiceNetworkPolicies": "Enabled"
+            },
+            "type": "Microsoft.Network/virtualNetworks/subnets"
+          }
+        ],
+        "virtualNetworkPeerings": [],
+        "enableDdosProtection": false
+      }
+    },
+
+    {
+      "type": "Microsoft.Network/virtualNetworks/subnets",
+      "apiVersion": "2023-09-01",
+      "name": "[concat(parameters('virtualNetworks_vnet_name'), '/subnet-gateway')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_vnet_name'))]"
+      ],
+      "properties": {
+        "addressPrefix": "192.168.0.0/24",
+        "serviceEndpoints": [],
+        "delegations": [],
+        "privateEndpointNetworkPolicies": "Enabled",
+        "privateLinkServiceNetworkPolicies": "Enabled"
+      }
+    },
+    {
+      "type": "Microsoft.Network/virtualNetworks/subnets",
+      "apiVersion": "2023-09-01",
+      "name": "[concat(parameters('virtualNetworks_vnet_name'), '/subnet-fact')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_vnet_name'))]",
+        "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_block_metadata_name'))]",
+        "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_route_table_name'))]"
+      ],
+      "properties": {
+        "addressPrefix": "10.200.0.0/24",
+        "networkSecurityGroup": {
+          "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_block_metadata_name'))]"
+        },
+        "routeTable": {
+          "id": "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_route_table_name'))]"
+        },
+        "serviceEndpoints": [],
+        "delegations": [],
+        "privateEndpointNetworkPolicies": "Enabled",
+        "privateLinkServiceNetworkPolicies": "Enabled"
+      }
+    },
+    {
+      "type": "Microsoft.Network/virtualNetworks/subnets",
+      "apiVersion": "2023-09-01",
+      "name": "[concat(parameters('virtualNetworks_vnet_name'), '/subnet-mgmt')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_vnet_name'))]",
+        "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_block_metadata_name'))]",
+        "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_route_table_name'))]"
+      ],
+      "properties": {
+        "addressPrefix": "10.50.0.0/24",
+        "networkSecurityGroup": {
+          "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_block_metadata_name'))]"
+        },
+        "routeTable": {
+          "id": "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_route_table_name'))]"
+        },
+        "serviceEndpoints": [],
+        "delegations": [],
+        "privateEndpointNetworkPolicies": "Enabled",
+        "privateLinkServiceNetworkPolicies": "Enabled"
+      }
+    },
+    {
+      "type": "Microsoft.Network/virtualNetworks/subnets",
+      "apiVersion": "2023-09-01",
+      "name": "[concat(parameters('virtualNetworks_vnet_name'), '/subnet-hq')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_vnet_name'))]",
+        "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_block_metadata_name'))]",
+        "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_route_table_name'))]"
+      ],
+      "properties": {
+        "addressPrefix": "10.10.0.0/24",
+        "networkSecurityGroup": {
+          "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_block_metadata_name'))]"
+        },
+        "routeTable": {
+          "id": "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_route_table_name'))]"
+        },
+        "serviceEndpoints": [],
+        "delegations": [],
+        "privateEndpointNetworkPolicies": "Enabled",
+        "privateLinkServiceNetworkPolicies": "Enabled"
+      }
+    },
+
+    {
+      "type": "Microsoft.Network/networkInterfaces",
+      "apiVersion": "2023-09-01",
+      "name": "[parameters('networkInterfaces_nic_router_name')]",
+      "location": "[variables('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_lab_ip_name'))]",
+        "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_vnet_name'), 'subnet-gateway')]"
+      ],
+      "kind": "Regular",
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "ipconfig-router",
+            "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_nic_router_name')), '/ipConfigurations/ipconfig-router')]",
+            "type": "Microsoft.Network/networkInterfaces/ipConfigurations",
+            "properties": {
+              "privateIPAddress": "192.168.0.10",
+              "privateIPAllocationMethod": "Static",
+              "publicIPAddress": {
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_lab_ip_name'))]"
+              },
+              "subnet": {
+                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_vnet_name'), 'subnet-gateway')]"
+              },
+              "primary": true,
+              "privateIPAddressVersion": "IPv4"
+            }
+          }
+        ],
+        "enableAcceleratedNetworking": false,
+        "enableIPForwarding": true,
+        "disableTcpStateTracking": false,
+        "nicType": "Standard"
+      }
+    },
+    {
+      "type": "Microsoft.Network/networkInterfaces",
+      "apiVersion": "2023-09-01",
+      "name": "[parameters('networkInterfaces_nic_factws_name')]",
+      "location": "[variables('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_vnet_name'), 'subnet-fact')]"
+      ],
+      "kind": "Regular",
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "ipconfig-factws",
+            "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_nic_factws_name')), '/ipConfigurations/ipconfig-factws')]",
+            "type": "Microsoft.Network/networkInterfaces/ipConfigurations",
+            "properties": {
+              "privateIPAddress": "10.200.0.40",
+              "privateIPAllocationMethod": "Static",
+              "subnet": {
+                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_vnet_name'), 'subnet-fact')]"
+              },
+              "primary": true,
+              "privateIPAddressVersion": "IPv4"
+            }
+          }
+        ],
+        "dnsSettings": {
+          "dnsServers": [],
+          "internalDnsNameLabel": "factws",
+          "internalDomainNameSuffix": "factories.mammamia.local"
+        },
+        "enableAcceleratedNetworking": false,
+        "enableIPForwarding": false,
+        "disableTcpStateTracking": false,
+        "nicType": "Standard",
+        "auxiliaryMode": "None",
+        "auxiliarySku": "None"
+      }
+    },
+    {
+      "type": "Microsoft.Network/networkInterfaces",
+      "apiVersion": "2023-09-01",
+      "name": "[parameters('networkInterfaces_nic_factrodc_name')]",
+      "location": "[variables('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_vnet_name'), 'subnet-fact')]"
+      ],
+      "kind": "Regular",
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "ipconfig-factrodc",
+            "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_nic_factrodc_name')), '/ipConfigurations/ipconfig-factrodc')]",
+            "type": "Microsoft.Network/networkInterfaces/ipConfigurations",
+            "properties": {
+              "privateIPAddress": "10.200.0.10",
+              "privateIPAllocationMethod": "Static",
+              "subnet": {
+                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_vnet_name'), 'subnet-fact')]"
+              },
+              "primary": true,
+              "privateIPAddressVersion": "IPv4"
+            }
+          }
+        ],
+        "dnsSettings": {
+          "dnsServers": [],
+          "internalDnsNameLabel": "factrodc",
+          "internalDomainNameSuffix": "factories.mammamia.local"
+        },
+        "enableAcceleratedNetworking": false,
+        "enableIPForwarding": false,
+        "disableTcpStateTracking": false,
+        "nicType": "Standard",
+        "auxiliaryMode": "None",
+        "auxiliarySku": "None"
+      }
+    },
+    {
+      "type": "Microsoft.Network/networkInterfaces",
+      "apiVersion": "2023-09-01",
+      "name": "[parameters('networkInterfaces_nic_mgmtdc_name')]",
+      "location": "[variables('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_vnet_name'), 'subnet-mgmt')]"
+      ],
+      "kind": "Regular",
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "ipconfig-mgmtdc",
+            "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_nic_mgmtdc_name')), '/ipConfigurations/ipconfig-mgmtdc')]",
+            "type": "Microsoft.Network/networkInterfaces/ipConfigurations",
+            "properties": {
+              "privateIPAddress": "10.50.0.10",
+              "privateIPAllocationMethod": "Static",
+              "subnet": {
+                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_vnet_name'), 'subnet-mgmt')]"
+              },
+              "primary": true,
+              "privateIPAddressVersion": "IPv4"
+            }
+          }
+        ],
+        "dnsSettings": {
+          "dnsServers": [],
+          "internalDnsNameLabel": "mgmtdc",
+          "internalDomainNameSuffix": "factories.mammamia.local"
+        },
+        "enableAcceleratedNetworking": false,
+        "enableIPForwarding": false,
+        "disableTcpStateTracking": false,
+        "nicType": "Standard",
+        "auxiliaryMode": "None",
+        "auxiliarySku": "None"
+      }
+    },
+    {
+      "type": "Microsoft.Network/networkInterfaces",
+      "apiVersion": "2023-09-01",
+      "name": "[parameters('networkInterfaces_nic_hqdc_name')]",
+      "location": "[variables('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_vnet_name'), 'subnet-hq')]"
+      ],
+      "kind": "Regular",
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "ipconfig-hqdc",
+            "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_nic_hqdc_name')), '/ipConfigurations/ipconfig-hqdc')]",
+            "type": "Microsoft.Network/networkInterfaces/ipConfigurations",
+            "properties": {
+              "privateIPAddress": "10.10.0.10",
+              "privateIPAllocationMethod": "Static",
+              "subnet": {
+                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_vnet_name'), 'subnet-hq')]"
+              },
+              "primary": true,
+              "privateIPAddressVersion": "IPv4"
+            }
+          }
+        ],
+        "dnsSettings": {
+          "dnsServers": [],
+          "internalDnsNameLabel": "hqdc",
+          "internalDomainNameSuffix": "mammamia.local"
+        },
+        "enableAcceleratedNetworking": false,
+        "enableIPForwarding": false,
+        "disableTcpStateTracking": false,
+        "nicType": "Standard",
+        "auxiliaryMode": "None",
+        "auxiliarySku": "None"
+      }
+    },
+
+    {
+      "type": "Microsoft.Compute/virtualMachines",
+      "apiVersion": "2023-03-01",
+      "name": "[parameters('virtualMachines_router_name')]",
+      "location": "[variables('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_nic_router_name'))]"
+      ],
+      "properties": {
+        "hardwareProfile": {
+          "vmSize": "[parameters('virtualMachines_router_vmSize')]"
+        },
+        "storageProfile": {
+          "imageReference": {
+            "publisher": "Canonical",
+            "offer": "0001-com-ubuntu-server-jammy",
+            "sku": "22_04-lts-gen2",
+            "version": "latest"
+          },
+          "osDisk": {
+            "osType": "Linux",
+            "name": "[parameters('disks_router_name')]",
+            "createOption": "FromImage",
+            "caching": "ReadWrite",
+            "writeAcceleratorEnabled": false,
+            "managedDisk": {
+              "storageAccountType": "StandardSSD_LRS"
+            },
+            "deleteOption": "Detach",
+            "diskSizeGB": 30
+          },
+          "dataDisks": [],
+          "diskControllerType": "SCSI"
+        },
+        "osProfile": {
+          "computerName": "[parameters('virtualMachines_router_name')]",
+          "adminUsername": "deploy",
+          "linuxConfiguration": {
+            "disablePasswordAuthentication": true,
+            "ssh": {
+              "publicKeys": [
+                {
+                  "path": "/home/deploy/.ssh/authorized_keys",
+                  "keyData": "[parameters('routerSshRsaPub')]"
+                }
+              ]
+            },
+            "provisionVMAgent": true,
+            "patchSettings": {
+              "patchMode": "ImageDefault",
+              "assessmentMode": "ImageDefault"
+            },
+            "enableVMAgentPlatformUpdates": false
+          },
+          "secrets": [],
+          "allowExtensionOperations": true
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_nic_router_name'))]",
+              "properties": {
+                "primary": true
+              }
+            }
+          ]
+        },
+        "userData": "[base64(string(variables('userData')))]",
+        "diagnosticsProfile": {
+          "bootDiagnostics": {
+            "enabled": false
+          }
+        },
+        "priority": "Regular",
+        "extensionsTimeBudget": "PT1H30M"
+      }
+    },
+    {
+      "type": "Microsoft.Compute/virtualMachines",
+      "apiVersion": "2023-03-01",
+      "name": "[parameters('virtualMachines_factws_name')]",
+      "location": "[variables('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_nic_factws_name'))]"
+      ],
+      "properties": {
+        "hardwareProfile": {
+          "vmSize": "[parameters('virtualMachines_factws_vmSize')]"
+        },
+        "storageProfile": {
+          "imageReference": {
+            "publisher": "MicrosoftWindowsServer",
+            "offer": "WindowsServer",
+            "sku": "2022-datacenter-azure-edition-core-smalldisk",
+            "version": "latest"
+          },
+          "osDisk": {
+            "osType": "Windows",
+            "name": "[parameters('disks_factws_name')]",
+            "createOption": "FromImage",
+            "caching": "ReadWrite",
+            "writeAcceleratorEnabled": false,
+            "managedDisk": {
+              "storageAccountType": "StandardSSD_LRS"
+            },
+            "deleteOption": "Detach",
+            "diskSizeGB": 30
+          },
+          "dataDisks": [],
+          "diskControllerType": "SCSI"
+        },
+        "osProfile": {
+          "computerName": "[parameters('virtualMachines_factws_name')]",
+          "adminUsername": "[parameters('factwsAdminUsername')]",
+          "adminPassword": "[parameters('factwsAdminPassword')]",
+          "windowsConfiguration": {
+            "provisionVMAgent": true,
+            "enableAutomaticUpdates": false,
+            "patchSettings": {
+              "patchMode": "AutomaticByPlatform",
+              "assessmentMode": "ImageDefault",
+              "enableHotpatching": false
+            },
+            "winRM": {
+              "listeners": []
+            },
+            "enableVMAgentPlatformUpdates": false
+          },
+          "secrets": [],
+          "allowExtensionOperations": true
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_nic_factws_name'))]",
+              "properties": {
+                "primary": true
+              }
+            }
+          ]
+        },
+        "diagnosticsProfile": {
+          "bootDiagnostics": {
+            "enabled": false
+          }
+        },
+        "priority": "Regular",
+        "extensionsTimeBudget": "PT1H30M"
+      }
+    },
+    {
+      "type": "Microsoft.Compute/virtualMachines",
+      "apiVersion": "2023-03-01",
+      "name": "[parameters('virtualMachines_factrodc_name')]",
+      "location": "[variables('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_nic_factrodc_name'))]"
+      ],
+      "properties": {
+        "hardwareProfile": {
+          "vmSize": "[parameters('virtualMachines_factrodc_vmSize')]"
+        },
+        "storageProfile": {
+          "imageReference": {
+            "publisher": "MicrosoftWindowsServer",
+            "offer": "WindowsServer",
+            "sku": "2022-datacenter-azure-edition-smalldisk",
+            "version": "latest"
+          },
+          "osDisk": {
+            "osType": "Windows",
+            "name": "[parameters('disks_factrodc_name')]",
+            "createOption": "FromImage",
+            "caching": "ReadWrite",
+            "writeAcceleratorEnabled": false,
+            "managedDisk": {
+              "storageAccountType": "StandardSSD_LRS"
+            },
+            "deleteOption": "Detach",
+            "diskSizeGB": 30
+          },
+          "dataDisks": [],
+          "diskControllerType": "SCSI"
+        },
+        "osProfile": {
+          "computerName": "[parameters('virtualMachines_factrodc_name')]",
+          "adminUsername": "[parameters('factrodcAdminUsername')]",
+          "adminPassword": "[parameters('factrodcAdminPassword')]",
+          "windowsConfiguration": {
+            "provisionVMAgent": true,
+            "enableAutomaticUpdates": false,
+            "patchSettings": {
+              "patchMode": "AutomaticByPlatform",
+              "assessmentMode": "ImageDefault",
+              "enableHotpatching": false
+            },
+            "winRM": {
+              "listeners": []
+            },
+            "enableVMAgentPlatformUpdates": false
+          },
+          "secrets": [],
+          "allowExtensionOperations": true
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_nic_factrodc_name'))]",
+              "properties": {
+                "primary": true
+              }
+            }
+          ]
+        },
+        "diagnosticsProfile": {
+          "bootDiagnostics": {
+            "enabled": false
+          }
+        },
+        "priority": "Regular",
+        "extensionsTimeBudget": "PT1H30M"
+      }
+    },
+    {
+      "type": "Microsoft.Compute/virtualMachines",
+      "apiVersion": "2023-03-01",
+      "name": "[parameters('virtualMachines_mgmtdc_name')]",
+      "location": "[variables('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_nic_mgmtdc_name'))]"
+      ],
+      "properties": {
+        "hardwareProfile": {
+          "vmSize": "[parameters('virtualMachines_mgmtdc_vmSize')]"
+        },
+        "storageProfile": {
+          "imageReference": {
+            "publisher": "MicrosoftWindowsServer",
+            "offer": "WindowsServer",
+            "sku": "2022-datacenter-azure-edition-core-smalldisk",
+            "version": "latest"
+          },
+          "osDisk": {
+            "osType": "Windows",
+            "name": "[parameters('disks_mgmtdc_name')]",
+            "createOption": "FromImage",
+            "caching": "ReadWrite",
+            "writeAcceleratorEnabled": false,
+            "managedDisk": {
+              "storageAccountType": "StandardSSD_LRS"
+            },
+            "deleteOption": "Detach",
+            "diskSizeGB": 30
+          },
+          "dataDisks": [],
+          "diskControllerType": "SCSI"
+        },
+        "osProfile": {
+          "computerName": "[parameters('virtualMachines_mgmtdc_name')]",
+          "adminUsername": "[parameters('mgmtdcAdminUsername')]",
+          "adminPassword": "[parameters('mgmtdcAdminPassword')]",
+          "windowsConfiguration": {
+            "provisionVMAgent": true,
+            "enableAutomaticUpdates": false,
+            "patchSettings": {
+              "patchMode": "AutomaticByPlatform",
+              "assessmentMode": "ImageDefault",
+              "enableHotpatching": false
+            },
+            "winRM": {
+              "listeners": []
+            },
+            "enableVMAgentPlatformUpdates": false
+          },
+          "secrets": [],
+          "allowExtensionOperations": true
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_nic_mgmtdc_name'))]",
+              "properties": {
+                "primary": true
+              }
+            }
+          ]
+        },
+        "diagnosticsProfile": {
+          "bootDiagnostics": {
+            "enabled": false
+          }
+        },
+        "priority": "Regular",
+        "extensionsTimeBudget": "PT1H30M"
+      }
+    },
+    {
+      "type": "Microsoft.Compute/virtualMachines",
+      "apiVersion": "2023-03-01",
+      "name": "[parameters('virtualMachines_hqdc_name')]",
+      "location": "[variables('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_nic_hqdc_name'))]"
+      ],
+      "properties": {
+        "hardwareProfile": {
+          "vmSize": "[parameters('virtualMachines_hqdc_vmSize')]"
+        },
+        "storageProfile": {
+          "imageReference": {
+            "publisher": "MicrosoftWindowsServer",
+            "offer": "WindowsServer",
+            "sku": "2022-datacenter-azure-edition-smalldisk",
+            "version": "latest"
+          },
+          "osDisk": {
+            "osType": "Windows",
+            "name": "[parameters('disks_hqdc_name')]",
+            "createOption": "FromImage",
+            "caching": "ReadWrite",
+            "writeAcceleratorEnabled": false,
+            "managedDisk": {
+              "storageAccountType": "StandardSSD_LRS"
+            },
+            "deleteOption": "Detach",
+            "diskSizeGB": 30
+          },
+          "dataDisks": [],
+          "diskControllerType": "SCSI"
+        },
+        "osProfile": {
+          "computerName": "[parameters('virtualMachines_hqdc_name')]",
+          "adminUsername": "[parameters('hqdcAdminUsername')]",
+          "adminPassword": "[parameters('hqdcAdminPassword')]",
+          "windowsConfiguration": {
+            "provisionVMAgent": true,
+            "enableAutomaticUpdates": false,
+            "patchSettings": {
+              "patchMode": "AutomaticByPlatform",
+              "assessmentMode": "ImageDefault",
+              "enableHotpatching": false
+            },
+            "winRM": {
+              "listeners": []
+            },
+            "enableVMAgentPlatformUpdates": false
+          },
+          "secrets": [],
+          "allowExtensionOperations": true
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_nic_hqdc_name'))]",
+              "properties": {
+                "primary": true
+              }
+            }
+          ]
+        },
+        "diagnosticsProfile": {
+          "bootDiagnostics": {
+            "enabled": false
+          }
+        },
+        "priority": "Regular",
+        "extensionsTimeBudget": "PT1H30M"
+      }
+    },
+
+    {
+      "type": "Microsoft.Compute/virtualMachines/extensions",
+      "apiVersion": "2023-03-01",
+      "name": "[concat(parameters('virtualMachines_router_name'), '/', parameters('virtualMachines_router_name'), '-routing-prep')]",
+      "location": "[variables('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_router_name'))]"
+      ],
+      "properties": {
+        "autoUpgradeMinorVersion": false,
+        "publisher": "Microsoft.Azure.Extensions",
+        "type": "CustomScript",
+        "typeHandlerVersion": "2.1",
+        "settings": {
+          "commandToExecute": "sysctl net.ipv4.ip_forward=1 && iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE"
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Compute/virtualMachines/extensions",
+      "apiVersion": "2023-03-01",
+      "name": "[concat(parameters('virtualMachines_factws_name'), '/', parameters('virtualMachines_factws_name'), '-ansible-prep')]",
+      "location": "[variables('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_factws_name'))]"
+      ],
+      "properties": {
+        "autoUpgradeMinorVersion": false,
+        "publisher": "Microsoft.Compute",
+        "type": "CustomScriptExtension",
+        "typeHandlerVersion": "1.9",
+        "settings": {
+          "commandToExecute": "[concat('net user ', parameters('factwsDeployUsername'), ' ', parameters('factwsDeployPassword'), ' /add /expires:never /y && net localgroup administrators ', parameters('factwsDeployUsername'), ' /add && powershell -ExecutionPolicy Unrestricted -File ConfigureRemotingForAnsible.ps1')]",
+          "fileUris": [
+            "https://raw.githubusercontent.com/ansible/ansible/38e50c9f819a045ea4d40068f83e78adbfaf2e68/examples/scripts/ConfigureRemotingForAnsible.ps1"
+          ]
+        },
+        "protectedSettings": {}
+      }
+    },
+    {
+      "type": "Microsoft.Compute/virtualMachines/extensions",
+      "apiVersion": "2023-03-01",
+      "name": "[concat(parameters('virtualMachines_factrodc_name'), '/', parameters('virtualMachines_factrodc_name'), '-ansible-prep')]",
+      "location": "[variables('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_factrodc_name'))]"
+      ],
+      "properties": {
+        "autoUpgradeMinorVersion": false,
+        "publisher": "Microsoft.Compute",
+        "type": "CustomScriptExtension",
+        "typeHandlerVersion": "1.9",
+        "settings": {
+          "commandToExecute": "[concat('net user ', parameters('factrodcDeployUsername'), ' ', parameters('factrodcDeployPassword'), ' /add /expires:never /y && net localgroup administrators ', parameters('factrodcDeployUsername'), ' /add && powershell -ExecutionPolicy Unrestricted -File ConfigureRemotingForAnsible.ps1')]",
+          "fileUris": [
+            "https://raw.githubusercontent.com/ansible/ansible/38e50c9f819a045ea4d40068f83e78adbfaf2e68/examples/scripts/ConfigureRemotingForAnsible.ps1"
+          ]
+        },
+        "protectedSettings": {}
+      }
+    },
+    {
+      "type": "Microsoft.Compute/virtualMachines/extensions",
+      "apiVersion": "2023-03-01",
+      "name": "[concat(parameters('virtualMachines_mgmtdc_name'), '/', parameters('virtualMachines_mgmtdc_name'), '-ansible-prep')]",
+      "location": "[variables('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_mgmtdc_name'))]"
+      ],
+      "properties": {
+        "autoUpgradeMinorVersion": false,
+        "publisher": "Microsoft.Compute",
+        "type": "CustomScriptExtension",
+        "typeHandlerVersion": "1.9",
+        "settings": {
+          "commandToExecute": "[concat('net user ', parameters('mgmtdcDeployUsername'), ' ', parameters('mgmtdcDeployPassword'), ' /add /expires:never /y && net localgroup administrators ', parameters('mgmtdcDeployUsername'), ' /add && powershell -ExecutionPolicy Unrestricted -File ConfigureRemotingForAnsible.ps1')]",
+          "fileUris": [
+            "https://raw.githubusercontent.com/ansible/ansible/38e50c9f819a045ea4d40068f83e78adbfaf2e68/examples/scripts/ConfigureRemotingForAnsible.ps1"
+          ]
+        },
+        "protectedSettings": {}
+      }
+    },
+    {
+      "type": "Microsoft.Compute/virtualMachines/extensions",
+      "apiVersion": "2023-03-01",
+      "name": "[concat(parameters('virtualMachines_hqdc_name'), '/', parameters('virtualMachines_hqdc_name'), '-ansible-prep')]",
+      "location": "[variables('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_hqdc_name'))]"
+      ],
+      "properties": {
+        "autoUpgradeMinorVersion": false,
+        "publisher": "Microsoft.Compute",
+        "type": "CustomScriptExtension",
+        "typeHandlerVersion": "1.9",
+        "settings": {
+          "commandToExecute": "[concat('net user ', parameters('hqdcDeployUsername'), ' ', parameters('hqdcDeployPassword'), ' /add /expires:never /y && net localgroup administrators ', parameters('hqdcDeployUsername'), ' /add && powershell -ExecutionPolicy Unrestricted -File ConfigureRemotingForAnsible.ps1')]",
+          "fileUris": [
+            "https://raw.githubusercontent.com/ansible/ansible/38e50c9f819a045ea4d40068f83e78adbfaf2e68/examples/scripts/ConfigureRemotingForAnsible.ps1"
+          ]
+        },
+        "protectedSettings": {}
+      }
+    }
+  ],
+  "outputs": {
+    "labIp": {
+      "type": "string",
+      "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_lab_ip_name'))).ipAddress]"
+    }
+  }
+}

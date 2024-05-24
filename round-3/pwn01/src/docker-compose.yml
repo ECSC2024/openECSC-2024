@@ -1,0 +1,20 @@
+services:
+  chall:
+    build: .
+    container_name: xv6-homework
+    restart: unless-stopped
+    init: true
+    privileged: true
+    volumes:
+      - './chall.sh:/home/user/chall:ro'
+    ports:
+      - '38016:1337'
+      #- '1338:1338' # For debugging
+    environment:
+      #- 'NETWORK=true' # For debugging
+      - 'RLIMIT_FSIZE=4'
+      - 'TEMPDIRS=/home/user/tmp'
+      - 'TIMEOUT=120'
+      - 'FLAG=openECSC{gg_wp_[random 8]}'
+      - 'POW_BITS=26'
+      - 'POW_BYPASS_HASH=redacted'

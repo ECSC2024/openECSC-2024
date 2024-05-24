@@ -1,0 +1,169 @@
+---
+- name: Configure iptables
+  hosts: all
+  become: yes
+  tasks:
+    - name: Enable IP forwarding
+      sysctl:
+        name: net.ipv4.ip_forward
+        value: '1'
+        state: present
+        reload: yes
+
+    - name: Allow all input temporarily
+      iptables:
+        chain: INPUT
+        policy: ACCEPT
+
+    - name: Flush all tables
+      iptables:
+        flush: yes
+
+    - name: Flush all NAT tables
+      iptables:
+        table: nat
+        flush: yes
+
+    - name: Drop all routing by default
+      iptables:
+        chain: FORWARD
+        policy: DROP
+
+    - name: DNAT from VPN to implant
+      iptables:
+        table: nat
+        chain: PREROUTING
+        destination: 172.16.0.2/32
+        to_destination: 10.200.0.40
+        jump: DNAT
+
+    - name: DNAT - no direct access to factws (forward prevents 1.1.1.1)
+      iptables:
+        table: nat
+        chain: PREROUTING
+        source: 13.37.0.0/16
+        destination: 10.200.0.40/32
+        to_destination: 1.1.1.1
+        jump: DNAT
+
+    - name: SNAT from VPN to implant
+      iptables:
+        table: nat
+        chain: POSTROUTING
+        source: 13.37.0.0/16
+        destination: 10.200.0.40/32
+        to_source: 13.37.0.1
+        jump: SNAT
+
+    - name: NAT to VPN from any
+      iptables:
+        table: nat
+        chain: POSTROUTING
+        destination: 13.37.0.0/16
+        jump: MASQUERADE
+
+    - name: Forward established connections
+      iptables:
+        chain: FORWARD
+        ctstate: ESTABLISHED,RELATED
+        jump: ACCEPT
+
+    - name: Forward traffic from VPN to implant for WinRM
+      iptables:
+        chain: FORWARD
+        source: 13.37.0.0/16
+        destination: 10.200.0.40/32
+        protocol: tcp
+        destination_port: 5986
+        jump: ACCEPT
+
+    - name: Forward traffic to VPN
+      iptables:
+        chain: FORWARD
+        destination: 13.37.0.0/16
+        jump: ACCEPT
+
+    - name: Forward traffic from HQ to MGMT
+      iptables:
+        chain: FORWARD
+        source: 10.10.0.0/24
+        destination: 10.50.0.0/24
+        jump: ACCEPT
+
+    - name: Forward traffic from HQ to FACT
+      iptables:
+        chain: FORWARD
+        source: 10.10.0.0/24
+        destination: 10.200.0.0/24
+        jump: ACCEPT
+
+    - name: Forward traffic from MGMT to FACT
+      iptables:
+        chain: FORWARD
+        source: 10.50.0.0/24
+        destination: 10.200.0.0/24
+        jump: ACCEPT
+
+    - name: Forward traffic from MGMT-DC to HQ-DC
+      iptables:
+        chain: FORWARD
+        source: 10.50.0.10/32
+        destination: 10.10.0.10/32
+        jump: ACCEPT
+
+    - name: Forward traffic from FACT-RODC to HQ-DC
+      iptables:
+        chain: FORWARD
+        source: 10.200.0.10/32
+        destination: 10.10.0.10/32
+        jump: ACCEPT
+
+    - name: Forward traffic from FACT to MGMT-DC
+      iptables:
+        chain: FORWARD
+        source: 10.200.0.0/24
+        destination: 10.50.0.10/32
+        jump: ACCEPT
+
+    - name: Forward traffic from FACT to FACT (LAN)
+      iptables:
+        chain: FORWARD
+        source: 10.200.0.0/24
+        destination: 10.200.0.0/24
+        jump: ACCEPT
+
+    - name: Allow established connections
+      iptables:
+        chain: INPUT
+        ctstate: ESTABLISHED,RELATED
+        jump: ACCEPT
+
+    - name: Allow traffic to localhost
+      iptables:
+        chain: INPUT
+        in_interface: lo
+        jump: ACCEPT
+
+    - name: Allow SSH in from internet
+      iptables:
+        chain: INPUT
+        protocol: tcp
+        destination_port: 22
+        in_interface: eth0
+        jump: ACCEPT
+
+    - name: Allow VPN in from internet
+      iptables:
+        chain: INPUT
+        protocol: udp
+        destination_port: 51820
+        in_interface: eth0
+        jump: ACCEPT
+
+    - name: Drop all input by default
+      iptables:
+        chain: INPUT
+        policy: DROP
+
+    - name: Save iptables rules
+      command: service netfilter-persistent save

@@ -1,0 +1,55 @@
+{
+  "enabled": true,
+  "services": {
+    "auth": {
+      "build": "src/auth",
+      "environment": {
+        "DB_PATH": "users.sqlite"
+      },
+      "command": [
+        "bash",
+        "-c",
+        "python3 -m flask install && /usr/bin/supervisord"
+      ]
+    },
+    "notes": {
+      "build": "src/notes",
+      "environment": {
+        "AUTH_SERVICE": "http://{{ .services.auth.hostname }}",
+        "DB_PATH": "notes.sqlite"
+      },
+      "command": [
+        "bash",
+        "-c",
+        "python3 -m flask install && /usr/bin/supervisord"
+      ],
+      "depends-on": [
+        "auth"
+      ]
+    },
+    "backend": {
+      "build": "src/backend",
+      "headless": true,
+      "environment": {
+        "AUTH_SERVICE": "http://{{ .services.auth.hostname }}",
+        "NOTES_SERVICE": "http://{{ .services.notes.hostname }}",
+        "DB_PATH": "users.sqlite",
+        "CHALL_URL": "https://notes.challs.open.ecsc2024.it",
+        "CHECKER_POW": "redacted",
+        "FLAG": "openECSC{fcbfb9f66a187421cc1965aaf502b517}"
+      },
+      "depends-on": [
+        "auth",
+        "notes"
+      ],
+      "expose": [
+        {
+          "type": "http",
+          "secure": true,
+          "container": 80,
+          "hostname": "notes.challs.open.ecsc2024.it"
+        }
+      ]
+    }
+  }
+}

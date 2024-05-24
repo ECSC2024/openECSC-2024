@@ -1,0 +1,23 @@
+---
+# Load data
+- import_playbook: data.yml
+
+- name: Copy files
+  hosts: domain
+  vars:
+    files: "{{ lab.hosts[dict_key].files | default({}) }}"
+    domain: "{{lab.hosts[dict_key].domain}}"
+    ansible_user: "{{lab.domains[domain].domain_username}}@{{domain | upper}}"
+    ansible_password: "{{lab.domains[domain].domain_password}}"
+    ansible_winrm_transport: kerberos
+  tasks:
+    - name: Create directory
+      win_file: 
+        path: c:\setup
+        state: directory
+
+    - name: Copy files
+      ansible.windows.win_copy:
+        src: "{{ item.value.src }}"
+        dest: "{{ item.value.dest }}"
+      with_dict: "{{ files }}"

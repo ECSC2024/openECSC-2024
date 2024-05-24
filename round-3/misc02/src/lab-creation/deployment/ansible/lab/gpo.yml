@@ -1,0 +1,57 @@
+---
+# Load data
+- import_playbook: data.yml
+
+- name: Apply GPO
+  hosts: dc
+  vars:
+    scripts: "{{ lab.hosts[dict_key].scripts | default([]) }}"
+    domain: "{{lab.hosts[dict_key].domain}}"
+    path: "{{lab.domains[domain].path}}"
+    ansible_user: "{{lab.domains[domain].domain_username}}@{{domain | upper}}"
+    ansible_password: "{{lab.domains[domain].domain_password}}"
+    ansible_winrm_transport: kerberos
+  tasks:
+    - name: Create directory
+      win_file: 
+        path: c:\setup
+        state: directory
+
+    - name: Copy files
+      ansible.windows.win_copy:
+        src: "GPOImport"
+        dest: "C:\\setup"
+
+    - name: Install windows features - group policy management
+      win_feature:
+        name: GPMC
+        state: present
+      register: features
+
+    - name: Import, link and enforce GPO
+      ansible.windows.win_powershell:
+        error_action: stop
+        script: |
+          [CmdletBinding()]
+          param (
+              [String]
+              $Domain,
+
+              [String]
+              $Path
+          )
+          $Ansible.Changed = $false
+          Import-GPO -BackupGpoName "Hardening" -TargetName "Hardening" -path C:\setup\GPOImport -CreateIfNeeded
+          New-GPLink -Name "Hardening" -Target $Path -Enforced Yes -Order 1 -LinkEnabled Yes
+        parameters:
+          Domain: "{{domain}}"
+          Path: "{{path}}"
+      register: script_output
+
+
+    - name: Show script output
+      debug:
+        var: script_output
+
+- import_playbook: replicate_and_sync.yml
+- import_playbook: sync_to_rodc.yml

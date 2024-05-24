@@ -1,0 +1,41 @@
+{
+  "title": "Mamma Mia",
+  "description": "Calling all operatives! The clock is ticking on our Red Team Operation. Your expertise is needed immediately. Respond urgently!\n\nRefer to the `README.md` file in the attachments for detailed instructions.",
+  "authors": [
+    "Oliver Lyak <@ly4k>"
+  ],
+  "tags": [
+    "misc",
+    "active-directory"
+  ],
+  "hiddenTags": [],
+  "order": 21,
+  "flags": [
+    "^openECSC\\{even_the_hound_of_hades_could_not_safeguard_the_secret_recipe_[a-f0-9]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "mammamia.zip",
+      "type": "upload",
+      "path": "./attachments/mammamia.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "http",
+    "url": "https://mammamia.challs.open.ecsc2024.it:443/"
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 10
+    }
+  }
+}

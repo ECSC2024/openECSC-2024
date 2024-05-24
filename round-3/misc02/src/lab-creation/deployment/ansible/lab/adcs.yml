@@ -1,0 +1,78 @@
+---
+# Load data
+- import_playbook: data.yml
+
+- name: Install ADCS role
+  hosts: dc
+  vars:
+    domain: "{{lab.hosts[dict_key].domain}}"
+    ansible_user: "{{lab.domains[domain].domain_username}}@{{domain | upper}}"
+    ansible_password: "{{lab.domains[domain].domain_password}}"
+    ansible_winrm_transport: kerberos
+  tasks:
+    - name: Install ADCS-Cert-Authority feature
+      ansible.windows.win_feature:
+        name: ADCS-Cert-Authority
+        state: present
+        include_management_tools: yes
+
+- name: Install ADCS
+  hosts: parent_dc
+  vars:
+    scripts: "{{ lab.hosts[dict_key].scripts | default([]) }}"
+    domain: "{{lab.hosts[dict_key].domain}}"
+    path: "{{lab.domains[domain].path}}"
+    ansible_user: "{{lab.domains[domain].domain_username}}@{{domain | upper}}"
+    ansible_password: "{{lab.domains[domain].domain_password}}"
+    ansible_winrm_transport: kerberos
+  tasks:
+    - name: Setup Enterprise Root CA
+      ansible.windows.win_powershell:
+        script: |
+          try {
+            Install-AdcsCertificationAuthority -CAType EnterpriseRootCA -CryptoProviderName "RSA#Microsoft Software Key Storage Provider" -KeyLength 2048 -HashAlgorithmName SHA256 -ValidityPeriod Years -ValidityPeriodUnits 5 -CACommonName MammaMia -Force
+            $Ansible.Changed = $true
+          } catch {
+            $Ansible.Changed = $false
+          }
+        error_action: stop
+
+- name: Install ADCS on child
+  hosts: child_dc
+  vars:
+    domain: "{{lab.hosts[dict_key].domain}}"
+    parent_domain: "{{lab.domains[domain].parent_domain}}"
+    parent_domain_username: "{{lab.domains[parent_domain].domain_username}}"
+    parent_domain_password: "{{lab.domains[parent_domain].domain_password}}"
+    ansible_user: "{{parent_domain_username}}@{{parent_domain | upper}}"
+    ansible_password: "{{parent_domain_password}}"
+    ansible_winrm_transport: kerberos
+  tasks:
+    - name: Setup Enterprise Root CA
+      ansible.windows.win_powershell:
+        script: |
+          try {
+            Install-AdcsCertificationAuthority -CAType EnterpriseSubordinateCa -ParentCA "hqdc.mammamia.local\MammaMia" -Force
+            $Ansible.Changed = $true
+          } catch {
+            $Ansible.Changed = $false
+          }
+        error_action: stop
+
+- name: Request certificates
+  hosts: dc
+  vars:
+    scripts: "{{ lab.hosts[dict_key].scripts | default([]) }}"
+    domain: "{{lab.hosts[dict_key].domain}}"
+    path: "{{lab.domains[domain].path}}"
+    ansible_user: "{{lab.domains[domain].domain_username}}@{{domain | upper}}"
+    ansible_password: "{{lab.domains[domain].domain_password}}"
+    ansible_winrm_transport: kerberos
+  tasks:
+    - name: Request domain controller certificate
+      ansible.windows.win_powershell:
+        script: |
+          Get-Certificate -Template "DomainController" -CertStoreLocation Cert:\LocalMachine\My
+        error_action: stop
+      retries: 5
+      delay: 10

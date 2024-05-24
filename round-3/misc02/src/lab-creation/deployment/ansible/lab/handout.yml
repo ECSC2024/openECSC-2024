@@ -1,0 +1,120 @@
+---
+# Load data
+- import_playbook: data.yml
+
+- name: Clear local handout folder
+  hosts: localhost
+  tasks:
+    - name: Remove directory
+      file:
+        path: "{{playbook_dir}}/../handout"
+        state: absent
+
+    - name: Create directory
+      file:
+        path: "{{playbook_dir}}/../handout"
+        state: directory
+
+    - name: Create directory
+      file:
+        path: "{{playbook_dir}}/../handout/artifacts"
+        state: directory
+
+    - name: Create directory
+      file:
+        path: "{{playbook_dir}}/../handout/artifacts/policies"
+        state: directory
+
+    - name: Create directory
+      file:
+        path: "{{playbook_dir}}/../handout/artifacts/factws-registry"
+        state: directory
+
+- name: Create artifacts (policies)
+  hosts: mgmtdc
+  vars:
+    domain: "{{lab.hosts[dict_key].domain}}"
+    ansible_user: "{{lab.domains[domain].domain_username}}@{{domain | upper}}"
+    ansible_password: "{{lab.domains[domain].domain_password}}"
+    ansible_winrm_transport: kerberos
+  tasks:
+    - name: Remove directory
+      win_file:
+        path: c:\Windows\Temp\policies
+        state: absent
+
+    - name: Create directory
+      win_file:
+        path: c:\Windows\Temp\policies
+        state: directory
+
+    - name: Copy domain policies
+      win_command: "xcopy /s /e /y \\\\localhost\\sysvol\\factories.mammamia.local\\Policies\\* c:\\Windows\\Temp\\policies"
+
+    - name: Remove TAR
+      win_file:
+        path: c:\Windows\Temp\policies.tar.gz
+        state: absent
+
+    - name: TAR folder
+      win_command: "tar -czf c:\\Windows\\Temp\\policies.tar.gz -C c:\\Windows\\Temp\\policies ."
+
+    - name: Download TAR
+      fetch:
+        src: c:\Windows\Temp\policies.tar.gz
+        dest: "{{playbook_dir}}/../handout/policies.tar.gz"
+        flat: yes
+
+- name: Create artifacts (registry)
+  hosts: factws
+  vars:
+    domain: "{{lab.hosts[dict_key].domain}}"
+    ansible_user: "{{lab.domains[domain].domain_username}}@{{domain | upper}}"
+    ansible_password: "{{lab.domains[domain].domain_password}}"
+    ansible_winrm_transport: kerberos
+  tasks:
+    - name: Remove directory
+      win_file:
+        path: c:\Windows\Temp\factws-registry
+        state: absent
+
+    - name: Create directory
+      win_file:
+        path: c:\Windows\Temp\factws-registry
+        state: directory
+
+    - name: Save HKLM sam
+      win_command: "reg save HKLM\\SAM c:\\Windows\\Temp\\factws-registry\\sam"
+
+    - name: Save HKLM security
+      win_command: "reg save HKLM\\SECURITY c:\\Windows\\Temp\\factws-registry\\security"
+
+    - name: Save HKLM system
+      win_command: "reg save HKLM\\SYSTEM c:\\Windows\\Temp\\factws-registry\\system"
+
+    - name: Remove TAR
+      win_file:
+        path: c:\Windows\Temp\factws-registry.tar.gz
+        state: absent
+
+    - name: TAR folder
+      win_command: "tar -czf c:\\Windows\\Temp\\factws-registry.tar.gz -C c:\\Windows\\Temp\\factws-registry ."
+
+    - name: Download TAR
+      fetch:
+        src: c:\Windows\Temp\factws-registry.tar.gz
+        dest: "{{playbook_dir}}/../handout/factws-registry.tar.gz"
+        flat: yes
+
+- name: Untar artifacts
+  hosts: localhost
+  tasks:
+    - name: Unarchive
+      unarchive:
+        src: "{{playbook_dir}}/../handout/policies.tar.gz"
+        dest: "{{playbook_dir}}/../handout/artifacts/policies"
+
+    - name: Unarchive
+      unarchive:
+        src: "{{playbook_dir}}/../handout/factws-registry.tar.gz"
+        dest: "{{playbook_dir}}/../handout/artifacts/factws-registry"

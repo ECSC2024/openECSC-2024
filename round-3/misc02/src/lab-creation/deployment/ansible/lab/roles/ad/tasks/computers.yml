@@ -1,0 +1,47 @@
+- name: Create computer account
+  ansible.windows.win_powershell:
+    error_action: stop
+    script: |
+      [CmdletBinding()]
+      param (
+          [String]
+          $Password,
+
+          [String]
+          $ComputerName,
+
+          [String]
+          $OU,
+
+          [String]
+          $Domain,
+
+          [String]
+          $Hostname
+      )
+      
+      New-ADComputer -Name $ComputerName -AccountPassword (ConvertTo-SecureString -String $Password -AsPlainText -Force) -CannotChangePassword $true -PasswordNeverExpires $true -Enabled $true -Path $OU -DNSHostName "$Hostname.$Domain" -KerberosEncryptionType AES128,AES256 -ServicePrincipalNames "HOST/$Hostname.$Domain","HOST/$Hostname","RestrictedKrbHost/$Hostname","RestrictedKrbHost/$Hostname.$Domain"
+    parameters:
+      Password: "{{ item.value.computer_password }}"
+      ComputerName: "{{ item.value.computer_name }}"
+      OU: "{{ item.value.path }}"
+      Domain: "{{ domain }}"
+      Hostname: "{{ lab.hosts[item.key].hostname }}"
+  with_dict: "{{ ad_computers }}"
+  register: computercreate
+  until: "computercreate is not failed"
+  retries: 3
+  delay: 30
+
+- name: Add to groups
+  microsoft.ad.group:
+    identity: "{{ item.key }}"
+    members:
+      add: "{{ item.value }}"
+    domain_password: "{{ domain_password }}"
+    domain_username: "{{ domain_username }}"
+  with_dict: "{{ ad_computer_memberships }}"
+  register: groupadd
+  until: groupadd is not failed
+  retries: 3
+  delay: 30

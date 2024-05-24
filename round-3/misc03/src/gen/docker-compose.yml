@@ -1,0 +1,50 @@
+# run with `docker-compose up --abort-on-container-exit` so tcpdump stops when erlang nodes are done
+version: "3.7"
+
+x-shared-env: &env
+  MESSAGE: openECSC{can_U_im4g1ne_c0d1ng_a_fulL_m3ssag1n9_app_1n_erl4ng_03828eea}
+  KEY: HlTW6kxmazV3qij30nxUUAKFz5Eb8t2fsKlxMqztuuxrktFyudRt1zUnvy2hXSQ55wGwb5OcbcP
+
+services:
+  node1:
+    image: erlang:26
+    hostname: node1.local
+    networks:
+      - erlang-net
+    volumes:
+      - ./node.erl:/app/node.erl:ro
+    working_dir: /app
+    environment:
+      <<: *env
+      OTHER: app@node2.local
+      INIT: 1
+    command: sh -c "erl -compile node && erl -noshell -name app@node1.local -setcookie X -s node -s init stop"
+  
+  node2:
+    image: erlang:26
+    hostname: node2.local
+    networks:
+      - erlang-net
+    volumes:
+      - ./node.erl:/app/node.erl:ro
+    environment:
+      <<: *env
+      OTHER: app@node1.local
+    working_dir: /app
+    command: sh -c "erl -compile node && erl -noshell -name app@node2.local -setcookie X -s node -s init stop"
+  
+  tcpdump:
+    image: kaazing/tcpdump
+    network_mode: host
+    volumes:
+      - ./out/:/dump/
+    entrypoint: /bin/sh
+    command: |
+      -c "tcpdump -i br-erlang -w /dump/dump.pcap"
+
+# force iface name for tcpdump
+networks:
+  erlang-net:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: br-erlang

@@ -1,0 +1,2 @@
+^openECSC\{4lw4ys_f0ll0w_th3_s1gn4ls_[0-9a-z]{20}\}$
+^flag\{4lw4ys_f0ll0w_th3_s1gn4ls_[0-9a-z]{20}\}$

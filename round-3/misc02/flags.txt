@@ -1,0 +1,1 @@
+^openECSC\{even_the_hound_of_hades_could_not_safeguard_the_secret_recipe_[a-f0-9]{8}\}$

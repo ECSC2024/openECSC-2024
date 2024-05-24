@@ -1,0 +1,31 @@
+{
+  "title": "Cop",
+  "description": "Show your license to the officer.",
+  "authors": [
+    "Fabio Zoratti <@orsobruno96>"
+  ],
+  "tags": [
+    "rev"
+  ],
+  "hiddenTags": [],
+  "order": 42,
+  "flags": [
+    "^openECSC\\{4lw4ys_f0ll0w_th3_s1gn4ls_[0-9a-z]{20}\\}$",
+    "^flag\\{4lw4ys_f0ll0w_th3_s1gn4ls_[0-9a-z]{20}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "cop",
+      "type": "upload",
+      "path": "./attachments/cop",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

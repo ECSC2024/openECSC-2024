@@ -1,0 +1,25 @@
+---
+# Load data
+- import_playbook: data.yml
+
+- name: Cleanup
+  hosts: factws
+  vars:
+    domain: "{{lab.hosts[dict_key].domain}}"
+    ansible_user: "{{lab.domains[domain].domain_username}}@{{domain | upper}}"
+    ansible_password: "{{lab.domains[domain].domain_password}}"
+    ansible_winrm_transport: kerberos
+    users_to_remove: "{{lab.hosts[dict_key].users_to_remove | default([])}}"
+    users_to_disable: "{{lab.hosts[dict_key].users_to_disable | default([])}}"
+  tasks:
+    - name: Remove users
+      win_user:
+        name: "{{item}}"
+        state: absent
+      loop: "{{users_to_remove}}"
+      
+    - name: Disable users
+      win_user:
+        name: "{{item}}"
+        account_disabled: true
+      loop: "{{users_to_disable}}"

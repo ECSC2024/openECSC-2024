@@ -1,0 +1,36 @@
+{
+  "enabled": true,
+  "services": {
+    "frontend": {
+      "build": "src/frontend",
+      "expose": [
+        {
+          "container": 3000,
+          "hostname": "grandresort.challs.open.ecsc2024.it",
+          "type": "http",
+          "secure": false
+        }
+      ],
+      "environment": {
+        "BACKEND_HOST": "{{ .services.backend.hostname }}",
+        "BACKEND_PORT": "38010"
+      },
+      "depends-on": [
+        "backend"
+      ]
+    },
+    "backend": {
+      "build": "src/backend",
+      "expose": [
+        {
+          "type": "tcp",
+          "host": 38010,
+          "container": 38010
+        }
+      ],
+      "environment": {
+        "FLAG": "openECSC{UWu_r3fl3ktIng_K17T3n5_uWU_%s}"
+      }
+    }
+  }
+}

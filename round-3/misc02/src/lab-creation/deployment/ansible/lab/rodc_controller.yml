@@ -1,0 +1,132 @@
+---
+# Load data
+- import_playbook: data.yml
+
+- name: Ensure manager exists and is a local administrator
+  hosts: ro_dc
+  gather_facts: no
+  vars:
+    manager: "{{lab.hosts[dict_key].manager}}"
+    manager_password: "{{lab.domains[lab.hosts[dict_key].domain].users[manager].password}}"
+  tasks:
+      - name: "Ensure {{manager}} is present with a valid password"
+        win_user:
+          name: "{{manager}}"
+          password: "{{manager_password}}"
+          password_never_expires: yes
+          account_disabled: false
+          state: present
+      
+      - name: "Ensure {{manager}} is part of Administrators group"
+        win_group_membership:
+          name: Administrators
+          members: "{{manager}}"
+          state: present
+
+      - name: "Create {{manager}} home directory"
+        win_command: whoami
+        vars:
+          ansible_become: yes
+          ansible_become_method: runas
+          ansible_become_user: "{{manager}}"
+          ansible_become_password: "{{manager_password}}"
+
+- name: Setup RODC domain controller
+  hosts: ro_dc
+  gather_facts: no
+  vars:
+    domain: "{{lab.hosts[dict_key].domain}}"
+    domain_username: "{{lab.domains[domain].domain_username}}"
+    domain_password: "{{lab.domains[domain].domain_password}}"
+    parent_dc: "{{lab.domains[domain].dc}}"
+    parent_dc_host: "{{hostvars[parent_dc].ansible_host}}"
+    source_dc: "{{lab.hosts[parent_dc].hostname}}.{{domain}}"
+    site_name: "{{lab.hosts[dict_key].site}}"
+    rodc_name: "{{lab.hosts[dict_key].rodc_name}}"
+    managed_by: "{{lab.hosts[dict_key].managed_by}}"
+    rodc_allow: "{{lab.hosts[dict_key].rodc_allow}}"
+
+    manager: "{{lab.hosts[dict_key].manager}}"
+    manager_password: "{{lab.domains[lab.hosts[dict_key].domain].users[manager].password}}"
+
+    ansible_user: "{{manager}}"
+    ansible_password: "{{manager_password}}"
+  tasks:
+    - name: "Set configure dns to {{dns_domain}}"
+      win_dns_client:
+        adapter_names: "{{domain_adapter}}"
+        ipv4_addresses:
+          - "{{hostvars[dns_domain].ansible_host}}"
+        log_path: C:\dns_log.txt
+  
+    - name: Install windows features - AD Domain Services
+      win_feature:
+        name: AD-Domain-Services
+        state: present
+        include_management_tools: true
+      register: features
+
+    - name: Install windows features - RSAT-ADDS
+      win_feature:
+        name: RSAT-ADDS
+        state: present
+        include_management_tools: true
+      register: features
+
+    - name: Add RODC to domain
+      ansible.windows.win_powershell:
+        error_action: stop
+        script: |
+          [CmdletBinding()]
+          param (
+              [String]
+              $Password,
+
+              [String]
+              $DomainAdmin,
+
+              [String]
+              $DomainName,
+
+              [String]
+              $DomSafePassword,
+
+              [String]
+              $SiteName,
+
+              [String]
+              $RODCName,
+
+              [String]
+              $SourceDC,
+
+              [String]
+              $ManagedBy,
+
+              [String[]]
+              $RodcAllow
+          )
+            $pass = ConvertTo-SecureString $Password -AsPlainText -Force
+            $Cred = New-Object System.Management.Automation.PSCredential ("$DomainAdmin@$DomainName", $pass)
+            $safePassword = ConvertTo-SecureString $DomSafePassword -AsPlainText -Force
+
+            Install-ADDSDomainController -Credential $Cred -DatabasePath "C:\Windows\NTDS"  -DomainName $DomainName -CriticalReplicationOnly:$false -LogPath "C:\Windows\NTDS" -ReplicationSourceDC $SourceDC -SYSVOLPath "C:\Windows\SYSVOL" -SafeModeAdministratorPassword $safePassword -NoRebootOnCompletion -SiteName $SiteName -AllowPasswordReplicationAccountName $RodcAllow -DenyPasswordReplicationAccountName "None" -DelegatedAdministratorAccountName $ManagedBy -ReadOnlyReplica -Force -InstallDns -NoGlobalCatalog:$true 
+        parameters:
+          DomSafePassword: "{{domain_password}}"
+          Password: "{{domain_password}}"
+          DomainAdmin: "{{domain_username}}"
+          DomainName: "{{domain}}"
+          SiteName: "{{site_name}}"
+          RODCName: "{{rodc_name}}"
+          SourceDC: "{{source_dc}}"
+          ManagedBy: "{{managed_by}}"
+          RodcAllow: "{{rodc_allow}}"
+      register: pwsh_output
+
+    - name: Reboot
+      win_reboot:
+        reboot_timeout: 900
+        post_reboot_delay: 100
+
+- import_playbook: replicate_and_sync.yml
+- import_playbook: sync_to_rodc.yml

@@ -1,0 +1,368 @@
+{
+  "lab": {
+    "hosts": {
+      "factws": {
+        "hostname": "factws",
+        "admin_user": "<ADMIN_USERNAME>",
+        "admin_password": "<FACT_WS_ADMIN_PASSWORD>",
+        "domain": "factories.mammamia.local",
+        "path": "OU=Valdoro,DC=factories,DC=mammamia,DC=local",
+        "site": "Valdoro",
+        "local_groups": {
+          "Administrators": ["factories\\ValdoroManagers"],
+          "Remote Desktop Users": ["factories\\ValdoroUsers"]
+        },
+        "dc": "factrodc",
+        "logon_sessions": [
+          "luca.martelli","sofia.ricci","marco.bianchi","antonio.romano","alessia.conti","francesco.marino","isabella.caruso","matteo.lombardi","elena.sartori","silvia.galli"
+        ],
+        "manager": "silvia.galli",
+        "users_to_remove": ["silvia.galli", "<DEPLOY_USERNAME>"],
+        "users_to_disable": ["<ADMIN_USERNAME>"]
+      },
+      "factrodc": {
+        "hostname": "factrodc",
+        "admin_user": "<ADMIN_USERNAME>",
+        "admin_password": "<FACT_RODC_ADMIN_PASSWORD>",
+        "domain": "factories.mammamia.local",
+        "path": "OU=Valdoro,DC=factories,DC=mammamia,DC=local",
+        "local_groups": {
+        },
+        "logon_sessions": [],
+        "site": "Valdoro",
+        "rodc_name": "FACTRODC",
+        "rodc_allow": ["ValdoroUsers", "ValdoroComputers"],
+        "managed_by": "ValdoroManagers",
+        "manager": "silvia.galli",
+        "files": {
+          "rdp": {
+            "src": "bot_rdp.ps1",
+            "dest": "c:\\setup\\bot_rdp.ps1"
+          }
+        },
+        "scripts": [
+          "rdp_scheduler.ps1"
+        ],
+        "credentials" : {
+          "TERMSRV/factws": {
+              "username" : "factories\\silvia.galli",
+              "secret"   : "<SILVIA_PASSWORD>",
+              "runas"    : "factories\\silvia.galli",
+              "runas_password" : "<SILVIA_PASSWORD>"
+          }
+        },
+        "autologons": {
+          "silvia.galli": {
+            "username": "factories\\silvia.galli",
+            "password": "<SILVIA_PASSWORD>"
+          }
+        }
+      },
+      "mgmtdc": {
+        "hostname": "mgmtdc",
+        "admin_user": "<ADMIN_USERNAME>",
+        "admin_password": "<MGMT_DC_ADMIN_PASSWORD>",
+        "domain": "factories.mammamia.local",
+        "path": "DC=factories,DC=mammamia,DC=local",
+        "logon_sessions": [],
+        "local_groups": {
+          "Administrators": ["mammamia\\ITAdmins"]
+        },
+        "scripts": [
+          "constrained_delegation.ps1"
+        ]
+      },
+      "hqdc": {
+        "hostname": "hqdc",
+        "admin_user": "<ADMIN_USERNAME>",
+        "admin_password": "<HQDC_ADMIN_PASSWORD>",
+        "domain": "mammamia.local",
+        "path": "DC=mammamia,DC=local",
+        "logon_sessions": [],
+        "local_groups": {
+          "Administrators": ["mammamia\\ITAdmins"]
+        }
+      }
+    },
+    "domains": {
+      "mammamia.local": {
+        "dc": "hqdc",
+        "domain_username": "<ADMIN_USERNAME>",
+        "domain_password": "<HQDC_ADMIN_PASSWORD>",
+        "netbios_name": "MAMMAMIA",
+        "parent_domain": "mammamia.local",
+        "path": "DC=mammamia,DC=local",
+        "organisation_units": {
+          "IT": {
+            "path": "DC=mammamia,DC=local"
+          },
+          "HR": {
+            "path": "DC=mammamia,DC=local"
+          },
+          "Finance": {
+            "path": "DC=mammamia,DC=local"
+          },
+          "Sales": {
+            "path": "DC=mammamia,DC=local"
+          },
+          "Marketing": {
+            "path": "DC=mammamia,DC=local"
+          },
+          "RD": {
+            "path": "DC=mammamia,DC=local"
+          }
+        },
+        "groups": {
+          "HRAdmins": {
+            "path": "OU=HR,DC=mammamia,DC=local"
+          },
+          "ITAdmins": {
+            "path": "OU=IT,DC=mammamia,DC=local"
+          },
+          "FinanceAdmins": {
+            "path": "OU=Finance,DC=mammamia,DC=local"
+          },
+          "SalesAdmins": {
+            "path": "OU=Sales,DC=mammamia,DC=local"
+          },
+          "MarketingAdmins": {
+            "path": "OU=Marketing,DC=mammamia,DC=local"
+          },
+          "RDAdmins": {
+            "path": "OU=RD,DC=mammamia,DC=local"
+          }
+        },
+        "users": {
+          "paolo.rossi": {
+            "firstname": "Paolo",
+            "surname": "Rossi",
+            "password": "<RANDOM_PASSWORD>",
+            "city": "Bellavista",
+            "description": "Paolo Rossi",
+            "groups": ["HRAdmins"],
+            "path": "OU=HR,DC=mammamia,DC=local"
+          },
+          "laura.moretti": {
+            "firstname": "Laura",
+            "surname": "Moretti",
+            "password": "<RANDOM_PASSWORD>",
+            "city": "Bellavista",
+            "description": "Laura Moretti",
+            "groups": ["ITAdmins"],
+            "path": "OU=IT,DC=mammamia,DC=local"
+          },
+          "giovanni.bruno": {
+            "firstname": "Giovanni",
+            "surname": "Bruno",
+            "password": "<RANDOM_PASSWORD>",
+            "city": "Bellavista",
+            "description": "Giovanni Bruno",
+            "groups": ["FinanceAdmins"],
+            "path": "OU=Finance,DC=mammamia,DC=local"
+          },
+          "chiara.mancini": {
+            "firstname": "Chiara",
+            "surname": "Mancini",
+            "password": "<RANDOM_PASSWORD>",
+            "city": "Bellavista",
+            "description": "Chiara Mancini",
+            "groups": ["SalesAdmins"],
+            "path": "OU=Sales,DC=mammamia,DC=local"
+          },
+          "roberto.fiore": {
+            "firstname": "Roberto",
+            "surname": "Fiore",
+            "password": "<RANDOM_PASSWORD>",
+            "city": "Bellavista",
+            "description": "Roberto Fiore",
+            "groups": ["MarketingAdmins"],
+            "path": "OU=Marketing,DC=mammamia,DC=local"
+          },
+          "daniela.costa": {
+            "firstname": "Daniela",
+            "surname": "Costa",
+            "password": "<RANDOM_PASSWORD>",
+            "city": "Bellavista",
+            "description": "Daniela Costa",
+            "groups": ["RDAdmins"],
+            "path": "OU=RD,DC=mammamia,DC=local"
+          },
+          "stefano.greco": {
+            "firstname": "Stefano",
+            "surname": "Greco",
+            "password": "<RANDOM_PASSWORD>",
+            "city": "Bellavista",
+            "description": "Stefano Greco",
+            "groups": [],
+            "path": "OU=IT,DC=mammamia,DC=local"
+          },
+          "anna.ferrari": {
+            "firstname": "Anna",
+            "surname": "Ferrari",
+            "password": "<RANDOM_PASSWORD>",
+            "city": "Bellavista",
+            "description": "Anna Ferrari",
+            "groups": [],
+            "path": "OU=IT,DC=mammamia,DC=local"
+          },
+          "maurizio.barone": {
+            "firstname": "Maurizio",
+            "surname": "Barone",
+            "password": "<RANDOM_PASSWORD>",
+            "city": "Bellavista",
+            "description": "Maurizio Barone",
+            "groups": [],
+            "path": "OU=HR,DC=mammamia,DC=local"
+          }
+        }
+      },
+      "factories.mammamia.local": {
+        "dc": "mgmtdc",
+        "domain_username": "<ADMIN_USERNAME>",
+        "domain_password": "<MGMT_DC_ADMIN_PASSWORD>",
+        "netbios_name": "FACTORIES",
+        "parent_domain": "mammamia.local",
+        "path": "DC=factories,DC=mammamia,DC=local",
+        "organisation_units": {
+          "Valdoro": {
+            "path": "DC=factories,DC=mammamia,DC=local"
+          }
+        },
+        "static_dns_records": {
+          "factrodc": "10.200.0.10",
+          "factws": "10.200.0.40"
+        },
+        "computers": {
+          "factws": {
+            "site": "Valdoro",
+            "managed_by": "ValdoroManagers",
+            "path": "OU=Valdoro,DC=factories,DC=mammamia,DC=local",
+            "computer_name": "FACTWS",
+            "computer_password": "<RANDOM_PASSWORD>"
+          }
+        },
+        "computer_memberships": {
+            "ValdoroComputers": ["FACTWS$"]
+        },
+        "sites": {
+          "Valdoro": {
+            "subnet": "10.200.0.0/24"
+          }
+        },
+        "groups": {
+          "ValdoroUsers": {
+            "path": "OU=Valdoro,DC=factories,DC=mammamia,DC=local"
+          },
+          "ValdoroComputers": {
+            "path": "OU=Valdoro,DC=factories,DC=mammamia,DC=local"
+          },
+          "ValdoroManagers": {
+            "path": "OU=Valdoro,DC=factories,DC=mammamia,DC=local"
+          }
+        },
+        "users": {
+          "luca.martelli": {
+            "firstname": "Luca",
+            "surname": "Martelli",
+            "password": "<RANDOM_PASSWORD>",
+            "city": "Valdoro",
+            "description": "Luca Martelli",
+            "groups": ["ValdoroUsers"],
+            "path": "OU=Valdoro,DC=factories,DC=mammamia,DC=local"
+          },
+          "sofia.ricci": {
+            "firstname": "Sofia",
+            "surname": "Ricci",
+            "password": "<RANDOM_PASSWORD>",
+            "city": "Valdoro",
+            "description": "Sofia Ricci",
+            "groups": ["ValdoroUsers"],
+            "path": "OU=Valdoro,DC=factories,DC=mammamia,DC=local"
+          },
+          "marco.bianchi": {
+            "firstname": "Marco",
+            "surname": "Bianchi",
+            "password": "<RANDOM_PASSWORD>",
+            "city": "Valdoro",
+            "description": "Marco Bianchi",
+            "groups": ["ValdoroUsers"],
+            "path": "OU=Valdoro,DC=factories,DC=mammamia,DC=local"
+          },
+          "antonio.romano": {
+            "firstname": "Antonio",
+            "surname": "Romano",
+            "password": "<RANDOM_PASSWORD>",
+            "city": "Valdoro",
+            "description": "Antonio Romano",
+            "groups": ["ValdoroUsers"],
+            "path": "OU=Valdoro,DC=factories,DC=mammamia,DC=local"
+          },
+          "alessia.conti": {
+            "firstname": "Alessia",
+            "surname": "Conti",
+            "password": "<RANDOM_PASSWORD>",
+            "city": "Valdoro",
+            "description": "Alessia Conti",
+            "groups": ["ValdoroUsers"],
+            "path": "OU=Valdoro,DC=factories,DC=mammamia,DC=local"
+          },
+          "francesco.marino": {
+            "firstname": "Francesco",
+            "surname": "Marino",
+            "password": "<RANDOM_PASSWORD>",
+            "city": "Valdoro",
+            "description": "Francesco Marino",
+            "groups": ["ValdoroUsers"],
+            "path": "OU=Valdoro,DC=factories,DC=mammamia,DC=local"
+          },
+          "isabella.caruso": {
+            "firstname": "Isabella",
+            "surname": "Caruso",
+            "password": "<RANDOM_PASSWORD>",
+            "city": "Valdoro",
+            "description": "Isabella Caruso",
+            "groups": ["ValdoroUsers"],
+            "path": "OU=Valdoro,DC=factories,DC=mammamia,DC=local"
+          },
+          "matteo.lombardi": {
+            "firstname": "Matteo",
+            "surname": "Lombardi",
+            "password": "<RANDOM_PASSWORD>",
+            "city": "Valdoro",
+            "description": "Matteo Lombardi",
+            "groups": ["ValdoroUsers"],
+            "path": "OU=Valdoro,DC=factories,DC=mammamia,DC=local"
+          },
+          "elena.sartori": {
+            "firstname": "Elena",
+            "surname": "Sartori",
+            "password": "<RANDOM_PASSWORD>",
+            "city": "Valdoro",
+            "description": "Elena Sartori",
+            "groups": ["ValdoroUsers"],
+            "path": "OU=Valdoro,DC=factories,DC=mammamia,DC=local"
+          },
+          "silvia.galli": {
+            "firstname": "Silvia",
+            "surname": "Galli",
+            "password": "<SILVIA_PASSWORD>",
+            "city": "Valdoro",
+            "description": "Silvia Galli",
+            "groups": ["ValdoroUsers", "ValdoroManagers"],
+            "path": "OU=Valdoro,DC=factories,DC=mammamia,DC=local"
+          },
+          "TimeSheetSvc": {
+            "firstname": "TimeSheet",
+            "surname": "Service",
+            "password": "<RANDOM_PASSWORD>",
+            "city": "Valdoro",
+            "description": "TimeSheet Service",
+            "groups": ["ValdoroUsers"],
+            "path": "OU=Valdoro,DC=factories,DC=mammamia,DC=local",
+            "spns": ["HTTP/timesheet.factories.mammamia.local"]
+          }
+        }
+      }
+    }
+  }
+}

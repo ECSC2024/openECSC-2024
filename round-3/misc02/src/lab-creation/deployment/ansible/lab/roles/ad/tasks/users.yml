@@ -1,0 +1,23 @@
+- name: Create users
+  microsoft.ad.user:
+    name: "{{ item.key }}"
+    firstname: "{{item.value.firstname}}"
+    surname: "{{ item.value.surname | default(item.value.firstname) }}"
+    password: "{{ item.value.password }}"
+    password_never_expires: yes
+    state: present
+    path: "{{item.value.path}}"
+    description: "{{item.value.description | default('-')}}"
+    groups:
+      add: "{{ item.value.groups}}"
+    city: "{{item.value.city | default('-')}}"
+    spns:
+      add: "{{item.value.spns | default([]) }}"
+    upn: "{{item.key}}@{{domain}}"
+    domain_username: "{{domain_username}}"
+    domain_password: "{{domain_password}}"
+  with_dict: "{{ ad_users }}"
+  register: usercreate
+  until: "usercreate is not failed"
+  retries: 3
+  delay: 30

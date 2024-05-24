@@ -1,0 +1,8 @@
+services:
+  crypto_lwe2048:
+    build: .
+    restart: unless-stopped
+    ports:
+      - '38018:1337'
+    environment:
+      - 'FLAG=openECSC{4d4p71v3_LW3_n07_s0_53cur3!_[random 8]}'

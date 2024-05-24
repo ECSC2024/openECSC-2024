@@ -1,0 +1,32 @@
+// protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative /path/to/grand-resort.proto
+
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package GrandResort;
+option go_package = "./grand-resort";
+
+service Reception {
+    rpc listRooms (google.protobuf.Empty) returns (RoomList) {}
+    rpc bookRoom (BookingInfo) returns (BookingConfirm) {}
+}
+
+message Room {
+    string id = 1;
+    string Name = 2;
+    string description = 3;
+    int32 price = 4;
+}
+
+message RoomList {
+    repeated Room rooms = 1;
+}
+
+message BookingInfo {
+    string roomId = 1;
+    int32 nights = 2;
+    string guestName = 3;
+}
+
+message BookingConfirm {
+    string msg = 1;
+}

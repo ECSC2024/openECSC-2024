@@ -1,0 +1,6 @@
+*.pyc
+*.o
+scrambler.S
+cop*
+/data.c
+gdbscript.txt

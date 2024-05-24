@@ -1,0 +1,1 @@
+^openECSC\{a_rev_inside_a_rev_ins..[0-9a-f]{8}\}$

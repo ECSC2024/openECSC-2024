@@ -1,0 +1,24 @@
+---
+# Load data
+- import_playbook: data.yml
+
+- name: Delay netlogon
+  hosts: delayed
+  vars:
+    domain: "{{lab.hosts[dict_key].domain}}"
+    ansible_user: "{{lab.domains[domain].domain_username}}@{{domain | upper}}"
+    ansible_password: "{{lab.domains[domain].domain_password}}"
+    ansible_winrm_transport: kerberos
+  tasks:
+    - name: Add ExpectedDialupDelay
+      ansible.windows.win_regedit:
+        path: HKLM:\System\CurrentControlSet\Services\Netlogon\Parameters
+        name: ExpectedDialupDelay
+        data: 90
+        type: dword
+    - name: Add BackgroundRetryInitialPeriod
+      ansible.windows.win_regedit:
+        path: HKLM:\System\CurrentControlSet\Services\Netlogon\Parameters
+        name: BackgroundRetryInitialPeriod
+        data: 10
+        type: dword

@@ -1,0 +1,35 @@
+---
+# Load data
+- import_playbook: data.yml
+- import_playbook: replicate_and_sync.yml
+- name: Create directory partition
+  hosts: child_dc
+  gather_facts: no
+  vars:
+    parent_domain: "{{lab.domains[domain].parent_domain}}"
+    parent_domain_username: "{{lab.domains[parent_domain].domain_username}}"
+    parent_domain_password: "{{lab.domains[parent_domain].domain_password}}"
+    domain: "{{lab.hosts[dict_key].domain}}"
+    ansible_become: yes
+    ansible_become_method: runas
+    ansible_become_user: "{{parent_domain}}\\{{parent_domain_username}}"
+    ansible_become_password: "{{parent_domain_password}}"
+    ansible_become_winrm_transport: kerberos
+  tasks:
+    - name: Create directory partition
+      win_command: "dnscmd /createdirectorypartition DomainDnsZones.{{domain}}"
+      ignore_errors: true
+      register: partition_output
+
+    - name: Show output
+      debug:
+        var: partition_output
+
+    - name: Enum directory partition
+      win_command: "dnscmd /enumdirectorypartitions"
+      register: enum_output
+      failed_when: "'DomainDnsZones.{{domain}}' not in enum_output.stdout"
+
+    - name: Show output
+      debug:
+        var: enum_output

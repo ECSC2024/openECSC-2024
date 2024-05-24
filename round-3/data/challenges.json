@@ -1,0 +1,209 @@
+{
+    "events": [
+        {
+            "id": 1,
+            "name": "openECSC 2024",
+            "sections": [
+                {
+                    "id": 3,
+                    "name": "Round 3",
+                    "challenges": [
+                        {
+                            "id": 39,
+                            "title": "We have no more creativity",
+                            "tags": [
+                                "misc"
+                            ],
+                            "hiddenTags": [],
+                            "authors": [],
+                            "currentScore": 50,
+                            "currentGlobalSolves": 725,
+                            "hidden": false
+                        },
+                        {
+                            "id": 34,
+                            "title": "LWE2048",
+                            "tags": [
+                                "crypto"
+                            ],
+                            "hiddenTags": [],
+                            "authors": [],
+                            "currentScore": 190,
+                            "currentGlobalSolves": 35,
+                            "hidden": false
+                        },
+                        {
+                            "id": 41,
+                            "title": "JuniorFeistel",
+                            "tags": [
+                                "crypto"
+                            ],
+                            "hiddenTags": [],
+                            "authors": [],
+                            "currentScore": 464,
+                            "currentGlobalSolves": 3,
+                            "hidden": false
+                        },
+                        {
+                            "id": 46,
+                            "title": "LazyDH",
+                            "tags": [
+                                "crypto"
+                            ],
+                            "hiddenTags": [],
+                            "authors": [],
+                            "currentScore": 65,
+                            "currentGlobalSolves": 99,
+                            "hidden": false
+                        },
+                        {
+                            "id": 35,
+                            "title": "Deleted file",
+                            "tags": [
+                                "misc"
+                            ],
+                            "hiddenTags": [],
+                            "authors": [],
+                            "currentScore": 50,
+                            "currentGlobalSolves": 565,
+                            "hidden": false
+                        },
+                        {
+                            "id": 40,
+                            "title": "Mamma Mia",
+                            "tags": [
+                                "misc",
+                                "active-directory"
+                            ],
+                            "hiddenTags": [],
+                            "authors": [],
+                            "currentScore": 481,
+                            "currentGlobalSolves": 2,
+                            "hidden": false
+                        },
+                        {
+                            "id": 47,
+                            "title": "eotp",
+                            "tags": [
+                                "misc"
+                            ],
+                            "hiddenTags": [],
+                            "authors": [],
+                            "currentScore": 125,
+                            "currentGlobalSolves": 56,
+                            "hidden": false
+                        },
+                        {
+                            "id": 36,
+                            "title": "Xv6 Homework",
+                            "tags": [
+                                "pwn"
+                            ],
+                            "hiddenTags": [],
+                            "authors": [],
+                            "currentScore": 335,
+                            "currentGlobalSolves": 13,
+                            "hidden": false
+                        },
+                        {
+                            "id": 42,
+                            "title": "Log4x86",
+                            "tags": [
+                                "pwn"
+                            ],
+                            "hiddenTags": [],
+                            "authors": [],
+                            "currentScore": 253,
+                            "currentGlobalSolves": 23,
+                            "hidden": false
+                        },
+                        {
+                            "id": 48,
+                            "title": "Baby Array.xor",
+                            "tags": [
+                                "pwn"
+                            ],
+                            "hiddenTags": [],
+                            "authors": [],
+                            "currentScore": 418,
+                            "currentGlobalSolves": 6,
+                            "hidden": false
+                        },
+                        {
+                            "id": 37,
+                            "title": "livestream",
+                            "tags": [
+                                "rev"
+                            ],
+                            "hiddenTags": [],
+                            "authors": [],
+                            "currentScore": 267,
+                            "currentGlobalSolves": 21,
+                            "hidden": false
+                        },
+                        {
+                            "id": 43,
+                            "title": "revrev",
+                            "tags": [
+                                "rev"
+                            ],
+                            "hiddenTags": [],
+                            "authors": [],
+                            "currentScore": 145,
+                            "currentGlobalSolves": 48,
+                            "hidden": false
+                        },
+                        {
+                            "id": 45,
+                            "title": "Cop",
+                            "tags": [
+                                "rev"
+                            ],
+                            "hiddenTags": [],
+                            "authors": [],
+                            "currentScore": 190,
+                            "currentGlobalSolves": 35,
+                            "hidden": false
+                        },
+                        {
+                            "id": 38,
+                            "title": "Grand Resort for Pwning Cats",
+                            "tags": [
+                                "web"
+                            ],
+                            "hiddenTags": [],
+                            "authors": [],
+                            "currentScore": 50,
+                            "currentGlobalSolves": 178,
+                            "hidden": false
+                        },
+                        {
+                            "id": 44,
+                            "title": "Fuper Fibernetic Interpolator",
+                            "tags": [
+                                "web"
+                            ],
+                            "hiddenTags": [],
+                            "authors": [],
+                            "currentScore": 194,
+                            "currentGlobalSolves": 34,
+                            "hidden": false
+                        },
+                        {
+                            "id": 49,
+                            "title": "Notes",
+                            "tags": [
+                                "web"
+                            ],
+                            "hiddenTags": [],
+                            "authors": [],
+                            "currentScore": 433,
+                            "currentGlobalSolves": 5,
+                            "hidden": false
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

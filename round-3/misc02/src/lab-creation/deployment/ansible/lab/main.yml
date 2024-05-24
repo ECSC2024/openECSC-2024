@@ -1,0 +1,22 @@
+---
+- import_playbook: update.yml
+- import_playbook: server.yml
+- import_playbook: parent_domain.yml
+- import_playbook: child_domain.yml
+- import_playbook: adcs.yml
+- import_playbook: ad_data.yml
+- import_playbook: sites.yml
+- import_playbook: rodc_controller.yml
+- import_playbook: members.yml
+- import_playbook: relations.yml
+- import_playbook: copy_files.yml
+- import_playbook: credentials.yml
+- import_playbook: autologon.yml
+- import_playbook: scripts.yml
+- import_playbook: gpo.yml
+- import_playbook: gpo_update.yml
+- import_playbook: logon_sessions.yml
+- import_playbook: cleanup_ws.yml
+- import_playbook: handout.yml
+- import_playbook: delay_netlogon.yml
+- import_playbook: cleanup.yml

@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "build": "src/app",
+      "internet": true,
+      "environment": {
+        "FLAG": "openECSC{F_3Xpr3Ff10Nf_4r3_1n_mY_n1ghtM4r3f_~8,'0X}"
+      },
+      "expose": [
+        {
+          "type": "http",
+          "secure": false,
+          "container": 8080,
+          "hostname": "fuperfiberneticinterpolator.challs.open.ecsc2024.it"
+        }
+      ]
+    }
+  }
+}

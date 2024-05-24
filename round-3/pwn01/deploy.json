@@ -1,0 +1,31 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "build": "src",
+      "volumes": [
+        {
+          "type": "bind",
+          "host": "src/chall.sh",
+          "container": "/home/user/chall",
+          "readonly": true
+        }
+      ],
+      "environment": {
+        "RLIMIT_FSIZE": "4",
+        "TEMPDIRS": "/home/user/tmp",
+        "TIMEOUT": "120",
+        "FLAG": "openECSC{gg_wp_[random 8]}",
+        "POW_BITS": "26",
+        "POW_BYPASS_HASH": "redacted"
+      },
+      "expose": [
+        {
+          "type": "tcp",
+          "host": 38016,
+          "container": 1337
+        }
+      ]
+    }
+  }
+}

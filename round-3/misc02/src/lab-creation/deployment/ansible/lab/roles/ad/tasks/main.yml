@@ -1,0 +1,11 @@
+- name: organisation units
+  import_tasks: ou.yml
+
+- name: groups
+  import_tasks: groups.yml
+
+- name: users
+  import_tasks: users.yml
+
+- name: computers
+  import_tasks: computers.yml

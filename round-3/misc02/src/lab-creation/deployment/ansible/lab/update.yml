@@ -1,0 +1,22 @@
+---
+# Load data
+- import_playbook: data.yml
+
+- name: Install all updates and reboot as many times as needed
+  hosts: all
+  tasks:
+    - name: Start and enable Windows Update service
+      ansible.windows.win_service:
+        name: wuauserv
+        state: started
+        start_mode: auto
+
+    - name: Install updates
+      ansible.windows.win_updates:
+        reboot: yes
+
+    - name: Disable Windows Update service
+      ansible.windows.win_service:
+        name: wuauserv
+        state: stopped
+        start_mode: disabled

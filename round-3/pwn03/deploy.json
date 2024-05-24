@@ -1,0 +1,44 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "build": "src",
+      "environment": {
+        "FLAG": "openECSC{t00_e5zy_w1th0ut_s4nb0x_gg_wp_[random 8]}",
+        "FORWARD_STDERR": "true",
+        "TEMPDIRS": "/tmp",
+        "RLIMIT_AS": "32768",
+        "TIMEOUT": "60",
+        "POW_BITS": "24",
+        "POW_BYPASS_HASH": "redacted"
+      },
+      "volumes": [
+        {
+          "type": "bind",
+          "host": "src/dist/d8",
+          "container": "/home/user/d8",
+          "readonly": true
+        },
+        {
+          "type": "bind",
+          "host": "src/dist/snapshot_blob.bin",
+          "container": "/home/user/snapshot_blob.bin",
+          "readonly": true
+        },
+        {
+          "type": "bind",
+          "host": "src/wrapper.py",
+          "container": "/home/user/chall",
+          "readonly": true
+        }
+      ],
+      "expose": [
+        {
+          "type": "tcp",
+          "host": 38020,
+          "container": 1337
+        }
+      ]
+    }
+  }
+}

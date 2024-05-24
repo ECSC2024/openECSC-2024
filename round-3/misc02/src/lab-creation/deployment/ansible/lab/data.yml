@@ -1,0 +1,12 @@
+---
+- name: "Read data file"
+  hosts: all
+  connection: local
+  gather_facts: no
+  vars_files:
+    - "config.json"
+  tasks:
+    - name: Load data
+      set_fact:
+        lab: "{{lab}}"
+        cacheable: yes

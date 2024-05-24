@@ -1,0 +1,15 @@
+ssh_keys/lab*
+wg_keys/*.key
+deployment/ansible/lab/config.json
+deployment/ansible/lab/files/rdp_scheduler.ps1
+deployment/ansible/lab/inventory
+deployment/ansible/router/inventory
+deployment/azure/template_deployment_template.variables.json
+
+# Ignore python cache files
+__pycache__/
+
+# Ignore .ccache files
+*.ccache
+
+artifacts/

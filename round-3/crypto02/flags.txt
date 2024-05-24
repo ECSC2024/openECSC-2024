@@ -1,0 +1,1 @@
+^openECSC{4r3_y0u_r34dy_f0r_7h3_n3x7_0n3\?_[0-9a-f]{8}\}$

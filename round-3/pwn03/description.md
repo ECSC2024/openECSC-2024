@@ -1,0 +1,3 @@
+In case you need to xor doubles...
+
+`nc arrayxor.challs.open.ecsc2024.it 38020`

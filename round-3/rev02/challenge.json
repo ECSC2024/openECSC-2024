@@ -1,0 +1,30 @@
+{
+  "title": "revrev",
+  "description": "It's your lucky day you get two binaries for the price of one!",
+  "authors": [
+    "Lorenzo Catoni <@lorenzcat>"
+  ],
+  "tags": [
+    "rev"
+  ],
+  "hiddenTags": [],
+  "order": 41,
+  "flags": [
+    "^openECSC\\{a_rev_inside_a_rev_ins..[0-9a-f]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "revrev.zip",
+      "type": "upload",
+      "path": "./attachments/revrev.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

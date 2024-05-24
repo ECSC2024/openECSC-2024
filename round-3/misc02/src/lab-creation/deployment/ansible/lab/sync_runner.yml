@@ -1,0 +1,12 @@
+- name: Run synchronization playbook
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Run synchronization playbook via script
+      shell: "{{ playbook_dir }}/sync.sh"
+      register: script_result
+      failed_when: script_result.rc != 0
+
+    - name: Print script output
+      debug:
+        msg: "{{ script_result.stdout }}"

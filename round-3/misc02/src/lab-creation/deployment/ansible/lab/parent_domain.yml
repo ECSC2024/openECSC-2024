@@ -1,0 +1,50 @@
+---
+# Load data
+- import_playbook: data.yml
+
+- name: Setup domain controller
+  hosts: parent_dc
+  vars:
+    domain: "{{lab.hosts[dict_key].domain}}"
+    domain_username: "{{lab.domains[domain].domain_username}}"
+    domain_password: "{{lab.domains[domain].domain_password}}"
+    netbios_name: "{{lab.domains[domain].netbios_name}}"
+  tasks:
+    - name: Ensure that domain exists
+      microsoft.ad.domain:
+        domain_netbios_name: "{{netbios_name}}"
+        dns_domain_name: "{{domain}}"
+        safe_mode_password: "{{domain_password}}"
+      register: check_domain
+
+    - name: Reboot to complete domain creation
+      win_reboot:
+        reboot_timeout: 900
+        post_reboot_delay: 100
+      when: check_domain.changed
+
+    - name: Enable the Active Directory Web Services if not enabled
+      ansible.windows.win_shell: Set-Service -Name adws -StartupType Automatic
+
+    - name: Install ActiveDirectoryDsc
+      win_psmodule:
+        name: ActiveDirectoryDSC
+        state: present
+
+    - name: "Ensure {{domain_username}} is in Enterprise Admins"
+      microsoft.ad.group:
+        name: "Enterprise Admins"
+        members:
+          add:
+            - "{{domain_username}}"
+        state: present
+      retries: 10
+      delay: 60
+
+    - name: "Ensure {{domain_username}} is in Domain Admins"
+      microsoft.ad.group:
+        name: "Domain Admins"
+        members:
+          add:
+            - "{{domain_username}}"
+        state: present

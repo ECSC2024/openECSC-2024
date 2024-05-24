@@ -1,0 +1,36 @@
+{
+  "title": "livestream",
+  "description": "everyone talks at the same time, how can I understand?",
+  "authors": [
+    "Andrea Raineri <@Rising>"
+  ],
+  "tags": [
+    "rev"
+  ],
+  "hiddenTags": [],
+  "order": 40,
+  "flags": [
+    "^openECSC\\{d1g1t4L_cdm4_ju57_w0rk5_n0w_w3_g0_t0p_s3cr37!_d907fb87\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "livestream",
+      "type": "upload",
+      "path": "./attachments/livestream",
+      "dynamic": false
+    },
+    {
+      "name": "output.bin",
+      "type": "upload",
+      "path": "./attachments/output.bin",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}
