@@ -1,0 +1,8 @@
+services:
+  logical:
+    build: .
+    restart: unless-stopped
+    ports:
+      - '38207:1337'
+    environment:
+      - 'FLAG=CCIT{th3r3_1s_n0_n33d_f0r_4_d3crypt_funct10n_1f_y0u_us3_mtp_73242cc2}'

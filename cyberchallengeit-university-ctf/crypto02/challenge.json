@@ -1,0 +1,39 @@
+{
+  "title": "Logical",
+  "description": "Another service to encrypt your notes, but this time with an additional feature: you cannot decrypt them!\n\n`nc logical.challs.external.open.ecsc2024.it 38207`",
+  "authors": [
+    "Lorenzo Demeio <@Devrar>"
+  ],
+  "tags": [
+    "crypto"
+  ],
+  "hiddenTags": [],
+  "order": 32,
+  "flags": [
+    "^CCIT\\{th3r3_1s_n0_n33d_f0r_4_d3crypt_funct10n_1f_y0u_us3_mtp_73242cc2\\}$"
+  ],
+  "scoring": {
+    "type": "static",
+    "score": 350
+  },
+  "files": [
+    {
+      "name": "logical.py",
+      "type": "upload",
+      "path": "./attachments/logical.py",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "logical.challs.external.open.ecsc2024.it",
+    "port": 38207
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 10
+    }
+  }
+}

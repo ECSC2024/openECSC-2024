@@ -1,0 +1,30 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "image": "cybersecnatlab/challenge-jail@sha256:a90fb2f6c9b460b8ed559bf78d5cbd084bff11fda5feb863229ec51d58641871",
+      "environment": {
+        "FLAG": "CCIT{C3dr1c_D1gg0ry_w0uld_be_pr0ud_c5f799a0}",
+        "FLAG_IN_ENV": "true",
+        "RLIMIT_NOFILE": "1024",
+        "TEMPDIRS": "/tmp",
+        "TIMEOUT": "1200"
+      },
+      "volumes": [
+        {
+          "type": "bind",
+          "readonly": true,
+          "host": "src/build/triwizard-maze",
+          "container": "/home/user/chall"
+        }
+      ],
+      "expose": [
+        {
+          "type": "tcp",
+          "container": 1337,
+          "host": 38202
+        }
+      ]
+    }
+  }
+}

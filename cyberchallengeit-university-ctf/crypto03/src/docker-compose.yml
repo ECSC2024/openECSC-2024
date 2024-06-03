@@ -1,0 +1,8 @@
+services:
+  hash_market:
+    build: .
+    restart: unless-stopped
+    ports:
+      - '38206:1337'
+    environment:
+      - 'FLAG=CCIT{1nf1n173_c0ll1510n5_f0r_1nf1n173_m0n3y_abcb5450}'

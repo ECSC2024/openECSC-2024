@@ -1,0 +1,32 @@
+{
+  "title": "Triwizard Maze",
+  "description": "Are you a ROP wizard Harry???\n\n**NOTE**: yes, there are no attachments for this challenge. This is intended.\n\n`nc triwizard-maze.challs.external.open.ecsc2024.it 38202`",
+  "authors": [
+    "Marco Bonelli <@mebeim>"
+  ],
+  "tags": [
+    "binary"
+  ],
+  "hiddenTags": [],
+  "order": 44,
+  "flags": [
+    "^CCIT\\{C3dr1c_D1gg0ry_w0uld_be_pr0ud_c5f799a0\\}$"
+  ],
+  "scoring": {
+    "type": "static",
+    "score": 1000
+  },
+  "files": [],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "triwizard-maze.challs.external.open.ecsc2024.it",
+    "port": 38202
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 180
+    }
+  }
+}

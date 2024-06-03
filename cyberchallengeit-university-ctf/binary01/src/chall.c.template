@@ -1,0 +1,25 @@
+#include <unistd.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+
+int main(int argc, char **argv) {
+        unsigned char user_input[LEN+1];
+        u_int64_t check_array[LEN+1] = CHECKVALUE;
+        unsigned char key[LEN+1];
+
+        printf("This is a message for Agent X.\nPlease insert your secret key:\n");
+        scanf("%LENs", user_input);
+
+        for(int i=0; i<LEN; i++){
+            if(check_array[i] != (unsigned char)(-user_input[i])){
+                printf("Incorrect key\n");
+                exit(1);
+            }
+        }
+
+        printf("Correct!\n");
+
+        return 0;
+}

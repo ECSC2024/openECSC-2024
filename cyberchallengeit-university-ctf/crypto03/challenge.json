@@ -1,0 +1,39 @@
+{
+  "title": "Hash-based market",
+  "description": "Just the usual boring market app... But with hashes!\n\n`nc hashmarket.challs.external.open.ecsc2024.it 38206`",
+  "authors": [
+    "Matteo Rossi <@mr96>"
+  ],
+  "tags": [
+    "crypto"
+  ],
+  "hiddenTags": [],
+  "order": 33,
+  "flags": [
+    "^CCIT\\{1nf1n173_c0ll1510n5_f0r_1nf1n173_m0n3y_abcb5450\\}$"
+  ],
+  "scoring": {
+    "type": "static",
+    "score": 650
+  },
+  "files": [
+    {
+      "name": "market.py",
+      "type": "upload",
+      "path": "./attachments/market.py",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "hashmarket.challs.external.open.ecsc2024.it",
+    "port": 38206
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 10
+    }
+  }
+}

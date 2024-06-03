@@ -1,0 +1,38 @@
+{
+  "title": "The Cyberton Post",
+  "description": "Have a look at my new newspaper website!\n\nThe flag is in `/flag_uwu.txt`\n\nP.S.: I think I need a new keyboard\n\nSite: [http://thecybertonpost.challs.external.open.ecsc2024.it:38210](http://thecybertonpost.challs.external.open.ecsc2024.it:38210)",
+  "authors": [
+    "Lorenzo Leonardini <@pianka>"
+  ],
+  "tags": [
+    "web"
+  ],
+  "hiddenTags": [],
+  "order": 23,
+  "flags": [
+    "^CCIT\\{uua\\.uuUuUuUUuuuuUUuUuuuUuuUUuUuuUUh98os\\|dv6SL\\(%1<@Z0yTBIX\\.r\"\\{\\$c\\^U\\\\'u-iK,DbHMNF_WEj&2fl4PtmzAq\\]!QxgV>\\[J;pGOY~\\)\\+3=\\*:nC/`7k\\}w5\\\\\\\\R#ea\\?_2918e55f\\}$"
+  ],
+  "scoring": {
+    "type": "static",
+    "score": 675
+  },
+  "files": [
+    {
+      "name": "cyberton.zip",
+      "type": "upload",
+      "path": "./attachments/cyberton.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "http",
+    "url": "http://thecybertonpost.challs.external.open.ecsc2024.it:38210/"
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 60
+    }
+  }
+}

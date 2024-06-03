@@ -1,0 +1,45 @@
+{
+  "title": "NFTP",
+  "description": "The other day I got the idea for this new protocol, the New File Transfer Protocol, to list and download files. I still have to think about file upload, but that's not the point. I gave you a (partial) reference code in Python and my preliminary implementation, can you audit it for me?\n\n_Note: when running the binary, it is intended that the commands take some seconds to return an output._",
+  "authors": [
+    "Matteo Protopapa <@matpro>"
+  ],
+  "tags": [
+    "misc"
+  ],
+  "hiddenTags": [],
+  "order": 12,
+  "flags": [
+    "^CCIT\\{I_h0p3_U_did_n0t_trea7_th1s_as_a_r3v_chall_ac10dfad\\}$"
+  ],
+  "scoring": {
+    "type": "static",
+    "score": 700
+  },
+  "files": [
+    {
+      "name": "nftp",
+      "type": "upload",
+      "path": "./attachments/nftp",
+      "dynamic": false
+    },
+    {
+      "name": "nftp_reference.py",
+      "type": "upload",
+      "path": "./attachments/nftp_reference.py",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "nftp.challs.external.open.ecsc2024.it",
+    "port": 38203
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 20
+    }
+  }
+}

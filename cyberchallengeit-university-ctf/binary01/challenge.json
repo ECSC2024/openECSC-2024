@@ -1,0 +1,28 @@
+{
+  "title": "CCIA",
+  "description": "We recovered this message from the CCIA (CyberChallenge.IT Intelligence Agency), but apparently only Agent X can read it. Can you crack it?",
+  "authors": [
+    "Matteo Protopapa <@matpro>"
+  ],
+  "tags": [
+    "binary"
+  ],
+  "hiddenTags": [],
+  "order": 41,
+  "flags": [
+    "^CCIT\\{th1s_messag3_will_self_encryp7_in_3_2_1_fd64461f\\}$"
+  ],
+  "scoring": {
+    "type": "static",
+    "score": 150
+  },
+  "files": [
+    {
+      "name": "CCIA",
+      "type": "upload",
+      "path": "./attachments/CCIA",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

@@ -1,0 +1,25 @@
+{
+	"languageName": "Italiano",
+	"languages": {
+		"en": "English",
+		"it": "Italiano",
+		"fr": "Français",
+		"de": "Deutsch"
+	},
+	"seo": {
+		"title": "super-php-i18n"
+	},
+	"home": {
+		"welcome": "Benvenuto",
+		"intro": "Forniamo soluzioni di nuova generazione per siti web multilingua.",
+		"description": "Codice semplice, facile da integrare all'interno della tua base di codice. Ispirato dalle migliori librerie."
+	},
+	"form": {
+		"title": "Contattaci",
+		"name": "Nome",
+		"email": "Indirizzo email",
+		"emailDisclaimer": "Non condivideremo mai la tua email con nessun altro.",
+		"message": "Messaggio",
+		"send": "Invia"
+	}
+}

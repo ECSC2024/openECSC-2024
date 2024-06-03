@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "services": {
+    "yasc": {
+      "build": "src/yasc",
+      "environment": {
+        "FLAG": "CCIT{Cl13nT_s1d3_ch3ck5_4r3_N3V3R_3n0uGh_[RANDOM]}"
+      },
+      "expose": [
+        {
+          "type": "tcp",
+          "container": 8000,
+          "host": 38208
+        }
+      ]
+    }
+  }
+}

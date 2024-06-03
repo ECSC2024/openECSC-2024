@@ -1,0 +1,39 @@
+{
+  "title": "Shellcoder",
+  "description": "Show me your skills.\n\n`nc shellcoder.challs.external.open.ecsc2024.it 38201`",
+  "authors": [
+    "Giulia Martino <@Giulia>"
+  ],
+  "tags": [
+    "binary"
+  ],
+  "hiddenTags": [],
+  "order": 42,
+  "flags": [
+    "^CCIT\\{wh4t_a_pr3tty_g00d_sh3llcoder_u_are_e6ccc40d\\}$"
+  ],
+  "scoring": {
+    "type": "static",
+    "score": 300
+  },
+  "files": [
+    {
+      "name": "shellcoder.zip",
+      "type": "upload",
+      "path": "./attachments/shellcoder.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "shellcoder.challs.external.open.ecsc2024.it",
+    "port": 38201
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 10
+    }
+  }
+}

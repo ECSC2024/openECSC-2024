@@ -1,0 +1,38 @@
+{
+  "title": "Sharepic",
+  "description": "Try out this brand new and super original social network! We're still working on implementing some features, like... every social feature...\n\nSite: [http://sharepic.challs.external.open.ecsc2024.it:38211](http://sharepic.challs.external.open.ecsc2024.it:38211)",
+  "authors": [
+    "Lorenzo Leonardini <@pianka>"
+  ],
+  "tags": [
+    "web"
+  ],
+  "hiddenTags": [],
+  "order": 24,
+  "flags": [
+    "^CCIT\\{Why_th3_H3ck_1s_th1S_4_d3f4Ult_B3h4v10uR_a23540a5\\}$"
+  ],
+  "scoring": {
+    "type": "static",
+    "score": 850
+  },
+  "files": [
+    {
+      "name": "sharepic.zip",
+      "type": "upload",
+      "path": "./attachments/sharepic.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "http",
+    "url": "http://sharepic.challs.external.open.ecsc2024.it:38211/"
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 60
+    }
+  }
+}

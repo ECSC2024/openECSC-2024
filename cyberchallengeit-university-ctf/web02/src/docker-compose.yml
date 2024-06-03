@@ -1,0 +1,37 @@
+services:
+    web:
+        build: .
+        ports:
+            - 9000:80
+        environment:
+            HEADLESS_AUTH: supersecret
+            HEADLESS_HOST: headless:5000
+            ADMIN_TOKEN: 847535a4ccc44d8c84b254c6
+            CHALLENGE_URL: http://web
+            CHECKER_TOKEN: aa7b16e224d385f1a8984d69
+            FLAG: CCIT{Ju57_b3c4Us3_1Ts_4n_H34d3R_d03Sn7_M34n_1t_c4n7_c0n741n_xSs_[RANDOM]}
+
+    headless:
+        image: cybersecnatlab/challenge-headless:latest-manager
+        restart: unless-stopped
+        environment:
+            AUTH_TOKEN: supersecret
+            RABBITMQ_HOST: headless-rabbitmq
+            RABBITMQ_QUEUE: headless-jobs
+        depends_on:
+            - headless-rabbitmq
+
+    headless-rabbitmq:
+        image: rabbitmq:3.11
+        restart: unless-stopped
+
+    headless-worker:
+        image: cybersecnatlab/challenge-headless:latest-worker
+        restart: unless-stopped
+        environment:
+            RABBITMQ_HOST: headless-rabbitmq
+            RABBITMQ_QUEUE: headless-jobs
+        deploy:
+            replicas: 1
+        depends_on:
+            - headless-rabbitmq

@@ -1,0 +1,11 @@
+services:
+  nftp:
+    image: cybersecnatlab/socaz:python-3.11-alpine
+    restart: unless-stopped
+    command: 'socaz --timeout 120 --flag-from-env FLAG --bind 1337 --cmd /home/user/chall'
+    volumes:
+      - './server.py:/home/user/chall:ro'
+    ports:
+      - '0.0.0.0:38203:1337'
+    environment:
+      - 'FLAG=CCIT{I_h0p3_U_did_n0t_trea7_th1s_as_a_r3v_chall_ac10dfad}'

@@ -1,0 +1,25 @@
+{
+	"languageName": "English",
+	"languages": {
+		"en": "English",
+		"it": "Italiano",
+		"fr": "Français",
+		"de": "Deutsch"
+	},
+	"seo": {
+		"title": "super-php-i18n"
+	},
+	"home": {
+		"welcome": "Welcome",
+		"intro": "We provide next-gen solutions for multi language websites.",
+		"description": "Simple code, easy to integrate inside your codebase. Inspired by the best libraries."
+	},
+	"form": {
+		"title": "Get in touch",
+		"name": "Name",
+		"email": "Email address",
+		"emailDisclaimer": "We'll never share your email with anyone else.",
+		"message": "Message",
+		"send": "Send"
+	}
+}

@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "services": {
+    "web": {
+      "build": "src",
+      "headless": true,
+      "environment": {
+        "ADMIN_TOKEN": "847535a4ccc44d8c84b254c6",
+        "CHECKER_TOKEN": "aa7b16e224d385f1a8984d69",
+        "CHALLENGE_URL": "http://super-php-i18n.challs.external.open.ecsc2024.it:38209",
+        "FLAG": "CCIT{Ju57_b3c4Us3_1Ts_4n_H34d3R_d03Sn7_M34n_1t_c4n7_c0n741n_xSs_[RANDOM]}"
+      },
+      "expose": [
+        {
+          "type": "tcp",
+          "container": 80,
+          "host": 38209
+        }
+      ]
+    }
+  }
+}

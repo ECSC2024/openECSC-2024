@@ -1,0 +1,38 @@
+{
+  "title": "YetAnotherShopChallenge",
+  "description": "Site: [http://yasc.challs.external.open.ecsc2024.it:38208](http://yasc.challs.external.open.ecsc2024.it:38208)",
+  "authors": [
+    "Lorenzo Leonardini <@pianka>"
+  ],
+  "tags": [
+    "web"
+  ],
+  "hiddenTags": [],
+  "order": 21,
+  "flags": [
+    "^CCIT\\{Cl13nT_s1d3_ch3ck5_4r3_N3V3R_3n0uGh_3962fd46\\}$"
+  ],
+  "scoring": {
+    "type": "static",
+    "score": 150
+  },
+  "files": [
+    {
+      "name": "yasc.zip",
+      "type": "upload",
+      "path": "./attachments/yasc.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "http",
+    "url": "http://yasc.challs.external.open.ecsc2024.it:38208/"
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 60
+    }
+  }
+}

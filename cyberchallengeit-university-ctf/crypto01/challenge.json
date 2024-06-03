@@ -1,0 +1,34 @@
+{
+  "title": "SSSSSSSSSSSSSSSSSSSS",
+  "description": "A group of unfriendly snakes encrypted my flag!",
+  "authors": [
+    "Francesco Felet <@PhiQuadro>"
+  ],
+  "tags": [
+    "crypto"
+  ],
+  "hiddenTags": [],
+  "order": 31,
+  "flags": [
+    "^CCIT\\{4ppaR3ntly_th31r_CrypT0_is_ju5t_Sn4k3_01l_SssSsssS5SS55555ssSsS\\}$"
+  ],
+  "scoring": {
+    "type": "static",
+    "score": 150
+  },
+  "files": [
+    {
+      "name": "SSSSSSSSSSSSSSSSSSSS.py",
+      "type": "upload",
+      "path": "./attachments/SSSSSSSSSSSSSSSSSSSS.py",
+      "dynamic": false
+    },
+    {
+      "name": "SSSSSSSSSSSSSSSSSSSS_output.txt",
+      "type": "upload",
+      "path": "./attachments/SSSSSSSSSSSSSSSSSSSS_output.txt",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

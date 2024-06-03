@@ -1,0 +1,3 @@
+In 2024 we have no time to type passwords anymore...
+
+`nc cookieloginrevenge.challs.external.open.ecsc2024.it 38212`

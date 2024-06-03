@@ -1,0 +1,1 @@
+tcp,triwizard-maze.challs.external.open.ecsc2024.it,38202

@@ -1,0 +1,39 @@
+{
+  "title": "CookieLogin Revenge",
+  "description": "In 2024 we have no time to type passwords anymore...\n\n`nc cookieloginrevenge.challs.external.open.ecsc2024.it 38212`",
+  "authors": [
+    "Matteo Rossi <@mr96>"
+  ],
+  "tags": [
+    "crypto"
+  ],
+  "hiddenTags": [],
+  "order": 35,
+  "flags": [
+    "^CCIT\\{cr4f71n6_un1n73nd3d_51nc3_1978_a56d70f2\\}$"
+  ],
+  "scoring": {
+    "type": "static",
+    "score": 850
+  },
+  "files": [
+    {
+      "name": "cookie_login.py",
+      "type": "upload",
+      "path": "./attachments/cookie_login.py",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "cookieloginrevenge.challs.external.open.ecsc2024.it",
+    "port": 38212
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 10
+    }
+  }
+}

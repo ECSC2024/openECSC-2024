@@ -1,0 +1,12 @@
+services:
+    cybertonpost:
+        build: .
+        ports:
+            - 3000:3000
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_DATABASE: cyberpost
+            MYSQL_USER: cyberpost
+            MYSQL_PASSWORD: password
+        volumes:
+            - ./init.sql:/docker-entrypoint-initdb.d/init.sql

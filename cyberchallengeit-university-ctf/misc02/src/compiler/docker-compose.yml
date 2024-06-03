@@ -1,0 +1,4 @@
+services:
+  compiler:
+    container_name: nftp_compiler
+    build: .

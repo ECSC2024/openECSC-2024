@@ -1,0 +1,8 @@
+services:
+    yasc:
+        build: yasc
+        restart: unless-stopped
+        environment:
+            FLAG: CCIT{Cl13nT_s1d3_ch3ck5_4r3_N3V3R_3n0uGh_[RANDOM]}
+        ports:
+            - '5000:8000'

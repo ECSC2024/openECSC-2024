@@ -19,7 +19,7 @@ The 2024 edition of the [openECSC](https://open.ecsc2024.it) competition is orga
 
 ## Competition mirrors
 
-This repo will contains also the source codes of the mirror competitions for all the jeopardy-style CTFs organized by the CINI Cybersecurity National Lab.
+This repo will contains also the source codes of the mirror competitions hosted in the [external openECSC platform](https://external.open.ecsc2024.it/) for all the jeopardy-style CTFs organized by the CINI Cybersecurity National Lab.
 
 Be aware that the target audience of these competitions varies a lot and may differs from the openECSC 2024 target, and difficulty levels will be very different among competitions. Descriptions of all the mirrored events are summarized below:
 
@@ -30,12 +30,12 @@ Be aware that the target audience of these competitions varies a lot and may dif
 
 ### Mirrors calendar
 
-| # Round                            | Starting time           | Ending time             | Source                                              |
-| :--------------------------------- | :---------------------- | :---------------------- | :-------------------------------------------------- |
-| OliCyber.IT - Regional CTF         | 06 Apr. 2024, 13:00 UTC | 06 Apr. 2024, 17:00 UTC | [olicyberit-regional-ctf](olicyberit-regional-ctf/) |
-| CyberChallenge.IT - University CTF | 29 May 2024, 08:00 UTC  | 29 May 2024, 15:00 UTC  |                                                     |
-| OliCyber.IT - National Final       | 08 Jun. 2024, 08:00 UTC | 08 Jun. 2024, 15:00 UTC |                                                     |
-| TeamItaly - Preselection CTF       | 15 Jun. 2024, TBA       | 16 Jun. 2024, TBA       |                                                     |
+| # Round                            | Starting time           | Ending time             | Source                                                      |
+| :--------------------------------- | :---------------------- | :---------------------- | :---------------------------------------------------------- |
+| OliCyber.IT - Regional CTF         | 06 Apr. 2024, 13:00 UTC | 06 Apr. 2024, 17:00 UTC | [olicyberit-regional-ctf](olicyberit-regional-ctf/)         |
+| CyberChallenge.IT - University CTF | 29 May 2024, 08:00 UTC  | 29 May 2024, 15:00 UTC  | [cyberchallengeit-university-ctf](olicyberit-regional-ctf/) |
+| OliCyber.IT - National Final       | 08 Jun. 2024, 08:00 UTC | 08 Jun. 2024, 15:00 UTC |                                                             |
+| TeamItaly - Preselection CTF       | 15 Jun. 2024, TBA       | 16 Jun. 2024, TBA       |                                                             |
 
 ## Challenge structure
 

@@ -1,0 +1,28 @@
+{
+  "title": "Matrioska",
+  "description": "The password is `password`",
+  "authors": [
+    "Giovanni Minotti <@Giotino>"
+  ],
+  "tags": [
+    "misc"
+  ],
+  "hiddenTags": [],
+  "order": 11,
+  "flags": [
+    "^CCIT\\{apt_install_everything_c3fe3682\\}$"
+  ],
+  "scoring": {
+    "type": "static",
+    "score": 300
+  },
+  "files": [
+    {
+      "name": "challenge.zip",
+      "type": "upload",
+      "path": "./attachments/challenge.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

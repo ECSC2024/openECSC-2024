@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "services": {
+    "cookielogin": {
+      "build": "src",
+      "environment": {
+        "FLAG": "CCIT{cr4f71n6_un1n73nd3d_51nc3_1978_a56d70f2}"
+      },
+      "expose": [
+        {
+          "type": "tcp",
+          "container": 1337,
+          "host": 38212
+        }
+      ]
+    }
+  }
+}

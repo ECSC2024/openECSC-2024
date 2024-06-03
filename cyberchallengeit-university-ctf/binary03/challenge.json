@@ -1,0 +1,39 @@
+{
+  "title": "License Checker",
+  "description": "My license expired and I can't afford to renew it! Please buy me an activation code!\n\n`nc licensechecker.challs.external.open.ecsc2024.it 38204`\n\nThe license server port for this challenge is:\n\n`38205`",
+  "authors": [
+    "Alberto Carboneri <@Alberto247>"
+  ],
+  "tags": [
+    "binary"
+  ],
+  "hiddenTags": [],
+  "order": 43,
+  "flags": [
+    "^CCIT\\{m4yb3_runn1ng_th3_v4lid4t10n_c0d3_0n_my_cl13n7s_l4pt0ps_1sn't_such_4_gr3a7_1dea_04b5e95c\\}$"
+  ],
+  "scoring": {
+    "type": "static",
+    "score": 550
+  },
+  "files": [
+    {
+      "name": "licensechecker",
+      "type": "upload",
+      "path": "./attachments/licensechecker",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "licensechecker.challs.external.open.ecsc2024.it",
+    "port": 38204
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 10
+    }
+  }
+}

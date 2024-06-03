@@ -1,0 +1,49 @@
+{
+  "enabled": true,
+  "services": {
+    "web": {
+      "build": "src",
+      "environment": {
+        "DB_HOST": "{{ .services.db.hostname }}",
+        "DB_USER": "sharepic",
+        "DB_PASS": "98a4f7383513e12065ffd632",
+        "DB_NAME": "sharepic"
+      },
+      "volumes": [
+        {
+          "type": "bind",
+          "readonly": true,
+          "host": "src/init.sql",
+          "container": "/docker-entrypoint-initdb.d/init.sql"
+        }
+      ],
+      "expose": [
+        {
+          "type": "tcp",
+          "container": 80,
+          "host": 38211
+        }
+      ],
+      "depends-on": [
+        "db"
+      ]
+    },
+    "db": {
+      "image": "mariadb:11.3.2",
+      "environment": {
+        "MYSQL_ROOT_PASSWORD": "3be28b3cf817dc749f71ee88e7195198",
+        "MYSQL_DATABASE": "sharepic",
+        "MYSQL_USER": "sharepic",
+        "MYSQL_PASSWORD": "98a4f7383513e12065ffd632"
+      },
+      "volumes": [
+        {
+          "type": "bind",
+          "readonly": true,
+          "host": "src/init.sql",
+          "container": "/docker-entrypoint-initdb.d/init.sql"
+        }
+      ]
+    }
+  }
+}

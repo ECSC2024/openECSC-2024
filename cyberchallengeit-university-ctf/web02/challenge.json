@@ -1,0 +1,38 @@
+{
+  "title": "super-php-i18n",
+  "description": "I'm publishing a new php i18n library, let me know what you think!\n\nSite: [http://super-php-i18n.challs.external.open.ecsc2024.it:38209](http://super-php-i18n.challs.external.open.ecsc2024.it:38209)",
+  "authors": [
+    "Lorenzo Leonardini <@pianka>"
+  ],
+  "tags": [
+    "web"
+  ],
+  "hiddenTags": [],
+  "order": 22,
+  "flags": [
+    "^CCIT\\{Ju57_b3c4Us3_1Ts_4n_H34d3R_d03Sn7_M34n_1t_c4n7_c0n741n_xSs_0f2a3ca5\\}$"
+  ],
+  "scoring": {
+    "type": "static",
+    "score": 325
+  },
+  "files": [
+    {
+      "name": "super-php-i18n.zip",
+      "type": "upload",
+      "path": "./attachments/super-php-i18n.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "http",
+    "url": "http://super-php-i18n.challs.external.open.ecsc2024.it:38209/"
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 60
+    }
+  }
+}

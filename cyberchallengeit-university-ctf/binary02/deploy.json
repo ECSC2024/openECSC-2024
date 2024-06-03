@@ -1,0 +1,27 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "image": "cybersecnatlab/challenge-jail@sha256:a90fb2f6c9b460b8ed559bf78d5cbd084bff11fda5feb863229ec51d58641871",
+      "environment": {
+        "FLAG": "CCIT{wh4t_a_pr3tty_g00d_sh3llcoder_u_are_e6ccc40d}",
+        "TIMEOUT": "30"
+      },
+      "volumes": [
+        {
+          "type": "bind",
+          "readonly": true,
+          "host": "src/build/shellcoder",
+          "container": "/home/user/chall"
+        }
+      ],
+      "expose": [
+        {
+          "type": "tcp",
+          "container": 1337,
+          "host": 38201
+        }
+      ]
+    }
+  }
+}

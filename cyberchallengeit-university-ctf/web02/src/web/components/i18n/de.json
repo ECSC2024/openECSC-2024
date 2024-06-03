@@ -1,0 +1,26 @@
+{
+	"disclaimer": "This was literally google translate, so don't blame me for any mistakes.",
+	"languageName": "Deutsch",
+	"languages": {
+		"en": "English",
+		"it": "Italiano",
+		"fr": "Français",
+		"de": "Deutsch"
+	},
+	"seo": {
+		"title": "super-php-i18n"
+	},
+	"home": {
+		"welcome": "Willkommen",
+		"intro": "Wir bieten Lösungen der nächsten Generation für mehrsprachige Websites.",
+		"description": "Einfacher Code, der sich leicht in Ihre Codebasis implementieren lässt. Inspiriert von den besten Bibliotheken."
+	},
+	"form": {
+		"title": "In Kontakt kommen",
+		"name": "Name",
+		"email": "E-Mail-Adresse",
+		"emailDisclaimer": "Wir geben Ihre E-Mail-Adresse niemals an Dritte weiter.",
+		"message": "Nachricht",
+		"send": "Schicken"
+	}
+}

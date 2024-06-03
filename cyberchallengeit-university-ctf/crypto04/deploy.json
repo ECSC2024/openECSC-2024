@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "services": {
+    "cookielogin": {
+      "build": "src",
+      "environment": {
+        "FLAG": "CCIT{d0_y0u_r3m3mb3r_CVE-2015-2141?_dfdb41c6}"
+      },
+      "expose": [
+        {
+          "type": "tcp",
+          "container": 1337,
+          "host": 38200
+        }
+      ]
+    }
+  }
+}
