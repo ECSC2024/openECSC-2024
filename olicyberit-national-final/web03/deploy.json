@@ -1,0 +1,44 @@
+{
+  "enabled": true,
+  "services": {
+    "web": {
+      "build": "src",
+      "environment": {
+        "MONGO_HOST": "{{ .services.mongo.hostname }}",
+        "MONGO_USER": "user",
+        "MONGO_PASS": "6436ff51e78372e3aea49237f4fbe113",
+        "WEB_DOM": "affiliatedstore.challs.external.open.ecsc2024.it:38305",
+        "CHECKER_TOKEN": "7cbe22c9bc4f0246a6b4c86bc0ab14b5",
+        "FLAG": "flag{n3V3r_7rUS7_7h3_0Bj3CtS_Y0u_m3Rg3_[RANDOM]}"
+      },
+      "headless": true,
+      "expose": [
+        {
+          "type": "tcp",
+          "container": 5000,
+          "host": 38305
+        }
+      ],
+      "depends-on": [
+        "mongo"
+      ]
+    },
+    "mongo": {
+      "enabled": true,
+      "image": "mongo:7.0.11",
+      "environment": {
+        "MONGO_INITDB_ROOT_USERNAME": "root",
+        "MONGO_INITDB_ROOT_PASSWORD": "0975f632799b36c9e132ea9ffb37",
+        "MONGO_INITDB_DATABASE": "shop"
+      },
+      "volumes": [
+        {
+          "type": "bind",
+          "readonly": true,
+          "host": "src/init-mongo-db-with-collections.js",
+          "container": "/docker-entrypoint-initdb.d/init-mongo-db-with-collections.js"
+        }
+      ]
+    }
+  }
+}

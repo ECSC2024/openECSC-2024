@@ -1,0 +1,41 @@
+{
+  "title": "Keyless Signatures",
+  "description": "If I don't give you any keys you can't forge anything... Right?\n\n`nc keyless.challs.external.open.ecsc2024.it 38300`",
+  "authors": [
+    "Matteo Rossi <@mr96>"
+  ],
+  "tags": [
+    "crypto"
+  ],
+  "hiddenTags": [],
+  "order": 23,
+  "flags": [
+    "^flag\\{7h15_ch4ll3n63_c4n_b3_50lv3d_1n_47_l3457_3_w4y5_3406e96d\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "keyless.py",
+      "type": "upload",
+      "path": "./attachments/keyless.py",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "keyless.challs.external.open.ecsc2024.it",
+    "port": 38300
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 10
+    }
+  }
+}

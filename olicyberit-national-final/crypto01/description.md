@@ -1,0 +1,1 @@
+Just an easy oneliner so that you can go to the next one quickly!

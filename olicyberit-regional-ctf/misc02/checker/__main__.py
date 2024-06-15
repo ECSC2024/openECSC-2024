@@ -7,7 +7,7 @@ import requests
 
 logging.disable()
 
-URL = os.environ.get("URL", "http://easylogin.challs.olicyber.it")
+URL = os.environ.get("URL", "http://easylogin.challs.external.open.ecsc2024.it")
 if URL.endswith("/"):
     URL = URL[:-1]
 

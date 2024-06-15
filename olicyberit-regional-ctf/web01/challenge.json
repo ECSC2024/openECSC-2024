@@ -1,6 +1,6 @@
 {
   "title": "Pretty please",
-  "description": "Sometimes you should just ask :)\n\nSito: [http://prettyplease.challs.olicyber.it](http://prettyplease.challs.olicyber.it)",
+  "description": "Sometimes you should just ask :)\n\nSito: [http://prettyplease.challs.external.open.ecsc2024.it](http://prettyplease.challs.external.open.ecsc2024.it)",
   "authors": [
     "Stefano Alberto <@Xato>"
   ],
@@ -20,7 +20,7 @@
   "hints": [],
   "endpoint": {
     "type": "http",
-    "url": "http://prettyplease.challs.olicyber.it:80/"
+    "url": "http://prettyplease.challs.external.open.ecsc2024.it:80/"
   },
   "checker": {
     "enabled": true,

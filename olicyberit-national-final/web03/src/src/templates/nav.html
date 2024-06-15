@@ -1,0 +1,16 @@
+<nav>
+	<a class="nav-brand" href="/" style="color: inherit; text-decoration: none">
+		<sl-icon name="cart4"></sl-icon>
+		AffiliatedStore
+	</a>
+
+	<div style="display: flex; align-items: center; gap: 2rem">
+		<div>Your affiliation code: {{ session['user_id'] }}</div>
+		<div>
+			<sl-button href="/dashboard"><sl-icon slot="prefix" name="graph-up"></sl-icon>Dashboard</sl-button>
+		</div>
+		<div>
+			<sl-button variant="warning" pill id="cartBtn"><sl-icon slot="prefix" name="cart"></sl-icon>Cart</sl-button>
+		</div>
+	</div>
+</nav>

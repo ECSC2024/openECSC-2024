@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" class="sl-theme-dark">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>AffiliatedStore</title>
+
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/themes/dark.css" />
+		<script
+			type="module"
+			src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/shoelace-autoloader.js"></script>
+
+		<style>
+			:root {
+				font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			}
+
+			html,
+			body {
+				height: 100%;
+				margin: 0;
+				padding: 0;
+			}
+
+			body {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			:not(:defined) {
+				visibility: hidden;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div style="width: 95%; max-width: 350px">
+			<form style="display: flex; flex-direction: column; gap: 1em" id="signupForm">
+				<sl-input id="username" label="Username" required></sl-input>
+				<sl-input id="affiliation" label="Affiliation invite (optional)"></sl-input>
+
+				<sl-button variant="primary" id="submit" type="submit" style="margin-top: 1em">Signup</sl-button>
+			</form>
+		</div>
+
+		<script>
+			signupForm.onsubmit = (e) => {
+				e.preventDefault();
+
+				if (username.value.trim().length === 0) return;
+
+				if (affiliation.value.trim().length > 0) {
+					sessionStorage.affiliation = affiliation.value.trim();
+				}
+
+				fetch('/api/signup', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						username: username.value.trim()
+					})
+				})
+					.then((res) => res.json())
+					.then((data) => {
+						location.href = '/';
+					})
+					.catch((err) => {
+						alert('An error occurred');
+					});
+			};
+		</script>
+	</body>
+</html>

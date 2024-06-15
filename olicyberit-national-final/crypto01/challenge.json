@@ -1,0 +1,36 @@
+{
+  "title": "Next flag",
+  "description": "Just an easy oneliner so that you can go to the next one quickly!",
+  "authors": [
+    "Lorenzo Demeio <@Devrar>"
+  ],
+  "tags": [
+    "crypto"
+  ],
+  "hiddenTags": [],
+  "order": 21,
+  "flags": [
+    "^flag\\{y35_w3_kn0w_7h47_7h3r3_4r3_m0r3_l1n35_bu7_7h3_1mp0r75_d0n'7_c0un7_cfd7002c\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "next_output.txt",
+      "type": "upload",
+      "path": "./attachments/next_output.txt",
+      "dynamic": false
+    },
+    {
+      "name": "next_source.py",
+      "type": "upload",
+      "path": "./attachments/next_source.py",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

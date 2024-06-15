@@ -5,7 +5,7 @@ from pwn import *
 
 logging.disable()
 
-HOST = os.environ.get("HOST", "secure-filemanager.challs.olicyber.it")
+HOST = os.environ.get("HOST", "secure-filemanager.challs.external.open.ecsc2024.it")
 PORT = int(os.environ.get("PORT", 38104))
 
 with remote(HOST, PORT) as r:

@@ -1,6 +1,6 @@
 {
   "title": "Random Cycles",
-  "description": "Knowing the key it's easy to decrypt. This time it will be harder.\n\n`nc random-cycles.challs.olicyber.it 38102`",
+  "description": "Knowing the key it's easy to decrypt. This time it will be harder.\n\n`nc random-cycles.challs.external.open.ecsc2024.it 38102`",
   "authors": [
     "Lorenzo Demeio <@Devrar>"
   ],
@@ -27,7 +27,7 @@
   "hints": [],
   "endpoint": {
     "type": "tcp",
-    "host": "random-cycles.challs.olicyber.it",
+    "host": "random-cycles.challs.external.open.ecsc2024.it",
     "port": 38102
   },
   "checker": {

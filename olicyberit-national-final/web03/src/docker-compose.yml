@@ -1,0 +1,50 @@
+services:
+    web:
+        build: .
+        restart: unless-stopped
+        environment:
+            MONGO_HOST: mongo
+            MONGO_USER: user
+            MONGO_PASS: 6436ff51e78372e3aea49237f4fbe113
+            HEADLESS_HOST: headless:5000
+            HEADLESS_AUTH: 54c8a55b8facd10fa70ed4d5c1951ce5
+            WEB_DOM: web:5000
+            CHECKER_TOKEN: 7cbe22c9bc4f0246a6b4c86bc0ab14b5
+            FLAG: flag{n3V3r_7rUS7_7h3_0Bj3CtS_Y0u_m3Rg3_[RANDOM]}
+        ports:
+            - '5000:5000'
+
+    mongo:
+        image: mongo:7.0.11
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: 0975f632799b36c9e132ea9ffb37
+            MONGO_INITDB_DATABASE: shop
+        volumes:
+            - ./init-mongo-db-with-collections.js:/docker-entrypoint-initdb.d/init-mongo-db-with-collections.js:ro
+
+    # Headless stuff below
+    headless:
+        image: cybersecnatlab/challenge-headless:latest-manager
+        restart: unless-stopped
+        environment:
+            AUTH_TOKEN: 54c8a55b8facd10fa70ed4d5c1951ce5
+            RABBITMQ_HOST: headless-rabbitmq
+            RABBITMQ_QUEUE: headless-jobs
+        depends_on:
+            - headless-rabbitmq
+
+    headless-rabbitmq:
+        image: rabbitmq:3.11
+        restart: unless-stopped
+
+    headless-worker:
+        image: cybersecnatlab/challenge-headless:latest-worker
+        restart: unless-stopped
+        environment:
+            RABBITMQ_HOST: headless-rabbitmq
+            RABBITMQ_QUEUE: headless-jobs
+        deploy:
+            replicas: 1
+        depends_on:
+            - headless-rabbitmq

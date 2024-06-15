@@ -8,7 +8,7 @@ import re
 logging.disable()
 
 # For HTTP connection
-URL = os.environ.get("URL", "http://monty-hall.challs.olicyber.it")
+URL = os.environ.get("URL", "http://monty-hall.challs.external.open.ecsc2024.it")
 if URL.endswith("/"):
     URL = URL[:-1]
 

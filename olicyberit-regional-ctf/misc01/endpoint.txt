@@ -1,1 +1,1 @@
-tcp,secure-filemanager.challs.olicyber.it,38104
+tcp,secure-filemanager.challs.external.open.ecsc2024.it,38104

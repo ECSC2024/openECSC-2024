@@ -1,6 +1,6 @@
 {
   "title": "Age Calculator Pro",
-  "description": "I no longer want to remember how old I am...\n\n`nc agecalculatorpro.challs.olicyber.it 38103`",
+  "description": "I no longer want to remember how old I am...\n\n`nc agecalculatorpro.challs.external.open.ecsc2024.it 38103`",
   "authors": [
     "Giulia Martino <@Giulia>"
   ],
@@ -28,7 +28,7 @@
   "hints": [],
   "endpoint": {
     "type": "tcp",
-    "host": "agecalculatorpro.challs.olicyber.it",
+    "host": "agecalculatorpro.challs.external.open.ecsc2024.it",
     "port": 38103
   },
   "checker": {

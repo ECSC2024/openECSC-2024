@@ -1,0 +1,14 @@
+services:
+  30elode:
+    image: cybersecnatlab/challenge-jail@sha256:8ac55aa6e7fe753a43b9b5a0283113544742798aaef7977eab0e854c476a634a
+    restart: unless-stopped
+    init: true
+    privileged: true
+    volumes:
+      - './build/30elode:/home/user/chall:ro'
+    ports:
+      - '38301:1337'
+    environment:
+      - 'FLAG=flag{th4nks_a_l0t_y0u_sav3d_my_gr4de_<3_6824103f}'
+      - 'FORWARD_STDERR=true'
+      - 'TIMEOUT=60'

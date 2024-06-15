@@ -1,0 +1,30 @@
+{
+  "title": "Around the World",
+  "description": "Gabibbo has just returned from a long trip: it followed an interesting route, these are the photos it took.\n\nFlag format is: `FLAG{[A-Z]+}`.",
+  "authors": [
+    "Lorenzo Catoni <@lorenzcat>"
+  ],
+  "tags": [
+    "misc"
+  ],
+  "hiddenTags": [],
+  "order": 11,
+  "flags": [
+    "^FLAG{ONNMILWPHXEHVA}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "around-the-world.zip",
+      "type": "upload",
+      "path": "./attachments/around-the-world.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

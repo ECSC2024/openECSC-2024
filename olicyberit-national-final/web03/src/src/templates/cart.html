@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" class="sl-theme-dark">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>AffiliatedStore</title>
+
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/themes/dark.css" />
+		<script
+			type="module"
+			src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/shoelace-autoloader.js"></script>
+		<style>
+			:root {
+				font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			}
+
+			html,
+			body {
+				height: 100%;
+				margin: 0;
+				padding: 0;
+			}
+
+			body {
+				display: flex;
+				flex-direction: column;
+			}
+
+			nav {
+				background: var(--sl-color-neutral-0);
+				border-bottom: solid 1px var(--sl-color-neutral-200);
+
+				display: flex;
+				justify-content: space-between;
+
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+
+				padding: 1rem 4rem;
+				z-index: 9999;
+			}
+
+			.nav-brand {
+				font-size: 1.5rem;
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+			}
+
+			.container {
+				width: 100%;
+				margin-inline: auto;
+				max-width: 1200px;
+			}
+
+			#feedback {
+				position: fixed;
+				bottom: 2rem;
+				right: 2rem;
+				width: 450px;
+			}
+
+			sl-details#feedback::part(summary-icon) {
+				/* Disable the expand/collapse animation */
+				rotate: none;
+			}
+
+			:not(:defined) {
+				visibility: hidden;
+			}
+		</style>
+	</head>
+
+	<body>
+		{% include 'nav.html' %}
+
+		<div
+			class="container"
+			style="margin-top: 7rem; padding-bottom: 4rem; display: grid; grid-template-columns: 4fr 3fr; gap: 1rem">
+			<sl-card style="max-width: none; width: 100%" id="product-list">
+				<h1 style="margin-top: 0">Products</h1>
+			</sl-card>
+			<sl-card>
+				<form id="orderForm">
+					<sl-textarea label="Custom order message" id="customMessage"></sl-textarea>
+					<sl-button type="submit" variant="primary" style="margin-top: 1rem" id="placeOrderBtn"
+						>Place order</sl-button
+					>
+				</form>
+			</sl-card>
+		</div>
+
+		<sl-details summary="Send feedback" id="feedback">
+			<sl-icon name="chat-dots" slot="expand-icon"></sl-icon>
+			<sl-icon name="chat-dots" slot="collapse-icon"></sl-icon>
+
+			Send your cart to an admin for some feedback
+
+			<form id="feedbackForm" style="display: flex; flex-direction: column; gap: 1em; margin-top: 1rem">
+				<sl-input id="pow" label="Proof of Work" required>
+					<div slot="help-text">
+						Solve with <kbd>hashcash -mCb26 "{{ pow_resource }}"</kbd> or
+						<a href="https://pow.cybersecnatlab.it/?data={{ pow_resource }}&bits=26" target="_blank"
+							>using the online tool</a
+						>
+					</div>
+				</sl-input>
+				<sl-button variant="primary" type="submit">Send</sl-button>
+			</form>
+		</sl-details>
+
+		<script>
+			const cart = JSON.parse(atob(new URL(location.href).searchParams.get('cart')));
+
+			const products = {};
+
+			cart.forEach((el) => {
+				const product = products[el.id] || (products[el.id] = {});
+
+				for (const [key, value] of Object.entries(el)) {
+					if (key === 'id') continue;
+					product[key] = value;
+				}
+			});
+
+			Object.values(products).forEach((product, idx) => {
+				const d = document.createElement('div');
+				d.innerText = product.name;
+				document.querySelector('#product-list').appendChild(d);
+
+				if (idx !== Object.values(products).length - 1) {
+					document.querySelector('#product-list').appendChild(document.createElement('sl-divider'));
+				}
+			});
+
+			orderForm.onsubmit = (e) => {
+				e.preventDefault();
+
+				fetch('/api/order', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						cart: cart,
+						message: customMessage.value,
+						affiliation: sessionStorage.affiliation
+					})
+				})
+					.then((res) => res.json())
+					.then((data) => {
+						location.href = '/';
+					})
+					.catch((err) => {
+						location.href = '/';
+					});
+			};
+
+			feedbackForm.onsubmit = (e) => {
+				e.preventDefault();
+
+				fetch('/api/feedback', {
+					method: 'POST',
+					headers: {
+						'content-type': 'application/json'
+					},
+					body: JSON.stringify({
+						cart: cart,
+						pow: pow.value
+					})
+				})
+					.then(() => {
+						window.location = '/';
+					})
+					.catch(() => {
+						window.location = '/';
+					});
+			};
+		</script>
+	</body>
+</html>

@@ -10,4 +10,4 @@ def cleanup(filename):
   return filename
 ```
 
-`nc secure-filemanager.challs.olicyber.it 38104`
+`nc secure-filemanager.challs.external.open.ecsc2024.it 38104`

@@ -1,0 +1,28 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "image": "cybersecnatlab/challenge-jail@sha256:8ac55aa6e7fe753a43b9b5a0283113544742798aaef7977eab0e854c476a634a",
+      "environment": {
+        "TIMEOUT": "60",
+        "FORWARD_STDERR": "true",
+        "FLAG": "flag{th4nks_a_l0t_y0u_sav3d_my_gr4de_<3_6824103f}"
+      },
+      "volumes": [
+        {
+          "type": "bind",
+          "readonly": true,
+          "host": "src/build/30elode",
+          "container": "/home/user/chall"
+        }
+      ],
+      "expose": [
+        {
+          "type": "tcp",
+          "container": 1337,
+          "host": 38301
+        }
+      ]
+    }
+  }
+}

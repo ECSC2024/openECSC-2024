@@ -1,0 +1,15 @@
+services:
+  dragon-fighters-club:
+    image: cybersecnatlab/challenge-jail@sha256:8ac55aa6e7fe753a43b9b5a0283113544742798aaef7977eab0e854c476a634a
+    restart: unless-stopped
+    init: true
+    privileged: true
+    volumes:
+      - './build/dragon_fighters_club:/home/user/chall:ro'
+    ports:
+      - '38303:1337'
+    environment:
+      - 'FLAG=flag{w3lcome_t0_th3_drag0n_fight3rs_club_0216e566}'
+      - 'TIMEOUT=60'
+      - 'POW_BITS=26'
+      - 'POW_BYPASS_HASH=redacted'

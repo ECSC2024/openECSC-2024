@@ -1,0 +1,41 @@
+{
+  "title": "30 e lode",
+  "description": "I wrote this VM for my operating systems university course. There's still a lot of code to add, but I'm very proud so far. Can you check it for me? I want a 30 e lodeeeeeeeeeeeeeeee!\n\n`nc 30elode.challs.external.open.ecsc2024.it 38301`",
+  "authors": [
+    "Giulia Martino <@Giulia>"
+  ],
+  "tags": [
+    "binary"
+  ],
+  "hiddenTags": [],
+  "order": 43,
+  "flags": [
+    "^flag\\{th4nks_a_l0t_y0u_sav3d_my_gr4de_<3_6824103f\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "30elode.zip",
+      "type": "upload",
+      "path": "./attachments/30elode.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "30elode.challs.external.open.ecsc2024.it",
+    "port": 38301
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 20
+    }
+  }
+}

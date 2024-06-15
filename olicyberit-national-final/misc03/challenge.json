@@ -1,0 +1,36 @@
+{
+  "title": "so far so good",
+  "description": "I'm far from home and pushed a secret to my Arduino over the network... hope nobody finds out!",
+  "authors": [
+    "Andrea Raineri <@Rising>"
+  ],
+  "tags": [
+    "misc"
+  ],
+  "hiddenTags": [],
+  "order": 13,
+  "flags": [
+    "^flag\\{0h_usb_0v3r_1p_i5_s0_c00l_567c08e6\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "chall.ino",
+      "type": "upload",
+      "path": "./attachments/chall.ino",
+      "dynamic": false
+    },
+    {
+      "name": "dump.pcapng",
+      "type": "upload",
+      "path": "./attachments/dump.pcapng",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

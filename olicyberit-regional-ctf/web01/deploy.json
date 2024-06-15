@@ -10,7 +10,7 @@
         {
           "type": "http",
           "container": 80,
-          "hostname": "prettyplease.challs.olicyber.it",
+          "hostname": "prettyplease.challs.external.open.ecsc2024.it",
           "secure": false
         }
       ]

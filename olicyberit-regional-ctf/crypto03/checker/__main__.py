@@ -10,7 +10,7 @@ from sympy.ntheory.modular import crt
 
 logging.disable()
 
-HOST = os.environ.get("HOST", "random-cycles.challs.olicyber.it")
+HOST = os.environ.get("HOST", "random-cycles.challs.external.open.ecsc2024.it")
 PORT = int(os.environ.get("PORT", 38102))
 
 alph = string.ascii_letters + string.digits

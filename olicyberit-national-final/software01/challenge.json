@@ -1,0 +1,30 @@
+{
+  "title": "MIC",
+  "description": "A Message In Code has just arrived for you Agent.",
+  "authors": [
+    "Alberto Carboneri <@Alberto247>"
+  ],
+  "tags": [
+    "binary"
+  ],
+  "hiddenTags": [],
+  "order": 41,
+  "flags": [
+    "^flag\\{de4d_dr0p_l0c4tion:ILO_bc18d11\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "MIC",
+      "type": "upload",
+      "path": "./attachments/MIC",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

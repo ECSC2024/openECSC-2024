@@ -8,7 +8,7 @@ from pwn import *
 logging.disable()
 
 # For TCP connection
-HOST = os.environ.get("HOST", "agecalculatorpro.challs.olicyber.it")
+HOST = os.environ.get("HOST", "agecalculatorpro.challs.external.open.ecsc2024.it")
 PORT = int(os.environ.get("PORT", 38103))
 
 exe = context.binary = ELF(os.path.join(os.path.dirname(__file__), 'age_calculator_pro'))

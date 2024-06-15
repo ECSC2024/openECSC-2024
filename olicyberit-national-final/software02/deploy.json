@@ -1,0 +1,27 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "image": "cybersecnatlab/challenge-jail@sha256:8ac55aa6e7fe753a43b9b5a0283113544742798aaef7977eab0e854c476a634a",
+      "environment": {
+        "TIMEOUT": "60",
+        "FLAG": "flag{w3lcome_t0_th3_drag0n_fight3rs_club_0216e566}"
+      },
+      "volumes": [
+        {
+          "type": "bind",
+          "readonly": true,
+          "host": "src/build/dragon_fighters_club",
+          "container": "/home/user/chall"
+        }
+      ],
+      "expose": [
+        {
+          "type": "tcp",
+          "container": 1337,
+          "host": 38303
+        }
+      ]
+    }
+  }
+}

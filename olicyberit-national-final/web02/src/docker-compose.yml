@@ -1,0 +1,73 @@
+services:
+  nginx:
+    image: nginx:1.19-alpine
+    ports:
+      - "38100:5000"
+    environment:
+      PHP_HOST: php-fpm
+    volumes:
+      - ./nginx.conf:/etc/nginx/templates/default.conf.template:ro
+      - ./src:/var/www/html:ro
+    restart: unless-stopped
+    
+  php-fpm:
+    build: .
+    environment:
+      MYSQL_HOST: db
+      MYSQL_DATABASE: not_phishing
+      MYSQL_ROOT_PASSWORD: password
+      FLAG: flag{0n3_cl1ck_4cc0un7_74k30v3r_r34lly_f0und_1n_7h3_w1ld_%s}
+      MAIL_TOKEN: ffd5251eadd9809fed0c07028ec2064f
+      MAIL_HOST: fakemail
+    restart: unless-stopped
+
+  db:
+    image: mysql
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/:ro
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: not_phishing
+    restart: unless-stopped
+
+  # Fakemail server
+  fakemail:
+    build: ./fakemail
+    environment:
+      MAIL_HOST: fakemail
+      MAIL_TOKEN: ffd5251eadd9809fed0c07028ec2064f
+      ADMIN_PASSWORD: a280965f96c2f488243a4697a834a114
+      ADMIN_EMAIL: admin@fakemail.olicyber.it
+      SECRET_KEY: 130581c0e5450862838571938f029363
+      HEADLESS_HOST: headless:5000
+      HEADLESS_AUTH: bdec2615878f59b6d02fe903a8bbeabc
+    ports:
+      - "38101:80"
+    restart: unless-stopped
+    command: /usr/bin/supervisord
+  
+  # Headless stuff below
+  headless:
+    image: cybersecnatlab/challenge-headless:latest-manager
+    restart: unless-stopped
+    environment:
+      AUTH_TOKEN: bdec2615878f59b6d02fe903a8bbeabc
+      RABBITMQ_HOST: headless-rabbitmq
+      RABBITMQ_QUEUE: headless-jobs
+    depends_on:
+      - headless-rabbitmq
+
+  headless-rabbitmq:
+    image: rabbitmq:3.11
+    restart: unless-stopped
+
+  headless-worker:
+    image: cybersecnatlab/challenge-headless:latest-worker
+    restart: unless-stopped
+    environment:
+      RABBITMQ_HOST: headless-rabbitmq
+      RABBITMQ_QUEUE: headless-jobs
+    deploy:
+      replicas: 4
+    depends_on:
+      - headless-rabbitmq

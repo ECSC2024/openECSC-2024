@@ -1,0 +1,17 @@
+blinker==1.7.0
+certifi==2024.6.2
+charset-normalizer==3.3.2
+click==8.1.7
+colorama==0.4.6
+dnspython==2.6.1
+Flask==3.0.0
+gunicorn==22.0.0
+idna==3.7
+itsdangerous==2.1.2
+Jinja2==3.1.3
+MarkupSafe==2.1.3
+packaging==24.0
+pymongo==4.7.2
+requests==2.32.3
+urllib3==2.2.1
+Werkzeug==3.0.1

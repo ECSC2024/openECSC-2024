@@ -1,3 +1,3 @@
 I no longer want to remember how old I am...
 
-`nc agecalculatorpro.challs.olicyber.it 38103`
+`nc agecalculatorpro.challs.external.open.ecsc2024.it 38103`

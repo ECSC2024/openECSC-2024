@@ -1,0 +1,86 @@
+{
+  "enabled": true,
+  "services": {
+    "nginx": {
+      "image": "nginx:1.19-alpine",
+      "environment": {
+        "PHP_HOST": "{{ .services.php.hostname }}"
+      },
+      "expose": [
+        {
+          "type": "tcp",
+          "host": 38100,
+          "container": 5000
+        }
+      ],
+      "volumes": [
+        {
+          "type": "bind",
+          "host": "src/nginx.conf",
+          "container": "/etc/nginx/templates/default.conf.template",
+          "readonly": true
+        },
+        {
+          "type": "bind",
+          "host": "src/src",
+          "container": "/var/www/html",
+          "readonly": true
+        }
+      ],
+      "depends-on": [
+        "php"
+      ]
+    },
+    "php": {
+      "build": "src",
+      "environment": {
+        "MYSQL_HOST": "{{ .services.db.hostname }}",
+        "MYSQL_DATABASE": "not_phishing",
+        "MYSQL_ROOT_PASSWORD": "password",
+        "FLAG": "flag{0n3_cl1ck_4cc0un7_74k30v3r_r34lly_f0und_1n_7h3_w1ld_%s}",
+        "MAIL_TOKEN": "ffd5251eadd9809fed0c07028ec2064f",
+        "MAIL_HOST": "{{ .services.fakemail.hostname }}"
+      },
+      "depends-on": [
+        "db",
+        "fakemail"
+      ]
+    },
+    "db": {
+      "image": "mysql",
+      "environment": {
+        "MYSQL_ROOT_PASSWORD": "password",
+        "MYSQL_DATABASE": "not_phishing"
+      },
+      "volumes": [
+        {
+          "type": "bind",
+          "host": "src/db",
+          "container": "/docker-entrypoint-initdb.d",
+          "readonly": true
+        }
+      ]
+    },
+    "fakemail": {
+      "build": "src/fakemail",
+      "headless": true,
+      "command": [
+        "/usr/bin/supervisord"
+      ],
+      "environment": {
+        "MAIL_HOST": "not-phishing-fakemail.challs.external.open.ecsc2024.it:38101",
+        "MAIL_TOKEN": "ffd5251eadd9809fed0c07028ec2064f",
+        "ADMIN_PASSWORD": "a280965f96c2f488243a4697a834a114",
+        "ADMIN_EMAIL": "admin@fakemail.olicyber.it",
+        "SECRET_KEY": "130581c0e5450862838571938f029363"
+      },
+      "expose": [
+        {
+          "type": "tcp",
+          "host": 38101,
+          "container": 80
+        }
+      ]
+    }
+  }
+}

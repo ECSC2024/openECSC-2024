@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}
+Email from {{ email["email_from"] }}
+{% endblock %}
+
+{% block content %}
+
+<body class="bg-gray-100 font-sans">
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="bg-gray-200 w-64 min-h-screen">
+            <div class="p-4">
+                <div class="font-bold text-xl mb-4">
+                    <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
+                </div>
+                <a href="{{ url_for('inbox') }}" class="block text-blue-700 py-2">Inbox</a>
+                <a href="{{ url_for('inbox') }}" class="block text-blue-700 py-2">Sent</a>
+                <a href="{{ url_for('inbox') }}" class="block text-blue-700 py-2">Drafts</a>
+                <a href="{{ url_for('inbox') }}" class="block text-blue-700 py-2">Trash</a>
+            </div>
+        </div>
+        <!-- Email Content -->
+        <div class="flex-1 bg-gray-100">
+            <div class="max-w-screen-lg mx-auto px-4 py-8">
+                <div class="bg-white rounded-lg shadow">
+                    <div class="border-b p-4 flex flex-col justify-between">
+                        <div class="flex justify-between">
+                            <div class="text-gray-800 text-lg font-bold" id="subject">{{ email.subject }}</div>
+
+                            <form action="/email/{{ email['id'] }}/delete", method="POST">
+                                <button class="text-red-500 hover:text-red-700 focus:outline-none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 6l2-2h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6zm5 0V4a2 2 0 012-2h4a2 2 0 012 2v2M9 12h6m-3 3v3">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="flex items-center text-xs">
+                            <div class="font-semibold text-blue-700 mr-4" id="from">From: {{ email["email_from"] }}</div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="text-gray-700" id="body">{{ email.body|urlize(20) }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+{% endblock %}

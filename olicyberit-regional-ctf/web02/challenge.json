@@ -1,6 +1,6 @@
 {
   "title": "ToDO",
-  "description": "Volevo imparare Python e Flask, niente di meglio di una todo app, a quanto dice Reddit!\n\nWebsite: [http://todo.challs.olicyber.it](http://todo.challs.olicyber.it)",
+  "description": "I wanted to learn some Python and Flask, nothing better than a todo app, that's what Reddit says!\n\nWebsite: [http://todo.challs.external.open.ecsc2024.it](http://todo.challs.external.open.ecsc2024.it)",
   "authors": [
     "Aleandro Prudenzano <@drw0if>"
   ],
@@ -27,7 +27,7 @@
   "hints": [],
   "endpoint": {
     "type": "http",
-    "url": "http://todo.challs.olicyber.it:80/"
+    "url": "http://todo.challs.external.open.ecsc2024.it:80/"
   },
   "checker": {
     "enabled": true,

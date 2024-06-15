@@ -7,7 +7,7 @@
         {
           "type": "http",
           "container": 80,
-          "hostname": "easylogin.challs.olicyber.it",
+          "hostname": "easylogin.challs.external.open.ecsc2024.it",
           "secure": false
         }
       ]

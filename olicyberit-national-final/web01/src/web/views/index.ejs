@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guess the flag!</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body
+    class="h-100 d-flex flex-column justify-content-center align-items-center"
+    data-bs-theme="dark"
+  >
+    <div class="w-100 d-flex flex-column" style="max-width: 400px">
+      <label for="flag" class="form-label">Guess the flag</label>
+      <div class="d-flex gap-2">
+        <input type="text" class="form-control" id="flag" />
+        <button class="btn btn-primary" id="submit">Guess!</button>
+      </div>
+      <div
+        class="alert alert-success w-full mt-4"
+        id="winning"
+        style="display: none"
+      >
+        You got the flag!
+      </div>
+      <div
+        class="alert alert-danger w-full mt-4"
+        id="losing"
+        style="display: none"
+      >
+        Wrong flag :(
+      </div>
+    </div>
+
+    <script>
+      function win() {
+      	winning.style.display = 'block'
+      	losing.style.display = 'none'
+      }
+
+      function loose() {
+      	losing.style.display = 'block'
+      	winning.style.display = 'none'
+      }
+
+      submit.onclick = <%= jsf %>
+    </script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "build": "src",
+      "environment": {
+        "FLAG": "flag{7h15_ch4ll3n63_c4n_b3_50lv3d_1n_47_l3457_3_w4y5_3406e96d}"
+      },
+      "expose": [
+        {
+          "type": "tcp",
+          "container": 1337,
+          "host": 38300
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char flag[36]="FLAG";
+char encrypted_key[36]="CHECKVALUE";
+char secret[9][2]={{0,1},{1,1},{1,3},{3,1},{3,3},{4,5},{5,0},{5,2},{5,3}};
+char grille[6][6]={0};
+
+void format_key(char* key){
+    for(int i=0; i<6;i++){
+        for(int j=0; j<6;j++){
+            grille[i][j]=key[i*6+j];
+        }
+    }
+}
+
+void rotate_grille(){
+    char key[36]={0};
+    int ctr=0;
+    for(int i=0; i<6;i++){
+        for(int j=5; j>=0;j--){
+            key[ctr]=grille[j][i];
+            ctr++;
+        }
+    }
+    format_key(key);
+}
+
+int check_key(char* key){
+    format_key(key);
+    char decrypted_key[36]={0};
+    for(int i=0;i<4;i++){
+        for(int j=0; j<9;j++){
+            decrypted_key[i*9+j]=grille[secret[j][0]][secret[j][1]];
+        }
+        rotate_grille();
+    }
+    return strncmp(encrypted_key, decrypted_key, 36)==0;
+}
+
+
+
+int main(){
+    puts("You have one (1) new message.");
+    printf("Insert the decryption key to read it correctly: ");
+    char key[40]={0};
+    fgets(key, 40, stdin);
+    key[strcspn(key, "\n")] = 0;
+    if(strlen(key)!=36){
+        puts("Wrong key.");
+        exit(-1);
+    }
+    if(!check_key(key)){
+        puts("Wrong key.");
+        exit(-2);
+    }
+    for(int i=0;i<36;i++){
+        flag[i]^=key[i];
+    }
+    puts("Message decrypted correctly.");
+    printf("%s\n", flag);
+}

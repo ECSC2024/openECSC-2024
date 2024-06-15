@@ -1,0 +1,40 @@
+{
+  "title": "AffiliatedStore",
+  "description": "We've been working on this new web store with a complex affiliation program. We are still working on it, and the payment part is not complete yet. In the meantime, can you help us pentest this part?\n\nSite: [http://affiliatedstore.challs.external.open.ecsc2024.it](http://affiliatedstore.challs.external.open.ecsc2024.it)",
+  "authors": [
+    "Lorenzo Leonardini <@pianka>"
+  ],
+  "tags": [
+    "web"
+  ],
+  "hiddenTags": [],
+  "order": 33,
+  "flags": [
+    "^flag\\{n3V3r_7rUS7_7h3_0Bj3CtS_Y0u_m3Rg3_f5e70da0\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "affiliated-store.zip",
+      "type": "upload",
+      "path": "./attachments/affiliated-store.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "http",
+    "url": "http://affiliatedstore.challs.external.open.ecsc2024.it:38305/"
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 90
+    }
+  }
+}

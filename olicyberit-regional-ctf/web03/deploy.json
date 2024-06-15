@@ -7,7 +7,7 @@
         {
           "type": "http",
           "container": 5000,
-          "hostname": "monty-hall.challs.olicyber.it",
+          "hostname": "monty-hall.challs.external.open.ecsc2024.it",
           "secure": false
         }
       ],

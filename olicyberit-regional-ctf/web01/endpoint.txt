@@ -1,1 +1,1 @@
-http,prettyplease.challs.olicyber.it,80
+http,prettyplease.challs.external.open.ecsc2024.it,80

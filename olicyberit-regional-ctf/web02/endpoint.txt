@@ -1,1 +1,1 @@
-http,todo.challs.olicyber.it,80
+http,todo.challs.external.open.ecsc2024.it,80

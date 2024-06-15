@@ -1,0 +1,36 @@
+{
+  "title": "Kinda diffusion",
+  "description": "In AI, diffusion models add noise to the image and then remove it.\nI added the noise, you remove it!",
+  "authors": [
+    "Aleandro Prudenzano <@drw0if>"
+  ],
+  "tags": [
+    "misc"
+  ],
+  "hiddenTags": [],
+  "order": 12,
+  "flags": [
+    "^flag\\{4i_b3_l1k3_3f9e5c92\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "challenge.py",
+      "type": "upload",
+      "path": "./attachments/challenge.py",
+      "dynamic": false
+    },
+    {
+      "name": "output.bin",
+      "type": "upload",
+      "path": "./attachments/output.bin",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

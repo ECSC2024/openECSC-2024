@@ -1,0 +1,41 @@
+{
+  "title": "Dragon fighters club",
+  "description": "Beat all the dragons to join our exclusive club! People say it's unfeasible... I say you can find a way :P\n\n`nc dragonfightersclub.challs.external.open.ecsc2024.it 38303`",
+  "authors": [
+    "Giulia Martino <@Giulia>"
+  ],
+  "tags": [
+    "binary"
+  ],
+  "hiddenTags": [],
+  "order": 42,
+  "flags": [
+    "^flag\\{w3lcome_t0_th3_drag0n_fight3rs_club_0216e566\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "dragon_fighters_club.zip",
+      "type": "upload",
+      "path": "./attachments/dragon_fighters_club.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "dragonfightersclub.challs.external.open.ecsc2024.it",
+    "port": 38303
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 20
+    }
+  }
+}

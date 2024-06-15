@@ -1,0 +1,8 @@
+services:
+  baby_ibs:
+    build: .
+    restart: unless-stopped
+    ports:
+      - '38300:1337'
+    environment:
+      - 'FLAG=flag{7h15_ch4ll3n63_c4n_b3_50lv3d_1n_47_l3457_3_w4y5_3406e96d}'
