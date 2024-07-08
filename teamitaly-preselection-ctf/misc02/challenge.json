@@ -1,0 +1,39 @@
+{
+  "title": "ssh.exe",
+  "description": "Our forensics team managed to capture a SSH connection and dump the process memory (while it was connected) but they've no clue how to read the communication. Can you help them?",
+  "authors": [
+    "Luca Massarelli (ACN) <@Luca Massarelli (ACN)>",
+    "Bruno Taricco (ACN) <@Bruno Taricco (ACN)>",
+    "Lorenzo Zarfati (ACN) <@Lorenzo Zarfati (ACN)>",
+    "Giovanni Minotti <@Giotino>"
+  ],
+  "tags": [
+    "misc"
+  ],
+  "hiddenTags": [],
+  "order": 22,
+  "flags": [
+    "^TeamItaly\\{ssh_decryption_successfully_achieved\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "capture.pcapng",
+      "type": "upload",
+      "path": "./attachments/capture.pcapng",
+      "dynamic": false
+    },
+    {
+      "name": "ssh.exe.maxidump",
+      "type": "upload",
+      "path": "./attachments/ssh.exe.maxidump",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

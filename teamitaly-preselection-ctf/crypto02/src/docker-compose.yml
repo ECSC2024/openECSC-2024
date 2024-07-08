@@ -1,0 +1,8 @@
+services:
+  encrypted-diary:
+    build: .
+    restart: unless-stopped
+    ports:
+      - '38312:1337'
+    environment:
+      - 'FLAG=TeamItaly{n3v3r_us3_s4m3_k3y_wh3n_y0u_need_2_d66c3ba9}'

@@ -1,0 +1,81 @@
+version: "3"
+
+services: 
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    networks:
+      - smaug
+    environment:
+      MONGO_DB: db
+      MONGO_PASSWORD: wpuRQNzALqhNG5kGrgazUDuw
+      MONGO_USER: smaug
+      MONGO_HOST: mongodb
+      MONGO_PORT: 27017
+      HEADLESS_HOST: headless:5000
+      HEADLESS_AUTH: U0bSxA3lIlIutNofQiuLfkHg
+      FLAG: TeamItaly{4_sm4uGgL3D_un1C0rN_c0mp4ny_:3_%s}
+      POW_BYPASS: 3604264a2282df17594256d4cc1f689a
+      SELF_HOST: backend
+    depends_on:
+      - mongodb
+
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    networks:
+      - smaug
+
+  proxy:
+    build: ./proxy
+    restart: unless-stopped
+    environment:
+      FRONTEND_HOST: frontend:3000
+      BACKEND_HOST: backend:80
+    networks:
+      - smaug
+    ports:
+      - 80:80
+
+  headless:
+    image: cybersecnatlab/challenge-headless:latest-manager
+    restart: unless-stopped
+    networks:
+      - smaug
+    environment:
+      AUTH_TOKEN: U0bSxA3lIlIutNofQiuLfkHg
+      RABBITMQ_HOST: headless-rabbitmq
+      RABBITMQ_QUEUE: headless-jobs
+    depends_on:
+      - headless-rabbitmq
+
+  headless-rabbitmq:
+    image: rabbitmq:3.11
+    restart: unless-stopped
+    networks:
+      - smaug
+
+  headless-worker:
+    image: cybersecnatlab/challenge-headless:latest-worker
+    restart: unless-stopped
+    networks:
+      - smaug
+    environment:
+      RABBITMQ_HOST: headless-rabbitmq
+      RABBITMQ_QUEUE: headless-jobs
+    deploy:
+      replicas: 4
+    depends_on:
+      - headless-rabbitmq
+
+  mongodb:
+    image: mongo:latest
+    restart: unless-stopped
+    networks:
+      - smaug
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: smaug
+      MONGO_INITDB_ROOT_PASSWORD: wpuRQNzALqhNG5kGrgazUDuw
+
+networks:
+  smaug:

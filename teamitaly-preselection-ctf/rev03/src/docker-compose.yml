@@ -1,0 +1,23 @@
+services:
+  proxy:
+    build: proxy
+    restart: unless-stopped
+    ports:
+      - 38314:8443
+    environment:
+      FWD_HOST: webapp
+    networks:
+      - service
+
+  webapp:
+    build: webapp
+    restart: unless-stopped
+    networks:
+      - service
+    environment:
+      - PYTHONUNBUFFERED=1
+      - FLAG=TeamItaly{who_knew_nintendo_games_have_ctf_flags_inside?_%s}
+
+networks:
+  service:
+    driver: bridge

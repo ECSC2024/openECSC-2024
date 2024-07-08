@@ -1,0 +1,34 @@
+{
+  "title": "Calculations x100",
+  "description": "I recently found my childhood console again, let's see if you can beat my Brain Age record!\n\nI did a replica of my favourite task but it works fine only with some browsers, so you can't cheat using bots. But I can guarantee it works with Firefox 126 on Ubuntu 22!\n\nSite: [https://calculationsx100.challs.external.open.ecsc2024.it:38314](https://calculationsx100.challs.external.open.ecsc2024.it:38314)",
+  "authors": [
+    "Matteo Protopapa <@matpro>",
+    "Alberto Carboneri <@Alberto247>"
+  ],
+  "tags": [
+    "rev"
+  ],
+  "hiddenTags": [],
+  "order": 43,
+  "flags": [
+    "^TeamItaly\\{who_knew_nintendo_games_have_ctf_flags_inside\\?_805810a8\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [],
+  "hints": [],
+  "endpoint": {
+    "type": "http",
+    "url": "http://calculationsx100.challs.external.open.ecsc2024.it:38314/"
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 30
+    }
+  }
+}

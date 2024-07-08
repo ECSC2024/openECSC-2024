@@ -1,0 +1,28 @@
+{
+  "enabled": true,
+  "services": {
+    "proxy": {
+      "build": "src/proxy",
+      "expose": [
+        {
+          "type": "tcp",
+          "host": 38314,
+          "container": 8443
+        }
+      ],
+      "environment": {
+        "FWD_HOST": "{{ .services.webapp.hostname }}:5000"
+      },
+      "depends-on": [
+        "webapp"
+      ]
+    },
+    "webapp": {
+      "build": "src/webapp",
+      "environment": {
+        "PYTHONUNBUFFERED": "1",
+        "FLAG": "TeamItaly{who_knew_nintendo_games_have_ctf_flags_inside?_%s}"
+      }
+    }
+  }
+}

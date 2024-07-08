@@ -1,0 +1,27 @@
+sshenc addrress 0000019eff4695d0
+name address b09a46ff9e010000
+cipher address 00c437e5f67f0000
+enabled 0 (0x00000000)
+key_len 16 (0x10000000)
+iv_len 16 (0x10000000)
+block_size 16 (0x10000000)
+key address e0c545ff9e010000
+iv address 80c845ff9e010000
+Name: b'aes128-ctr'
+Key: 3e7c18148adab55b90cf07a7934f960f
+IV: 57b9736f43a023d701316331f05e6c1e
+-------------------------------------
+sshenc addrress 0000019eff4929a0
+name address 70a046ff9e010000
+cipher address 00c437e5f67f0000
+enabled 0 (0x00000000)
+key_len 16 (0x10000000)
+iv_len 16 (0x10000000)
+block_size 16 (0x10000000)
+key address 40c645ff9e010000
+iv address 30ca45ff9e010000
+Name: b'aes128-ctr'
+Key: 152c87eb67265def5d2aa66a7315848b
+IV: 725f6e8a27ba25e7e30e318088c26963
+-------------------------------------
+The last is generally the c_to_s while the first is the s_to_c.

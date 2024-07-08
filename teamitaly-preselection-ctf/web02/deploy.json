@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "build": "src",
+      "internet": true,
+      "expose": [
+        {
+          "type": "http",
+          "container": 3000,
+          "hostname": "xssthis.challs.external.open.ecsc2024.it",
+          "secure": true
+        }
+      ]
+    }
+  }
+}

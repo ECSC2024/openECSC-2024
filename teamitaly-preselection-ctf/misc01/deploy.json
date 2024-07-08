@@ -1,0 +1,27 @@
+{
+  "enabled": true,
+  "instancer": {
+    "hostname": "bs3.challs.external.open.ecsc2024.it",
+    "secure": false,
+    "duration": 5,
+    "pow": 28
+  },
+  "services": {
+    "app": {
+      "build": "src",
+      "limits": {
+        "cpus": 0.1
+      },
+      "expose": [
+        {
+          "type": "tcp",
+          "host": 38315,
+          "container": 1337
+        }
+      ],
+      "environment": {
+        "FLAG": "TeamItaly{wh4n_1n_d0ubt_just_4dd_qu073s_f393af2a}"
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "build": "src",
+      "environment": {
+        "FLAG": "TeamItaly{r4cc00ns_4r3_s4d_wh3n_th3y_Try_t0_34t_c0Tt0n_C4ndy_fa09060f}"
+      },
+      "expose": [
+        {
+          "type": "tcp",
+          "host": 38313,
+          "container": 1337
+        }
+      ]
+    }
+  }
+}

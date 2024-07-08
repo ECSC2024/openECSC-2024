@@ -1,0 +1,2 @@
+pycryptodome==3.17
+lorem==0.1.1

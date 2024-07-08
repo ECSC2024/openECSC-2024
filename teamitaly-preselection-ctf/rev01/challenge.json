@@ -1,0 +1,30 @@
+{
+  "title": "I forgot something",
+  "description": "Once upon a time I had a very nice ELF.\nUnfortunately I forgot everything but this section,\nbut if I forgot it, then it wasn't so important.\n\nCan you understand what it does?",
+  "authors": [
+    "Fabio Zoratti <@orsobruno96>"
+  ],
+  "tags": [
+    "rev"
+  ],
+  "hiddenTags": [],
+  "order": 41,
+  "flags": [
+    "^TeamItaly\\{secret_for_revving:do_not_rev_842923f7\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "forgot",
+      "type": "upload",
+      "path": "./attachments/forgot",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

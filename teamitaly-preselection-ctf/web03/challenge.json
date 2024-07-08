@@ -1,0 +1,40 @@
+{
+  "title": "Past(a)man",
+  "description": "Use our simple APIs to store your favourite pasta recipes.\n\nSite: [http://pastaman.challs.external.open.ecsc2024.it](http://pastaman.challs.external.open.ecsc2024.it)",
+  "authors": [
+    "Stefano Alberto <@Xato>"
+  ],
+  "tags": [
+    "web"
+  ],
+  "hiddenTags": [],
+  "order": 52,
+  "flags": [
+    "^TeamItaly\\{h0w_d1d_y0u_tr4c3_th1s_d0wn\\?!\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "pastaman.zip",
+      "type": "upload",
+      "path": "./attachments/pastaman.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "http",
+    "url": "http://pastaman.challs.external.open.ecsc2024.it:80/"
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 10
+    }
+  }
+}

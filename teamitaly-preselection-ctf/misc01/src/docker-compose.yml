@@ -1,0 +1,8 @@
+services:
+  chall:
+    build: .
+    ports:
+      - "38315:1337"
+    environment:
+      - FLAG=TeamItaly{wh4n_1n_d0ubt_just_4dd_qu073s_f393af2a}
+    cpus: 0.1

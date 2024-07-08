@@ -1,0 +1,44 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "image": "cybersecnatlab/challenge-jail@sha256:8ac55aa6e7fe753a43b9b5a0283113544742798aaef7977eab0e854c476a634a",
+      "expose": [
+        {
+          "type": "tcp",
+          "host": 38310,
+          "container": 1337
+        }
+      ],
+      "volumes": [
+        {
+          "type": "bind",
+          "host": "src/build/aes-beta",
+          "container": "/home/user/chall",
+          "readonly": true
+        },
+        {
+          "type": "bind",
+          "host": "src/glibc/ld-linux-x86-64.so.2",
+          "container": "/home/user/ld-linux.so",
+          "readonly": true
+        },
+        {
+          "type": "bind",
+          "host": "src/glibc",
+          "container": "/home/user/libs",
+          "readonly": true
+        }
+      ],
+      "environment": {
+        "FLAG": "TeamItaly{A5ynChR0n0u5_L34ks_Ar3_6O0d_3n0ugh_4_P0w3Rfu1_R0P_Ch41n5_210fc6dc}",
+        "TIMEOUT": "900",
+        "RLIMIT_NOFILE": "1024",
+        "SET_INTERPRETER": "/home/user/ld-linux.so",
+        "SET_RPATH": "/home/user/libs",
+        "POW_BITS": "26",
+        "POW_BYPASS_HASH": "77cff7cef88d11c2a0f0372cc328a421fcff85ce"
+      }
+    }
+  }
+}

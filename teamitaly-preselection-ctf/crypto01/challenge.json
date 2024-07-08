@@ -1,0 +1,46 @@
+{
+  "title": "No Misuse",
+  "description": "No weak random: \u2705\n\nNo nonce reuse: \u2705\n\nPerfect security: \u2705\n\n`nc nomisuse.challs.external.open.ecsc2024.it 38319`",
+  "authors": [
+    "Matteo Rossi <@mr96>"
+  ],
+  "tags": [
+    "crypto"
+  ],
+  "hiddenTags": [],
+  "order": 11,
+  "flags": [
+    "^TeamItaly\\{pr0b4bly_0n3_71m3_516n47ur35_4r3_m34n7_70_b3_u53d_0nly_0n3_71m3_e59eea5f\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "no_misuse.py",
+      "type": "upload",
+      "path": "./attachments/no_misuse.py",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "nomisuse.challs.external.open.ecsc2024.it",
+    "port": 38319
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 10,
+      "runnerImage": "sagemath-10.2",
+      "commandPrefix": [
+        "sage",
+        "-python"
+      ]
+    }
+  }
+}

@@ -1,0 +1,2 @@
+fastecdsa==2.2.3
+pycryptodome==3.17

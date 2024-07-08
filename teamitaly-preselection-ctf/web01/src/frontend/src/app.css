@@ -1,0 +1,9 @@
+@import url(https://db.onlinewebfonts.com/c/a0e1b1883c0cf520e9c50d0cd91cd0d0?family=Papyrus+W01); 
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: Papyrus,fantasy;
+}

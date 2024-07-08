@@ -35,7 +35,7 @@ Be aware that the target audience of these competitions varies a lot and may dif
 | OliCyber.IT - Regional CTF         | 06 Apr. 2024, 13:00 UTC | 06 Apr. 2024, 17:00 UTC | [olicyberit-regional-ctf](olicyberit-regional-ctf/)                 |
 | CyberChallenge.IT - University CTF | 29 May 2024, 08:00 UTC  | 29 May 2024, 15:00 UTC  | [cyberchallengeit-university-ctf](cyberchallengeit-university-ctf/) |
 | OliCyber.IT - National Final       | 08 Jun. 2024, 08:00 UTC | 08 Jun. 2024, 15:00 UTC | [olicyberit-national-final](olicyberit-national-final/)             |
-| TeamItaly - Preselection CTF       | 15 Jun. 2024, TBA       | 16 Jun. 2024, TBA       |                                                                     |
+| TeamItaly - Preselection CTF       | 15 Jun. 2024, 12:00 UTC | 16 Jun. 2024, 12:00 UTC | [teamitaly-preselection-ctf](teamitaly-preselection-ctf/)           |
 
 ## Challenge structure
 

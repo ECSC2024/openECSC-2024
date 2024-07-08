@@ -1,0 +1,34 @@
+{
+  "title": "Flat-Sat",
+  "description": "The software of our ground-station stopped working, however we still have the radio decoder which spits out the decoder bitstream.\nThe satellite we're trying to decode follows [this](https://public.ccsds.org/Pubs/131x0b5.pdf) specification.\n\n`nc flatsat.challs.external.open.ecsc2024.it 38316`",
+  "authors": [
+    "Aleandro Prudenzano <@drw0if>"
+  ],
+  "tags": [
+    "misc"
+  ],
+  "hiddenTags": [],
+  "order": 23,
+  "flags": [
+    "^TeamItaly\\{7h3_57ru66l3_15_r34l_bu7_7h15_15_h0w_17_w0rk5_86469e4a\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "flatsat.challs.external.open.ecsc2024.it",
+    "port": 38316
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 30
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "build": "src",
+      "command": [
+        "/root/entry",
+        "qemu-aarch64",
+        "/home/user/pac"
+      ],
+      "expose": [
+        {
+          "type": "tcp",
+          "host": 38311,
+          "container": 1337
+        }
+      ],
+      "volumes": [
+        {
+          "type": "bind",
+          "host": "src/build/pac",
+          "container": "/home/user/pac",
+          "readonly": true
+        }
+      ],
+      "environment": {
+        "POW_BITS": "28",
+        "POW_BYPASS_HASH": "88f2a7ce1ce730639cfe0cb3cfa5dc1ae206128a",
+        "TIMEOUT": "60",
+        "FLAG": "TeamItaly{add_sub_99946360_mul_div_22529206_pwn}"
+      }
+    }
+  }
+}

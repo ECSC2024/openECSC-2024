@@ -1,0 +1,30 @@
+{
+  "title": "crackme maybe",
+  "description": "Can you find the correct input?",
+  "authors": [
+    "Lorenzo Catoni <@lorenzcat>"
+  ],
+  "tags": [
+    "rev"
+  ],
+  "hiddenTags": [],
+  "order": 42,
+  "flags": [
+    "^TeamItaly\\{h3re's_my_numb3r_so_e2338642b7e83ab0\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "crackme",
+      "type": "upload",
+      "path": "./attachments/crackme",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

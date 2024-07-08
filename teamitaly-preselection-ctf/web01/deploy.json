@@ -1,0 +1,50 @@
+{
+  "enabled": true,
+  "services": {
+    "backend": {
+      "build": "src/backend",
+      "headless": true,
+      "environment": {
+        "MONGO_DB": "db",
+        "MONGO_PASSWORD": "redacted",
+        "MONGO_USER": "smaug",
+        "MONGO_HOST": "{{ .services.mongodb.hostname }}",
+        "MONGO_PORT": "27017",
+        "FLAG": "TeamItaly{4_sm4uGgL3D_un1C0rN_c0mp4ny_:3_%s}",
+        "POW_BYPASS": "redacted",
+        "SELF_HOST": "{{ .services.backend.hostname }}"
+      },
+      "depends-on": [
+        "mongodb"
+      ]
+    },
+    "frontend": {
+      "build": "src/frontend"
+    },
+    "mongodb": {
+      "image": "mongo:7.0.11",
+      "environment": {
+        "MONGO_INITDB_ROOT_USERNAME": "smaug",
+        "MONGO_INITDB_ROOT_PASSWORD": "redacted"
+      }
+    },
+    "proxy": {
+      "build": "src/proxy",
+      "environment": {
+        "BACKEND_HOST": "{{ .services.backend.hostname }}:80",
+        "FRONTEND_HOST": "{{ .services.frontend.hostname }}:3000"
+      },
+      "expose": [
+        {
+          "type": "tcp",
+          "container": 80,
+          "host": 38317
+        }
+      ],
+      "depends-on": [
+        "backend",
+        "frontend"
+      ]
+    }
+  }
+}

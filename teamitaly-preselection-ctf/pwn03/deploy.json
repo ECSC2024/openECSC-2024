@@ -1,0 +1,45 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "build": "src",
+      "volumes": [
+        {
+          "type": "bind",
+          "host": "src/freebsd.qcow2",
+          "container": "/home/user/freebsd.qcow2",
+          "readonly": true
+        },
+        {
+          "type": "bind",
+          "host": "src/run.sh",
+          "container": "/home/user/chall",
+          "readonly": true
+        },
+        {
+          "type": "bind",
+          "host": "src/flag.template.ext2",
+          "container": "/home/user/flag.template.ext2",
+          "readonly": true
+        }
+      ],
+      "environment": {
+        "FLAG": "TeamItaly{what_a_meme_os_better_install_openbsd_b684b7a4}",
+        "TIMEOUT": "180",
+        "FORWARD_STDERR": "true",
+        "TEMPDIRS": "/tmp:/var/tmp",
+        "TEMPDIRS_SIZE": "4294967296",
+        "RLIMIT_FSIZE": "4294967296",
+        "POW_BITS": "28",
+        "POW_BYPASS_HASH": "2a0c4594572e7c7c80aa9d07bc591185ce44f5a8"
+      },
+      "expose": [
+        {
+          "type": "tcp",
+          "host": 38318,
+          "container": 1337
+        }
+      ]
+    }
+  }
+}

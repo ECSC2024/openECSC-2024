@@ -1,0 +1,41 @@
+{
+  "title": "Pointer-Authenticated Calculator",
+  "description": "I built a super secure calculator program that uses state of the art hardware\nsecurity extensions such as ARMv8.3-A PAC. Wanna try it out? It's definitely\n100% unexploitable, so don't waste your time on that. Use it to do some math\ninstead!\n\n```sh\nnc pac.challs.external.open.ecsc2024.it 38311\n```",
+  "authors": [
+    "Marco Bonelli <@mebeim>"
+  ],
+  "tags": [
+    "pwn"
+  ],
+  "hiddenTags": [],
+  "order": 32,
+  "flags": [
+    "^TeamItaly\\{add_sub_99946360_mul_div_22529206_pwn\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "pac.tar.gz",
+      "type": "upload",
+      "path": "./attachments/pac.tar.gz",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "pac.challs.external.open.ecsc2024.it",
+    "port": 38311
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 60
+    }
+  }
+}

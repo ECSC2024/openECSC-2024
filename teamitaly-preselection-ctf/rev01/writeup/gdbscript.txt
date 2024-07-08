@@ -1,0 +1,9 @@
+run src/forgot 0
+break *addr + 0x82
+break *addr + 0x8f
+continue
+continue
+set $flag = $rdi + 0x80
+ni
+x/s $flag
+kill

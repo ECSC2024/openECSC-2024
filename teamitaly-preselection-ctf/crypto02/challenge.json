@@ -1,0 +1,41 @@
+{
+  "title": "Futuristic Diary Encryption",
+  "description": "I've implemented this encrypted shared diary where every user has its own space. You can also have fun with the ciphertext, just don't mess too much!\n\n`nc encrypteddiary.challs.external.open.ecsc2024.it 38312`",
+  "authors": [
+    "Lorenzo Demeio <@Devrar>"
+  ],
+  "tags": [
+    "crypto"
+  ],
+  "hiddenTags": [],
+  "order": 12,
+  "flags": [
+    "^TeamItaly\\{n3v3r_us3_s4m3_k3y_wh3n_y0u_need_2_d66c3ba9\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "encrypted_diary.py",
+      "type": "upload",
+      "path": "./attachments/encrypted_diary.py",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "encrypteddiary.challs.external.open.ecsc2024.it",
+    "port": 38312
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 10
+    }
+  }
+}

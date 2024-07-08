@@ -1,0 +1,18 @@
+diff --git a/target/arm/helper.c b/target/arm/helper.c
+index acc0470..709ac8d 100644
+--- a/target/arm/helper.c
++++ b/target/arm/helper.c
+@@ -10686,11 +10686,12 @@ ARMVAParameters aa64_va_parameters(CPUARMState *env, uint64_t va,
+     }
+ 
+     /* Present TBI as a composite with TBID.  */
+-    tbi = aa64_va_parameter_tbi(tcr, mmu_idx);
++    tbi = 0;
+     if (!data) {
+         tbi &= ~aa64_va_parameter_tbid(tcr, mmu_idx);
+     }
+     tbi = (tbi >> select) & 1;
++    assert(tbi == 0);
+ 
+     return (ARMVAParameters) {
+         .tsz = tsz,

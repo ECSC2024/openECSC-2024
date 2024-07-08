@@ -1,0 +1,12 @@
+version: '3'
+services:
+  server:
+    build: .
+    environment:
+      API_HOST: api
+    ports:
+      - 8081:80
+  api:
+    build: ./api
+    environment:
+      FLAG: "TeamItaly{h0w_d1d_y0u_tr4c3_th1s_d0wn?!}"

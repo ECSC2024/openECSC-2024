@@ -1,0 +1,34 @@
+{
+  "title": "Baby BSD",
+  "description": "[first time?](https://i.ytimg.com/vi/hbEbD1Z_tNQ/mqdefault.jpg)\n\nYou can download the challenge files [here](https://cloud.cybersecnatlab.it/s/cCste67ijLBmKdj).\n\n`nc babybsd.challs.external.open.ecsc2024.it 38318`",
+  "authors": [
+    "Vincenzo Bonforte <@bonfee>"
+  ],
+  "tags": [
+    "pwn"
+  ],
+  "hiddenTags": [],
+  "order": 33,
+  "flags": [
+    "^TeamItaly\\{what_a_meme_os_better_install_openbsd_b684b7a4\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "babybsd.challs.external.open.ecsc2024.it",
+    "port": 38318
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 120
+    }
+  }
+}

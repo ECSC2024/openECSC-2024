@@ -1,0 +1,8 @@
+services:
+  procyon:
+    build: .
+    restart: unless-stopped
+    ports:
+      - '38313:1337'
+    environment:
+      - 'FLAG=TeamItaly{r4cc00ns_4r3_s4d_wh3n_th3y_Try_t0_34t_c0Tt0n_C4ndy_fa09060f}'

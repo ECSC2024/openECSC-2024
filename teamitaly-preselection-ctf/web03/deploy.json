@@ -1,0 +1,28 @@
+{
+  "enabled": true,
+  "services": {
+    "server": {
+      "build": "src",
+      "environment": {
+        "API_HOST": "{{ .services.api.hostname }}"
+      },
+      "expose": [
+        {
+          "type": "http",
+          "secure": false,
+          "container": 80,
+          "hostname": "pastaman.challs.external.open.ecsc2024.it"
+        }
+      ],
+      "depends-on": [
+        "api"
+      ]
+    },
+    "api": {
+      "build": "src/api",
+      "environment": {
+        "FLAG": "TeamItaly{h0w_d1d_y0u_tr4c3_th1s_d0wn?!}"
+      }
+    }
+  }
+}

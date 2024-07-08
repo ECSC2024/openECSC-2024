@@ -1,0 +1,40 @@
+{
+  "title": "XSS This!",
+  "description": "If I don't use the flag nothing can happen? Right?\n\nSite: [https://xssthis.challs.external.open.ecsc2024.it](https://xssthis.challs.external.open.ecsc2024.it)",
+  "authors": [
+    "Alessandro Mizzaro <@Alemmi>"
+  ],
+  "tags": [
+    "web"
+  ],
+  "hiddenTags": [],
+  "order": 53,
+  "flags": [
+    "^TeamItaly\\{chrome://restart_1s_l0v3\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "xssthis.zip",
+      "type": "upload",
+      "path": "./attachments/xssthis.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "http",
+    "url": "https://xssthis.challs.external.open.ecsc2024.it:443/"
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 10
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "title": "Procyon",
+  "description": "Cryptography is better when done with friends!\n\n`nc procyon.challs.external.open.ecsc2024.it 38313`",
+  "authors": [
+    "Francesco Felet <@PhiQuadro>"
+  ],
+  "tags": [
+    "crypto"
+  ],
+  "hiddenTags": [],
+  "order": 13,
+  "flags": [
+    "^TeamItaly\\{r4cc00ns_4r3_s4d_wh3n_th3y_Try_t0_34t_c0Tt0n_C4ndy_fa09060f\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "procyon.sage",
+      "type": "upload",
+      "path": "./attachments/procyon.sage",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "procyon.challs.external.open.ecsc2024.it",
+    "port": 38313
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 200,
+      "runnerImage": "sagemath-10.2",
+      "commandPrefix": [
+        "sage",
+        "-python"
+      ]
+    }
+  }
+}

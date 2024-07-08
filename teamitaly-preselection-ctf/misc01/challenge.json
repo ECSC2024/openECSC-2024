@@ -1,0 +1,41 @@
+{
+  "title": "BS3",
+  "description": "Check out my amazing private storage system.",
+  "authors": [
+    "Lorenzo Catoni <@lorenzcat>"
+  ],
+  "tags": [
+    "misc"
+  ],
+  "hiddenTags": [],
+  "order": 21,
+  "flags": [
+    "^TeamItaly\\{wh4n_1n_d0ubt_just_4dd_qu073s_f393af2a\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "server.bash",
+      "type": "upload",
+      "path": "./attachments/server.bash",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "bs3.challs.external.open.ecsc2024.it",
+    "port": 38315
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 300
+    }
+  }
+}

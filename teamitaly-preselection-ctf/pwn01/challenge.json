@@ -1,0 +1,41 @@
+{
+  "title": "AES-beta",
+  "description": "Is your encryption solution too slow?! We got what you need!  \nAsynchronous Encryption Service, is the future of fast encryption!  \nTry our beta version now!\n\n`nc aesbeta.challs.external.open.ecsc2024.it 38310`",
+  "authors": [
+    "Nalin Dhingra <@Lotus>"
+  ],
+  "tags": [
+    "pwn"
+  ],
+  "hiddenTags": [],
+  "order": 31,
+  "flags": [
+    "^TeamItaly\\{A5ynChR0n0u5_L34ks_Ar3_6O0d_3n0ugh_4_P0w3Rfu1_R0P_Ch41n5_210fc6dc\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "aes-beta.tar.gz",
+      "type": "upload",
+      "path": "./attachments/aes-beta.tar.gz",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "aesbeta.challs.external.open.ecsc2024.it",
+    "port": 38310
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 300
+    }
+  }
+}

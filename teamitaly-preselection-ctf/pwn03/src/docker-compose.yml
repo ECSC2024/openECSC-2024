@@ -1,0 +1,22 @@
+services:
+  babybsd:
+    image: babybsd
+    build: .
+    restart: unless-stopped
+    init: true
+    privileged: true
+    volumes:
+      - './freebsd.qcow2:/home/user/freebsd.qcow2:ro'
+      - './run.sh:/home/user/chall:ro'
+      - './flag.template.ext2:/home/user/flag.template.ext2:ro'
+    ports:
+      - '1337:1337'
+    environment:
+      - 'FLAG=TeamItaly{what_a_meme_os_better_install_openbsd_b684b7a4}' # Don't change the flag len
+      - 'TIMEOUT=180'
+      - 'FORWARD_STDERR=true'
+      - 'TEMPDIRS=/tmp:/var/tmp'
+      - 'TEMPDIRS_SIZE=4294967296' # 4GB
+      - 'RLIMIT_FSIZE=4294967296' # 4GB
+      - 'POW_BITS=28'
+      - 'POW_BYPASS_HASH=redacted'

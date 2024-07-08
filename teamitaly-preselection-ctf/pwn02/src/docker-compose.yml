@@ -1,0 +1,23 @@
+services:
+  chall:
+    build: .
+    container_name: pac
+    restart: unless-stopped
+    init: true
+    privileged: true
+    volumes:
+      - './build/pac:/home/user/pac:ro'
+    ports:
+      - '38311:1337'
+      #- '1234:1234' # Debug
+    command:
+      - 'qemu-aarch64'
+      #- '-g'   # Debug
+      #- '1234' # Debug
+      - '/home/user/pac'
+    environment:
+      #- 'NETWORK=true' # Debug
+      - 'POW_BITS=28'
+      - 'POW_BYPASS_HASH=redacted'
+      - 'TIMEOUT=60'
+      - 'FLAG=TeamItaly{add_sub_99946360_mul_div_22529206_pwn}'
