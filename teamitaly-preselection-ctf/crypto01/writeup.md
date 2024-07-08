@@ -3,7 +3,9 @@
 ## [crypto] No Misuse (3 solves)
 
 No weak random: ✅
+
 No nonce reuse: ✅
+
 Perfect security: ✅
 
 `nc nomisuse.challs.external.open.ecsc2024.it 38319`
@@ -25,6 +27,7 @@ where $(a,b,c,d,x)$ is the private key and $k$ is a nonce. The verification algo
 ### Recovering x
 
 Given three signatures $(s_1, s_2)$, $(r_1, r_2)$ and $(t_1, t_2)$ for messages $m_1, m_2$ and $m_3$ respectively, we can write (by just writing down the equations and adding them together):
+
 $$
 ((r_1-s_1)(m_1-m_2)^{-1} - (t_1-s_1)(m_1-m_3)^{-1})\cdot x \equiv ((s_2-r_2)(m_1-m_2)^{-1} - (t_1-s_1)(m_1-m_3)^{-1}) \pmod{q}
 $$
