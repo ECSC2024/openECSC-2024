@@ -22,7 +22,7 @@ Initially a random $k \times l$ matrix $A$ is sampled, along with two *short* (a
 
 The verification (public) key is $vk = (A, t)$, the private portion is $(s, e)$.
 
-Then, the server performs Shamir Secret Sharing Scheme on the private component $s$ between all the users, with threshold $T$ (meaning that any $T$-cardinality subset of users can reconstruct the original private key with Lagrange interpolation). To achieve this, the vector $s = (s_0, s_1, ..., s_{l-1})$ is encoded as a polynomial $s_0 + s_1y + s_2y^2 + ... + s_{l-1}y^{l-1} $ in $R_q[y]$, which is then treated as constant term of an otherwise random polynomial $P$ of degree $T-1$ in $R_q[y][z]$. The shares are then computed as a simple evaluation $P(uid)$, where $uid$ is an integer that identifies uniquely an user. The error term of each share is computed as a short random vector sampled independently from the aforementioned distribution.
+Then, the server performs Shamir Secret Sharing Scheme on the private component $s$ between all the users, with threshold $T$ (meaning that any $T$-cardinality subset of users can reconstruct the original private key with Lagrange interpolation). To achieve this, the vector $s = (s_0, s_1, ..., s_{l-1})$ is encoded as a polynomial $s_0 + s_1y + s_2y^2 + ... + s_{l-1}y^{l-1}$ in $R_q[y]$, which is then treated as constant term of an otherwise random polynomial $P$ of degree $T-1$ in $R_q[y][z]$. The shares are then computed as a simple evaluation $P(uid)$, where $uid$ is an integer that identifies uniquely an user. The error term of each share is computed as a short random vector sampled independently from the aforementioned distribution.
 
 We can summarize the signing scheme in three main points:
 
