@@ -1,0 +1,31 @@
+{
+  "title": "Check da box",
+  "description": "We made this awesome canvas to let you paint but someone is ruining our fun >:(",
+  "authors": [
+    "Aleandro Prudenzano <@drw0if>",
+    "Lorenzo Catoni <@lorenzcat>"
+  ],
+  "tags": [
+    "misc"
+  ],
+  "hiddenTags": [],
+  "order": 21,
+  "flags": [
+    "^openECSC\\{h3ll0_my_f3ll0w_7w1773r_3nj0y3r_[0-9a-fA-F]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "checkdabox.pcap",
+      "type": "upload",
+      "path": "./attachments/checkdabox.pcap",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

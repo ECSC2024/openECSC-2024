@@ -1,0 +1,40 @@
+{
+  "title": "Slurm!",
+  "description": "Welcome to slurm's official website, here you're going to learn a lot of new reasons to drink slurm. And please don't ask about our secret recipe... some secrets must remain secrets.\n\nSite: [http://slurm.challs.open.ecsc2024.it](http://slurm.challs.open.ecsc2024.it)",
+  "authors": [
+    "Vittorio Mignini <@M1gnus>"
+  ],
+  "tags": [
+    "web"
+  ],
+  "hiddenTags": [],
+  "order": 52,
+  "flags": [
+    "^openECSC\\{B377eR_7o_nO7_kNow_7h3_Tru7H_[a-fA-F0-9]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "slurm.zip",
+      "type": "upload",
+      "path": "./attachments/slurm.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "http",
+    "url": "http://slurm.challs.open.ecsc2024.it:80/"
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 10
+    }
+  }
+}

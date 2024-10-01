@@ -1,0 +1,16 @@
+services:
+  chall-128:
+    image: cybersecnatlab/challenge-jail@sha256:8ac55aa6e7fe753a43b9b5a0283113544742798aaef7977eab0e854c476a634a
+    restart: unless-stopped
+    init: true
+    privileged: true
+    volumes:
+      - './bin/ctf-teams:/home/user/chall:ro'
+      - './glibc/ld-linux-x86-64.so.2:/home/user/ld-linux.so:ro'
+      - './glibc/:/home/user/libs:ro'
+    ports:
+      - '47004:1337'
+    environment:
+      - 'FLAG=openECSC{Y0u_w0n_7h3_s1mul4t10n!!Now_0nt0_th3_n3xt_CTF!_[random 8]}'
+      - 'SET_INTERPRETER=/home/user/ld-linux.so'
+      - 'SET_RPATH=/home/user/libs'

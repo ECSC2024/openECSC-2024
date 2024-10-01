@@ -1,0 +1,36 @@
+{
+  "title": "A key-homomorphic, chameleon stream cipher",
+  "description": "I ran out of ideas for challenge names, so I just generated it with <https://cseweb.ucsd.edu/~mihir/crypto-topic-generator.html> :)\n\nAnyway, read the source, exploit, have fun!",
+  "authors": [
+    "Robin Jadoul <@robin_jadoul>"
+  ],
+  "tags": [
+    "crypto"
+  ],
+  "hiddenTags": [],
+  "order": 13,
+  "flags": [
+    "^openECSC\\{NTRU_broadcast_t0olbox_[0-9a-f]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "chameleon.py",
+      "type": "upload",
+      "path": "./attachments/chameleon.py",
+      "dynamic": false
+    },
+    {
+      "name": "output_chameleon.txt",
+      "type": "upload",
+      "path": "./attachments/output_chameleon.txt",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

@@ -1,0 +1,40 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "image": "cybersecnatlab/socaz:python-3.11-alpine",
+      "command": [
+        "socaz",
+        "--timeout",
+        "30",
+        "--flag-from-env",
+        "FLAG",
+        "--bind",
+        "1337",
+        "--cmd",
+        "/home/user/chall"
+      ],
+      "volumes": [{
+        "type": "bind",
+        "host": "src/matrix",
+        "container": "/home/user/matrix",
+        "readonly": true
+      },{
+        "type": "bind",
+        "host": "src/chall.py",
+        "container": "/home/user/chall",
+        "readonly": true
+      }],
+      "environment": {
+        "FLAG": "openECSC{wh4t_if_I_t0ld_y0u_[random 8]}"
+      },
+      "expose": [
+        {
+          "type": "tcp",
+          "host": 47007,
+          "container": 1337
+        }
+      ]
+    }
+  }
+}

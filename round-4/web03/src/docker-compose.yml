@@ -1,0 +1,36 @@
+services:
+  web:
+    build: .
+    environment:
+      - PORT=8000
+      - CHALL_HOST=http://simplemdserver.challs.open.ecsc2024.it/
+      - FLAG=openECSC{K33P_I7_51Mple____?}
+      - HEADLESS_HOST=headless:5000
+      - HEADLESS_AUTH=redacted
+    ports:
+      - "8000:8000"
+
+  headless:
+    image: cybersecnatlab/challenge-headless:latest-manager
+    restart: unless-stopped
+    environment:
+      AUTH_TOKEN: redacted
+      RABBITMQ_HOST: headless-rabbitmq
+      RABBITMQ_QUEUE: headless-jobs
+    depends_on:
+      - headless-rabbitmq
+
+  headless-rabbitmq:
+    image: rabbitmq:3.11
+    restart: unless-stopped
+
+  headless-worker:
+    image: cybersecnatlab/challenge-headless:latest-worker
+    restart: unless-stopped
+    environment:
+      RABBITMQ_HOST: headless-rabbitmq
+      RABBITMQ_QUEUE: headless-jobs
+    deploy:
+      replicas: 1
+    depends_on:
+      - headless-rabbitmq

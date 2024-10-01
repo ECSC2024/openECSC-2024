@@ -1,0 +1,33 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "build": "src/container",
+      "command": [
+        "socaz",
+        "--timeout",
+        "300",
+        "--bind",
+        "1337",
+        "--cmd",
+        "/opt/run.sh",
+        "-d"
+      ],
+      "volumes": [
+        {
+          "type": "bind",
+          "container": "/opt",
+          "host": "src/source",
+          "readonly": true
+        }
+      ],
+      "expose": [
+        {
+          "type": "tcp",
+          "host": 47002,
+          "container": 1337
+        }
+      ]
+    }
+  }
+}

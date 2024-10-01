@@ -1,0 +1,21 @@
+target_cpu="x64"
+is_component_build=false
+is_debug=false
+dcheck_always_on=false
+
+# Set to 2 for full debug symbols
+symbol_level=1
+
+v8_jitless=true
+v8_enable_backtrace=true
+v8_enable_disassembler=true
+v8_enable_object_print=true
+v8_enable_verify_heap=true
+v8_enable_maglev=false
+v8_enable_turbofan=false
+v8_enable_webassembly=false
+v8_enable_i18n_support=false
+v8_use_external_startup_data=false
+
+v8_enable_sandbox=true
+v8_enable_memory_corruption_api=true

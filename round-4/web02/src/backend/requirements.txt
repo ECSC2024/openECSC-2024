@@ -1,0 +1,6 @@
+flask==3.0.3
+flask-cors==4.0.1
+eventlet==0.36.1
+pymongo==4.8.0
+APScheduler==3.10.4
+gunicorn==22.0.0

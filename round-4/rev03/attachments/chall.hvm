@@ -1,0 +1,421 @@
+@Block = (a (b ((@Block/tag (a (b c))) c)))
+
+@Block/0 = ((@Block/0__C0 a) a)
+
+@Block/0__C0 = (?(((a (* a)) *) b) b)
+
+@Block/1 = ((@Block/1__C0 a) a)
+
+@Block/1__C0 = (?(((* (a a)) *) b) b)
+
+@Block/tag = 0
+
+@Pair = (a (b ((@Pair/tag (a (b c))) c)))
+
+@Pair/0 = ((@Pair/0__C0 a) a)
+
+@Pair/0__C0 = (?(((a (* a)) *) b) b)
+
+@Pair/1 = ((@Pair/1__C0 a) a)
+
+@Pair/1__C0 = (?(((* (a a)) *) b) b)
+
+@Pair/tag = 0
+
+@Quadruple = (a (b (c (d ((@Quadruple/tag (a (b (c (d e))))) e)))))
+
+@Quadruple/tag = 0
+
+@Tree/Leaf = (a ((@Tree/Leaf/tag (a b)) b))
+
+@Tree/Leaf/tag = 1
+
+@Tree/Node = (a (b ((@Tree/Node/tag (a (b c))) c)))
+
+@Tree/Node/tag = 0
+
+@f0 = ($([/] $(a b)) (a b))
+
+@f1 = (a d)
+  & @f1__fold0 ~ (c d)
+  & @index_2_f15er ~ (b c)
+  & @f7_inv ~ (a b)
+
+@f10 = ((@f10__C3 a) a)
+
+@f10__C0 = (a ({s c} (j (f ({m {h e}} x)))))
+  & @Pair ~ (q (w x))
+  & @f5 ~ (i (k {l o}))
+  & @f5 ~ (d (e {r u}))
+  & @f8 ~ (b (c d))
+  & @tree_f3 ~ (a (8 b))
+  & @f8 ~ (g (h i))
+  & @tree_f3 ~ (f (8 g))
+  & @f6 ~ (j k)
+  & @Block ~ (l (p q))
+  & @f5 ~ (n (o p))
+  & @f9 ~ (m (3 n))
+  & @Block ~ (r (v w))
+  & @f5 ~ (t (u v))
+  & @f9 ~ (s (3 t))
+
+@f10__C1 = (?((@f10__C0 *) a) a)
+
+@f10__C2 = (b (c ((@f10__C1 (a (b (c d)))) (a d))))
+
+@f10__C3 = (?((@f10__C2 *) a) a)
+
+@f11 = a
+  & @f11__bend0 ~ (0 a)
+
+@f11__bend0 = ({$([>0x0000016] ?((@f11__bend0__C4 @f11__bend0__C5) (a b))) a} b)
+
+@f11__bend0__C0 = (d (e ($([+0x0000001] a) (b (c f)))))
+  & @f11__bend0 ~ (a (b (c (d (e f)))))
+
+@f11__bend0__C1 = (?((@f11__bend0__C0 *) a) a)
+
+@f11__bend0__C2 = (b (c (a ((@f11__bend0__C1 (a (b (c d)))) d))))
+
+@f11__bend0__C3 = (?((@f11__bend0__C2 *) a) a)
+
+@f11__bend0__C4 = (* (a (c (f (h k)))))
+  & @Pair ~ (e (j k))
+  & @Block ~ (b (d e))
+  & @f1 ~ (a b)
+  & @f1 ~ (c d)
+  & @Block ~ (g (i j))
+  & @f1 ~ (f g)
+  & @f1 ~ (h i)
+
+@f11__bend0__C5 = (* ({i g} (a (b (d (e l))))))
+  & @Pair/0 ~ (h (@f11__bend0__C3 (i (k l))))
+  & @f10 ~ (c (f (g {j h})))
+  & @Block ~ (a (b c))
+  & @Block ~ (d (e f))
+  & @Pair/1 ~ (j k)
+
+@f12 = ({$([<<] $(a $([|] $(d e)))) $([>>] $(c $([&0x000FFFF] d)))} ({a b} e))
+  & $(b c) ~ [-0x0000010]
+
+@f13 = ($([%] $(a b)) (a b))
+
+@f15 = (b (a c))
+  & @f15__bend0 ~ (a (b (1 (0 c))))
+
+@f15__bend0 = ({a c} (d (e ({$([<] $(a ?(((* (* (b (* b)))) @f15__bend0__C0) (c (d (e (f g))))))) f} g))))
+
+@f15__bend0__C0 = (* (a ({b c} ($([*] $(c d)) ($([+0x0000001] e) f)))))
+  & @f15__bend0 ~ (a (b (d (e f))))
+
+@f18 = ($([-] $(a b)) (a b))
+
+@f19 = ($([^] $(a b)) (a b))
+
+@f1__fold0 = ((@f1__fold0__C4 a) a)
+
+@f1__fold0__C0 = ($([*] $(a b)) (a b))
+
+@f1__fold0__C1 = (?((@f1__fold0__C0 *) a) a)
+
+@f1__fold0__C2 = (a (b d))
+  &!@f1__fold0 ~ (a $([+] $(c d)))
+  &!@f1__fold0 ~ (b c)
+
+@f1__fold0__C3 = (* ((@f1__fold0__C1 a) a))
+
+@f1__fold0__C4 = (?((@f1__fold0__C2 @f1__fold0__C3) a) a)
+
+@f2 = ($([*] $(a b)) (a b))
+
+@f20 = ($([+] $(a b)) (a b))
+
+@f3 = ({$([>>] $(a $([|] $(d e)))) $([<<] $(c $([&0x000FFFF] d)))} ({a b} e))
+  & $(b c) ~ [-0x0000010]
+
+@f4 = (a (b c))
+  & @f4__fold0 ~ (a (b (8 c)))
+
+@f4__fold0 = ((@f4__fold0__C3 a) a)
+
+@f4__fold0__C0 = ($([%] $(b c)) ({b $([:/0x0000002] d)} (* (a e))))
+  & @f4__fold0 ~ (a (c (d e)))
+
+@f4__fold0__C1 = (* ($([%] $(b c)) ({b $([:/0x0000002] d)} (a (* e)))))
+  & @f4__fold0 ~ (a (c (d e)))
+
+@f4__fold0__C2 = (d (e ({$([/] $(a $([=0x0000000] ?((@f4__fold0__C0 @f4__fold0__C1) (b (c (d (e f)))))))) b} ({a c} f))))
+
+@f4__fold0__C3 = (?((@f4__fold0__C2 (* (a (* (* a))))) b) b)
+
+@f5 = (a c)
+  & @f5__fold0 ~ (b c)
+  & @f7 ~ (a b)
+
+@f5__fold0 = ((@f5__fold0__C4 a) a)
+
+@f5__fold0__C0 = (b ($([^] $(c d)) (a e)))
+  & @Tree/Leaf ~ (d e)
+  & @f4 ~ (a (b c))
+
+@f5__fold0__C1 = (?((@f5__fold0__C0 *) a) a)
+
+@f5__fold0__C2 = (a (d ({b e} g)))
+  & @Tree/Node ~ (c (f g))
+  &!@f5__fold0 ~ (a (b c))
+  &!@f5__fold0 ~ (d (e f))
+
+@f5__fold0__C3 = (* ((@f5__fold0__C1 a) a))
+
+@f5__fold0__C4 = (?((@f5__fold0__C2 @f5__fold0__C3) a) a)
+
+@f6 = a
+  & @f6__bend0 ~ (16 a)
+
+@f6__bend0 = ({$([<0x0000002] ?((@f6__bend0__C0 @f6__bend0__C1) (a b))) a} b)
+
+@f6__bend0__C0 = ({b f} ({a e} i))
+  & @Tree/Node ~ (d (h i))
+  & @Tree/Leaf ~ (c d)
+  & @f0 ~ (a (b c))
+  & @Tree/Leaf ~ (g h)
+  & @f13 ~ (e (f g))
+
+@f6__bend0__C1 = (* ({$([:/0x0000002] a) {$([:/0x0000002] b) {$([:/0x0000002] e) $([:/0x0000002] f)}}} ({$([>>] $(b c)) $([&] $(g h))} j)))
+  & @Tree/Node ~ (d (i j))
+  &!@f6__bend0 ~ (a (c d))
+  &!@f6__bend0 ~ (e (h i))
+  & $(f $([:-0x0000001] g)) ~ [<<0x0000001]
+
+@f7 = (a b)
+  & @f7__fold0 ~ (a (0 b))
+
+@f7__fold0 = ((@f7__fold0__C2 a) a)
+
+@f7__fold0__C0 = (a (d ({$([*0x0000002] $([+0x0000000] b)) $([*0x0000002] $([+0x0000001] e))} g)))
+  & @Tree/Node ~ (c (f g))
+  &!@f7__fold0 ~ (a (b c))
+  &!@f7__fold0 ~ (d (e f))
+
+@f7__fold0__C1 = (* (b (a d)))
+  & @Tree/Leaf ~ (c d)
+  & @Pair ~ (a (b c))
+
+@f7__fold0__C2 = (?((@f7__fold0__C0 @f7__fold0__C1) a) a)
+
+@f7_inv = (a b)
+  & @f7_inv__fold0 ~ (a (0 b))
+
+@f7_inv__fold0 = ((@f7_inv__fold0__C2 a) a)
+
+@f7_inv__fold0__C0 = (a (d ({$([*0x0000002] $([+0x0000001] b)) $([*0x0000002] $([+0x0000000] e))} g)))
+  & @Tree/Node ~ (c (f g))
+  &!@f7_inv__fold0 ~ (a (b c))
+  &!@f7_inv__fold0 ~ (d (e f))
+
+@f7_inv__fold0__C1 = (* (b (a d)))
+  & @Tree/Leaf ~ (c d)
+  & @Pair ~ (a (b c))
+
+@f7_inv__fold0__C2 = (?((@f7_inv__fold0__C0 @f7_inv__fold0__C1) a) a)
+
+@f8 = (a (b e))
+  & @f6 ~ (d e)
+  & @f1 ~ (a $([+] $(c $([&0x000FFFF] d))))
+  & @f1 ~ (b c)
+
+@f9 = ({d a} (c e))
+  & @f9__fold0 ~ (b (c (d e)))
+  & @f7 ~ (a b)
+
+@f9__fold0 = ((@f9__fold0__C4 a) a)
+
+@f9__fold0__C0 = ($([+] $(b $([:%0x0000010] c))) (* (b (a e))))
+  & @Tree/Leaf ~ (d e)
+  & @f4 ~ (a (c d))
+
+@f9__fold0__C1 = (?((@f9__fold0__C0 *) a) a)
+
+@f9__fold0__C2 = (a (e ({b f} ({c g} i))))
+  & @Tree/Node ~ (d (h i))
+  &!@f9__fold0 ~ (a (b (c d)))
+  &!@f9__fold0 ~ (e (f (g h)))
+
+@f9__fold0__C3 = (* ((@f9__fold0__C1 a) a))
+
+@f9__fold0__C4 = (?((@f9__fold0__C2 @f9__fold0__C3) a) a)
+
+@index_2_f15er = a
+  & @index_2_f15er__fold0 ~ a
+
+@index_2_f15er__fold0 = ((@index_2_f15er__fold0__C4 a) a)
+
+@index_2_f15er__fold0__C0 = (a (c e))
+  & @Tree/Leaf ~ (d e)
+  & @Pair ~ (b (c d))
+  & @f15 ~ (2 (a b))
+
+@index_2_f15er__fold0__C1 = (?((@index_2_f15er__fold0__C0 *) a) a)
+
+@index_2_f15er__fold0__C2 = (a (c e))
+  & @Tree/Node ~ (b (d e))
+  &!@index_2_f15er__fold0 ~ (a b)
+  &!@index_2_f15er__fold0 ~ (c d)
+
+@index_2_f15er__fold0__C3 = (* ((@index_2_f15er__fold0__C1 a) a))
+
+@index_2_f15er__fold0__C4 = (?((@index_2_f15er__fold0__C2 @index_2_f15er__fold0__C3) a) a)
+
+@main = rd
+  & @main__fold0 ~ (qd rd)
+  & @Tree/Node ~ (ub (pd qd))
+  & @Tree/Node ~ (w (tb ub))
+  & @Tree/Node ~ (k (v w))
+  & @Tree/Node ~ (e (j k))
+  & @Tree/Node ~ (b (d e))
+  & @Tree/Leaf ~ (a b)
+  & @Quadruple ~ (2567 (16984 (28528 (61402 a))))
+  & @Tree/Leaf ~ (c d)
+  & @Quadruple ~ (25804 (27607 (25966 (57310 c))))
+  & @Tree/Node ~ (g (i j))
+  & @Tree/Leaf ~ (f g)
+  & @Quadruple ~ (29057 (728 (17731 (34678 f))))
+  & @Tree/Leaf ~ (h i)
+  & @Quadruple ~ (56194 (34961 (21315 (25440 h))))
+  & @Tree/Node ~ (p (u v))
+  & @Tree/Node ~ (m (o p))
+  & @Tree/Leaf ~ (l m)
+  & @Quadruple ~ (40080 (41406 (31572 (50256 l))))
+  & @Tree/Leaf ~ (n o)
+  & @Quadruple ~ (58210 (33532 (18505 (30682 n))))
+  & @Tree/Node ~ (r (t u))
+  & @Tree/Leaf ~ (q r)
+  & @Quadruple ~ (40573 (64564 (21343 (37465 q))))
+  & @Tree/Leaf ~ (s t)
+  & @Quadruple ~ (22962 (58841 (18771 (22852 s))))
+  & @Tree/Node ~ (hb (sb tb))
+  & @Tree/Node ~ (bb (gb hb))
+  & @Tree/Node ~ (y (ab bb))
+  & @Tree/Leaf ~ (x y)
+  & @Quadruple ~ (39070 (28390 (24385 (36503 x))))
+  & @Tree/Leaf ~ (z ab)
+  & @Quadruple ~ (61020 (1836 (24390 (43410 z))))
+  & @Tree/Node ~ (db (fb gb))
+  & @Tree/Leaf ~ (cb db)
+  & @Quadruple ~ (969 (5727 (16715 (30668 cb))))
+  & @Tree/Leaf ~ (eb fb)
+  & @Quadruple ~ (35387 (10805 (17759 (20079 eb))))
+  & @Tree/Node ~ (mb (rb sb))
+  & @Tree/Node ~ (jb (lb mb))
+  & @Tree/Leaf ~ (ib jb)
+  & @Quadruple ~ (24844 (63889 (17996 (33619 ib))))
+  & @Tree/Leaf ~ (kb lb)
+  & @Quadruple ~ (10548 (16609 (16711 (62479 kb))))
+  & @Tree/Node ~ (ob (qb rb))
+  & @Tree/Leaf ~ (nb ob)
+  & @Quadruple ~ (18 (36446 (24404 (55828 nb))))
+  & @Tree/Leaf ~ (pb qb)
+  & @Quadruple ~ (47633 (23913 (18505 (72 pb))))
+  & @Tree/Node ~ (rc (od pd))
+  & @Tree/Node ~ (fc (qc rc))
+  & @Tree/Node ~ (zb (ec fc))
+  & @Tree/Node ~ (wb (yb zb))
+  & @Tree/Leaf ~ (vb wb)
+  & @Quadruple ~ (31741 (8557 (21343 (23535 vb))))
+  & @Tree/Leaf ~ (xb yb)
+  & @Quadruple ~ (62355 (18473 (18771 (10587 xb))))
+  & @Tree/Node ~ (bc (dc ec))
+  & @Tree/Leaf ~ (ac bc)
+  & @Quadruple ~ (26198 (15367 (24385 (24195 ac))))
+  & @Tree/Leaf ~ (cc dc)
+  & @Quadruple ~ (42987 (11839 (24390 (15115 cc))))
+  & @Tree/Node ~ (kc (pc qc))
+  & @Tree/Node ~ (hc (jc kc))
+  & @Tree/Leaf ~ (gc hc)
+  & @Quadruple ~ (10214 (33647 (16715 (18794 gc))))
+  & @Tree/Leaf ~ (ic jc)
+  & @Quadruple ~ (7235 (53411 (17759 (20782 ic))))
+  & @Tree/Node ~ (mc (oc pc))
+  & @Tree/Leaf ~ (lc mc)
+  & @Quadruple ~ (14936 (6929 (17996 (54872 lc))))
+  & @Tree/Leaf ~ (nc oc)
+  & @Quadruple ~ (49000 (29295 (16711 (40201 nc))))
+  & @Tree/Node ~ (cd (nd od))
+  & @Tree/Node ~ (wc (bd cd))
+  & @Tree/Node ~ (tc (vc wc))
+  & @Tree/Leaf ~ (sc tc)
+  & @Quadruple ~ (64626 (28518 (24404 (2141 sc))))
+  & @Tree/Leaf ~ (uc vc)
+  & @Quadruple ~ (47198 (4560 (18505 (39226 uc))))
+  & @Tree/Node ~ (yc (ad bd))
+  & @Tree/Leaf ~ (xc yc)
+  & @Quadruple ~ (63439 (52417 (21343 (48721 xc))))
+  & @Tree/Leaf ~ (zc ad)
+  & @Quadruple ~ (53229 (12219 (18771 (46593 zc))))
+  & @Tree/Node ~ (hd (md nd))
+  & @Tree/Node ~ (ed (gd hd))
+  & @Tree/Leaf ~ (dd ed)
+  & @Quadruple ~ (32259 (15489 (24385 (15469 dd))))
+  & @Tree/Leaf ~ (fd gd)
+  & @Quadruple ~ (24118 (23100 (24390 (62944 fd))))
+  & @Tree/Node ~ (jd (ld md))
+  & @Tree/Leaf ~ (id jd)
+  & @Quadruple ~ (52720 (44505 (16715 (47540 id))))
+  & @Tree/Leaf ~ (kd ld)
+  & @Quadruple ~ (57941 (11835 (17789 (17675 kd))))
+
+@main__fold0 = ((@main__fold0__C8 a) a)
+
+@main__fold0__C0 = (a (c e))
+  & @Pair ~ (b (d e))
+  & @f6 ~ (a b)
+  & @f6 ~ (c d)
+
+@main__fold0__C1 = (?((@main__fold0__C0 *) a) a)
+
+@main__fold0__C2 = (a (b d))
+  & @Pair/1 ~ (c (@main__fold0__C1 d))
+  & @Pair ~ (a (b c))
+
+@main__fold0__C3 = (?((@main__fold0__C2 *) a) a)
+
+@main__fold0__C4 = (a (c (e (g i))))
+  & @f11 ~ (b (d (f (h (@main__fold0__C3 i)))))
+  & @f6 ~ (a b)
+  & @f6 ~ (c d)
+  & @f6 ~ (e f)
+  & @f6 ~ (g h)
+
+@main__fold0__C5 = (?((@main__fold0__C4 *) a) a)
+
+@main__fold0__C6 = (a (c e))
+  & @Tree/Node ~ (b (d e))
+  &!@main__fold0 ~ (a b)
+  &!@main__fold0 ~ (c d)
+
+@main__fold0__C7 = (* ((@main__fold0__C5 a) a))
+
+@main__fold0__C8 = (?((@main__fold0__C6 @main__fold0__C7) a) a)
+
+@tree_f3 = ({c a} d)
+  & @tree_f3__fold0 ~ (b (c d))
+  & @f7 ~ (a b)
+
+@tree_f3__fold0 = ((@tree_f3__fold0__C4 a) a)
+
+@tree_f3__fold0__C0 = ($([-] $(b $([:%0x0000010] c))) (* (a (b e))))
+  & @Tree/Leaf ~ (d e)
+  & @f4 ~ (a (c d))
+
+@tree_f3__fold0__C1 = (?((@tree_f3__fold0__C0 *) a) a)
+
+@tree_f3__fold0__C2 = (a (e ({b f} ({c g} i))))
+  & @Tree/Node ~ (d (h i))
+  &!@tree_f3__fold0 ~ (a (b (c d)))
+  &!@tree_f3__fold0 ~ (e (f (g h)))
+
+@tree_f3__fold0__C3 = (* ((@tree_f3__fold0__C1 a) a))
+
+@tree_f3__fold0__C4 = (?((@tree_f3__fold0__C2 @tree_f3__fold0__C3) a) a)
+
+

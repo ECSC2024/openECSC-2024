@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "build": "src",
+      "headless": true,
+      "environment": {
+        "PORT": "8000",
+        "CHALL_HOST": "http://simplemdserver.challs.open.ecsc2024.it:47008/",
+        "FLAG": "openECSC{K33P_I7_51Mple____?}"
+      },
+      "expose": [
+        {
+          "type": "tcp",
+          "container": 8000,
+          "host": 47008
+        }
+      ]
+    }
+  }
+}

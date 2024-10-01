@@ -1,0 +1,37 @@
+{
+  "title": "PrettyPrimes",
+  "description": "My primes are so pretty!",
+  "authors": [
+    "Francesco Felet <@PhiQuadro>",
+    "Lorenzo Demeio <@devrar>"
+  ],
+  "tags": [
+    "crypto"
+  ],
+  "hiddenTags": [],
+  "order": 11,
+  "flags": [
+    "^openECSC\\{nth_r00t_m4g1c_[0-9a-f]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "prettyprimes.py",
+      "type": "upload",
+      "path": "./attachments/prettyprimes.py",
+      "dynamic": false
+    },
+    {
+      "name": "prettyprimes_output.txt",
+      "type": "upload",
+      "path": "./attachments/prettyprimes_output.txt",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

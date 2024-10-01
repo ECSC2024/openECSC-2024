@@ -1,0 +1,18 @@
+services:
+  middleout:
+    image: cybersecnatlab/challenge-jail@sha256:a0d2b3132ae67fa1e5ad45b7f335d7bf2d5b1d154b75c95e781697a74f4365da
+    restart: unless-stopped
+    init: true
+    privileged: true
+    volumes:
+      - './build/middleout:/home/user/chall:ro'
+      - './lib/ld-linux-x86-64.so.2:/home/user/ld-linux.so:ro'
+      - './lib:/home/user/libs:ro'
+    ports:
+      - '47009:1337'
+    environment:
+      - 'FLAG=openECSC{pied_piper_your_end_is_near_[random 8]}'
+      - 'TIMEOUT=60'
+      - 'SET_INTERPRETER=/home/user/ld-linux.so'
+      - 'SET_RPATH=/home/user/libs'
+      - 'FORWARD_STDERR=true'

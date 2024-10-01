@@ -1,0 +1,41 @@
+{
+  "title": "middleout",
+  "description": "I implemented this compression algorithm, its performances are honestly amazing. I feel it's gonna be very competitive, it only needs to be better than Pied Piper! But I'm afraid there's something wrong with it...\n\n`nc middleout.challs.open.ecsc2024.it 47009`",
+  "authors": [
+    "Oliver Lyak <@ly4k>"
+  ],
+  "tags": [
+    "pwn"
+  ],
+  "hiddenTags": [],
+  "order": 32,
+  "flags": [
+    "^openECSC\\{pied_piper_your_end_is_near_[a-z0-9]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "middleout.zip",
+      "type": "upload",
+      "path": "./attachments/middleout.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "middleout.challs.open.ecsc2024.it",
+    "port": 47009
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 20
+    }
+  }
+}

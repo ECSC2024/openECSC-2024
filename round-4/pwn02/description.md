@@ -1,0 +1,3 @@
+I implemented this compression algorithm, its performances are honestly amazing. I feel it's gonna be very competitive, it only needs to be better than Pied Piper! But I'm afraid there's something wrong with it...
+
+`nc middleout.challs.open.ecsc2024.it 47009`

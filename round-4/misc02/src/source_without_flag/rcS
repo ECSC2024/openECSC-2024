@@ -1,0 +1,58 @@
+#!bin/sh
+export PATH=/usr/sbin:/usr/bin:/sbin:/bin
+
+mkdir -p /home
+mkdir -p /sys
+mkdir -p /proc
+mkdir -p /run
+mkdir -p /dev
+
+echo 'root:x:0:0:root:/root:/bin/sh' > /etc/passwd
+echo 'root:x:0:' > /etc/group
+chmod 644 /etc/passwd
+chmod 644 /etc/group
+chown -R root:root /
+chmod -R 755 /
+chmod 700 -R /root
+chmod 755 /dev
+
+adduser user --disabled-password
+chown user:user -R /home/user
+chmod 777 /home/user
+
+mount -t sysfs -o nodev,noexec,nosuid sysfs /sys
+mount -t proc -o nodev,noexec,nosuid proc /proc
+ln -sf /proc/mounts /etc/mtab
+mount -t devtmpfs -o nosuid,mode=0755 udev /dev
+mount -t tmpfs -o "noexec,nosuid,size=10%,mode=0755" tmpfs /run
+
+# CHALLENGE
+
+mkdir -p /challenge
+chmod 770 -R /files
+mount /files/ext4.img /challenge
+cp /files/1kat /challenge
+chmod 777 -R /challenge
+chmod 771 -R /challenge/1kat
+chmod u+s /challenge/1kat
+chmod g+s /challenge/1kat
+
+echo "Flag at the end of the file -> " > /challenge/flag.txt
+awk 'BEGIN{for(i=0;i<2048;i++)printf "*"}' >> /challenge/flag.txt
+cat /files/flag.txt >> /challenge/flag.txt
+chmod 772 /challenge/flag.txt
+
+rm /files/flag.txt # Better safe than sorry
+
+# CHALLENGE END
+
+echo 1 > /proc/sys/kernel/kptr_restrict
+echo 1 > /proc/sys/kernel/perf_event_paranoid
+echo 1 > /proc/sys/kernel/dmesg_restrict            # Restricts dmesg to root user
+
+cd /challenge
+# Toggle these 2 lines to change from root to non-root shell at startup
+setsid cttyhack setuidgid 1000 sh
+#setsid cttyhack setuidgid 0 sh
+
+poweroff -f

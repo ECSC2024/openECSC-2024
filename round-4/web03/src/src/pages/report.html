@@ -1,0 +1,103 @@
+<style>
+    main {
+        text-align: center;
+    }
+
+    form {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    textarea {
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 100%;
+    }
+
+    input {
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 100%;
+    }
+
+    label {
+        display: block;
+        margin: 10px 0;
+    }
+
+    button {
+        margin-top: 10px;
+        padding: 8px 16px;
+        font-size: 16px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 10px auto;
+        display: block;
+    }
+</style>
+
+<main>
+    <h1>Report something bad to our moderators</h1>
+    <form action="/report" id="form_report">
+        <label for="content">What happened?</label>
+        <textarea name="content" id="content" cols="30" rows="5" placeholder="Describe the incident"></textarea>
+        <label for="url">Where did it happen?</label>
+        <input type="text" name="url" id="url" required placeholder="url">
+        <button>Send report</button>
+    </form>
+
+    <br>
+
+    <h1>Check report status</h1>
+    <form id="form_check">
+        <label for="job_id">Enter the job id</label>
+        <input type="text" name="job_id" id="job_id" required placeholder="Job id">
+        <button>Check status</button>
+    </form>
+</main>
+
+
+<script>
+    document.getElementById('form_report').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const url = document.getElementById('url').value;
+        fetch('/report', {
+            method: 'POST',
+            body: url
+        })
+            .then(res => {
+
+                if (!res.ok) {
+                    res.text().then(error => {
+                        alert(`Error: ${error}`);
+                    });
+                    return;
+                }
+
+                res.text().then(job_id => {
+                    document.getElementById('content').value = '';
+                    document.getElementById('url').value = '';
+                    document.getElementById('job_id').value = job_id;
+                    alert(`Report sent with job id: ${job_id}`);
+                });
+            })
+
+    });
+
+    document.getElementById('form_check').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const job_id = document.getElementById('job_id').value;
+        fetch(`/check_report`, {
+            method: 'POST',
+            body: job_id
+        }).then(res => res.text())
+            .then(status => {
+                alert(`Report status: ${status}`);
+            });
+    });
+</script>

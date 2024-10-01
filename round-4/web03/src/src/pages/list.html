@@ -1,0 +1,45 @@
+<style>
+
+    main ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    main ul li {
+        margin-bottom: 10px;
+    }
+
+    main ul li a {
+        color: #007bff;
+        text-decoration: dashed;
+    }
+
+    main ul li a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<main>
+    <h1>Your saved documents:</h1>
+    <ul id="list">    
+    </ul>
+</main>
+
+
+<script>
+    const list_node = document.getElementById('list');
+    const documents = JSON.parse(localStorage.getItem('documents')) || [];
+
+    if (documents.length === 0) {
+        const li = document.createElement('li');
+        li.innerHTML = 'No documents saved yet';
+        list_node.appendChild(li);
+    }
+
+    documents.forEach(doc => {
+        const li = document.createElement('li');
+        li.innerHTML = '<a href="/get?id=' + doc + '">' + doc + '</a>';
+        list_node.appendChild(li);
+    });
+</script>

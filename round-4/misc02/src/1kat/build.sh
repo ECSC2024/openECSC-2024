@@ -1,0 +1,1 @@
+musl-gcc 1kat.c -static -o 1kat

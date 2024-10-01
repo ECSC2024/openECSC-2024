@@ -1,0 +1,41 @@
+{
+  "title": "Backfired",
+  "description": "I think someone backdoored my browser... \ud83e\udd14\ud83e\udd28\n\n```\nnc backfired.challs.open.ecsc2024.it 47003\n```",
+  "authors": [
+    "Marco Bonelli <@mebeim>"
+  ],
+  "tags": [
+    "pwn"
+  ],
+  "hiddenTags": [],
+  "order": 33,
+  "flags": [
+    "^openECSC\\{[0-9a-f]{8}_L00ks_l1ke_my_1gn1t10n_b4ckd00r_b4ckf1r3d!_[0-9a-f]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "backfired.tar.gz",
+      "type": "upload",
+      "path": "./attachments/backfired.tar.gz",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "backfired.challs.open.ecsc2024.it",
+    "port": 47003
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 60
+    }
+  }
+}

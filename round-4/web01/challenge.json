@@ -1,0 +1,40 @@
+{
+  "title": "Quokkey",
+  "description": "Quokkey is here, let's login if you want to obtain free keys to unlock a lot of beautiful products!\n\nusername: quokka\npassword: quokka\n\nSite: [http://quokkey.challs.open.ecsc2024.it](http://quokkey.challs.open.ecsc2024.it)",
+  "authors": [
+    "Vittorio Mignini <@M1gnus>"
+  ],
+  "tags": [
+    "web"
+  ],
+  "hiddenTags": [],
+  "order": 51,
+  "flags": [
+    "^openECSC\\{Un1qu3_15_n07_53Cur3_dUd3_[a-fA-F0-9]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "quokkey.zip",
+      "type": "upload",
+      "path": "./attachments/quokkey.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "http",
+    "url": "http://quokkey.challs.open.ecsc2024.it:80/"
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 30
+    }
+  }
+}

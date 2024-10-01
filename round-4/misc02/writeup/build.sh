@@ -1,0 +1,1 @@
+musl-gcc -static exploit.c -o exploit

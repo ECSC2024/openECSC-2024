@@ -1,0 +1,101 @@
+diff --git a/src/sandbox/testing.cc b/src/sandbox/testing.cc
+index 8f182825384..08b0091d206 100644
+--- a/src/sandbox/testing.cc
++++ b/src/sandbox/testing.cc
+@@ -15,6 +15,7 @@
+ #include "src/sandbox/sandbox.h"
+ 
+ #ifdef V8_OS_LINUX
++#include <fcntl.h>
+ #include <signal.h>
+ #include <sys/mman.h>
+ #include <unistd.h>
+@@ -32,6 +33,7 @@ namespace internal {
+ SandboxTesting::Mode SandboxTesting::mode_ = SandboxTesting::Mode::kDisabled;
+ Address SandboxTesting::target_page_base_ = kNullAddress;
+ Address SandboxTesting::target_page_size_ = 0;
++const char *SandboxTesting::flag_path_ = NULL;
+ 
+ #ifdef V8_ENABLE_MEMORY_CORRUPTION_API
+ 
+@@ -531,6 +533,31 @@ void PrintToStderr(const char* output) {
+   USE(return_val);
+ }
+ 
++void PrintFlag(void) {
++  char flag[256] = {0};
++  ssize_t n, len = 0;
++
++  if (!SandboxTesting::flag_path()) {
++    PrintToStderr("No flag :(\n\n");
++    return;
++  }
++
++  const int fd = open(SandboxTesting::flag_path(), O_RDONLY);
++  if (fd == -1) {
++    PrintToStderr("Could not open flag :(\n\n");
++    return;
++  }
++
++  do {
++    n = read(fd, flag + len, sizeof(flag) - len - 1);
++    len += n;
++  } while (n > 0);
++
++  close(fd);
++  PrintToStderr(flag);
++  PrintToStderr("\n\n");
++}
++
+ [[noreturn]] void FilterCrash(const char* reason) {
+   // NOTE: This code MUST be async-signal safe.
+   // NO malloc or stdio is allowed here.
+@@ -724,6 +751,8 @@ void CrashFilter(int signal, siginfo_t* info, void* void_context) {
+   UninstallCrashFilter();
+ 
+   PrintToStderr("\n## V8 sandbox violation detected!\n\n");
++  PrintToStderr("Congrats! Here's your prize:\n");
++  PrintFlag();
+ }
+ 
+ #ifdef V8_USE_ADDRESS_SANITIZER
+@@ -800,6 +829,7 @@ void SandboxTesting::Enable(Mode mode) {
+   CHECK(GetProcessWideSandbox()->is_initialized());
+ 
+   mode_ = mode;
++  flag_path_ = std::getenv("FLAG");
+ 
+   if (mode == Mode::kForTesting) {
+ #ifdef V8_USE_ADDRESS_SANITIZER
+@@ -820,8 +850,8 @@ void SandboxTesting::Enable(Mode mode) {
+                            target_page_size_, PagePermissions::kRead);
+     CHECK_NE(target_page_base_, kNullAddress);
+     fprintf(stderr,
+-            "Sandbox testing mode is enabled. Write to the page starting at "
+-            "0x%" V8PRIxPTR
++            "Sandbox testing mode is enabled. Read from or write to the page "
++            "starting at 0x%" V8PRIxPTR
+             " (available from JavaScript as `Sandbox.targetPage`) to "
+             "demonstrate a sandbox bypass.\n",
+             target_page_base_);
+diff --git a/src/sandbox/testing.h b/src/sandbox/testing.h
+index 4f08b9f4be6..c28edac07ba 100644
+--- a/src/sandbox/testing.h
++++ b/src/sandbox/testing.h
+@@ -76,6 +76,8 @@ class SandboxTesting : public AllStatic {
+   // Returns true if the access violation happened inside the target page.
+   static bool IsInsideTargetPage(Address faultaddr);
+ 
++  static const char *flag_path() { return flag_path_; }
++
+   // Returns a mapping of type names to their InstanceType.
+   using InstanceTypeMap = std::unordered_map<std::string, InstanceType>;
+   static InstanceTypeMap& GetInstanceTypeMap();
+@@ -91,6 +93,7 @@ class SandboxTesting : public AllStatic {
+   static Mode mode_;
+   static Address target_page_base_;
+   static size_t target_page_size_;
++  static const char *flag_path_;
+ };
+ 
+ #endif  // V8_ENABLE_SANDBOX

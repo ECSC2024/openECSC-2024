@@ -1,0 +1,8 @@
+services:
+  encrygnature:
+    build: .
+    restart: unless-stopped
+    ports:
+      - '47005:1337'
+    environment:
+      - 'FLAG=openECSC{m4yb3_its_b3tt3r_t0_st1ck_w1th_w3ll_v3tT3d_scH3me5_[random 8]}'

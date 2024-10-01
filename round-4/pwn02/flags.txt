@@ -1,0 +1,1 @@
+^openECSC\{pied_piper_your_end_is_near_[a-z0-9]{8}\}$

@@ -1,0 +1,47 @@
+{
+  "title": "Hack the matrix",
+  "description": "Wake up Neo, we need to hack the matrix.\n\n```\nnc matrix.challs.open.ecsc2024.it 47007\n```",
+  "authors": [
+    "Fabio Zoratti <@orsobruno96>"
+  ],
+  "tags": [
+    "rev"
+  ],
+  "hiddenTags": [],
+  "order": 41,
+  "flags": [
+    "^openECSC\\{wh4t_if_I_t0ld_y0u_[a-z0-9]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "matrix",
+      "type": "upload",
+      "path": "./attachments/matrix",
+      "dynamic": false
+    },
+    {
+      "name": "wrapper.py",
+      "type": "upload",
+      "path": "./attachments/wrapper.py",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "matrix.challs.open.ecsc2024.it",
+    "port": 47007
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 5
+    }
+  }
+}

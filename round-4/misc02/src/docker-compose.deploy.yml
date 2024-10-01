@@ -1,0 +1,9 @@
+services:
+  socaz_example:
+    build: ./container
+    restart: unless-stopped
+    command: 'socaz --timeout 300 --bind 1337 --cmd /opt/run.sh -d'
+    volumes:
+      - './source:/opt:ro'
+    ports:
+      - '47002:1337'

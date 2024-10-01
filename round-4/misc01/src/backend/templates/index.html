@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="text/javascript" src="https://cdn.rawgit.com/ricmoo/aes-js/e27b99df/index.js"></script>
+    <title>Check da Box</title>
+    <style>
+        .title {
+            text-align: center;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="title">Check da Box</h1>
+
+    <div class="board">
+        {% for i in range(SIZE) %}
+        <div class="row">
+            {% for j in range(SIZE) %}
+            <input 
+				type="checkbox" 
+				id="checkbox-{{ i }}-{{ j }}" 
+				onclick="check({{i}}, {{j}})" 
+				{{ "checked" if canvas[i + j*SIZE] else "" }}
+			>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        const TOGGLE_REGEX = /\d{1,3},\d{1,3},[01]/;
+		const KEY_REGEX = /KEY=([0-9a-fA-F]{32})/;
+		const TOGGLE_ENC_REGEX = /TOGGLE=([0-9a-fA-F]+)/;
+        const ws = new WebSocket(`ws://${location.host}/toggle`);
+		let encryptor = null;
+		let decryptor = null;
+        ws.onmessage = (event) => {
+            const payload = event.data.toString();
+			let match;
+			if (match = payload.match(KEY_REGEX)) {
+				const key = aesjs.utils.hex.toBytes(match[1]);
+				console.log(key);
+				encryptor = new aesjs.ModeOfOperation.ctr(key, new aesjs.Counter(1337));
+				decryptor = new aesjs.ModeOfOperation.ctr(key, new aesjs.Counter(1337));
+			}
+            else if (match = payload.match(TOGGLE_ENC_REGEX)) {
+				let plaintext = decryptor.decrypt(aesjs.utils.hex.toBytes(match[1]));
+				plaintext = aesjs.utils.utf8.fromBytes(plaintext);
+				if (!plaintext.match(TOGGLE_REGEX)) {
+					console.log("Invalid decryption");
+					return;
+				}
+				const [i, j, checked] = plaintext.split(",").map(Number);
+				const checkbox = document.getElementById(`checkbox-${i}-${j}`);
+				checkbox.checked = checked;
+			}
+			else {
+				console.log(`invalid message: ${payload}`);
+			}
+        }
+
+        ws.onopen = () => {
+            console.log("Connected to server");
+        }
+
+        const check = async (i, j) => {
+            const checkbox = document.getElementById(`checkbox-${i}-${j}`);
+			const payload = encryptor.encrypt(aesjs.utils.utf8.toBytes(`${i},${j},${Number(checkbox.checked)}`));
+			console.log(aesjs.utils.hex.fromBytes(payload));
+            ws.send(aesjs.utils.hex.fromBytes(payload));
+        }
+    </script>
+</body>
+
+</html>

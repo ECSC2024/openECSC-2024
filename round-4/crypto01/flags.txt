@@ -1,0 +1,1 @@
+^openECSC\{nth_r00t_m4g1c_[0-9a-f]{8}\}$

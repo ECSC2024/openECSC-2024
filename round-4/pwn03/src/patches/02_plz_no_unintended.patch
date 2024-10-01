@@ -1,0 +1,66 @@
+diff --git a/src/d8/d8.cc b/src/d8/d8.cc
+index 76b54329579..bad6bcf1a49 100644
+--- a/src/d8/d8.cc
++++ b/src/d8/d8.cc
+@@ -1114,6 +1114,7 @@ MaybeLocal<Module> ResolveModuleCallback(Local<Context> context,
+                                          Local<FixedArray> import_attributes,
+                                          Local<Module> referrer) {
+   Isolate* isolate = context->GetIsolate();
++  if (/* DISABLES CODE */ (0)) {
+   std::shared_ptr<ModuleEmbedderData> module_data =
+       GetModuleDataFromContext(context);
+   std::string referrer_specifier = module_data->GetModuleSpecifier(referrer);
+@@ -1125,6 +1126,11 @@ MaybeLocal<Module> ResolveModuleCallback(Local<Context> context,
+       ModuleEmbedderData::ModuleTypeFromImportSpecifierAndAttributes(
+           context, stl_specifier, import_attributes, true);
+   return module_data->GetModule(std::make_pair(absolute_path, module_type));
++  }
++
++  isolate->ThrowException(v8::String::NewFromUtf8Literal(isolate,
++    "Module imports are disabled"));
++  return MaybeLocal<Module>();
+ }
+ 
+ MaybeLocal<Object> ResolveModuleSourceCallback(
+@@ -1437,6 +1443,7 @@ MaybeLocal<Promise> Shell::HostImportModuleDynamically(
+     Local<FixedArray> import_attributes) {
+   Isolate* isolate = context->GetIsolate();
+ 
++  if (/* DISABLES CODE */ (0)) {
+   MaybeLocal<Promise::Resolver> maybe_resolver =
+       Promise::Resolver::New(context);
+   Local<Promise::Resolver> resolver;
+@@ -1457,6 +1464,11 @@ MaybeLocal<Promise> Shell::HostImportModuleDynamically(
+     isolate->EnqueueMicrotask(Shell::DoHostImportModuleDynamically, data);
+   }
+   return resolver->GetPromise();
++  }
++
++  isolate->ThrowException(v8::String::NewFromUtf8Literal(isolate,
++    "Dynamic module imports are disabled"));
++  return MaybeLocal<Promise>();
+ }
+ 
+ void Shell::HostInitializeImportMetaObject(Local<Context> context,
+@@ -2235,9 +2247,8 @@ MaybeLocal<Context> Shell::CreateRealm(
+     }
+     delete[] old_realms;
+   }
+-  Local<ObjectTemplate> global_template = CreateGlobalTemplate(isolate);
+   Local<Context> context =
+-      Context::New(isolate, nullptr, global_template, global_object);
++      Context::New(isolate, nullptr, ObjectTemplate::New(isolate), global_object);
+   if (context.IsEmpty()) return MaybeLocal<Context>();
+   DCHECK(!try_catch.HasCaught());
+   InitializeModuleEmbedderData(context);
+@@ -4083,9 +4094,8 @@ MaybeLocal<Context> Shell::CreateEvaluationContext(Isolate* isolate) {
+       reinterpret_cast<i::Isolate*>(isolate)->main_thread_local_isolate(),
+       context_mutex_.Pointer());
+   // Initialize the global objects
+-  Local<ObjectTemplate> global_template = CreateGlobalTemplate(isolate);
+   EscapableHandleScope handle_scope(isolate);
+-  Local<Context> context = Context::New(isolate, nullptr, global_template);
++  Local<Context> context = Context::New(isolate, nullptr, ObjectTemplate::New(isolate));
+   if (context.IsEmpty()) {
+     DCHECK(isolate->IsExecutionTerminating());
+     return {};

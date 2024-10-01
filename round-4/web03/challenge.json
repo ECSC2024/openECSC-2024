@@ -1,0 +1,40 @@
+{
+  "title": "Simple MD Server",
+  "description": "Yes, another markdown editor, but this time we keep it simple!\n\nSite: [http://simplemdserver.challs.open.ecsc2024.it:47008](http://simplemdserver.challs.open.ecsc2024.it:47008)",
+  "authors": [
+    "Stefano Alberto <@Xato>"
+  ],
+  "tags": [
+    "web"
+  ],
+  "hiddenTags": [],
+  "order": 53,
+  "flags": [
+    "^openECSC\\{K33P_I7_51Mple____\\?\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "simple-md-server.zip",
+      "type": "upload",
+      "path": "./attachments/simple-md-server.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "http",
+    "url": "http://simplemdserver.challs.open.ecsc2024.it:47008/"
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 30
+    }
+  }
+}

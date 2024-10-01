@@ -1,0 +1,33 @@
+{
+  "title": "Malware and snapshots",
+  "description": "We got infected by a malware, it was writing and deleting files on our server, luckly we had a service that snapshotted the filesystem continuosly.\n\nWe need to know what was the malware doing, can you help us?",
+  "authors": [
+    "Luca Massarelli (ACN) <@Luca Massarelli (ACN)>",
+    "Bruno Taricco (ACN) <@Bruno Taricco (ACN)>",
+    "Lorenzo Zarfati (ACN) <@Lorenzo Zarfati (ACN)>",
+    "Giovanni Minotti <@Giotino>"
+  ],
+  "tags": [
+    "misc"
+  ],
+  "hiddenTags": [],
+  "order": 22,
+  "flags": [
+    "^openECSC\\{hundreds_of_zfs_snapshots_for_a_single_file\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "snapshots.zip",
+      "type": "upload",
+      "path": "./attachments/snapshots.zip",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

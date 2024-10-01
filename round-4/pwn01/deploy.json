@@ -1,0 +1,40 @@
+{
+  "enabled": true,
+  "services": {
+    "app": {
+      "image": "cybersecnatlab/challenge-jail@sha256:8ac55aa6e7fe753a43b9b5a0283113544742798aaef7977eab0e854c476a634a",
+      "environment": {
+        "FLAG": "openECSC{Y0u_w0n_7h3_s1mul4t10n!!Now_0nt0_th3_n3xt_CTF!_[random 8]}",
+        "SET_INTERPRETER": "/home/user/ld-linux.so",
+        "SET_RPATH": "/home/user/libs"
+      },
+      "expose": [
+        {
+          "type": "tcp",
+          "host": 47004,
+          "container": 1337
+        }
+      ],
+      "volumes": [
+        {
+          "type": "bind",
+          "host": "src/bin/ctf-teams",
+          "container": "/home/user/chall",
+          "readonly": true
+        },
+        {
+          "type": "bind",
+          "host": "src/glibc/ld-linux-x86-64.so.2",
+          "container": "/home/user/ld-linux.so",
+          "readonly": true
+        },
+        {
+          "type": "bind",
+          "host": "src/glibc",
+          "container": "/home/user/libs",
+          "readonly": true
+        }
+      ]
+    }
+  }
+}

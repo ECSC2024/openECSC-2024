@@ -1,0 +1,46 @@
+{
+  "title": "Encrygnature",
+  "description": "Swappity swoppity, can you break this cryptography?\n\nNote: it is recommended to use sagemath-10.4 to run the challenge locally, due to performance reasons.\n\nThis is a remote challenge, you can connect with:\n\n`nc encrygnature.challs.open.ecsc2024.it 47005`",
+  "authors": [
+    "Francesco Felet <@PhiQuadro>"
+  ],
+  "tags": [
+    "crypto"
+  ],
+  "hiddenTags": [],
+  "order": 12,
+  "flags": [
+    "^openECSC\\{m4yb3_its_b3tt3r_t0_st1ck_w1th_w3ll_v3tT3d_scH3me5_[0-9a-f]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "encrygnature.sage",
+      "type": "upload",
+      "path": "./attachments/encrygnature.sage",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "encrygnature.challs.open.ecsc2024.it",
+    "port": 47005
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 200,
+      "runnerImage": "sagemath-10.4",
+      "commandPrefix": [
+        "sage",
+        "-python"
+      ]
+    }
+  }
+}

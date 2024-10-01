@@ -1,0 +1,62 @@
+{
+  "enabled": true,
+  "services": {
+    "backend": {
+      "build": "src/backend",
+      "environment": {
+        "FLAG": "{{`openECSC{{B377eR_7o_nO7_kNow_7h3_Tru7H_{}}}`}}",
+        "MONGODB_USERNAME": "slurmdb",
+        "MONGODB_PASSWORD": "redacted",
+        "MONGODB_HOST": "{{ .services.mongodb.hostname }}",
+        "MONGODB_PORT": "27017"
+      },
+      "volumes": [
+        {
+          "type": "tmpfs",
+          "container": "/company"
+        }
+      ],
+      "depends-on": [
+        "mongodb"
+      ]
+    },
+    "frontend": {
+      "build": "src/frontend"
+    },
+    "mongodb": {
+      "image": "mongo:7.0",
+      "environment": {
+        "MONGO_INITDB_ROOT_USERNAME": "slurmdb",
+        "MONGO_INITDB_ROOT_PASSWORD": "redacted"
+      }
+    },
+    "nginx": {
+      "image": "nginx:1.25",
+      "environment": {
+        "NGINX_ENVSUBST_OUTPUT_DIR": "/etc/nginx",
+        "BACKEND_HOST": "{{ .services.backend.hostname }}:80",
+        "FRONTEND_HOST": "{{ .services.frontend.hostname }}:3000"
+      },
+      "volumes": [
+        {
+          "type": "bind",
+          "host": "src/nginx.conf",
+          "container": "/etc/nginx/templates/nginx.conf.template",
+          "readonly": true
+        }
+      ],
+      "expose": [
+        {
+          "type": "http",
+          "secure": false,
+          "container": 80,
+          "hostname": "slurm.challs.open.ecsc2024.it"
+        }
+      ],
+      "depends-on": [
+        "frontend",
+        "backend"
+      ]
+    }
+  }
+}

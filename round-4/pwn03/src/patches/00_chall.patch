@@ -1,0 +1,72 @@
+diff --git a/src/interpreter/bytecode-array-builder.cc b/src/interpreter/bytecode-array-builder.cc
+index 079fe3c6752..6fa995c7069 100644
+--- a/src/interpreter/bytecode-array-builder.cc
++++ b/src/interpreter/bytecode-array-builder.cc
+@@ -1609,6 +1609,8 @@ size_t BytecodeArrayBuilder::GetConstantPoolEntry(const Scope* scope) {
+ }
+ 
+ size_t BytecodeArrayBuilder::GetConstantPoolEntry(double number) {
++  if (number == 1337.1337)
++    number = std::nextafter(number, std::numeric_limits<double>::infinity());
+   return constant_array_builder()->Insert(number);
+ }
+ 
+diff --git a/src/interpreter/bytecodes.h b/src/interpreter/bytecodes.h
+index ee107fec982..6726d505028 100644
+--- a/src/interpreter/bytecodes.h
++++ b/src/interpreter/bytecodes.h
+@@ -81,7 +81,7 @@ namespace interpreter {
+   V(LdaTheHole, ImplicitRegisterUse::kWriteAccumulator)                        \
+   V(LdaTrue, ImplicitRegisterUse::kWriteAccumulator)                           \
+   V(LdaFalse, ImplicitRegisterUse::kWriteAccumulator)                          \
+-  V(LdaConstant, ImplicitRegisterUse::kWriteAccumulator, OperandType::kIdx)    \
++  V(LdaConstant, ImplicitRegisterUse::kReadWriteAccumulator, OperandType::kIdx)\
+   V(LdaContextSlot, ImplicitRegisterUse::kWriteAccumulator, OperandType::kReg, \
+     OperandType::kIdx, OperandType::kUImm)                                     \
+   V(LdaImmutableContextSlot, ImplicitRegisterUse::kWriteAccumulator,           \
+diff --git a/src/interpreter/interpreter-assembler.cc b/src/interpreter/interpreter-assembler.cc
+index 3b43b73c23f..6d9e3a96b70 100644
+--- a/src/interpreter/interpreter-assembler.cc
++++ b/src/interpreter/interpreter-assembler.cc
+@@ -513,8 +513,6 @@ TNode<Int32T> InterpreterAssembler::BytecodeOperandSignedQuad(
+ 
+ TNode<Int32T> InterpreterAssembler::BytecodeSignedOperand(
+     int operand_index, OperandSize operand_size) {
+-  DCHECK(!Bytecodes::IsUnsignedOperandType(
+-      Bytecodes::GetOperandType(bytecode_, operand_index)));
+   switch (operand_size) {
+     case OperandSize::kByte:
+       return BytecodeOperandSignedByte(operand_index);
+@@ -638,8 +636,6 @@ TNode<UintPtrT> InterpreterAssembler::BytecodeOperandConstantPoolIdx(
+ }
+ 
+ TNode<IntPtrT> InterpreterAssembler::BytecodeOperandReg(int operand_index) {
+-  DCHECK(Bytecodes::IsRegisterOperandType(
+-      Bytecodes::GetOperandType(bytecode_, operand_index)));
+   OperandSize operand_size =
+       Bytecodes::GetOperandSize(bytecode_, operand_index, operand_scale());
+   return ChangeInt32ToIntPtr(
+diff --git a/src/interpreter/interpreter-generator.cc b/src/interpreter/interpreter-generator.cc
+index 8114d8df2c0..56d859a13ea 100644
+--- a/src/interpreter/interpreter-generator.cc
++++ b/src/interpreter/interpreter-generator.cc
+@@ -87,6 +87,19 @@ IGNITION_HANDLER(LdaSmi, InterpreterAssembler) {
+ // Load constant literal at |idx| in the constant pool into the accumulator.
+ IGNITION_HANDLER(LdaConstant, InterpreterAssembler) {
+   TNode<Object> constant = LoadConstantPoolEntryAtOperandIndex(0);
++  TNode<Object> acc = GetAccumulator();
++  Label nope(this);
++
++  GotoIf(TaggedIsSmi(acc), &nope);
++  GotoIfNot(IsHeapNumber(CAST(acc)), &nope);
++
++  TNode<Float64T> acc_value = LoadHeapNumberValue(CAST(acc));
++  GotoIfNot(Float64Equal(acc_value, Float64Constant(1337.1337)), &nope);
++
++  StoreRegisterAtOperandIndex(constant, 0);
++  Dispatch();
++
++  BIND(&nope);
+   SetAccumulator(constant);
+   Dispatch();
+ }

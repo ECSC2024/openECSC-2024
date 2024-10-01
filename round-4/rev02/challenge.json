@@ -1,0 +1,30 @@
+{
+  "title": "Reflect",
+  "description": "I miss the good old Java days...",
+  "authors": [
+    "Gianluca Altomani <@devgianlu>"
+  ],
+  "tags": [
+    "rev"
+  ],
+  "hiddenTags": [],
+  "order": 42,
+  "flags": [
+    "^openECSC\\{bring_back_the_good_old_java_reflection_cefb1c58\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "reflect",
+      "type": "upload",
+      "path": "./attachments/reflect",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

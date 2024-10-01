@@ -1,0 +1,36 @@
+{
+  "title": "bend-ell",
+  "description": "trees, leafs, folds and bends... I'm not getting much of it, at least they say it's fast!\n\n\u26a0\ufe0f The HVM from which the output.txt attachment was produced is the same you have, except the one attached had the flag\nredacted. It is expected for the output of your HVM to be different from the one provided as an attachment. \u26a0\ufe0f",
+  "authors": [
+    "Andrea Raineri <@Rising>"
+  ],
+  "tags": [
+    "rev"
+  ],
+  "hiddenTags": [],
+  "order": 43,
+  "flags": [
+    "^openECSC\\{oH_my_p4ra7l3l_w0rlds_aR3_f0ld1ng_and_b3nd1ng_[0-9a-f]{8}\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "chall.hvm",
+      "type": "upload",
+      "path": "./attachments/chall.hvm",
+      "dynamic": false
+    },
+    {
+      "name": "output.txt",
+      "type": "upload",
+      "path": "./attachments/output.txt",
+      "dynamic": false
+    }
+  ],
+  "hints": []
+}

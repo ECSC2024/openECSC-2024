@@ -1,0 +1,56 @@
+{
+  "enabled": true,
+  "services": {
+    "backend": {
+      "build": "src/backend",
+      "environment": {
+        "FLAG": "{{`openECSC{{Un1qu3_15_n07_53Cur3_dUd3_{}}}`}}",
+        "MONGODB_USERNAME": "quokkadb",
+        "MONGODB_PASSWORD": "redacted",
+        "MONGODB_HOST": "{{ .services.mongodb.hostname }}",
+        "MONGODB_PORT": "27017"
+      },
+      "depends-on": [
+        "mongodb"
+      ]
+    },
+    "frontend": {
+      "build": "src/frontend"
+    },
+    "mongodb": {
+      "image": "mongo:7.0",
+      "environment": {
+        "MONGO_INITDB_ROOT_USERNAME": "quokkadb",
+        "MONGO_INITDB_ROOT_PASSWORD": "redacted"
+      }
+    },
+    "nginx": {
+      "image": "nginx:1.25",
+      "environment": {
+        "NGINX_ENVSUBST_OUTPUT_DIR": "/etc/nginx",
+        "BACKEND_HOST": "{{ .services.backend.hostname }}:80",
+        "FRONTEND_HOST": "{{ .services.frontend.hostname }}:3000"
+      },
+      "volumes": [
+        {
+          "type": "bind",
+          "host": "src/nginx.conf",
+          "container": "/etc/nginx/templates/nginx.conf.template",
+          "readonly": true
+        }
+      ],
+      "expose": [
+        {
+          "type": "http",
+          "secure": false,
+          "container": 80,
+          "hostname": "quokkey.challs.open.ecsc2024.it"
+        }
+      ],
+      "depends-on": [
+        "frontend",
+        "backend"
+      ]
+    }
+  }
+}

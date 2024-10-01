@@ -1,0 +1,41 @@
+#
+# Helpful Dockerfile to easily build v8, in case you want to build your own.
+# NOTE: it's gonna take a while and use ~12G of disk space.
+#
+# DOCKER_BUILDKIT=1 docker build -f Dockerfile.v8build --target release --output type=local,dest=build .
+#
+FROM ubuntu:22.04 AS builder
+
+ARG V8_COMMIT=171e9a61e56a06c99d9f65df40f59f340827b6e6
+ARG ARGS_GN=args.gn
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+RUN apt-get update && apt-get install -y binutils git make sudo curl wget \
+	python3 xz-utils lsb-release file
+
+WORKDIR /root
+
+RUN git clone --depth 1 https://chromium.googlesource.com/chromium/tools/depot_tools.git
+ENV PATH="/root/depot_tools:$PATH"
+
+RUN fetch v8
+RUN gclient config --name v8 "https://chromium.googlesource.com/v8/v8.git@$V8_COMMIT"
+RUN gclient sync --no-history
+
+WORKDIR /root/v8
+
+RUN ./build/install-build-deps.sh
+
+RUN --mount=type=bind,source=patches,target=../patches git apply ../patches/*.patch
+COPY $ARGS_GN out/chall_build/args.gn
+RUN gn gen out/chall_build
+
+# Go grab a beer...
+RUN ninja -C out/chall_build d8
+
+#
+# Copy build output to standalone container to be easily extracted
+#
+FROM scratch AS release
+COPY --from=builder /root/v8/out/chall_build /

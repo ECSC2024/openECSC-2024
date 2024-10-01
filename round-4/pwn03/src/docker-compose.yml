@@ -1,0 +1,21 @@
+services:
+  chall:
+    image: cybersecnatlab/challenge-jail@sha256:c6ca5b83f35e1c3bc63b08db1ceecd8d10e4a1a46d4f24ee45e9f12bdbac990b
+    container_name: backfired
+    restart: unless-stopped
+    init: true
+    privileged: true
+    volumes:
+      - './chall.sh:/home/user/chall:ro'
+      - './dist/d8:/home/user/d8:ro'
+    ports:
+      - '47003:1337'
+    environment:
+      - 'FLAG=openECSC{[random 8]_L00ks_l1ke_my_1gn1t10n_b4ckd00r_b4ckf1r3d!_[random 8]}'
+      - 'FLAG_IN_ENV=true'
+      - 'FORWARD_STDERR=true'
+      - 'RLIMIT_AS=32768'
+      - 'TEMPDIRS=/tmp'
+      - 'TIMEOUT=60'
+      - 'POW_BITS=30'
+      - 'POW_BYPASS_HASH=redacted'

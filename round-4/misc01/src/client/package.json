@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "image-pixels": "^2.2.2",
+    "qrcode": "^1.5.4",
+    "shuffle-array": "^1.0.1",
+    "ws": "^8.18.0",
+	"aes-js": "^3.1.2"
+  }
+}

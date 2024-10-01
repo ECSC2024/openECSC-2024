@@ -1,0 +1,41 @@
+{
+  "title": "chmod 772",
+  "description": "Someone run `chmod 772` on the flag.\n\nI had `1kat` installed, but it can read only the first kB of a file, can you read the flag?\n\nNote: this is not a kernel challenge, the relevant part of the setup is in the file `source/rcS` between the `CHALLENGE` comments.\n\n`nc chmod772.challs.open.ecsc2024.it 47002`",
+  "authors": [
+    "Giovanni Minotti <@Giotino>"
+  ],
+  "tags": [
+    "misc"
+  ],
+  "hiddenTags": [],
+  "order": 23,
+  "flags": [
+    "^openECSC\\{write_permission_VS_1kat_who_is_gonna_win\\}$"
+  ],
+  "scoring": {
+    "type": "dynamic",
+    "start": 500,
+    "stop": 50,
+    "decay": "50%"
+  },
+  "files": [
+    {
+      "name": "chmod772.tar.gz",
+      "type": "upload",
+      "path": "./attachments/chmod772.tar.gz",
+      "dynamic": false
+    }
+  ],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "chmod772.challs.open.ecsc2024.it",
+    "port": 47002
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 30
+    }
+  }
+}
